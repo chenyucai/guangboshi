@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+		<script type="text/html" id="template">
+			<li data-id="${Id}" id="newsDetail">
+				<div class="clearfix">
+					<a href="#" class="orderListPic"><img src="${Image}" /></a>
+					<div class="orderListMain">
+						<a href="#" class="text1">${Title}</a>
+						<div class=" pt5">
+							<!--<span style="text-align: left;">2016.10.19</span>
+													<span style="text-align: center;">2456</span>
+													<span style="text-align: right;">2345</span>-->
+							<table>
+								<tr class="tr">
+									<td style="width:33%;">${CreatorTime}</td>
+									<td style="width:33%; text-align: right;"><span class="icon-eye3" style="padding-right: 5px;"></span>${Click}</td>
+									<td style="width:33%;text-align: right;"><span class="icon-heart2" style="padding-right: 5px;"></span>${Zan}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</li>
+		</script>
+		<style>
+			.title {
+				font-family: PingFang-SC-Medium;
+				font-size: 14px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.productInfo .tabs a.active {
+				background: white;
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.productInfo .tabs a {
+				background: white;
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.orderListPic img {
+				max-width: none;
+				width: 120px;
+				height: 100px;
+			}
+			
+			.orderListPic {
+				padding-right: 100px;
+			}
+			
+			.text1 {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.tr td {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #999999;
+				letter-spacing: 0px;
+			}
+			
+			.orderListUl>li {
+				border-bottom: none;
+			}
+			
+			.sellerTab li.active a {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+				background-color: white;
+			}
+			
+			.sellerTab li a {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #B8B8B8;
+				letter-spacing: 0px;
+				background-color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layoutMain">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<!--<div class="headRight">
+					<a href="#" class="headRightBtn"><i class="icon-share2"></i></a>
+					<a href="../account/myCart.html" class="headRightBtn"><b>1</b><i class="icon-cart"></i></a>
+				</div>-->
+				<h2 class="headTitle">
+               杂志社
+            </h2>
+			</header>
+			<div class="pageMain">
+				<div class="productInfo" style="height: 100%;">
+					<div class="sellerTab sellerTabSpan3">
+						<ul class="clearfix">
+							<li>
+								<a href="industryInformation.html">行业资讯</a>
+							</li>
+							<li>
+								<a href="photoelectricSchool.html">&nbsp;&nbsp; 光电学堂&nbsp;&nbsp;</a>
+							</li>
+							<li class="active">
+								<a href="companyIntroduction.html">公司信息</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tabs clearfix">
+						<a href="#" class="active">公司新闻</a>
+						<a href="#">公司介绍</a>
+					</div>
+					<div class="swiper-container" >
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<ul class="orderListUl orderListUlNoSet">
+
+								</ul>
+							</div>
+							<div class="swiper-slide">
+								<a href="activityView.html"><img src="../img/81844691981402.jpg" id="Image" /></a>
+
+								<div class="p10">
+									<span class="title"></span>
+						             <div id="Content"></div>
+						            
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+		<script>
+			var tabsSwiper = new Swiper('.swiper-container', {
+				speed: 500,
+				height:$(window).height(),
+				onSlideChangeStart: function() {
+					$(".tabs .active").removeClass('active')
+					$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+				},
+				calculateHeight: true
+			})
+			$(".tabs a").on('touchstart mousedown', function(e) {
+				e.preventDefault()
+				$(".tabs .active").removeClass('active')
+				$(this).addClass('active')
+				tabsSwiper.swipeTo($(this).index())
+			})
+			$(".tabs a").click(function(e) {
+				e.preventDefault()
+			})
+		</script>
+	</body>
+
+</html>
+
+<script>
+	$.get(constants.baseUrl + "/AppHome/GetMagazineList?Type=" + 3,
+		function(data) {
+			debugger;
+			var template = $(".orderListUlNoSet");
+			$('#template').tmpl(data.CompanyNewsList).appendTo(template);
+			$("#Content").html(data.CompanyIntro.Content);
+			$(".title").text(data.CompanyIntro.Title);
+			$("#Image").attr("src",data.CompanyIntro.Image);
+			$(".swiper-slide").css({"overflow-y":"auto","height":$(window).height()-125});
+			
+		});
+
+	$("#newsDetail").live("click",function() {
+		sessionStorage.setItem("NewId", $(this).attr("data-id"));
+		location.href ="photoelectricSchoolDetail.html"
+	})
+	
+	
+</script>

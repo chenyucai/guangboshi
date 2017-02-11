@@ -1,0 +1,725 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TcGfLXTi6qQWU4ZBgDTF0kSIwiPuu7fF"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../js/wan-spinner.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="storeDetail.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+
+		<script type="text/html" id="template">
+			{{if Id==0}}
+			<li data-id="${Id}" class="active">
+
+				<a href="#" class="active">${FullName}</a>
+
+			</li>{{else}}
+			<li data-id="${Id}">
+
+				<a href="#">${FullName}</a>
+			</li>
+			{{/if}}
+		</script>
+
+		<script type="text/html" id="template1">
+			{{each(i,l) ImageList}}
+			<div class="swiper-slide">
+				<a href="javascript:void(0)"><img src="${l}" /></a>
+			</div>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="template2">
+			<div class="swiper-slide">
+				<div class="pt5 ">
+					{{each(i,l) SubGoodsCategory}}
+					<a href="#" class="btn btnSm style_4">${l.FullName}</a>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="template3">
+			<li data-id="${Id}" id="kuanghuandacuDetail">
+				<div class="artistListPad">
+					<a href="javascript:void(0)" class="artistListPic pic1"><img src="${Image}" /></a>
+					<a href="javascript:void(0)" class="artistListName">¥ ${MarketPrice}<span class="jpzx4" style="">¥ ${SellPrice}</span></a>
+					<div class="productListUser">
+						<h4 class="productListTitle pt5"><a href="#" class="c_c">${Title}</a></span>
+					</div>
+					<div class="productListFoot pt5 clearfix" style="border: 1px solid #FF5DA9;">
+						<span class="time">${LeftTime}</span>
+					</div>
+				</div>
+			</li>
+		</script>
+		
+		<script type="text/html" id="template4" >
+			<div class="viewCommentList" data-id="${EvaluationId}" >
+				<div class="viewCommentListHead clearfix">
+					<a href="javascript:void(0)" class="orderListPic" style="padding-right: 15px;"><img src="${Avatar}" /></a>
+					<span class="fr">${EvaluationTime}</span>
+					<a href="javascript:void(0)" class="commentUser">${UserName}</a>&nbsp;&nbsp;<br>
+					<span class="productStar c_blue" style="padding-top: 5px;"><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span>
+				</div>
+				<div class="viewCommentListMain pt5 f12" style="padding-left: 70px;">
+					${Content}
+				</div>
+			</div>
+		</script>
+		
+		
+		<style>
+			.c_9 {
+				font-family: PingFang-SC-Light;
+				font-size: 10px;
+				color: #FFFFFF;
+				letter-spacing: 0px;
+			}
+			
+			.textD {
+				font-family: PingFang-SC-Light;
+				font-size: 12px;
+				color: #656565;
+				letter-spacing: 0px;
+				line-height: 25px;
+				padding-left: 10px;
+			}
+			
+			.jpzx {
+				font-family: PingFang-SC-Medium;
+				font-size: 16px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.jpzx2 {
+				font-family: PingFang-SC-Light;
+				font-size: 16px;
+				color: #3C3C3C;
+				letter-spacing: 0px;
+			}
+			
+			.jpzx1 {
+				font-family: PingFang-SC-Light;
+				font-size: 12px;
+				color: #656565;
+				letter-spacing: 0px;
+				line-height: 19px;
+			}
+			
+			.jpzx3 {
+				font-family: PingFang-SC-Medium;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.jpzx4 {
+				font-family: PingFang-SC-Light;
+				font-size: 12px;
+				letter-spacing: 0px;
+				text-decoration: line-through;
+				color: #B8B8B8;
+			}
+			
+			.jpzx5 {
+				font-family: PingFang-SC-Light;
+				font-size: 13px;
+				color: #656565;
+				letter-spacing: 0px;
+			}
+			
+			.activityTime1 {
+				border-radius: 0;
+				/*top: 150px;*/
+				position: absolute;
+				right: 15px;
+				bottom: 15px;
+				background: #B8B8B8;
+				font-family: PingFang-SC-Light;
+				font-size: 11px;
+				color: #FFFFFF;
+				letter-spacing: 0px;
+				padding: 5px;
+			}
+			
+			.orderTabs a {
+				font-family: PingFang-SC-Light;
+				font-size: 10px;
+				color: #656565;
+				letter-spacing: 0px;
+			}
+			
+			.orderTabs ul {
+				border-bottom: none;
+			}
+			
+			.commentUser {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #231916;
+				letter-spacing: 0px;
+			}
+			
+			.icon-star-full {
+				color: #FF5DA9;
+			}
+			
+			.fr {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #B8B8B8;
+				letter-spacing: 0px;
+			}
+			
+			.f12 {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #231916;
+				letter-spacing: 0px;
+				line-height: 20px;
+				padding-top: 20px;
+			}
+			/*弹出层*/
+			
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.am-share {
+				font-size: 14px;
+				border-radius: 0;
+				bottom: 0;
+				left: 0;
+				position: fixed;
+				text-align: center;
+				-webkit-transform: translateY(100%);
+				-ms-transform: translateY(100%);
+				transform: translateY(100%);
+				-webkit-transition: -webkit-transform 300ms;
+				transition: transform 300ms;
+				width: 100%;
+				z-index: 1110;
+			}
+			
+			.am-modal-active {
+				transform: translateY(0px);
+				-webkit-transform: translateY(0);
+				-ms-transform: translateY(0);
+				transform: translateY(0)
+			}
+			
+			.am-modal-out {
+				z-index: 1109;
+				-webkit-transform: translateY(100%);
+				-ms-transform: translateY(100%);
+				transform: translateY(100%)
+			}
+			
+			.am-share-title {
+				background-color: #f8f8f8;
+				border-bottom: 1px solid #fff;
+				border-top-left-radius: 2px;
+				border-top-right-radius: 2px;
+				color: #555;
+				font-weight: 400;
+				/*margin: 0 10px;*/
+				padding: 10px 0 0;
+				text-align: center;
+			}
+			
+			h1,
+			h2,
+			h3 {
+				margin: 0;
+			}
+			
+			.am-share-title::after {
+				border-bottom: 1px solid #dfdfdf;
+				content: "";
+				display: block;
+				height: 0;
+				margin-top: 10px;
+				width: 100%;
+			}
+			/*.am-share-footer {
+				margin: 10px;
+			}*/
+			
+			.am-share-footer .share_btn {
+				font-family: PingFang-SC-Light;
+				font-size: 14px;
+				color: #FFFFFF;
+				letter-spacing: 0px;
+				display: block;
+				width: 100%;
+				background-color: #e6e6e6;
+				border: 1px solid #e6e6e6;
+				border-radius: 0;
+				cursor: pointer;
+				font-weight: 400;
+				line-height: 1.2;
+				padding: 0.625em 0;
+				text-align: center;
+				transition: background-color 300ms ease-out 0s, border-color 300ms ease-out 0s;
+				vertical-align: middle;
+				white-space: nowrap;
+			}
+			
+			.am-share-sns {
+				background-color: #f8f8f8;
+				border-radius: 0 0 2px 2px;
+				/*margin: 0 10px;*/
+				padding-top: 15px;
+				height: auto;
+				zoom: 1;
+				overflow: auto;
+			}
+			
+			.am-share-sns li {
+				margin-bottom: 15px;
+				display: block;
+				float: left;
+				height: auto;
+				width: 25%;
+			}
+			
+			.am-share-sns a {
+				color: #555;
+				display: block;
+				text-decoration: none;
+			}
+			
+			.am-share-sns span {
+				display: block;
+			}
+			
+			.am-share-sns li i {
+				background-position: center 50%;
+				background-repeat: no-repeat;
+				background-size: 36px 36px;
+				background-color: #ccc;
+				color: #fff;
+				display: inline-block;
+				font-size: 18px;
+				height: 36px;
+				line-height: 36px;
+				margin-bottom: 5px;
+				width: 36px;
+			}
+			
+			.am-share-sns .share-icon-weibo {
+				background-image: url();
+			}
+			
+			.sharebg {
+				background-color: rgba(0, 0, 0, 0.6);
+				bottom: 0;
+				height: 100%;
+				left: 0;
+				opacity: 0;
+				position: fixed;
+				right: 0;
+				top: 0;
+				width: 100%;
+				z-index: 1100;
+				display: none;
+			}
+			
+			.sharebg-active {
+				opacity: 1;
+				display: block;
+			}
+			/*数字加减*/
+			
+			.wan-spinner {
+				border: 1px solid #dddddd;
+				display: inline-block;
+			}
+			
+			.wan-spinner .minus,
+			.wan-spinner .plus,
+			.wan-spinner input {
+				height: 25px;
+				float: left;
+				line-height: 1em;
+				padding: 10px;
+				padding-top: 10px;
+				text-align: center;
+			}
+			
+			.wan-spinner input {
+				border: none;
+				border-left: 1px solid #B8B8B8;
+				border-right: 1px solid #B8B8B8;
+				height: 45px;
+				width: 40px;
+				border-radius: 0px;
+			}
+			
+			.wan-spinner .minus,
+			.wan-spinner .plus {
+				color: #333333;
+				cursor: pointer;
+				text-decoration: none;
+				width: 15px;
+			}
+			/*.wan-spinner .minus, .wan-spinner .plus, .wan-spinner input
+			{
+				
+			}*/
+			
+			.accountHeadPic {
+				position: absolute;
+				top: -50px;
+			}
+			
+			.specialPerformance {
+				line-height: 25px;
+				display: none;
+			}
+			
+			.sellerTabSpan3 li {
+				/*width: 25%;*/
+			}
+			
+			.orderTabs ul li {
+				width: 33%;
+			}
+			#allmap{height:200px;width:100%;}
+		</style>
+	</head>
+
+	<body>
+		<div class="layoutMain" style="background: white;">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<div class="headRight">
+					<a href="javascript:void(0)" class="headLeftBtn shareBtn"><i class="icon-share2"></i></a>
+					<a href="javascript:void(0)" class="headLeftBtn" id="startClick"><i class="icon-star"></i></a>
+
+				</div>
+				<h2 class="headTitle" id="general">
+                门店详情
+            </h2>
+
+				<h2 class="headTitle specialPerformance">
+                <span style="font-family: PingFang-SC-Light;font-size: 10px;color: #FFFFFF;letter-spacing: 0px;"> 距离结束还剩<br><span style="font-family: PingFang-SC-Light;font-size: 18px;color: #FFFFFF;letter-spacing: 0px;" id="countDown"></span></span>
+                
+            </h2>
+			</header>
+			
+			<div class="shareWindow">
+				<div class="shareWindowRow">
+					方法一： 点击右上角的<span class="shareIconBtn"><i class="icon-ellipsis-v"></i></span>图标<br> 然后
+					<span class="shareIconBtn"><i class="icon-share"></i></span>发送给朋友<br> 或者
+					<span class="shareIconBtn"><i class="icon-picassa"></i></span>专场到朋友圈
+				</div>
+
+				<div class="shareWindowRow">
+					方法二： 邀请好友扫描二维码
+					<div class="shareWindowPic"><img src="../img/二维码图片.jpg" /></div>
+				</div>
+				<div class="p20">
+					<!--  <a href="../account/partners.html" class="btn btnBlock style_1">查看我的分销</a>-->
+					<a href="#" class="btn btnBlock style_2 mt10 ">我知道了</a>
+
+				</div>
+			</div>
+			
+			<div class="pageMain noFoot">
+				<div class="grayMain" style="background: white;">
+					<div class="clearfix">		
+				
+						<div class="newProduct">
+						<div class="swiper-container" id="bbb">
+					
+							<div class="swiper-wrapper">
+								<!--<div class="swiper-slide">
+									<a href="activityView.html"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
+								</div>
+								<div class="swiper-slide">
+									<a href="activityView.html"><img src="../img/81844691981402.jpg" /></a>
+								</div>
+								<div class="swiper-slide">
+									<a href="activityView.html"><img src="../img/81844691981402.jpg" /></a>
+								</div>-->
+							</div>
+							<div class="pagination"></div>
+						</div>
+
+					</div>
+					
+
+						<div class="artistList p10">
+							<ul class="clearfix">
+								<li style="width: 100%;">
+									<div class="artistListPad">
+
+										<div class="productListUser" style="padding-top: 14px; text-align: center;">
+											<span class="jpzx" style="font-size: 16px;" id="CategoryName">MISS NEFER</span>
+											<a href="#" class=" btnSm style_4 jpzx2" id="Treatment">月星环球港店</a>&nbsp;&nbsp;
+
+										</div>
+										<div class="productListUser" style="text-align:center; padding-top: 10px;">
+											<span class="jpzx1" id="Title"></span>
+
+										</div>
+
+										<div class="pt5 " style="text-align: center; ">
+											<span class="jpzx3" id="SellPrice">_</span>
+										</div>
+										<div style="text-align: center; padding: 40px; ">
+											<a href="#" class=" btnSm style_4 jpzx5" id="StoreList">上海月星环球港,一座欧式的顶级商业综合体购物商场 其建筑灯光工程融合了弧形玻璃穹顶点缀着整体的特色, 采自然之光,赋予了建筑生命、阳光和活力...</a>&nbsp;&nbsp;
+										</div>
+									</div>
+						</div>
+
+						<nav class="accountNav" style="padding-bottom: 25px;">
+							<ul>
+								<li style="border-bottom: 10px solid #f3f3f3;">
+
+									<div class="orderTabs">
+
+										<ul>
+											<!--<li>
+												<a href="#" id="GetCoupon"><span class="imgtxt"><img src="../img/2/icno_Coupon@3x.png"></span>领取优惠券</a>
+											</li>-->
+											<li>
+												<a href="#" id="GetMessage"><span class="imgtxt" ><img src="../img/2/icon_message@3x.png"></span>在线留言</a>
+											</li>
+											<li>
+												<a href="#" id="Telephone"><span class="imgtxt"><img src="../img/2/icon_tel@3x.png"></span>电话预约</a>
+											</li>
+
+										</ul>
+									</div>
+
+								</li>
+							</ul>
+						</nav>
+
+						<div class="productListUser" style="text-align:center; padding-top: 5px; padding-bottom: 15px; ">
+							<div class="sellerTab sellerTabSpan3">
+								<ul class="c" id="GoodsCategory" style="width: 80%; margin: 0 auto;">
+									<!--<li class="active"c
+										<a href="#">图文详情</a>
+									</li>-->
+									<!--<li>
+										<a href="#">购买须知</a>
+									</li>-->
+									<!--<li>
+										<a href="#">评价</a>
+									</li>
+									<li>
+										<a href="#">评价</a>
+									</li>-->
+								</ul>
+							</div>
+							<div class="swiper-container"  id="aaa">
+								<div class="swiper-wrapper">
+
+								</div>
+							</div>
+						</div>
+						<div style=" background-color: white; ">
+							<dl class="loginSns" onclick="kuanghuandacuAll()">
+								<dt style="color: #000000;">
+							<h5>门店特色<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
+						</dt>
+
+							</dl>
+							<dl class="loginSns">
+								<dt class="c_9 h6 pt5" style="color: #B8B8B8">
+							<h5>Feature of stores</h5>
+						</dt>
+
+							</dl>
+						</div>
+						
+						<nav class="accountNav" style="padding-bottom: 25px;">
+							<ul>
+								<li style="border-bottom: 10px solid #f3f3f3;">
+
+									<div class="orderTabs">
+
+										<ul>
+											<li>
+												<a href="#" id="GetCoupon"><span class="imgtxt"><img src="../img/5/接单数@2x.png"></span>接单数：<span id="Reservation" style="font-size: 10px; display: inline;"></span></a>
+											</li>
+											<li>
+												<a href="#">
+													<span class="imgtxt"><img src="../img/2/icon_message@3x.png"></span>单客价:<span id="Price" style="font-size: 10px; display: inline;"></span></a>
+											</li>
+											<li>
+												<a href="craftsman.html"><span class="imgtxt"><img src="../img/5/手艺人@2x.png"></span>手艺人</a>
+											</li>
+
+										</ul>
+									</div>
+
+								</li>
+							</ul>
+						</nav>
+						
+						<!--
+                        	作者：827648168@qq.com
+                        	时间：2016-12-16
+                        	描述：门店地图
+                        	
+                        -->
+                        <div id="allmap"></div>
+						<!--
+                        	作者：827648168@qq.com
+                        	时间：2016-12-16
+                        	描述：end
+                        -->
+						
+						<div style=" background-color: white; ">
+							<dl class="loginSns" onclick="kuanghuandacuAll()">
+								<dt style="color: #000000;">
+							<h5>狂欢大促<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
+						</dt>
+							</dl>
+							<dl class="loginSns">
+								<dt class="c_9 h6 pt5" style="color: #B8B8B8">
+							<h5>Big carnival</h5>
+						</dt>
+
+							</dl>
+						</div>
+
+						<div class="artistList p10" id="kuanghuandacu" style="border-bottom:10px solid #f3f3f3 ;">
+							<ul class="clearfix">
+
+							</ul>
+						</div>
+						<div style=" background-color: white; ">
+							<dl class="loginSns" onclick="kuanghuandacuAll()">
+								<dt style="color: #000000;">
+							<h5>门店评价<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
+						</dt>
+
+							</dl>
+							<dl class="loginSns">
+								<dt class="c_9 h6 pt5" style="color: #B8B8B8">
+							<h5>Evaluation of stores</h5>
+						</dt>
+
+							</dl>
+						</div>
+
+						<div style="text-align: left;">
+							<div class="viewComment" style="border: none;">
+								<!--<div class="viewCommentList">
+									<div class="viewCommentListHead clearfix">
+										<a href="#" class="orderListPic" style="padding-right: 15px;"><img src="../img/81844691981402.jpg" /></a>
+										<span class="fr">2015-11-22</span>
+										<a href="#" class="commentUser">王小三</a>&nbsp;&nbsp;<br>
+										<span class="productStar c_blue" style="padding-top: 5px;"><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span>
+
+									</div>
+									<div class="viewCommentListMain pt5 f12" style="padding-left: 70px;">
+										清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图
+									</div>
+								</div>
+								<div class="viewCommentList">
+									<div class="viewCommentListHead clearfix">
+										<a href="#" class="orderListPic" style="padding-right: 15px;"><img src="../img/81844691981402.jpg" /></a>
+										<span class="fr">2015-11-22</span>
+										<a href="#" class="commentUser">王小三</a>&nbsp;&nbsp;<br>
+										<span class="productStar c_blue" style="padding-top: 5px;"><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span>
+
+									</div>
+									<div class="viewCommentListMain pt5 f12" style="padding-left: 70px;">
+										清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图
+									</div>
+								</div>
+								<div class="viewCommentList">
+									<div class="viewCommentListHead clearfix">
+										<a href="#" class="orderListPic" style="padding-right: 15px;"><img src="../img/81844691981402.jpg" /></a>
+										<span class="fr">2015-11-22</span>
+										<a href="#" class="commentUser">王小三</a>&nbsp;&nbsp;<br>
+										<span class="productStar c_blue" style="padding-top: 5px;"><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i></span>
+
+									</div>
+									<div class="viewCommentListMain pt5 f12" style="padding-left: 70px;">
+										清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图清明上上河图
+									</div>
+								</div>-->
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			
+			var options = {
+				maxValue: 10,
+				minValue: 0,
+				step: 1,
+				inputWidth: 100,
+				start: -2,
+				plusClick: function(val) {
+					console.log(val);
+				},
+				minusClick: function(val) {
+					console.log(val);
+				},
+				exceptionFun: function(val) {
+					console.log("excep: " + val);
+				},
+				valueChanged: function(val) {
+					console.log('change: ' + val);
+				}
+			}
+			$(".wan-spinner-1").WanSpinner(options);
+
+		});
+
+		$(".accountHeadPic").hide();
+
+		function toshare() {
+			$(".am-share").addClass("am-modal-active");
+			$(".lijigoumai").hide();
+			$(".accountHeadPic").show();
+			if($(".sharebg").length > 0) {
+				$(".sharebg").addClass("sharebg-active");
+			} else {
+				$("body").append('<div class="sharebg"></div>');
+				$(".sharebg").addClass("sharebg-active");
+			}
+			$(".sharebg-active,.share_btn").click(function() {
+				$(".am-share").removeClass("am-modal-active");
+				setTimeout(function() {
+					$(".sharebg-active").removeClass("sharebg-active");
+					$(".sharebg").remove();
+				}, 300);
+
+				$(".lijigoumai").show();
+				$(".accountHeadPic").hide();
+			})
+		}
+	</script>
+
+</html>

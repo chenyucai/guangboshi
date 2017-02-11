@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+
+		<script type="text/html" id="template">
+			<li style="width: 100%;background: white;" data-id="${Id}" id="taocanDetail">
+				<div class="artistListPad" style="text-align: center;">
+
+					<a href="#" class="activityBannerPic" style="text-align: center;"><img src="${Image}" style="width:90%; height: 130px;" /></a>
+					<div class="productListUser" style="padding-top: 14px;">
+						<span style="background: #B8B8B8; padding: 1px 10px;font-family: PingFang-SC-Light;font-size: 10px;color: #FFFFFF;letter-spacing: 0px;">${GoodsNumber}合一</span>
+						<span class="jpzx">${Title}</span>
+
+					</div>
+					<div class="productListUser" style="padding-top: 12px;">
+
+						<span class="jpzx1" data-title="${GoodsTitle}"></span>
+
+					</div>
+					<div class="pt5 " style="padding-top: 20px;">
+					</div>
+					<a href="#" class=" btnSm style_4" style="float:left;font-family: PingFang-SC-Medium;font-size: 14px;color: #2F2F2F;letter-spacing: 0px;">¥ ${MarketPrice}
+						<span style="font-family: PingFang-SC-Light;font-size: 10px;color: #B8B8B8;letter-spacing: 0px; text-decoration:line-through;">¥ ${SellPrice}</span></a>
+					<a href="#" class=" btnSm style_4" style="float:right;font-family: PingFang-SC-Light;font-size: 10px;color: #FF5DA9;letter-spacing: 0px;">已售 ${SellCount}</a>
+
+				</div>
+			</li>
+		</script>
+		<style>
+			.title {
+				font-family: PingFang-SC-Medium;
+				font-size: 14px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.productInfo .tabs a.active {
+				background: white;
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.productInfo .tabs a {
+				background: white;
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.orderListPic img {
+				max-width: none;
+				width: 120px;
+				height: 100px;
+			}
+			
+			.orderListPic {
+				padding-right: 100px;
+			}
+			
+			.text1 {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.tr td {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #999999;
+				letter-spacing: 0px;
+			}
+			
+			.orderListUl>li {
+				border-bottom: none;
+			}
+			
+			.sellerTab li.active a {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+				background-color: white;
+			}
+			
+			.sellerTab li a {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #B8B8B8;
+				letter-spacing: 0px;
+				background-color: white;
+			}
+			
+			.screening {
+				position: inherit;
+			}
+			
+			.screeningList {
+				width: 33%;
+			}
+			/*.screeningList {
+				width: 100%;
+			}*/
+			
+			.screeningTitle {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.screeningList dd {
+				top: 120px;
+			}
+			
+			.jpzx {
+				font-family: PingFang-SC-Medium;
+				font-size: 11px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.jpzx1 {
+				font-family: PingFang-SC-Regular;
+				font-size: 12px;
+				color: #999999;
+				letter-spacing: 0px;
+			}
+			
+			.style_4 {
+				font-family: PingFangSC-Light;
+				font-size: 10px;
+				color: #999999;
+				letter-spacing: 0px;
+			}
+			
+			.activityTime1 {
+				border-radius: 0;
+				/*top: 150px;*/
+				position: absolute;
+				right: 5px;
+				bottom: -10px;
+				font-family: PingFang-SC-Light;
+				font-size: 11px;
+				color: #FFFFFF;
+				letter-spacing: 0px;
+				padding: 5px;
+				opacity: 0.69;
+				background: white;
+				border-radius: 120px;
+				width: 15px;
+				color: red;
+			}
+			
+			.dianzanshu {
+				float: right;
+				padding-right: 8px;
+				padding-top: 8px;
+				font-family: PingFangSC-Light;
+				font-size: 10px;
+				color: #999999;
+				letter-spacing: 0px;
+			}
+			
+			.artistList {
+				padding-top: 23px;
+			}
+			
+			.artistList li {
+				width: 50%;
+			}
+			
+			.productListUser {
+				padding-top: 20px;
+			}
+			
+			.c_c,
+			a.c_c {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.icon-heart {
+				width: 13px;
+			}
+			
+			.sellerTabSpan3 li {
+				width: 25%
+			}
+			
+			.productInfo .tabs a {
+				width: 33%;
+			}
+			
+			.screening dl {
+				width: 33%;
+			}
+			
+			.c_c,
+			a.c_c {
+				font-family: PingFang-SC-Medium;
+				font-size: 11px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.C_C_C {
+				font-family: PingFang-SC-Light;
+				font-size: 11px;
+				color: #B8B8B8;
+				letter-spacing: 0px;
+			}
+			
+			.screening:after {
+				background: none;
+			}
+			
+			#chanpingleixing li {
+				display: inline;
+				width: 33%;
+				float: left;
+				text-align: center;
+			}
+			
+			.productListPad div {
+				text-align: left;
+			}
+			
+			.sellerTabSpan3 li {
+				width: 33%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layoutMain">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<!--<div class="headRight">
+					<a href="#" class="headRightBtn"><i class="icon-share2"></i></a>
+					<a href="../account/myCart.html" class="headRightBtn"><b>1</b><i class="icon-cart"></i></a>
+				</div>-->
+				<h2 class="headTitle">
+特惠圈
+            </h2>
+			</header>
+			<div class="pageMain">
+				<div class="productInfo">
+					<div class="sellerTab sellerTabSpan3">
+						<ul class="clearfix">
+							<li>
+								<a href="specialPerformance.html">专场</a>
+							</li>
+							<li>
+								<a href="Groupbuying.html">&nbsp;&nbsp; 团购&nbsp;&nbsp;</a>
+							</li>
+							<li class="active">
+								<a href="#">套餐</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="artistList p10">
+					<div class="swiper-container" style="height: 100%;">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" id="guangdianxuetang">
+
+								<ul class="clearfix" id="taocan">
+									<!--<li style="width: 100%;background: white;">
+										<div class="artistListPad" style="text-align: center;">
+
+											<a href="#" class="activityBannerPic" style="text-align: center;"><img src="../img/背景.jpg" style="width:90%; height: 130px;" /></a>
+											<div class="productListUser" style="padding-top: 14px;">
+												<span style="background: #B8B8B8; padding: 1px 10px;font-family: PingFang-SC-Light;font-size: 10px;color: #FFFFFF;letter-spacing: 0px;">三合一</span>
+												<span class="jpzx">冰爽夏热醒肤系列</span>
+
+											</div>
+											<div class="productListUser" style="padding-top: 12px;">
+
+												<span class="jpzx1">【紧肤系列】润白颜水光针2ml+伊肤泉无菌修复美颜/【鼻部】润   
+ 白颜深海泥/【口腔】雅诗兰黛洁牙膏</span>
+
+											</div>
+											<div class="pt5 " style="padding-top: 20px;">
+											</div>
+											<a href="#" class=" btnSm style_4" style="float:left;font-family: PingFang-SC-Medium;font-size: 14px;color: #2F2F2F;letter-spacing: 0px;">¥ 799
+												<span style="font-family: PingFang-SC-Light;font-size: 10px;color: #B8B8B8;letter-spacing: 0px; text-decoration:line-through;">¥ 1599</span></a>
+											<a href="#" class=" btnSm style_4" style="float:right;font-family: PingFang-SC-Light;font-size: 10px;color: #FF5DA9;letter-spacing: 0px;">已售 1229</a>
+
+										</div>
+									</li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var tabsSwiper = new Swiper('.swiper-container', {
+				speed: 500,
+				onSlideChangeStart: function() {
+					$(".tabs .active").removeClass('active')
+					$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+				},
+				calculateHeight: true
+			})
+			$(".tabs a").on('touchstart mousedown', function(e) {
+				e.preventDefault()
+				$(".tabs .active").removeClass('active')
+				$(this).addClass('active')
+				tabsSwiper.swipeTo($(this).index())
+			})
+			$(".tabs a").click(function(e) {
+				e.preventDefault()
+			})
+
+			$.get(constants.baseUrl + "/AppHome/GetEShopGoodsList?&CityId=" + "" + "&Type=" + 4,
+				function(data) {
+					var template = $("#taocan");
+					$('#template').tmpl(data.EShopTCGoodsList).appendTo(template);
+					$(".jpzx1").each(function() {
+						var title = $(this).attr("data-title");
+						$(this).html(title);
+					})
+
+				})
+
+			$("#taocanDetail").live("click", function() {
+				sessionStorage.setItem("ComboProductId", $(this).attr("data-id"));
+				location.href = "../shaping/comboDetail.html";
+			})
+		</script>
+	</body>
+
+</html>

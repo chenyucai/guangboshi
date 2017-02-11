@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+
+		<script type="text/html" id="template">
+			<li>
+				<div class="clearfix">
+					<a href="../home/productView.html" class="orderListPic"><img src="../img/3/icon_logo@2x.png"/></a>
+					<div class="orderListMain">
+						<a href="../home/productView.html" class="text1">${CreateTime}</a>
+						<div class=" pt5">
+							<b class="text2">${Message}</b>
+						</div>
+					</div>
+				</div>
+			</li>
+		</script>
+		<style>
+			.text1 {
+				font-family: PingFang-SC-Regular;
+				font-size: 12px;
+				color: #656565;
+			}
+			
+			.text2 {
+				font-family: PingFang-SC-Regular;
+				font-size: 14px;
+				color: #231916;
+				font-weight: normal;
+			}
+			
+			.orderListPic {
+				width: 70px;
+				height: 70px;
+			}
+			
+			.orderListPic img {
+				width: 50px;
+				height: 50px;
+			}
+			
+			.orderListUlNoSet {
+				padding: 5px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layoutMain">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+
+				</div>
+
+				<h2 class="headTitle">
+                我的消息
+            </h2>
+
+			</header>
+			<div class="pageMain noFoot">
+				<div class="grayMain">
+					<div class="orderList">
+						<ul class="orderListUl orderListUlNoSet">
+
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+	</body>
+
+</html>
+
+<script>
+	$.get(constants.baseUrl + "/AppPersonal/GetMyMessages?UserId=" + 　$.cookie("userId"), function(data) {
+		var template = $(".orderListUl");
+		$("#template").tmpl(data).appendTo(template);
+	})
+</script>

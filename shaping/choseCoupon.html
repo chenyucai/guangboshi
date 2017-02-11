@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<link href="../css/main.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+		<script type="text/html" id="template">
+			{{if Available==true}}
+			<br/>
+
+			<div class="coupon coupon-unselected ClickMe" data-id="${CouponId}">
+				<div class="content">
+					<div class="amount">
+						<div class="unit">￥</div>
+						<div class="number">${Amount}</div>
+					</div>
+					<div class="description">
+						<p><span class="point">${FullName}</span><span class="normal">${AllMark}</span></p>
+						<p><span class="expiry-date">有效期：${StartTime} 至 ${EndTime}</span></p>
+					</div>
+				</div>
+				<div class="status">点击获取</div>
+			</div>
+			{{/if}}
+		</script>
+	</head>
+
+	<body>
+		<div class="layoutMain" style="font:">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<h2 class="headTitle">
+              优惠券
+            </h2>
+				<div class="headRight">
+					<a href="javascript:void(0)" class="headLeftBtn choseOk"><span style="font-family: PingFang-SC-Regular;font-size: 14px;color: #FFFFFF;letter-spacing: 0px; vertical-align: middle;">选好了</span></a>
+
+				</div>
+			</header>
+			<div class="pageMain noFoot">
+				<div class="demo">
+
+					<style>
+						.coupon {
+							position: relative;
+							padding: 5px;
+						}
+						
+						.coupon .content {
+							position: relative;
+							display: block;
+							background-color: #ccaa6f;
+							padding: 10px 10px;
+							box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+							/*border: 1px solid #ccaa6f;*/
+						}
+						
+						.coupon-unselected .content:after {
+							width: 0;
+							height: 0;
+							border-top: 60px solid #fff;
+							border-left: 60px solid transparent;
+							position: absolute;
+							display: block;
+							right: 0;
+							content: "";
+							top: 0;
+						}
+						
+						.coupon .content .amount {
+							position: relative;
+							display: table-cell;
+							text-align: right;
+							vertical-align: middle;
+							border-right: 1px dashed #fff;
+							padding: 10px 10px 10px 20px;
+							float: left;
+						}
+						
+						.coupon .content .amount .unit {
+							position: absolute;
+							top: 10px;
+							left: 10px;
+							font-weight: bold;
+							color: #fff;
+						}
+						
+						.coupon .content .amount .number {
+							font-family: PingFang-SC-Medium;
+							font-size: 3.5em;
+							font-weight: bold;
+							color: #fff;
+						}
+						
+						.coupon .content .description {
+							position: relative;
+							margin-left: 90px;
+							padding: 12px 0;
+						}
+						
+						.coupon .content .description p {
+							margin: 5px 0;
+							padding: 0 20px;
+							color: #eee;
+						}
+						
+						.coupon .content .description p span.point {
+							font-size: 1.2em;
+							font-weight: bold;
+							color: #fff;
+							margin-right: 10px;
+							word-spacing: 8px;
+							letter-spacing: 1px;
+						}
+						
+						.coupon .content .description p span.normal {
+							font-size: 0.6em;
+							color: #eee;
+							word-spacing: 8px;
+							letter-spacing: 1px;
+						}
+						
+						.coupon .content .description p span.expiry-date {
+							font-size: 0.6em;
+							color: #eee;
+							word-spacing: 8px;
+						}
+						
+						.coupon-unselected .status {
+							position: absolute;
+							top: 22px;
+							right: 7px;
+							color: #ccaa6f;
+							z-index: 1000;
+							font-size: 0.8em;
+							transform: rotate(45deg);
+							-ms-transform: rotate(45deg);
+							/* IE 9 */
+							-moz-transform: rotate(45deg);
+							/* Firefox */
+							-webkit-transform: rotate(45deg);
+							/* Safari 和 Chrome */
+							-o-transform: rotate(45deg);
+							/* Opera */
+						}
+						
+						.coupon-selected .status {
+							position: absolute;
+							top: 15px;
+							right: 15px;
+							color: #fff;
+							font-size: 2.5em;
+						}
+					</style>
+
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+
+<script>
+	$.get(constants.baseUrl + "/AppCoupon/GetUserCouponListByOrderId?orderId=" + sessionStorage.getItem("OrderID"), function(data) {
+		//debugger;
+		var template = $('.demo');
+		$('#template').tmpl(data).appendTo(template);
+
+		//		$(".demo .GetClick").each(function() {
+		//			if($(this).attr("data-Getted") == "true") {
+		//				$(this).find(".content").css("background-color", "#B8B8B8");
+		//				$(this).find(".status").text("已领取");
+		//				$(this).attr("disabled", "disabled")
+		//			}
+		//		})
+	})
+
+	//alert($(window).height());
+	$('.ClickMe').live("click", function() {
+		//debugger;
+		$(this).find(".status").text("");
+		$(this).find(".status").append('<i class="icon-circle-check"></i>');
+		$(this).removeClass("coupon-unselected").addClass("coupon-selected");
+		$('.ClickMe').not(this).find(".status").text("点击获取");
+		$('.ClickMe').not(this).removeClass("coupon-selected").addClass("coupon-unselected");
+	});
+
+	$('.choseOk').live("click", function() {
+		var couponId = $('.coupon-selected').attr("data-id");
+		var amount = $('.coupon-selected').find('.number').text();
+		sessionStorage.setItem("couponId", couponId);
+		sessionStorage.setItem("couponAmount", amount);
+		location.href = "affirmOrder.html";
+	})
+	$('.closebt').click(function() {
+		$('#code').hide();
+		$('#goodcover').hide();
+	});
+	$('#goodcover').click(function() {
+		$('#code').hide();
+		$('#goodcover').hide();
+	});
+	/*var val=$(window).height();
+	var codeheight=$("#code").height();
+    var topheight=(val-codeheight)/2;
+	$('#code').css('top',topheight);*/
+	jQuery.fn.center = function(loaded) {
+		var obj = this;
+		body_width = parseInt($(window).width());
+		body_height = parseInt($(window).height());
+		block_width = parseInt(obj.width());
+		block_height = parseInt(obj.height());
+
+		left_position = parseInt((body_width / 2) - (block_width / 2) + $(window).scrollLeft());
+		if(body_width < block_width) {
+			left_position = 0 + $(window).scrollLeft();
+		};
+
+		top_position = parseInt((body_height / 2) - (block_height / 2) + $(window).scrollTop());
+		if(body_height < block_height) {
+			top_position = 0 + $(window).scrollTop();
+		};
+
+		if(!loaded) {
+
+			obj.css({
+				'position': 'absolute'
+			});
+			obj.css({
+				'top': ($(window).height() - $('#code').height()) * 0.5,
+				'left': left_position
+			});
+			$(window).bind('resize', function() {
+				obj.center(!loaded);
+			});
+			$(window).bind('scroll', function() {
+				obj.center(!loaded);
+			});
+
+		} else {
+			obj.stop();
+			obj.css({
+				'position': 'absolute'
+			});
+			obj.animate({
+				'top': top_position
+			}, 200, 'linear');
+		}
+	}
+</script>
