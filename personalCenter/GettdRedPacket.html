@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<link href="../css/main.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../js/tanchu.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+		<script type="text/html" id="template">
+			<div style="padding-top: 20px; height: 300px;" >
+				<img src="../img/5/Red@2x.png">
+				<div style="text-align: center; position: relative; bottom: 250px;font-family: PingFang-SC-Regular;font-size: 45px;color: #FFFFFF;letter-spacing: 0px;">
+					<span>${Amount}</span>
+				</div>
+				<div style="text-align: center; position: relative; bottom: 200px;">
+					<span style="font-family: PingFang-SC-Light;font-size: 14px;color: #282727;letter-spacing: 0px;line-height: 22px;">您的<span>${DLevel}</span>级代理人<span style="font-weight: bold;">${DUserName}</span><br> 给您带来了红包奖励
+					</span>
+
+					<div class="GetClick" data-Status="${Status}"data-id="${ID}">
+						<button>领取</button>
+					</div>
+
+				</div>
+			</div>
+		</script>
+		<style>
+			.accountNavDigital {
+				background-color: white;
+				font-family: PingFang-SC-Regular;
+				font-size: 14px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.accountNavText {
+				font-family: PingFang-SC-Light;
+				font-size: 14px;
+				color: #656565;
+				letter-spacing: 0px;
+				line-height: 20px;
+			}
+			
+			.accountNavRow {
+				margin-bottom: 14px;
+			}
+			
+			.sfje {
+				font-family: PingFang-SC-Medium;
+				font-size: 18px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.h4 {
+				font-family: PingFang-SC-Medium;
+				font-size: 16px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.c_9 h6 {
+				font-family: PingFang-SC-Light;
+				font-size: 12px;
+				color: #656565;
+				letter-spacing: 0px;
+				line-height: 19px;
+			}
+			
+			.xzzffs {
+				font-family: PingFang-SC-Light;
+				font-size: 10px;
+				color: #656565;
+				letter-spacing: 0px;
+			}
+			
+			.accountNav {
+				border-bottom: 5px solid #f3f3f3;
+			}
+			
+			.accountNav li {
+				border: none;
+			}
+			
+			.total {
+				float: left;
+				font-family: PingFang-SC-Light;
+				font-size: 14px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+				line-height: 20px;
+			}
+			
+			.price {
+				font-family: PingFang-SC-Regular;
+				font-size: 18px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			/*设置Select样式*/
+			
+			.SelectList {
+				/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+				border: solid 0px #000;
+				/*很关键：将默认的select选择框样式清除*/
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				/*在选择框的最右侧中间显示小箭头图片*/
+				/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+				padding-right: 14px;
+			}
+			
+			#HeadIcon {
+				border-radius: 50%;
+				width: 80px;
+				height: 80px;
+				border: solid 8px white;
+			}
+			
+			.con4 {
+				width: 300px;
+				height: auto;
+				overflow: hidden;
+				margin: 20px auto;
+				color: #FFFFFF;
+			}
+			
+			.con4 .btn {
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				background: white;
+				color: #2F2F2F;
+				display: block;
+				font-size: 16px;
+				border: none;
+			}
+			
+			.upload {
+				float: left;
+				position: relative;
+			}
+			
+			.upload_pic {
+				display: block;
+				width: 100%;
+				height: 40px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0;
+				border-radius: 5px;
+			}
+			
+			.GetClick {
+				border: none;
+				padding-top: 20px;
+			}
+			
+			.GetClick button {
+				background: white;
+				width: 100px;
+				height: 40px;
+				font-family: PingFang-SC-Light;
+				font-size: 16px;
+				color: #D9BD8C;
+				letter-spacing: 0px;
+				border: 1px solid #D9BD8C;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="layoutMain">
+
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<h2 class="headTitle">
+           奖励红包
+              
+           </h2>
+			</header>
+			<div class="pageMain" style="background-color: white;">
+				<div id="redPackage">
+					<!--<div style="padding-top: 20px;">
+						<img src="../img/5/Red@2x.png" style="width: 100%;">
+						<div style="position: absolute; top: 100px; left:40%;font-family: PingFang-SC-Regular;font-size: 45px;color: #FFFFFF;letter-spacing: 0px;">
+							<span>100</span>
+						</div>
+						<div style="text-align: center; position: relative; bottom: 150px;">
+							<span style="font-family: PingFang-SC-Light;font-size: 14px;color: #282727;letter-spacing: 0px;line-height: 22px;">您的二级代理人<span style="font-weight: bold;">小太阳的朋友</span><br> 给您带来了红包奖励
+							</span>
+
+							<div class="GetClick">
+								<button>领取</button>
+							</div>
+
+						</div>
+					</div>-->
+				</div>
+			</div>
+
+			<div id="goodcover"></div>
+
+			<div id="code">
+
+				<div class="code-img"> <img id="ewmsrc" src="../img/2/Mirror@3x.png" /></div>
+				<div class="goodtxt" style="padding-top: 20px;">
+					<p class="text1">美丽与自信是天然姐妹</p>
+					<p class="text2">我准备好了，你呢？</p>
+				</div>
+				<div style="position: absolute; bottom: 0; width: 100%;">
+					<ul class="cd-buttons" style="border-top: 1px solid #B8B8B8; ">
+						<li style="text-align: center;border-right: 1px solid #B8B8B8;">
+							<a href="#">是</a>
+						</li>
+						<li style="text-align: center;">
+							<a href="#">否</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</body>
+
+</html>
+
+<script>
+	$.get(constants.baseUrl + "/AppPersonal/GetRedPacketList?UserId=" + $.cookie("userId"), function(data) {
+		var template = $("#redPackage");
+		$('#template').tmpl(data).appendTo(template);
+		$("#redPackage div").each(function() {
+			if($(this).find(".GetClick").attr("data-Status") == 0) {
+				$(this).find(".GetClick button").text("已领取");
+				$(this).find(".GetClick button").css({"background":"#D9BD8C","color":"#FFFFFF","border":"none"});
+				$(this).find(".GetClick button").attr("disabled","disabled");				
+			}
+		})
+
+	})
+
+	$(".GetClick").live("click", function() {
+		$.get(constants.baseUrl + "/AppPersonal/RecieveRedPacket?Id=" + $(this).attr("data-id") + "&UserId =" + $.cookie("userId"), function(message) {
+			if(message != "") {
+				alert(message);
+			}
+			window.location.reload();
+		})
+	})
+</script>

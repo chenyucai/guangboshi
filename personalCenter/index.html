@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+
+		<head>
+			<meta charset="UTF-8">
+			<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+			<meta content="yes" name="apple-mobile-web-app-capable">
+			<meta content="black" name="apple-mobile-web-app-status-bar-style">
+			<title></title>
+			<link href="../static/css/common.css" rel="stylesheet">
+			<link href="../static/css/style.css" rel="stylesheet">
+			<link href="../static/css/icon.css" rel="stylesheet">
+			<link href="../css/xiala/main.css" rel="stylesheet">
+			<link href="../css/xiala/normalize.css" rel="stylesheet">
+			<script src="../static/js/jquery-1.9.1.js"></script>
+			<script src="../static/js/idangerous.swiper.js"></script>
+			<script src="../static/js/web.js"></script>
+			<script src="../static/js/jquery.raty.js"></script>
+			<script src="../js/common.js"></script>
+			<script src="../js/location.js"></script>
+			<script src="../js/jquery.tmpl.min.js"></script>
+			<script src="../js/jquery.cookie.js "></script>
+			<style type="text/css">
+				html,
+				body {
+					color: #222;
+					font-family: Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif;
+					margin: 0;
+					padding: 0;
+					text-decoration: none;
+				}
+				
+				img {
+					border: 0;
+				}
+				
+				ul {
+					list-style: none outside none;
+					margin: 0;
+					padding: 0;
+				}
+				
+				body {
+					background-color: #eee;
+				}
+				
+				body .mainmenu:after {
+					clear: both;
+					content: " ";
+					display: block;
+				}
+				
+				body .mainmenu li {
+					float: left;
+					width: 33%;
+					height: 80px;
+					/*		border-radius: 3px;
+*/
+					overflow: hidden;
+					border-top: 1px solid #B8B8B8;
+					border-right: 1px solid #B8B8B8;
+				}
+				
+				body .mainmenu li a {
+					display: block;
+					color: black;
+					text-align: center
+				}
+				
+				body .mainmenu li a b {
+					display: block;
+					height: 60px;
+				}
+				
+				body .mainmenu li a img {
+					margin: 15px auto 15px;
+					width: 30px;
+					height: 30px;
+				}
+				
+				body .mainmenu li a span {
+					display: block;
+					height: 40px;
+					line-height: 20px;
+					color: #999;
+					font-size: 14px;
+				}
+				
+				.meiliwancheng span img {
+					width: 30px;
+					height: 30px;
+				}
+				
+				.meiliwancheng span {
+					display: block;
+					height: 40px;
+					line-height: 20px;
+					color: #999;
+					font-size: 14px;
+				}
+				
+				.categoryListText {
+					color: #000000;
+					text-align: center;
+					top: 70%;
+				}
+				
+				.accountHeadPic img {
+					position: absolute;
+					bottom: 70px;
+					left: 38%;
+					border-radius: 50%;
+					width: 80px;
+					height: 80px;
+					border: solid 8px white;
+				}
+				
+				.sex {
+					width: 20px;
+					height: 20px;
+					border-radius: 50%;
+					background-color: #F03B92;
+					color: white;
+					font-weight: bolder;
+				}
+				
+				.qiandao {
+					width: 60px;
+					border-radius: 30px;
+					border: solid 2px white;
+					filter: alpha(opacity=50);
+					/*支持 IE 浏览器*/
+					-moz-opacity: 0.50;
+					/*支持 FireFox 浏览器*/
+					opacity: 0.50;
+					/*支持 Chrome, Opera, Safari 等浏览器*/
+				}
+				
+				.footNav ul li.active a {
+					color: #F03B92;
+				}
+				
+				.footNav ul li a {
+					background: #F3F4F4;
+				}
+			</style>
+		</head>
+
+		<body>
+			<div class="layoutMain" style="font:">
+
+				<header class="pageHead clearfix">
+					<div class="headLeft">
+						<a href="setUp.html" class="headLeftBtn"><i class="icon-cog"></i></a>
+					</div>
+					<h2 class="headTitle">
+              个人中心
+              
+            </h2>
+
+				</header>
+				<div class="pageMain noFoot">
+					<div class="categoryList">
+						<dl class="categoryListDl">
+							<dt>
+                    	<a href="javascript:void(0)"><img src="img/图层-8.png"/>	
+                    	<div class="accountHeadPic" style="border-radius:inherit; padding-right: 20px; z-index: 99;">
+						<img src="../img/QQ截图20161118113628.png"  id="HeadIcon"/>
+					</div>
+                    	<div class="sex" style="position: absolute;	bottom: 85px;
+					right:36%;"> ♀</div>
+						<div class="qiandao" style="position: absolute;	bottom: 65px;
+					right:10px; z-index: 999;">签到  </div>
+                        <div class="categoryListText">
+                        	<div class="categoryTitle" id="Name" style="border: none;">疯狂的石头</div>
+                             <div class="categoryAbout">会员等级：V<span id="MemberLevel">2</span></div>
+                        </div>
+                     </a>
+                   </dt>
+
+						</dl>
+					</div>
+					<div class="loginLayout">
+
+						<div style="padding-bottom: 50px;" class="meiliwancheng">
+							<a href="../beautifulLibrary/index.html"><span style="float: left; padding-left: 30px;"><img src="img/美丽库.png">美丽库</span></a>
+							<a href="../Completed/index.html"><span style="float: right; padding-right: 30px;"><img src="img/已完成.png">已完成</span></a>
+						</div>
+						<ul class="mainmenu">
+							<li>
+								<a href="personalData.html"><b><img src="img/个人中心.png" /></b><span>个人信息</span></a>
+							</li>
+							<li>
+								<a href="MyBalance.html"><b><img src="img/余额.png" /></b><span>余额<span id="Amount" style="font-family: PingFang-SC-Light;
+					font-size: 10px;
+					color: #FF5DA9;
+					letter-spacing: 0px;
+					display: inline;
+					padding-left: 10px;" ></span></span>
+								</a>
+							</li>
+							<li style="border-right: none;">
+								<a href="../home/point.html"><b><img src="img/积分.png" /></b><span>积分<span id="Point"  style="font-family: PingFang-SC-Light;
+					font-size: 10px;
+					color: #FF5DA9;
+					letter-spacing: 0px;
+					display: inline;
+					padding-left: 10px;" ></span></span>
+								</a>
+							</li>
+							<li>
+								<a href="GainSharing.html"><b><img src="img/分享获利.png" /></b><span>分享.获利</span></a>
+							</li>
+							<li>
+								<a href="MyCoupon.html"><b><img src="img/优惠券.png" /></b><span>我的优惠券</span></a>
+							</li>
+							<li style="border-right: none;">
+								<a href="MyNews.html"><b><img src="img/我的消息.png" /></b><span>我的消息</span></a>
+							</li>
+							<li>
+								<a href="" id="contactCustomer"><b><img src="img/联系客服.png" /></b><span>联系客服</span></a>
+							</li>
+							<li>
+								<a href="../myCollect/index.html"><b><img src="img/我的收藏.png" /></b><span>我的收藏</span></a>
+							</li>
+							<li style="border-right: none;">
+								<a href="../myAttention/index.html"><b><img src="img/矢量智能对象.png" /></b><span>我的关注</span></a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<footer class="pageFoot" style="border-top: 10px solid #F1f1f1;">
+					<nav class="footNav">
+						<ul class="clearfix">
+
+							<li style="width: 50%;">
+								<a href="../home/index.html" class="submit"><span><img src="../img/3/button_logo_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>MISS NEFER</a>
+							</li>
+							<li class="active" style="width: 50%;">
+								<a href="#"><span><img src="../img/3/button_presonl_hul@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
+							</li>
+						</ul>
+					</nav>
+				</footer>
+			</div>
+		</body>
+
+</html>
+<script>
+	var SignedMark;
+	$.get(constants.baseUrl + "/AppPersonal/GetPersonalCenter?UserId=" + $.cookie("userId"), function(response) {
+		debugger;
+		$("#HeadIcon").attr("src", response.HeadIcon);
+		$("#MemberLevel").text(response.MemberLevel);
+		$("#Name").text(response.Name);
+		$("#SignCount").text(response.CSignCount)
+		$("#Point").text(response.Point);
+		$("#Amount").text(response.Amount);
+
+		$("#contactCustomer").attr("href", "tel://13918901820");
+		SignedMark = response.SignedMark;
+		if(response.SignedMark == true) {
+			$(".qiandao").text("已签到");
+		}
+
+		if(response.Gender == true) {
+			$(".sex").text("♂");
+			$(".sex").css("background-color", "rgb(104, 221, 229)");
+		}
+	})
+
+	$(".qiandao").live("click", function() {
+		if(SignedMark == false) {
+			$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
+				if(response != "") {
+					window.location.reload();
+					return false;
+				}
+			})
+		}
+	})
+</script>

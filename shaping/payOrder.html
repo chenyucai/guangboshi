@@ -1,0 +1,402 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<link href="../css/main.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<!--	<script src="../js/tanchu.js"></script>-->
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/wxPay.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+		<style>
+			.accountNavDigital {
+				background-color: white;
+				font-family: PingFang-SC-Regular;
+				font-size: 14px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.accountNavText {
+				font-family: PingFang-SC-Light;
+				font-size: 14px;
+				color: #656565;
+				letter-spacing: 0px;
+				line-height: 20px;
+			}
+			/*.accountNavRow {
+				margin-bottom: 34px;
+			}
+			*/
+			
+			.yhq {
+				font-family: PingFang-SC-Medium;
+				font-size: 18px;
+				color: #D9BD8C;
+				letter-spacing: 0px;
+			}
+			
+			.sfje {
+				font-family: PingFang-SC-Medium;
+				font-size: 18px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.h4 {
+				font-family: PingFang-SC-Medium;
+				font-size: 16px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.c_9 h6 {
+				font-family: PingFang-SC-Light;
+				font-size: 12px;
+				color: #656565;
+				letter-spacing: 0px;
+				line-height: 19px;
+			}
+			
+			.xzzffs {
+				font-family: PingFang-SC-Light;
+				font-size: 10px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.accountNav li {
+				border-bottom: 10px solid #f3f3f3;
+			}
+			
+			.total {
+				float: left;
+				font-family: PingFang-SC-Light;
+				font-size: 14px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+				line-height: 20px;
+			}
+			
+			.price {
+				font-family: PingFang-SC-Regular;
+				font-size: 18px;
+				color: #FF5DA9;
+				letter-spacing: 0px;
+			}
+			
+			.chose {
+				width: 15px;
+				height: 15px;
+				border-radius: 50px;
+				border: solid #979797 1px;
+				vertical-align: middle;
+				display: inline-block;
+				/*background: #FF5DA9;*/
+				color: #FFF;
+				line-height: 18px;
+				font-size: 15px;
+			}
+			
+			.change {
+				color: white;
+				background-color: #FF5DA9;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layoutMain">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<h2 class="headTitle">
+                支付订单
+            </h2>
+
+			</header>
+			<div class="pageMain">
+				<div class="whiteMain" style="min-height: inherit">
+					<div class="accountHead clearfix">
+						<div class="accountHeadPic" style="width: 80px;border-radius:inherit; padding-right: 10px;">
+							<img id="ImageList" src="../img/81844691981402.jpg" style="width: 80px; height: 80px;" />
+						</div>
+						<div class="accountHeadMain" style="height: 80px;">
+							<div class="h4">[<span id="CategoryName"></span>]&nbsp;&nbsp;&nbsp;<span class="c_9 h6" id="Treatment" style="background: #B8B8B8;padding: 1px 10px;font-family: PingFang-SC-Light;
+font-size: 10px;
+color: #FFFFFF;
+letter-spacing: 0px;">6个疗程</span></div>
+							<div class="pt10">
+								<span class="c_9 h6" id="Title">翌生美玻尿酸精华液1支 涂抹式水光针提亮肤色润白补水保湿原液
+                      </div>
+                  </div>
+               </div>
+               <nav class="accountNav">
+                <ul>  
+                      <li >
+                        <a href="javascript:void(0)" class="accountNavRow">
+                                <!--<i class="accountNavAngle"></i>-->
+                                <b class="accountNavDigital">￥<span id="OrderAmount">660</span></b>
+								<span class="accountNavText">预付金额</span>
+								</a>
+								</li>
+
+								<li>
+									<a href="javascript:void(0)" class="accountNavRow">
+										<!--  <i class="accountNavAngle"></i>-->
+										<b class="accountNavDigital"><span style="padding-right: 10px;" >￥<span id="balance">660</span></span><span class="chose change balance">√</span></b>
+										<span class="accountNavText">我的会员余额</span>
+									</a>
+								</li>
+
+								<li style="border-width: 1px;">
+									<div class="accountNavSon">
+										<a class="accountNavRow">
+
+											<span class="xzzffs">请选择支付方式</span>
+										</a>
+									</div>
+								</li>
+								<li style="border-width: 1px;">
+									<div class="accountNavSon">
+										<a href="javascript:void(0)" class="accountNavRow">
+											<b class="accountNavDigital">
+												<span class="chose">√</span>
+											</b>
+											<img src="../img/wx.png" style="width:4%;height: 4%; margin-right: 7px; "><span class="accountNavText">微信</span>
+										</a>
+
+									</div>
+								</li>
+
+								</ul>
+								</nav>
+								<!--<div class="p10">
+                <a href="../home/signin.html" class="btn btnBlock">退出登录</a>
+               </div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="activityBlock" style="background:white; color: #999;">
+					<div class="accountNavRow">
+						<span class="total" style="padding-top: 10px;">￥<span id="total">10</span><span class="total">合计:</span></span>
+						<a href="#0" class="ClickMe"><img src="../img/2/but_payment_hul@3x.png" style="float: right; width: 74px;height: 30px; padding-bottom: 10px;" /></a>
+					</div>
+
+				</div>
+			</div>
+
+			<div id="goodcover"></div>
+
+			<div id="code">
+
+				<div class="code-img"> <img id="ewmsrc" src="../img/2/Mirror@3x.png" /></div>
+				<div class="goodtxt" style="padding-top: 20px;">
+					<p class="text1">美丽与自信是天然姐妹</p>
+					<p class="text2">我准备好了，你呢？</p>
+				</div>
+				<div style="position: absolute; bottom: 0; width: 100%;">
+					<ul class="cd-buttons" style="border-top: 1px solid #B8B8B8; ">
+						<li style="text-align: center;border-right: 1px solid #B8B8B8;">
+							<a href="#" class="closebt">暂不</a>
+						</li>
+						<li style="text-align: center;">
+							<a href="#" id="pay">继续支付</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="code1">
+
+				<div class="code-img"> <img id="ewmsrc" src="../img/2/security@3x.png" /></div>
+				<div class="goodtxt" style="padding-top: 20px;">
+					<p class="text1">为了保障您会员资金安全
+					</p>
+					<p class="text2">必须设置安全支付密码才能支付</p>
+				</div>
+				<div style="position: absolute; bottom: 0; width: 100%;">
+					<ul class="cd-buttons" style="border-top: 1px solid #B8B8B8; ">
+						<li style="text-align: center;border-right: 1px solid #B8B8B8;">
+							<a href="#" class="closebt">暂不</a>
+						</li>
+						<li style="text-align: center;">
+							<a href="#">设置密码</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</body>
+
+</html>
+
+<script>
+	var order = JSON.parse(sessionStorage.getItem("orderData"));
+	var OrderAmount = sessionStorage.getItem("OrderAmount");
+	var OrderId = sessionStorage.getItem("OrderID");
+	$("#CategoryName").text(order.CategoryName);
+	$("#Treatment").text(order.Treatment + "个疗程");
+	$("#Title").text(order.Title);
+	$("#ImageList").attr("src", order.ImageList[0]);
+	$("#OrderAmount").text(OrderAmount);
+	$("#total").text(OrderAmount);
+
+	var hasPayPwd;
+	$.get(constants.baseUrl + 　"/AppOrderManage/GetRemainingBalanceByUserId?UserId=" + $.cookie("userId"), function(data) {
+		debugger;
+		$("#balance").text(data.remainingBalance);
+		hasPayPwd = data.hasPayPwd;
+		debugger;
+		if(parseFloat(OrderAmount) > parseFloat($("#balance").text()) || $("#balance").text() == "0") {
+			$(".balance").attr("disabled", "disabled");
+			$(".balance").removeClass("change");
+			$(".chose").not(".balance").addClass("change");
+		}
+
+	})
+
+	$(".paySubmit").click(function() {
+		//		debugger;
+		$(".shade,.tanceng").css("display", "block");
+
+	})
+
+	$(".chose").click(function() {
+		debugger;
+		if(parseFloat(OrderAmount) <= parseFloat($("#balance").text())) {
+			if($(this).hasClass("change")) {
+				$(this).removeClass("change");
+				$(".chose").not(this).addClass("change");
+			} else {
+				$(this).addClass("change");
+				$(".chose").not(this).removeClass("change");
+			}
+		}
+
+	})
+
+	$('.ClickMe').click(function() {
+		if($(".chose").not(".balance").hasClass("change") || hasPayPwd == true) {
+			$('#code').center();
+			$('#goodcover').show();
+			$('#code').fadeIn();
+		} else if(hasPayPwd == false && $(".balance").hasClass("change")) {
+			$('#code1').center();
+			$('#goodcover').show();
+			$('#code1').fadeIn();
+		}
+
+	});
+
+	$('.closebt').click(function() {
+
+		$('#code').hide();
+
+		$('#code1').hide();
+
+		$('#goodcover').hide();
+	});
+
+	$('#goodcover').click(function() {
+		$('#code').hide();
+
+		$('#code1').hide();
+		$('#goodcover').hide();
+	});
+
+	$("#pay").click(function() {
+
+			if($(".chose").not(".balance").hasClass("change")) {
+				//				fCharge();
+				//$.ajax({
+				//	type: "post",
+				//	contentType: "application/json;charset=utf-8",
+				//	data: JSON.stringify({
+				//		amount: OrderAmount,
+				//		//				openid: localStorage.getItem("openid"),
+				//		openid:"oVFHov6q5w3k7yjjY7zPwc9HetW4" ,
+				//		//				access_token: localStorage.getItem("access_token"),
+				//		userId: $.cookie("userId"),
+				//		orderId: OrderId,
+				//		description: order.CategoryName
+
+				//	}),
+				//	//data: "amount=" + vChargeVal + "&openid=" + localStorage.getItem("openid") + "&access_token=" + localStorage.getItem("access_token"),
+				//	url: constants.baseUrl + "/AppPay/PrePayByWeixin",
+				//	success: function(json) {
+				//		//$.messager.progress('close');//记得关闭
+				//		//var json = eval("(" + msg + ")");//转换后的JSON对象
+				//		debugger;
+				//		onBridgeReady(json);
+				//	},
+				//	error: function(data1, data2, data3, data4) {
+				//		debugger;
+				//		//$.messager.progress('close');//记得关闭
+				//		//$.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
+				//	}
+				//})
+				fCharge();
+			}
+		})
+		/*var val=$(window).height();
+	var codeheight=$("#code").height();
+    var topheight=(val-codeheight)/2;
+	$('#code').css('top',topheight);*/
+	jQuery.fn.center = function(loaded) {
+		var obj = this;
+		body_width = parseInt($(window).width());
+		body_height = parseInt($(window).height());
+		block_width = parseInt(obj.width());
+		block_height = parseInt(obj.height());
+
+		left_position = parseInt((body_width / 2) - (block_width / 2) + $(window).scrollLeft());
+		if(body_width < block_width) {
+			left_position = 0 + $(window).scrollLeft();
+		};
+
+		top_position = parseInt((body_height / 2) - (block_height / 2) + $(window).scrollTop());
+		if(body_height < block_height) {
+			top_position = 0 + $(window).scrollTop();
+		};
+
+		if(!loaded) {
+
+			obj.css({
+				'position': 'absolute'
+			});
+			obj.css({
+				'top': ($(window).height() - $('#code').height()) * 0.5,
+				'left': left_position
+			});
+			$(window).bind('resize', function() {
+				obj.center(!loaded);
+			});
+			$(window).bind('scroll', function() {
+				obj.center(!loaded);
+			});
+
+		} else {
+			obj.stop();
+			obj.css({
+				'position': 'absolute'
+			});
+			obj.animate({
+				'top': top_position
+			}, 200, 'linear');
+		}
+	}
+</script>

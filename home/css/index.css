@@ -1,0 +1,245 @@
+/*.productListPic {
+				width: 168px;
+				height: 150px;
+			}*/
+
+.artistListName {
+	font-family: PingFang-SC-Medium;
+	font-size: 12px;
+	color: #2F2F2F;
+	letter-spacing: 0px;
+}
+
+.productListLove {
+	font-family: PingFang-SC-Light;
+	font-size: 10px;
+	color: #FF5DA9 !important;
+	letter-spacing: 0px;
+}
+
+.yxfw {
+	font-family: PingFang-SC-Medium;
+	font-size: 14px;
+	color: #2F2F2F;
+	letter-spacing: 0px;
+}
+
+.c_c {
+	font-family: PingFang-SC-Light;
+	font-size: 10px;
+	color: #656565;
+	letter-spacing: 0px;
+}
+
+mark {
+	font-family: PingFang-SC-Light;
+	font-size: 11px;
+	color: #FF5DA9;
+	letter-spacing: 0px;
+	border: 0px solid #FF5DA9;
+}
+
+.productListLove {
+	float: none;
+}
+
+.artistList li {
+	float: left;
+	display: inline;
+	text-decoration: none;
+	text-align: center;
+}
+
+.time {
+	font-family: PingFang-SC-Light;
+	font-size: 11px;
+	color: #FF5DA9;
+	letter-spacing: 0px;
+}
+
+.c_c {
+	font-family: PingFang-SC-Light !important;
+	font-size: 10px important;
+	color: #656565 important;
+	letter-spacing: 0px important;
+}
+
+.jpzx {
+	font-family: PingFang-SC-Medium;
+	font-size: 18px;
+	color: #2F2F2F;
+	letter-spacing: 0px;
+}
+
+.jpzx1 {
+	font-family: PingFang-SC-Light;
+	font-size: 12px;
+	color: #656565;
+	letter-spacing: 0px;
+}
+
+.style_4 {
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing: 0px;
+}
+
+.orderTabs ul {
+	border-bottom: 1px solid #EFEFEF;
+}
+
+.orderTabs a {
+	font-size: 10px;
+}
+
+.img {
+	width: 33%;
+	padding-right: 5px;
+}
+
+.accountNavText {
+	font-family: PingFang-SC-Light;
+	font-size: 14px;
+	color: #282727;
+	letter-spacing: 0px;
+}
+
+.imgtxt {
+	font-family: PingFang-SC-Light;
+	font-size: 10px;
+	color: #656565;
+	letter-spacing: 0px;
+}
+
+.accountNavRow {
+	padding: 0;
+}
+
+.accountNav li {
+	border-bottom: none;
+	margin-left: 0;
+}
+
+.accountNavRow li {}
+
+.sellerSelectBox {
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #2F2F2F;
+	letter-spacing: 0px;
+}
+
+.active span {
+	color: #F03B92;
+}
+
+.footNav ul li.active a {
+	color: #F03B92;
+}
+
+.title {
+	vertical-align: middle;
+	text-align: left;
+	padding-left: 10px;
+}
+
+.xiala li {
+	display: inline;
+	padding-left: 6px;
+}
+
+.xiala {
+	padding-top: 10px;
+}
+
+.xiala1 {
+	text-align: center;
+	padding-top: 21px;
+}
+
+.xiala1 li {
+	list-style: none;
+	display: inline-block;
+	margin: 0 20px;
+	font-family: PingFang-SC-Light;
+	font-size: 14px;
+	color: #656565;
+	letter-spacing: 0px;
+}
+
+
+/* 城市 begin*/
+
+#divCityContainer {
+	padding: 0 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+}
+
+div.shareWindowRow> div.left-container {
+	width: 30%;
+	height: 100%;
+	position: absolute;
+	overflow: scroll;
+}
+
+div.shareWindowRow> div.left-container> div.left-wrap {}
+
+div.shareWindowRow> div.left-container> div.left-wrap> div.province {
+	border-left: 2px solid transparent;
+	background-color: #f3f3f3;
+	color: #000;
+}
+
+div.shareWindowRow> div.left-container> div.left-wrap> div.province-current {
+	border-left: 2px solid #ff75b6;
+	background-color: #fff;
+	color: #ff75b6;
+}
+
+div.shareWindowRow> div.right-container {
+	left: 30%;
+	width: 70%;
+	height: 100%;
+	position: absolute;
+	background-color: #fff;
+}
+
+div.shareWindowRow> div.right-container> div.city-container {
+	display: none;
+	color: #000;
+}
+
+div.shareWindowRow> div.right-container> div.city-container> div.city {
+	float: left;
+	display: inline-block;
+	margin: 5px 5px;
+	padding: 0px 15px;
+	border-radius: 2px;
+	border: 1px solid #eee;
+}
+
+.jpzx4 {
+	font-family: PingFang-SC-Light;
+	font-size: 12px;
+	letter-spacing: 0px;
+	text-decoration: line-through;
+	color: #B8B8B8;
+}
+
+.pic1 {
+	height: 120px;
+}
+
+
+/* 城市 end*/
+
+.orderTabs ul li {
+	width: 20%;
+}
+
+
+
