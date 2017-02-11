@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../static/js/jquery.raty.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+		<script src="../js/location.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		
+		<script type="text/html" id="template">
+			{{each(label) LabelList}}
+			<a href="#" class="btn btnSm style_4">${label}</a>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="template1">
+			<li data-id="${Id}" class="productClick">
+				<div class="productListPad">
+					<a href="javascript:void(0)" class="productListPic"><img src="${Image}"></a>
+					<!--<h4 class="productListTitle pt5"><a href="#" class="h5">【水月环球港】<span>浦东新区&nbsp;&nbsp;200m</span></a></h4>-->
+					<div class="productListUser" style="height: 40px;">
+						<a href="javascript:void(0)" class="c_c">【${CategoryName}】<span class="C_C_C">${Title}</span></a>
+					</div>
+					<div class="productListFoot pt5 clearfix">
+						<a href="avascript:void(0)" class="productListLove active">
+							<!--<i class="icon-heart"></i>-->购买数 &nbsp;${SellCount}</a>
+						<mark class="h5">￥${SellPrice}</mark>
+					</div>
+				</div>
+			</li>
+		</script>
+		<style>
+			/*.productListPic {
+				width: 168px;
+				height: 150px;
+			}*/
+			
+			.h5 {}
+			
+			.productListLove {
+				font-family: PingFang-SC-Light;
+				font-size: 10px;
+				color: #FF5DA9 !important;
+				letter-spacing: 0px;
+			}
+			
+			.yxfw {
+				font-family: PingFang-SC-Medium;
+				font-size: 14px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.artistHead .btn {
+				width: inherit;
+			}
+			
+			.loginSns {
+				padding: 0;
+			}
+			
+			.c_c,
+			a.c_c {
+				font-family: PingFang-SC-Medium;
+				font-size: 11px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.C_C_C {
+				font-family: PingFang-SC-Light;
+				font-size: 11px;
+				color: #B8B8B8;
+				letter-spacing: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--留言-->
+		<div class="windowBox artistWindow">
+			<div class=" windowBoxHead">
+				给他留言
+			</div>
+			<div class="p10">
+
+				<ul class="windowBoxFrom clearfix">
+					<textarea class="inputBlock" style=" height:80px;"></textarea>
+				</ul>
+				<ul class="windowBoxFrom clearfix">
+					<a href="#" class="btn btnBlock artistSubmit">提交</a>
+					<a href="#" class="btn btnBlock mt10 style_1 artistClose">取消</a>
+				</ul>
+			</div>
+
+		</div>
+		<!--留言 end-->
+
+		<div class="layoutMain">
+
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<!--<div class="headRight">
+            	 <a href="../home/index.html" class="headLeftBtn"><i class="icon-home-outline"></i></a>
+            </div>-->
+				<h2 class="headTitle">
+             用户详情
+            </h2>
+			</header>
+			<div class="pageMain noFoot ">
+				<div class="grayMain">
+					<div class="artistHead clearfix" style="border-bottom: none;">
+						<div class="artistHeadPic"><img src="../img/81844691981402.jpg" style="height: 60px;" id="HeadIcon" /></div>
+						<div class="artistHeadMain">
+							<div class="h4 " style="font-size: 16px; line-height: 20px;"><span id="Name">忆巴黎</span>
+								<img src="../img/dengji/V1@2x.png" style="width: 17px;height: 15px; padding-left: 6px;" id="Level">
+								<img src="../img/2/icon_girl@3x.png" style="width: 17px;height: 15px; padding-left: 6px;" id="Gender" />
+							</div>
+							<div class="c_9 h6 pt5" style="line-height: 20px;">18-20岁&nbsp;&nbsp;&nbsp;<span id="address">上海浦东新区</span></div>
+							<div style="float: right; margin-top: -30px;">
+								<a href="#" class="btnSm style_4"><img id="CollectionMark" src="../img/2/but_follow_nol@3x.png" style="width: 65px; height: 24px;"></a>
+							</div>
+
+						</div>
+						<div class="pt5 " style="padding-top: 42px;" id="LabelList">
+							<!--<a href="#" class="btn btnSm style_4">留言</a>
+							<a href="#" class="btn btnSm style_4">+&nbsp;加关注</a>
+							<a href="#" class="btn btnSm style_4">+&nbsp;加关注</a>
+							<a href="#" class="btn btnSm style_4">+&nbsp;加关注</a>-->
+
+						</div>
+					</div>
+					<!--<div class="sellerTab sellerTabSpan3">
+                        <ul class="clearfix">
+                            <li class="active"><a href="artistView.html">他的作品</a></li>
+                            <li><a href="artistAbout.html">&nbsp;&nbsp;关于他&nbsp;&nbsp;</a></li>
+                            <li><a href="artistMessage.html">给他的留言</a></li>
+                        </ul>
+                    </div>-->
+					<div class="messageList mt10 clearfix">
+						<ul>
+							<li>
+								<div class="messageListMain">
+									<span style="font-family: PingFangSC-Light;font-size: 12px;color: #231916;letter-spacing: 0px;">
+									意向服务：</span><span class="yxfw">鼻部、面部整形、美甲</span>
+								</div>
+
+							</li>
+						</ul>
+					</div>
+					<div style="padding-top: 25px; ">
+						<dl class="loginSns">
+							<dt style="color: #000000;"><h5>关注的服务</h5></dt>
+							<!--<dd>
+                        <a href="#"><img src="../static/images/wx.png" width="40" /></a>
+                     	</dd>-->
+						</dl>
+						<dl class="loginSns">
+							<dt class="c_9 h6 pt5" style="color: #B8B8B8"><h5><img src="../img/2/icon_reduce@3x.png">&nbsp;Service of concern&nbsp;<img src="../img/2/icon_reduce@3x.png"></h5></dt>
+							<!--<dd>
+                        <a href="#"><img src="../static/images/wx.png" width="40" /></a>
+                     	</dd>-->
+						</dl>
+					</div>
+
+					<div class="productList">
+						<ul class="productListUl clearfix">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+	</body>
+
+</html>
+
+<script>
+	$.get(constants.baseUrl + "/AppGoods/GetCollectionUserDetail?Id=" + sessionStorage.getItem("userDetailId") + 　"&UserId=" + $.cookie("userId"), function(data) {
+		
+		$("#Name").text(data.Name);
+		$("#Level").attr("src", "../img/dengji/V" + data.Level + "@2x.png");
+		if(data.CollectionMark == true) {
+			$("#CollectionMark").attr("src", "../img/2/but_follow_hul@3x.png");
+		}
+		$("#HeadIcon").attr("src", data.HeadIcon);
+
+		var template = $("#LabelList");
+		$('#template').tmpl(data).appendTo(template);
+		var template1 = $(".productListUl");
+		$("#template1").tmpl(data.CollectionGoodsList).appendTo(template1);
+		$("#CollectionMark").closest("a").attr("data-CollectionMark",data.CollectionMark);
+		template.find("a").each(
+			function() {
+				$(this).css('color', '#' + Math.floor(16777216 * Math.random()).toString(16))
+				$(this).css('border', '1px solid #' + Math.floor(16777216 * Math.random()).toString(16))
+			}
+		)
+
+		$(".yxfw").text(data.IntentionServeList.join('、'));
+		
+		if(data.Gender==true)
+		{
+			$("#Gender").attr("src","../img/2/icon_man@3x.png")
+		}
+		var Address= getNameById(data.Address);
+		$("#address").text(Address);
+	})
+	
+	$("#CollectionMark").live("click", function(e) {
+		if(e && e.stopPropagation) //FF  
+		{
+
+			e.stopPropagation();
+		} else //IE  
+		{
+
+			window.event.cancelBubble = true;
+		}
+		var SetClearMark = 1;
+		if($(this).closest("a").attr("data-CollectionMark") == "true") {
+			SetClearMark = 2;
+		}
+		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+				SetClearMark: SetClearMark,
+				UserId: $.cookie("userId"),
+				Id:sessionStorage.getItem("userDetailId"),
+				Category: 5,
+				Type: 1,
+				Title:$("#Name").text()
+
+			},
+			function(response) {
+				if(response != "") {
+					alert(response);
+				}
+				window.location.reload();
+			})
+	})
+</script>

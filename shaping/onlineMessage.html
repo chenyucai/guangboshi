@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 ,user-scalable=no" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../js/common.js"></script>
+		<!--	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../js/jquery.cookie.js "></script>
+		<script src="../js/jquery_md5.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+
+		<style>
+			.loginInput {
+				color: #999 !important;
+			}
+			
+			.loginInput::-webkit-input-placeholder {
+				/* WebKit browsers */
+				color: #999999 !important;
+			}
+			
+			.loginInput::-moz-placeholder {
+				/* Mozilla Firefox 4 to 18 */
+				color: #999 !important;
+			}
+			
+			.loginInput::-moz-placeholder {
+				/* Mozilla Firefox 19+ */
+				color: #999 !important;
+			}
+			
+			.loginInput::-ms-input-placeholder {
+				/* Internet Explorer 10+ */
+				color: #999 !important;
+			}
+			
+			.loginRow {
+				border: solid 1px #DDDDDD;
+			}
+			
+			.signinFoot a {
+				margin-left: 20px;
+				width: 60px;
+			}
+			
+			.loginBtn {
+				background: white;
+				border: none;
+			}
+			
+			.shade {
+				width: 100%;
+				background-color: rgba(0, 0, 0, 0.3);
+				position: fixed;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			
+			.tanceng {
+				opacity: 0.69;
+				background: #000000;
+				border-radius: 5px;
+				text-align: center;
+				width: 240px;
+				padding: 20px;
+				line-height: 100%;
+				color: #f31b33;
+				position: fixed;
+				top: 45%;
+				left: 50%;
+				border-radius: 0.6rem;
+				z-index: 999;
+				margin-left: -140px;
+				display: none;
+			}
+			
+			.okbtn a {
+				display: block;
+				width: 80%;
+				background-color: #f31b33;
+				color: #fff;
+				line-height: 250%;
+				font-size: 16px;
+				text-align: center;
+				border-radius: 5px;
+				margin: 0 auto;
+			}
+			
+			.signinFoot .active {
+				/*font-family: PingFang-SC-Light;
+		font-size: 12px;
+		color: #FF5DA9;
+		letter-spacing: 0px;*/
+			}
+			
+			.cue {
+				font-family: PingFang-SC-Medium;
+				font-size: 16px;
+				font-weight: bold;
+				color: #FFFFFF;
+				letter-spacing: 0px;
+				margin: 0;
+			}
+			
+			a,
+			button,
+			input {
+				-webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+			}
+		</style>
+		<!--<script src="js/signin.js></script>-->
+	</head>
+
+	<body>
+
+		<div class="layoutMain" style="font:">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:void(0)" id="close" class="headLeftBtn"><i class="icon-cross2"></i></a>
+				</div>
+				<div class="headRight">
+					<a href="javascript:void(0)" class="headLeftBtn" id="submit" style="font-size: 16px;">提交</a>
+				</div>
+				<h2 class="headTitle">	
+              在线留言
+            </h2>
+
+			</header>
+			<div class="pageMain noFoot">
+				<div class="loginLayout">
+					<div id="text" style="text-align: center;">
+						<textarea rows="8" cols="52" style="margin-top: 10px; width: 100%;" placeholder="如有需要，请留言"></textarea>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+</html>
+
+<script>
+	$("#submit").live("click", function() {
+		var storeId = "";
+		var goodsId = "";
+		if(sessionStorage.getItem("messageType") == 1) {
+			goodsId = sessionStorage.getItem("ProductId");
+
+		}
+		if(sessionStorage.getItem("messageType") == 2) {
+			storeId = sessionStorage.getItem("storeId");
+
+		}
+		$.post(constants.baseUrl + "/AppCommon/SaveComments", {
+			content: $("#text").find("textarea").val(),
+			userId: $.cookie("userId"),
+			storeId: storeId,
+			goodsId: goodsId,
+
+		}, function(message) {
+			if(sessionStorage.getItem("messageType") == 1) {
+				location.href = "productDetails.html"
+
+			}
+			if(sessionStorage.getItem("messageType") == 2) {
+				location.href = "../store/storeDetail.html"
+
+			}
+		})
+	})
+
+	$("#close").live("click",
+		function() {
+			if(sessionStorage.getItem("messageType") == 1) {
+				location.href = "productDetails.html"
+			}
+			if(sessionStorage.getItem("messageType") == 2) {
+				location.href = "../store/storeDetail.html"
+
+			}
+
+		})
+</script>

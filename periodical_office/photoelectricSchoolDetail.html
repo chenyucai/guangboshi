@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../static/js/jquery.raty.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/common.js"></script>
+
+		<style>
+			.p10 {
+				font-family: PingFang-SC-Regular;
+				font-size: 14px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+				line-height: 23px;
+			}
+			
+			.pt20 {
+				font-family: PingFang-SC-Medium;
+				font-size: 16px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.txt1 {
+				font-family: PingFang-SC-Regular;
+				font-size: 12px;
+				color: #2F2F2F;
+				letter-spacing: 0px;
+			}
+			
+			.txt2 {
+				font-family: PingFangSC-Light;
+				font-size: 12px;
+				color: #999999;
+				letter-spacing: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="layoutMain">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.back(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+					<!--<a href="javascript:void(0)" onclick="self.location=document.referrer;" class="headLeftBtn"><i class="icon-arrow-left"></i></a>-->
+				</div>
+				<div class="headRight">
+					<a href="javascript:void(0)" class="headLeftBtn shareBtn"><i class="icon-share2"></i></a>
+					<a href="javascript:void(0)" class="headLeftBtn" id="startClick"><i class="icon-star"></i></a>
+				</div>
+				<h2 class="headTitle">
+               杂志社详情
+            </h2>
+			</header>
+			<div class="shareWindow">
+				<div class="shareWindowRow">
+					方法一： 点击右上角的<span class="shareIconBtn"><i class="icon-ellipsis-v"></i></span>图标<br> 然后
+					<span class="shareIconBtn"><i class="icon-share"></i></span>发送给朋友<br> 或者
+					<span class="shareIconBtn"><i class="icon-picassa"></i></span>专场到朋友圈
+				</div>
+
+				<div class="shareWindowRow">
+					方法二： 邀请好友扫描二维码
+					<div class="shareWindowPic"><img src="../img/二维码图片.jpg" /></div>
+				</div>
+				<div class="p20">
+					<!--  <a href="../account/partners.html" class="btn btnBlock style_1">查看我的分销</a>-->
+					<a href="#" class="btn btnBlock style_2 mt10 ">我知道了</a>
+
+				</div>
+			</div>
+
+			<div class="pageMain noFoot">
+
+				<div class=" tc pt20"><b style=" font-size:16px;" id="Title"><!--时尚美容之冬季恋歌～韩式温化冻疮法--></b></div>、
+				<div style="padding-left: 20px; padding-bottom: 14px;">
+					<span class="txt1">来源：<span id="Source"></span></span><span class="txt2">（<span id="CreatorTime">2016.10.19</span>）</span>
+					<div style="display: inline; float: right; padding-right: 20px;">
+
+						<span class="txt2" style="padding-right: 20px;"><i class="icon-eye" style="padding-right: 5px;"></i><span id="Click"></span></span>
+						<a href="javascript:void(0)" id="ZanClick">
+							<span class="txt2"><span><i class=" icon-heart"  style="padding-right: 5px;"></span></i><span id="Zan">2345</span></span>
+						</a>
+					</div>
+				</div>
+				<div class="tc"><img id="Image" /></div>
+				<div class="p10" style="padding-left: 20px;" id="Content">
+					<!--光博士与美国SVB设计学院合理打造新时尚美容生态系统。 有时候我们发现，自己的身边不知道什么时候出现了一些人，孤寂的感觉好像一下就没了，我们找到了一个寄托。亲人，朋友，他们陪着我们一起走下去。
+					但是，他人的陪伴终究只是一时的，就像两条铁轨，彼此重合一部分后，总会有一个岔路口。不管你愿意不愿意，最终还是会分开，这不随着人的意志而改变。
+					 寂静的夜里，每当独自惊醒的时候，就算身边睡了一个谁，可还是没人能够走进内心，明白那万千言语难明的忧伤与哀愁。
+					 喧闹的人群中，那忽然袭来的寂寞，打的人猝不及防。可能手中牵着另一个人的手，但手毕竟不是心，手的距离相对于心的距离来说，就是咫尺天涯。-->
+
+				</div>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>
+
+<script>
+	$.get(constants.baseUrl + "/AppMagazine/GetMagazineDetail?UserId=" + $.cookie("userId") + "&Id=" + sessionStorage.getItem("NewId"), function(data) {
+		debugger;
+		$("#Title").text(data.Title);
+		$("#Content").html(data.Content);
+		$("#Image").attr("src", data.Image);
+		$("#CreatorTime").text(data.CreatorTime);
+		$("#Zan").text(data.Zan);
+		$("#Click").text(data.Click);
+		$("#Source").text(data.Source);
+		if(data.CollectionMark == true) {
+
+			$(".icon-star").css("color", "#F03B92");
+		}
+
+		if(data.ZanMark == true) {
+			$(".icon-heart").closest("span").css("color", "#F03B92");
+		}
+	})
+
+	$("#startClick").live("click", function() {
+		var SetClearMark = 1;
+		if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
+			SetClearMark = 2;
+		}
+		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+				SetClearMark: SetClearMark,
+				UserId: $.cookie("userId"),
+				Id: sessionStorage.getItem("NewId"),
+				Category: 4,
+				Type: 1,
+				Title: $("#Title").text()
+
+			},
+			function(response) {
+				if(response != "") {
+					alert(response);
+				} else {
+					window.location.reload();
+				}
+
+			})
+	})
+
+	$("#ZanClick").live("click", function() {
+		debugger;
+		var SetClearMark = 1;
+		if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
+			SetClearMark = 2;
+		}
+
+		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+				SetClearMark: SetClearMark,
+				UserId: $.cookie("userId"),
+				Id: sessionStorage.getItem("NewId"),
+				Category: 4,
+				Type: 2,
+				Title: $("#Title").text()
+			},
+			function(response) {
+				if(response != "") {
+					alert(response);
+				} else {
+					window.location.reload();
+				}
+
+			})
+	})
+
+	$(".mt10").live("click", function() {
+		$.post(constants.baseUrl + "/AppCommon/Share", {
+			Id: sessionStorage.getItem("NewId"),
+			UserId: $.cookie("userId"),
+			Type: 1
+		}, function(response) {
+			$('.shareWindow').slideUp(400);
+		})
+	})
+</script>
