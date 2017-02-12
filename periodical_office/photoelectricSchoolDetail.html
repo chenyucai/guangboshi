@@ -25,21 +25,21 @@
 				letter-spacing: 0px;
 				line-height: 23px;
 			}
-			
+
 			.pt20 {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.txt1 {
 				font-family: PingFang-SC-Regular;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.txt2 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -113,7 +113,6 @@
 
 <script>
 	$.get(constants.baseUrl + "/AppMagazine/GetMagazineDetail?UserId=" + $.cookie("userId") + "&Id=" + sessionStorage.getItem("NewId"), function(data) {
-		debugger;
 		$("#Title").text(data.Title);
 		$("#Content").html(data.Content);
 		$("#Image").attr("src", data.Image);
@@ -156,7 +155,6 @@
 	})
 
 	$("#ZanClick").live("click", function() {
-		debugger;
 		var SetClearMark = 1;
 		if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 			SetClearMark = 2;

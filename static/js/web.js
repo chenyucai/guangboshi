@@ -1,6 +1,6 @@
 $(function() {
 
-	
+
 
 	$("#orderDetail").click(function() {
 		sessionStorage.setItem("orderId", OrderId);
@@ -148,10 +148,10 @@ $(function() {
 		//alert(newsListZ)
 		$('.newsList li .h3').text($('.newsList li').offset().top);
 		$('.box').text(newsScroll);
-		
+
 		if (newsScroll > newsList){
 			$(newsList).addClass('active');
-		} 
+		}
         else {}
      });*/
 	$('.pageMain').scroll(function() {

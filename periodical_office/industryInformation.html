@@ -16,6 +16,7 @@
 		<script src="../js/common.js"></script>
 		<script src="../js/jquery.tmpl.min.js"></script>
 		<script src="../js/jquery.cookie.js"></script>
+		<script src="../static/js/masonry-docs.min.js"></script>
 		<script type="text/html" id="template">
 			<li data-id="${Id}" id="industryInformationDetail">
 				<div class="artistListPad">
@@ -23,15 +24,19 @@
 						{{if ZanMark==true}}
 						<span class="activityTime1 imgtxt"><i class="icon-heart"></i></span> {{else}}
 						<span class="activityTime2 imgtxt"><i class="icon-heart"></i></span> {{/if}}
-						<img src="${Image}" /></a>
-					<span class="dianzanshu">${Zan}</span>
-					<div class="productListUser">
-						<a href="#" class="c_c">${Title}</a>
+						<img src="${Image}" />
+					</a>
+					<div style="background:#fff;padding:10px;">
+						<span class="dianzanshu">${Zan}</span>
+						<div class="productListUser">
+							<a href="#" class="c_c">${Title}</a>
+						</div>
+						<div class="pt5 ">
+						</div>
+						<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 4px;"></span>${CreatorTime}</a>&nbsp;&nbsp;
+						<a href="#" class=" btnSm style_4" style="float:right"><span class="icon-eye" style="padding-right: 4px;"></span>${Click}</a>&nbsp;&nbsp;
 					</div>
-					<div class="pt5 ">
-					</div>
-					<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 4px;"></span>${CreatorTime}</a>&nbsp;&nbsp;
-					<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 4px;"></span>${Click}</a>&nbsp;&nbsp;
+
 				</div>
 			</li>
 		</script>
@@ -42,7 +47,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -50,7 +55,7 @@
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -58,35 +63,35 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListPic img {
 				max-width: none;
 				width: 120px;
 				height: 100px;
 			}
-			
+
 			.orderListPic {
 				padding-right: 100px;
 			}
-			
+
 			.text1 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.tr td {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListUl>li {
 				border-bottom: none;
 			}
-			
+
 			.sellerTab li.active a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -94,7 +99,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -102,47 +107,50 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.screening {
 				position: inherit;
 			}
-			
+
 			.screeningList {
 				width: 100%;
 			}
-			
+
 			.screeningTitle {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.screeningList dd {
 				top: 120px;
 			}
-			
+
 			.jpzx {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx1 {
 				font-family: PingFang-SC-Regular;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.style_4 {
 				font-family: PingFangSC-Light;
 				font-size: 10px;
 				color: #999999;
 				letter-spacing: 0px;
+				padding-left: 0;
+		    vertical-align: sub;
+    		padding-right: 0;
 			}
-			
+
 			.activityTime1 {
 				border-radius: 0;
 				/*top: 150px;*/
@@ -160,25 +168,25 @@
 				width: 15px;
 				color: red;
 			}
-			
+
 			.activityTime2 {
 				border-radius: 0;
 				/*top: 150px;*/
 				position: absolute;
 				right: 5px;
-				bottom: -10px;
+				bottom: -6px;
 				font-family: PingFang-SC-Light;
 				font-size: 11px;
 				color: #999999;
 				letter-spacing: 0px;
-				padding: 5px;
+				padding:4px 4px 2px;
 				opacity: 0.69;
 				background: white;
 				border-radius: 120px;
 				width: 15px;
 				/*color: red;*/
 			}
-			
+
 			.dianzanshu {
 				float: right;
 				padding-right: 8px;
@@ -188,19 +196,19 @@
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.artistList {
 				padding-top: 23px;
 			}
-			
+
 			.artistList li {
 				width: 50%;
 			}
-			
+
 			.productListUser {
 				padding-top: 20px;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFangSC-Light;
@@ -208,7 +216,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.icon-heart {
 				width: 13px;
 			}
@@ -248,11 +256,11 @@
 						<!--如只有一项选择添加class screeningListSpan1-->
 						<dl class="screeningList clearfix">
 							<dt class="screeningTitle"><span class="screeningBtn"><b>全部分类</b><i class="screeningBtnIcon"></i></span></dt>
-							<dd class="screeningDd">
-								<a href="#">人物<i></i></a>
+							<dd class="screeningDd" id="screeningDd">
+								<!-- <a href="#">人物<i></i></a>
 								<a href="#">雕塑<i></i></a>
 								<a href="#">摄影<i></i></a>
-								<a href="#">绘画<i></i></a>
+								<a href="#">绘画<i></i></a> -->
 							</dd>
 						</dl>
 
@@ -273,73 +281,7 @@
 								<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 8px;"></span>16/10/08</a>&nbsp;&nbsp;
 								<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 8px;"></span>351</a>&nbsp;&nbsp;
 							</div>
-						</li>
-						<li>
-							<div class="artistListPad">
-								<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1 imgtxt"><i class="icon-heart"></i></span><img src="../img/QQ截图20161118113628.png" /></a>
-								<span class="dianzanshu">333</span>
-								<div class="productListUser">
-									<a href="#" class="c_c">光博士与美国SVB设计学院合理打造新时尚美容。</a>
-								</div>
-								<div class="pt5 ">
-								</div>
-								<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 8px;"></span>16/10/08</a>&nbsp;&nbsp;
-								<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 8px;"></span>351</a>&nbsp;&nbsp;
-							</div>
-						</li>
-						<li>
-							<div class="artistListPad">
-								<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1 imgtxt"><i class="icon-heart"></i></span><img src="../img/QQ截图20161118113628.png" /></a>
-								<span class="dianzanshu">333</span>
-								<div class="productListUser">
-									<a href="#" class="c_c">光博士与美国SVB设计学院合理打造新时尚美容。</a>
-								</div>
-								<div class="pt5 ">
-								</div>
-								<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 8px;"></span>16/10/08</a>&nbsp;&nbsp;
-								<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 8px;"></span>351</a>&nbsp;&nbsp;
-							</div>
-						</li>
-						<li>
-							<div class="artistListPad">
-								<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1 imgtxt"><i class="icon-heart"></i></span><img src="../img/QQ截图20161118113628.png" /></a>
-								<span class="dianzanshu">333</span>
-								<div class="productListUser">
-									<a href="#" class="c_c">光博士与美国SVB设计学院合理打造新时尚美容。</a>
-								</div>
-								<div class="pt5 ">
-								</div>
-								<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 8px;"></span>16/10/08</a>&nbsp;&nbsp;
-								<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 8px;"></span>351</a>&nbsp;&nbsp;
-							</div>
-						</li>
-						<li>
-							<div class="artistListPad">
-								<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1 imgtxt"><i class="icon-heart"></i></span><img src="../img/QQ截图20161118113628.png" /></a>
-								<span class="dianzanshu">333</span>
-								<div class="productListUser">
-									<a href="#" class="c_c">光博士与美国SVB设计学院合理打造新时尚美容。</a>
-								</div>
-								<div class="pt5 ">
-								</div>
-								<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 8px;"></span>16/10/08</a>&nbsp;&nbsp;
-								<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 8px;"></span>351</a>&nbsp;&nbsp;
-							</div>
-						</li>
-						<li>
-							<div class="artistListPad">
-								<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1 imgtxt"><i class="icon-heart"></i></span><img src="../img/QQ截图20161118113628.png" /></a>
-								<span class="dianzanshu">333</span>
-								<div class="productListUser">
-									<a href="#" class="c_c">光博士与美国SVB设计学院合理打造新时尚美容。</a>
-								</div>
-								<div class="pt5 ">
-								</div>
-								<a href="#" class=" btnSm style_4"><span class="icon-clock" style="padding-right: 8px;"></span>16/10/08</a>&nbsp;&nbsp;
-								<a href="#" class=" btnSm style_4"><span class="icon-eye" style="padding-right: 8px;"></span>351</a>&nbsp;&nbsp;
-							</div>
 						</li>-->
-
 					</ul>
 				</div>
 			</div>
@@ -368,14 +310,39 @@
 </html>
 
 <script>
-	
+
 	$.get(constants.baseUrl + 　"/AppHome/GetMagazineList?UserId=" + 　$.cookie("userId") + "&Type=" + 1 + "&timestamp=" + (new Date()).Format("yyyyMMddhhmmss"), function(data) {
-		debugger;
 //		alert("1");
 //		window.location.reload();
 		var template = $("#industryInformationList");
 		$("#template").tmpl(data.IndustryNewsList).appendTo(template);
-	})
+		// 瀑布流
+		$(function() {
+    	var $container = $('#industryInformationList');
+    	$container.imagesLoaded(function() {
+        $container.masonry({
+                itemSelector: 'li',
+                gutter: 0,
+                isAnimated: true,
+            });
+     		});
+	 		});
+
+			// Category list
+			var categoryList = data.CategoryList;
+			var ctgHtml = '';
+			for (var i = 0; i < categoryList.length; i++) {
+				ctgHtml += '<a href="#" data="'+categoryList[i].Id+'">'+categoryList[i].Name+'<i></i></a>'
+			}
+			$('#screeningDd').html(ctgHtml);
+			$('#screeningDd a').click(function() {
+				var screeningVar = $(this).text();
+				$(this).addClass('active');
+				$(this).siblings('').removeClass('active')
+				$(this).parent('.screeningDd').siblings('.screeningTitle').find('span b').text(screeningVar);
+				$(this).parent('.screeningDd').slideUp(400);
+			});
+		})
 	$(".imgtxt").live("click", function() {
 		var SetClearMark = 1;
 		if($(this).hasClass("activityTime1")) {
