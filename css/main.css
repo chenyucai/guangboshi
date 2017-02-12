@@ -5,13 +5,30 @@
 * {
 	margin: 0;
 	padding: 0;
-	list-style-type: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  word-wrap: break-word;
+  word-break: normal;
 }
-
-a,
-img {
-	border: 0;
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust:none;}
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Hiragino Sans GB","Microsoft YaHei","微软雅黑","宋体",Arial,Verdana,sans-serif;
 }
+img{border:0;vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0}
+th,td,tr{box-shadow: none;outline: none;}
+p{word-wrap:break-word;}
+ul,li,ol{list-style:none;}
+a{text-decoration:none;}
+input,textarea{border: none;outline: none;appearance:none;-webkit-appearance:none;background: none;}
+textarea  {
+　box-shadow:0px 0px 0px rgba(0,0,0,0);
+	appearance:none;
+	-webkit-appearance:none;
+}
+button{appearance:none;background: none;box-shadow: none;outline: none;border: none;}
+select{appearance:none;-moz-appearance:none;-webkit-appearance:none;outline:none;border:none;background: none;}
 
 
 /*按钮样式*/
