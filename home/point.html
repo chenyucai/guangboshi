@@ -269,7 +269,9 @@
 
         <header class="pageHead clearfix">
             <div class="headLeft">
-                <a href="javascript:;" class="headLeftBtn navOpen"><i class="icon-arrow-left"></i></a>
+                <a href="javascript:;" class="headLeftBtn navOpen ">
+                  <i class="icon-arrow-left"></i>
+                </a>
             </div>
             <div class="headRight">
                 <a href="#" class="headLeftBtn icon-question"></a>
@@ -577,7 +579,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -608,6 +610,9 @@
             });
 
             //tabsSwiper.slideTo(($(".swiper-slide").length - 1), 100, false);
+            $(".navOpen").click(function(){
+              window.history.go(-1);
+            })
         });
     </script>
 </body>
