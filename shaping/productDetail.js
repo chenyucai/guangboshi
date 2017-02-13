@@ -70,7 +70,10 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + sessionStorage.getIte
 	})
 
 })
-$("#checkComplete").live("click", function() {
+$("#checkComplete").live("click", function () {
+    if (!checkLogin()) {
+        return;
+    }
 	//	orderData.productNum = $("#productNum").val();
 	//	sessionStorage.setItem("orderData", orderData);
 	debugger;
@@ -96,7 +99,10 @@ $("#checkComplete").live("click", function() {
 
 })
 
-$("#startClick").live("click", function() {
+$("#startClick").live("click", function () {
+    if (!checkLogin()) {
+        return;
+    }
 	var SetClearMark = 1;
 	if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 		SetClearMark = 2;
