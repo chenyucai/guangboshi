@@ -21,7 +21,12 @@
 						<div class="number">${Amount}</div>
 					</div>
 					<div class="description">
-						<p><span class="point">${FullName}</span><span class="normal">使用说明</span></p>
+						<p>
+							<span class="point">${FullName}</span>
+							<span class="normal_box">
+								<span class="normal">使用说明</span>
+							</span>
+						</p>
 						<p><span class="expiry-date">有效期：${StartTime} 至 ${EndTime}</span></p>
 					</div>
 				</div>
@@ -53,7 +58,7 @@
 							position: relative;
 							padding: 5px;
 						}
-						
+
 						.coupon .content {
 							position: relative;
 							display: block;
@@ -62,7 +67,7 @@
 							box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
 							/*border: 1px solid #ccaa6f;*/
 						}
-						
+
 						.coupon-unselected .content:after {
 							width: 0;
 							height: 0;
@@ -74,44 +79,41 @@
 							content: "";
 							top: 0;
 						}
-						
+
 						.coupon .content .amount {
-							position: relative;
 							display: table-cell;
 							text-align: right;
 							vertical-align: middle;
 							border-right: 1px dashed #fff;
-							padding: 10px 10px 10px 20px;
 							float: left;
 						}
-						
+
 						.coupon .content .amount .unit {
 							position: absolute;
 							top: 10px;
 							left: 10px;
-							font-weight: bold;
 							color: #fff;
 						}
-						
+
 						.coupon .content .amount .number {
 							font-family: PingFang-SC-Medium;
 							font-size: 3.5em;
 							font-weight: bold;
 							color: #fff;
 						}
-						
+
 						.coupon .content .description {
 							position: relative;
 							margin-left: 90px;
 							padding: 12px 0;
 						}
-						
+
 						.coupon .content .description p {
 							margin: 5px 0;
 							padding: 0 20px;
 							color: #eee;
 						}
-						
+
 						.coupon .content .description p span.point {
 							font-size: 1.2em;
 							font-weight: bold;
@@ -120,20 +122,20 @@
 							word-spacing: 8px;
 							letter-spacing: 1px;
 						}
-						
+
 						.coupon .content .description p span.normal {
 							font-size: 0.6em;
 							color: #eee;
 							word-spacing: 8px;
 							letter-spacing: 1px;
 						}
-						
+
 						.coupon .content .description p span.expiry-date {
 							font-size: 0.6em;
 							color: #eee;
 							word-spacing: 8px;
 						}
-						
+
 						.coupon-unselected .status {
 							position: absolute;
 							top: 22px;
@@ -151,13 +153,28 @@
 							-o-transform: rotate(45deg);
 							/* Opera */
 						}
-						
+
 						.coupon-selected .status {
 							position: absolute;
 							top: 15px;
 							right: 15px;
 							color: #fff;
 							font-size: 2.5em;
+						}
+
+						.amount{
+							width: 80px;
+							height: 80px;
+							padding-right: 10px;
+						}
+
+						.normal_box{
+							display: inline-block;
+							width: 60px;
+							height: 20px;
+							line-height: 20px;
+							text-align: center;
+							background: #c29849;
 						}
 					</style>
 
