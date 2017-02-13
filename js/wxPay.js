@@ -1,5 +1,4 @@
 //$(function() {
-debugger;
 
 $.ajax({
 	type: 'post',
@@ -10,7 +9,7 @@ $.ajax({
 	url: constants.baseUrl + '/AppPay/GetWxInfo',
 	success: function(sjson) {
 		//alert(sjson);
-		debugger;
+
 		localStorage.setItem("openid", sjson.openid);
 		localStorage.setItem("access_token", sjson.access_token);
 		var vData = JSON.stringify(sjson);
@@ -43,7 +42,7 @@ $.ajax({
 
 //初始化微信支付环境
 function fCharge() {
-	debugger;
+	
 
 	if(typeof WeixinJSBridge == "undefined") {
 		if(document.addEventListener) {
@@ -59,7 +58,7 @@ function fCharge() {
 //提交充值数据
 function fPostCharge() {
 
-	debugger;
+
 	var vChargeVal = OrderAmount * 100;
 	vChargeVal = parseFloat(vChargeVal);
 	if(vChargeVal > 0) {
@@ -85,11 +84,11 @@ function fPostCharge() {
 			success: function(json) {
 				//$.messager.progress('close');//记得关闭
 				//var json = eval("(" + msg + ")");//转换后的JSON对象
-				debugger;
+
 				onBridgeReady(json);
 			},
 			error: function(data1, data2, data3, data4) {
-				debugger;
+
 				//$.messager.progress('close');//记得关闭
 				//$.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
 			}
@@ -100,7 +99,7 @@ function fPostCharge() {
 }
 //调用微信支付模块
 function onBridgeReady(json) {
-	debugger;
+
 	alert(JSON.stringify(json));
 	WeixinJSBridge.invoke(
 		'getBrandWCPayRequest', {
@@ -112,7 +111,7 @@ function onBridgeReady(json) {
 			"paySign": json.paySign //微信签名
 		},
 		function(res) {
-			debugger;
+
 			alert(JSON.stringify(res));
 			if(res.err_msg == "get_brand_wcpay_request:ok") {
 				//alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
