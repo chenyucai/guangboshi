@@ -16,11 +16,13 @@
 	return fmt;
 }
 
-function checkLogin()
+function checkLogin(url)
 {
 	var userId = $.cookie('userId');
 	if(userId == undefined || userId == null || userId == "")
 	{
+		url = url || "index.html";
+		localStorage.setItem('url',url);
 		location.href = "../home/Login.html";
 		return false;
 	}

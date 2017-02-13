@@ -27,6 +27,19 @@
 				<a href="javascript:void(0)" style="font-size: 10px;"><span class="imgtxt"><img src="${Image}"></span>${Name}</a>
 			</li>
 		</script>
+		<script type="text/javascript">
+			// alert(window.location.href)
+			function getQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var vCode = getQueryString("code");
+			if(vCode != "" && vCode != null) {
+				localStorage.setItem("code", vCode);
+			}
+		</script>
 		<script type="text/html" id="template2">
 			<li data-id="${Id}" id="kuanghuandacuDetail">
 				<div class="artistListPad">
