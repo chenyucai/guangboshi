@@ -13,11 +13,14 @@ $.ajax({
 		localStorage.setItem("openid", sjson.openid);
 		localStorage.setItem("access_token", sjson.access_token);
 		var vData = JSON.stringify(sjson);
-		//alert(vData);
+		alert(vData);
 		//$.messager.show({
 		//    title: '提示',
 		//    msg: '欢迎您来到微信端充值中心。'
 		//});
+	},
+	error:function(){
+		alert('error')
 	}
 })
 
@@ -42,7 +45,7 @@ $.ajax({
 
 //初始化微信支付环境
 function fCharge() {
-	
+
 
 	if(typeof WeixinJSBridge == "undefined") {
 		if(document.addEventListener) {

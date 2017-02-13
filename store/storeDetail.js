@@ -1,19 +1,36 @@
-//debugger;
+//
 $(document).ready(function() {
 	var map = new BMap.Map("allmap");
 	map.centerAndZoom(new BMap.Point(116.331398, 39.897445), 18);
 	map.enableScrollWheelZoom(true);
 	//	map.setZoom(map.getZoom() + );
 	$.get(constants.baseUrl + "/AppStore/GetStoreDetail?storeId=" + sessionStorage.getItem("storeId") + "&UserId=" + $.cookie("userId"), function(response) {
-		debugger;
+
 //		$("#Treatment").text(response.Store.Name.substr(10));
 $("#Treatment").text(response.Store.Name);
 		$("#Abstract").text(response.Store.Abstract);
 		$("#Reservation").text(response.Store.Reservation);
 		$("#Price").text(response.Store.Price);
 		$("#Telephone").attr("href","tel://" + response.Store.Telephone);
-		var template = $("#GoodsCategory");
+		var template = $("#GoodsCategory1");
 		$("#template").tmpl(response.GoodsCategory).appendTo(template);
+		$('#GoodsCategory1 .ctg-item').click(function(){
+			$('.ctg-item').removeClass('active');
+			$(this).addClass('active');
+			var id = $(this).attr('data-id');
+			response.GoodsCategory.forEach(function(item){
+				if (item.Id == id) {
+					var second_template = $("#SubGoodsCategory1");
+					second_template.html('');
+					$("#template2").tmpl(item).appendTo(second_template);
+					$('.second-ctg-item').click(function(){
+						$('.second-ctg-item').removeClass('active');
+						$(this).addClass('active');
+					})
+				}
+			});
+		});
+		$('#GoodsCategory1 .ctg-item')[0].click();
 
 		var template1 = $("#bbb .swiper-wrapper");
 		$("#template1").tmpl(response.Store).appendTo(template1);
@@ -21,7 +38,7 @@ $("#Treatment").text(response.Store.Name);
 		var template2 = $("#aaa .swiper-wrapper");
 		$("#template2").tmpl(response.GoodsCategory).appendTo(template2);
 
-		var template3 = $("#kuanghuandacu ul");
+		var template3 = $("#kuanghuandacu .khdc-list");
 		$("#template3").tmpl(response.DiscountedGoods).appendTo(template3);
 
 		var template4 = $(".viewComment");
@@ -32,7 +49,7 @@ $("#Treatment").text(response.Store.Name);
 		// 用经纬度设置地图中心点
 
 		if(response.Store.Longitude != null) {
-			//			debugger;
+			//
 			map.clearOverlays();
 			var new_point = new BMap.Point(response.Store.Longitude, response.Store.Latitude);
 			var marker = new BMap.Marker(new_point); // 创建标注
@@ -60,7 +77,7 @@ $("#Treatment").text(response.Store.Name);
 				calculateHeight: true
 			})
 			$(".sellerTab li").on('touchstart mousedown', function(e) {
-				//				debugger;
+				//
 				e.preventDefault()
 					//				r.p={}
 					//				s.l = r;
@@ -100,7 +117,7 @@ $(".mt10").live("click", function() {
 })
 
 $("#startClick").live("click", function() {
-	debugger;
+
 	var SetClearMark = 1;
 	if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 		SetClearMark = 2;

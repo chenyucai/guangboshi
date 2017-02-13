@@ -21,7 +21,7 @@
 		<script src="../js/jquery.tmpl.min.js"></script>
 
 		<script type="text/html" id="template">
-			{{if Id==0}}
+			<!-- {{if Id==0}}
 			<li data-id="${Id}" class="active">
 
 				<a href="#" class="active">${FullName}</a>
@@ -31,6 +31,11 @@
 
 				<a href="#">${FullName}</a>
 			</li>
+			{{/if}} -->
+			{{if Id == 0}}
+			<li class="ctg-item active" data-id="${Id}">${FullName}<span></span></li>
+			{{else}}
+			<li class="ctg-item" data-id="${Id}">${FullName}<span></span></li>
 			{{/if}}
 		</script>
 
@@ -46,13 +51,14 @@
 			<div class="swiper-slide">
 				<div class="pt5 ">
 					{{each(i,l) SubGoodsCategory}}
-					<a href="#" class="btn btnSm style_4">${l.FullName}</a>
+					<!-- <a href="#" class="btn btnSm style_4">${l.FullName}</a> -->
+					<li class="second-ctg-item">${l.FullName}</li>
 					{{/each}}
 				</div>
 			</div>
 		</script>
 		<script type="text/html" id="template3">
-			<li data-id="${Id}" id="kuanghuandacuDetail">
+			<!-- <li data-id="${Id}" id="kuanghuandacuDetail">
 				<div class="artistListPad">
 					<a href="javascript:void(0)" class="artistListPic pic1"><img src="${Image}" /></a>
 					<a href="javascript:void(0)" class="artistListName">¥ ${MarketPrice}<span class="jpzx4" style="">¥ ${SellPrice}</span></a>
@@ -63,9 +69,26 @@
 						<span class="time">${LeftTime}</span>
 					</div>
 				</div>
-			</li>
+			</li> -->
+			<div class="khdc-item" data-id="${Id}" id="kuanghuandacuDetail">
+				<div class="khdc-img-wrapper">
+					<img class="kh-img" src="${Image}" alt="" />
+				</div>
+				<div class="khdc-content-wrapper">
+					<div class="khdc-price-wrapper">
+						<span class="khdc-price">¥ ${SellPrice}</span>
+						<span class="khdc-oldPrice">¥ ${MarketPrice}</span>
+					</div>
+					<div class="khdc-title">
+						${Title}
+					</div>
+				</div>
+				<div class="khdc-time">
+					${LeftTime}
+				</div>
+			</div>
 		</script>
-		
+
 		<script type="text/html" id="template4" >
 			<div class="viewCommentList" data-id="${EvaluationId}" >
 				<div class="viewCommentListHead clearfix">
@@ -79,8 +102,8 @@
 				</div>
 			</div>
 		</script>
-		
-		
+
+
 		<style>
 			.c_9 {
 				font-family: PingFang-SC-Light;
@@ -88,7 +111,7 @@
 				color: #FFFFFF;
 				letter-spacing: 0px;
 			}
-			
+
 			.textD {
 				font-family: PingFang-SC-Light;
 				font-size: 12px;
@@ -97,21 +120,21 @@
 				line-height: 25px;
 				padding-left: 10px;
 			}
-			
+
 			.jpzx {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx2 {
 				font-family: PingFang-SC-Light;
 				font-size: 16px;
 				color: #3C3C3C;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx1 {
 				font-family: PingFang-SC-Light;
 				font-size: 12px;
@@ -119,13 +142,13 @@
 				letter-spacing: 0px;
 				line-height: 19px;
 			}
-			
+
 			.jpzx3 {
 				font-family: PingFang-SC-Medium;
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx4 {
 				font-family: PingFang-SC-Light;
 				font-size: 12px;
@@ -133,14 +156,14 @@
 				text-decoration: line-through;
 				color: #B8B8B8;
 			}
-			
+
 			.jpzx5 {
 				font-family: PingFang-SC-Light;
 				font-size: 13px;
 				color: #656565;
 				letter-spacing: 0px;
 			}
-			
+
 			.activityTime1 {
 				border-radius: 0;
 				/*top: 150px;*/
@@ -154,36 +177,36 @@
 				letter-spacing: 0px;
 				padding: 5px;
 			}
-			
+
 			.orderTabs a {
 				font-family: PingFang-SC-Light;
 				font-size: 10px;
 				color: #656565;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderTabs ul {
 				border-bottom: none;
 			}
-			
+
 			.commentUser {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #231916;
 				letter-spacing: 0px;
 			}
-			
+
 			.icon-star-full {
 				color: #FF5DA9;
 			}
-			
+
 			.fr {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #B8B8B8;
 				letter-spacing: 0px;
 			}
-			
+
 			.f12 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -193,12 +216,12 @@
 				padding-top: 20px;
 			}
 			/*弹出层*/
-			
+
 			* {
 				padding: 0;
 				margin: 0;
 			}
-			
+
 			.am-share {
 				font-size: 14px;
 				border-radius: 0;
@@ -214,21 +237,21 @@
 				width: 100%;
 				z-index: 1110;
 			}
-			
+
 			.am-modal-active {
 				transform: translateY(0px);
 				-webkit-transform: translateY(0);
 				-ms-transform: translateY(0);
 				transform: translateY(0)
 			}
-			
+
 			.am-modal-out {
 				z-index: 1109;
 				-webkit-transform: translateY(100%);
 				-ms-transform: translateY(100%);
 				transform: translateY(100%)
 			}
-			
+
 			.am-share-title {
 				background-color: #f8f8f8;
 				border-bottom: 1px solid #fff;
@@ -240,13 +263,13 @@
 				padding: 10px 0 0;
 				text-align: center;
 			}
-			
+
 			h1,
 			h2,
 			h3 {
 				margin: 0;
 			}
-			
+
 			.am-share-title::after {
 				border-bottom: 1px solid #dfdfdf;
 				content: "";
@@ -258,7 +281,7 @@
 			/*.am-share-footer {
 				margin: 10px;
 			}*/
-			
+
 			.am-share-footer .share_btn {
 				font-family: PingFang-SC-Light;
 				font-size: 14px;
@@ -278,7 +301,7 @@
 				vertical-align: middle;
 				white-space: nowrap;
 			}
-			
+
 			.am-share-sns {
 				background-color: #f8f8f8;
 				border-radius: 0 0 2px 2px;
@@ -288,7 +311,7 @@
 				zoom: 1;
 				overflow: auto;
 			}
-			
+
 			.am-share-sns li {
 				margin-bottom: 15px;
 				display: block;
@@ -296,17 +319,17 @@
 				height: auto;
 				width: 25%;
 			}
-			
+
 			.am-share-sns a {
 				color: #555;
 				display: block;
 				text-decoration: none;
 			}
-			
+
 			.am-share-sns span {
 				display: block;
 			}
-			
+
 			.am-share-sns li i {
 				background-position: center 50%;
 				background-repeat: no-repeat;
@@ -320,11 +343,11 @@
 				margin-bottom: 5px;
 				width: 36px;
 			}
-			
+
 			.am-share-sns .share-icon-weibo {
 				background-image: url();
 			}
-			
+
 			.sharebg {
 				background-color: rgba(0, 0, 0, 0.6);
 				bottom: 0;
@@ -338,18 +361,18 @@
 				z-index: 1100;
 				display: none;
 			}
-			
+
 			.sharebg-active {
 				opacity: 1;
 				display: block;
 			}
 			/*数字加减*/
-			
+
 			.wan-spinner {
 				border: 1px solid #dddddd;
 				display: inline-block;
 			}
-			
+
 			.wan-spinner .minus,
 			.wan-spinner .plus,
 			.wan-spinner input {
@@ -360,7 +383,7 @@
 				padding-top: 10px;
 				text-align: center;
 			}
-			
+
 			.wan-spinner input {
 				border: none;
 				border-left: 1px solid #B8B8B8;
@@ -369,7 +392,7 @@
 				width: 40px;
 				border-radius: 0px;
 			}
-			
+
 			.wan-spinner .minus,
 			.wan-spinner .plus {
 				color: #333333;
@@ -379,27 +402,147 @@
 			}
 			/*.wan-spinner .minus, .wan-spinner .plus, .wan-spinner input
 			{
-				
+
 			}*/
-			
+
 			.accountHeadPic {
 				position: absolute;
 				top: -50px;
 			}
-			
+
 			.specialPerformance {
 				line-height: 25px;
 				display: none;
 			}
-			
+
 			.sellerTabSpan3 li {
 				/*width: 25%;*/
 			}
-			
+
 			.orderTabs ul li {
 				width: 33%;
 			}
 			#allmap{height:200px;width:100%;}
+			.sp10{
+				height: 10px;
+				background: #f2f2f2;
+			}
+			.ctg-list{
+				height: 45px;
+		    padding: 0 5px;
+		    overflow: auto;
+		    background: #fff;
+		    white-space: nowrap;
+				font-size: 0;
+			}
+			.ctg-list::-webkit-scrollbar,
+			.second-ctg-list::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        border-color: #fff;
+      }
+			.ctg-item{
+				position: relative;
+				display: inline-block;
+		    height: 43px;
+		    margin: 0 5px;
+		    padding: 0 10px;
+		    border-bottom: 2px solid transparent!important;
+		    font-size: 14px;
+		    line-height: 43px;
+		    color: #999;
+			}
+			.ctg-item.active{
+				color: #000;
+			}
+			.ctg-item.active span{
+				display: block;
+				width: 20px;
+				height: 1px;
+				background: #000;
+				margin: 0px auto;
+			}
+			.second-ctg-wrapper{
+				padding-bottom: 10px;
+			}
+			.second-ctg-list{
+				height: 45px;
+		    padding: 10px 5px;
+		    overflow: auto;
+		    background: #FAFAFA;
+		    white-space: nowrap;
+				font-size: 0;
+			}
+			.second-ctg-item{
+				position: relative;
+				display: inline-block;
+		    height: 45px;
+				line-height: 45px;
+		    margin: 0 5px;
+		    padding: 0 10px;
+		    border: 1px solid #D0CFD0;
+		    font-size: 14px;
+		    color: #000;
+				font-weight: 200;
+			}
+			.second-ctg-item.active{
+				color: #fff;
+				background: #B8B8B8;
+			}
+			.hkdc-list{
+				/*display: flex;*/
+				font-size: 0;
+			}
+			.khdc-item{
+				display: inline-block;
+				font-size: 13px;
+				width: 33.33%;
+				float: left;
+			}
+			.khdc-img-wrapper{
+				width: 100px;
+				height: 130px;
+				margin: 0 auto;
+				padding: 3px;
+				border: 1px solid #EDEDED;
+			}
+			.kh-img{
+				width: 100%;
+				height: 100%
+			}
+			.khdc-time{
+				width: 100px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				font-size: 10px;
+				color: #FDA0C9;
+				border: 1px solid #FDA0C9;
+			}
+			.khdc-price-wrapper{
+				text-align: center;
+				line-height: 30px;
+			}
+			.khdc-price{
+				font-size: 15px;
+			}
+			.khdc-oldPrice{
+				font-size: 10px;
+				text-decoration:line-through;
+				color:#9b9b9b;
+				padding-left: 10px;
+			}
+			.khdc-content-wrapper{
+				margin: 0 auto;
+			}
+			.khdc-time{
+				margin: 0 auto;
+			}
+			.khdc-title{
+				text-align: center;
+				padding-bottom: 10px;
+				color: #A2A2A2;
+			}
 		</style>
 	</head>
 
@@ -420,10 +563,10 @@
 
 				<h2 class="headTitle specialPerformance">
                 <span style="font-family: PingFang-SC-Light;font-size: 10px;color: #FFFFFF;letter-spacing: 0px;"> 距离结束还剩<br><span style="font-family: PingFang-SC-Light;font-size: 18px;color: #FFFFFF;letter-spacing: 0px;" id="countDown"></span></span>
-                
+
             </h2>
 			</header>
-			
+
 			<div class="shareWindow">
 				<div class="shareWindowRow">
 					方法一： 点击右上角的<span class="shareIconBtn"><i class="icon-ellipsis-v"></i></span>图标<br> 然后
@@ -441,14 +584,14 @@
 
 				</div>
 			</div>
-			
+
 			<div class="pageMain noFoot">
 				<div class="grayMain" style="background: white;">
-					<div class="clearfix">		
-				
+					<div class="clearfix">
+
 						<div class="newProduct">
 						<div class="swiper-container" id="bbb">
-					
+
 							<div class="swiper-wrapper">
 								<!--<div class="swiper-slide">
 									<a href="activityView.html"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
@@ -464,7 +607,7 @@
 						</div>
 
 					</div>
-					
+
 
 						<div class="artistList p10">
 							<ul class="clearfix">
@@ -473,37 +616,37 @@
 
 										<div class="productListUser" style="padding-top: 14px; text-align: center;">
 											<span class="jpzx" style="font-size: 16px;" id="CategoryName">MISS NEFER</span>
-											<a href="#" class=" btnSm style_4 jpzx2" id="Treatment">月星环球港店</a>&nbsp;&nbsp;
+											<a href="#" class=" btnSm style_4 jpzx2" id="Treatment"></a>&nbsp;&nbsp;
 
 										</div>
-										<div class="productListUser" style="text-align:center; padding-top: 10px;">
+										<div class="productListUser" style="text-align:center; padding-top: 10px;display:none;">
 											<span class="jpzx1" id="Title"></span>
 
 										</div>
 
 										<div class="pt5 " style="text-align: center; ">
-											<span class="jpzx3" id="SellPrice">_</span>
+											<span class="jpzx3" id="SellPrice" style="color:#000;">__</span>
 										</div>
 										<div style="text-align: center; padding: 40px; ">
-											<a href="#" class=" btnSm style_4 jpzx5" id="StoreList">上海月星环球港,一座欧式的顶级商业综合体购物商场 其建筑灯光工程融合了弧形玻璃穹顶点缀着整体的特色, 采自然之光,赋予了建筑生命、阳光和活力...</a>&nbsp;&nbsp;
+											<a href="#" class=" btnSm style_4 jpzx5" id="StoreList"></a>&nbsp;&nbsp;
 										</div>
 									</div>
 						</div>
 
-						<nav class="accountNav" style="padding-bottom: 25px;">
+						<nav class="accountNav">
 							<ul>
-								<li style="border-bottom: 10px solid #f3f3f3;">
+								<li style="border-bottom: 10px solid #f3f3f3;margin-left:0;">
 
-									<div class="orderTabs">
+									<div class="orderTabs" style="margin-bottom:10px;">
 
 										<ul>
 											<!--<li>
 												<a href="#" id="GetCoupon"><span class="imgtxt"><img src="../img/2/icno_Coupon@3x.png"></span>领取优惠券</a>
 											</li>-->
-											<li>
+											<li style="border-bottom:none;">
 												<a href="#" id="GetMessage"><span class="imgtxt" ><img src="../img/2/icon_message@3x.png"></span>在线留言</a>
 											</li>
-											<li>
+											<li style="border-bottom:none;">
 												<a href="#" id="Telephone"><span class="imgtxt"><img src="../img/2/icon_tel@3x.png"></span>电话预约</a>
 											</li>
 
@@ -514,10 +657,25 @@
 							</ul>
 						</nav>
 
-						<div class="productListUser" style="text-align:center; padding-top: 5px; padding-bottom: 15px; ">
+						<div class="ctg-wrapper">
+							<ul class="ctg-list" id="GoodsCategory1">
+								<!-- <li class="ctg-item active">324234234<span></span></li> -->
+							</ul>
+						</div>
+						<div class="second-ctg-wrapper">
+							<ul class="second-ctg-list" id="SubGoodsCategory1">
+								<!-- <li class="second-ctg-item active">324234234</li> -->
+							</ul>
+						</div>
+
+						<div class="sp10">
+
+						</div>
+
+						<div class="productListUser" style="text-align:center; padding-top: 5px; padding-bottom: 15px; display:none;">
 							<div class="sellerTab sellerTabSpan3">
 								<ul class="c" id="GoodsCategory" style="width: 80%; margin: 0 auto;">
-									<!--<li class="active"c
+									<!-- <li class="active"c
 										<a href="#">图文详情</a>
 									</li>-->
 									<!--<li>
@@ -528,7 +686,7 @@
 									</li>
 									<li>
 										<a href="#">评价</a>
-									</li>-->
+									</li> -->
 								</ul>
 							</div>
 							<div class="swiper-container"  id="aaa">
@@ -540,18 +698,18 @@
 						<div style=" background-color: white; ">
 							<dl class="loginSns" onclick="kuanghuandacuAll()">
 								<dt style="color: #000000;">
-							<h5>门店特色<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
+							<h5>门店特色</h5>
 						</dt>
 
 							</dl>
 							<dl class="loginSns">
 								<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5>Feature of stores</h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Feature of stores&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
 						</dt>
 
 							</dl>
 						</div>
-						
+
 						<nav class="accountNav" style="padding-bottom: 25px;">
 							<ul>
 								<li style="border-bottom: 10px solid #f3f3f3;">
@@ -576,12 +734,12 @@
 								</li>
 							</ul>
 						</nav>
-						
+
 						<!--
                         	作者：827648168@qq.com
                         	时间：2016-12-16
                         	描述：门店地图
-                        	
+
                         -->
                         <div id="allmap"></div>
 						<!--
@@ -589,7 +747,7 @@
                         	时间：2016-12-16
                         	描述：end
                         -->
-						
+
 						<div style=" background-color: white; ">
 							<dl class="loginSns" onclick="kuanghuandacuAll()">
 								<dt style="color: #000000;">
@@ -598,16 +756,32 @@
 							</dl>
 							<dl class="loginSns">
 								<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5>Big carnival</h5>
+							<!-- <h5>Big carnival</h5> -->
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Big carnival&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
 						</dt>
 
 							</dl>
 						</div>
-
-						<div class="artistList p10" id="kuanghuandacu" style="border-bottom:10px solid #f3f3f3 ;">
-							<ul class="clearfix">
-
-							</ul>
+						<div class="p10" id="kuanghuandacu" style="border-bottom:10px solid #f3f3f3 ;">
+							<div class="clearfix khdc-list">
+								<!-- <div class="khdc-item">
+									<div class="khdc-img-wrapper">
+										<img class="kh-img" src="http://www.missnefer.com/upload/201702/13/201702131539394543.PNG" alt="" />
+									</div>
+									<div class="khdc-content-wrapper">
+										<div class="khdc-price-wrapper">
+											<span class="khdc-price">$299</span>
+											<span class="khdc-oldPrice">$100</span>
+										</div>
+										<div class="khdc-title">
+											flajflsjljl
+										</div>
+									</div>
+									<div class="khdc-time">
+										3天 19小时 54分
+									</div>
+								</div> -->
+							</div>
 						</div>
 						<div style=" background-color: white; ">
 							<dl class="loginSns" onclick="kuanghuandacuAll()">
@@ -618,7 +792,8 @@
 							</dl>
 							<dl class="loginSns">
 								<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5>Evaluation of stores</h5>
+							<!-- <h5>Evaluation of stores</h5> -->
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Evaluation of stores&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
 						</dt>
 
 							</dl>
@@ -673,7 +848,7 @@
 	</body>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+
 			var options = {
 				maxValue: 10,
 				minValue: 0,
