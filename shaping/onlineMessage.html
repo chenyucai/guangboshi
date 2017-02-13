@@ -23,41 +23,41 @@
 			.loginInput {
 				color: #999 !important;
 			}
-			
+
 			.loginInput::-webkit-input-placeholder {
 				/* WebKit browsers */
 				color: #999999 !important;
 			}
-			
+
 			.loginInput::-moz-placeholder {
 				/* Mozilla Firefox 4 to 18 */
 				color: #999 !important;
 			}
-			
+
 			.loginInput::-moz-placeholder {
 				/* Mozilla Firefox 19+ */
 				color: #999 !important;
 			}
-			
+
 			.loginInput::-ms-input-placeholder {
 				/* Internet Explorer 10+ */
 				color: #999 !important;
 			}
-			
+
 			.loginRow {
 				border: solid 1px #DDDDDD;
 			}
-			
+
 			.signinFoot a {
 				margin-left: 20px;
 				width: 60px;
 			}
-			
+
 			.loginBtn {
 				background: white;
 				border: none;
 			}
-			
+
 			.shade {
 				width: 100%;
 				background-color: rgba(0, 0, 0, 0.3);
@@ -66,7 +66,7 @@
 				top: 0;
 				display: none;
 			}
-			
+
 			.tanceng {
 				opacity: 0.69;
 				background: #000000;
@@ -84,7 +84,7 @@
 				margin-left: -140px;
 				display: none;
 			}
-			
+
 			.okbtn a {
 				display: block;
 				width: 80%;
@@ -96,14 +96,14 @@
 				border-radius: 5px;
 				margin: 0 auto;
 			}
-			
+
 			.signinFoot .active {
 				/*font-family: PingFang-SC-Light;
 		font-size: 12px;
 		color: #FF5DA9;
 		letter-spacing: 0px;*/
 			}
-			
+
 			.cue {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
@@ -112,7 +112,7 @@
 				letter-spacing: 0px;
 				margin: 0;
 			}
-			
+
 			a,
 			button,
 			input {
@@ -132,7 +132,7 @@
 				<div class="headRight">
 					<a href="javascript:void(0)" class="headLeftBtn" id="submit" style="font-size: 16px;">提交</a>
 				</div>
-				<h2 class="headTitle">	
+				<h2 class="headTitle">
               在线留言
             </h2>
 
@@ -170,8 +170,8 @@
 
 		}, function(message) {
 			if(sessionStorage.getItem("messageType") == 1) {
-				location.href = "productDetails.html"
-
+				// location.href = "productDetails.html"
+				window.history.go(-1);
 			}
 			if(sessionStorage.getItem("messageType") == 2) {
 				location.href = "../store/storeDetail.html"

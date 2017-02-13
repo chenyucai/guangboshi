@@ -49,27 +49,27 @@
 					padding: 0;
 					text-decoration: none;
 				}
-				
+
 				img {
 					border: 0;
 				}
-				
+
 				ul {
 					list-style: none outside none;
 					margin: 0;
 					padding: 0;
 				}
-				
+
 				body {
 					background-color: #eee;
 				}
-				
+
 				body .mainmenu:after {
 					clear: both;
 					content: " ";
 					display: block;
 				}
-				
+
 				body .mainmenu li {
 					float: left;
 					width: 33%;
@@ -80,24 +80,24 @@
 					border-top: 1px solid #B8B8B8;
 					border-right: 1px solid #B8B8B8;
 				}
-				
+
 				body .mainmenu li a {
 					display: block;
 					color: black;
 					text-align: center
 				}
-				
+
 				body .mainmenu li a b {
 					display: block;
 					height: 60px;
 				}
-				
+
 				body .mainmenu li a img {
 					margin: 15px auto 15px;
 					width: 30px;
 					height: 30px;
 				}
-				
+
 				body .mainmenu li a span {
 					display: block;
 					height: 40px;
@@ -105,7 +105,7 @@
 					color: #999;
 					font-size: 14px;
 				}
-				
+
 				.footNav ul li.active a {
 					color: #F03B92;
 				}
@@ -158,7 +158,17 @@
 				if($(this).attr("data-selected") == "true")
 				{
 					var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
-					$(this).css('color', '#ffffff')
+					console.log(RanColor);
+					if (RanColor == "#000000") {
+						RanColor = "#85c4ba";
+					}
+					if (RanColor == "#ffffff" || RanColor == "#FFFFFF") {
+						RanColor = "#dbf5f8";
+					}
+					if (RanColor.length != 7) {
+						RanColor = "#dbf5f8";
+					}
+					$(this).css('color', '#000000')
 					$(this).css('background-color',  RanColor)
 					$(this).css('border', '1px solid ' + RanColor)
 				}else{
@@ -187,7 +197,7 @@
 
 	$(".headRightBtn").live("click", function() {
 		var ServeIdArr = [];
-		$("#IntentionServe a:visible").each(function(){ 
+		$("#IntentionServe a:visible").each(function(){
 			ServeIdArr.push($(this).attr("id"));
 		});
 		$.post(constants.baseUrl + "/AppPersonal/SavePersonalDetail", {
