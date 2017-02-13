@@ -19,7 +19,7 @@
 
 			<li data-id="${Id}" class="productClick">
 				<div class="productListPad">
-					<a href="javascript:void(0)" class="productListPic"><img src="${Image}"></a>
+					<a href="javascript:void(0)" class="productListPic"><img src="${Image}" style="width:100%;height:100%;vertical-align:top;"></a>
 					<!--<h4 class="productListTitle pt5"><a href="#" class="h5">【水月环球港】<span>浦东新区&nbsp;&nbsp;200m</span></a></h4>-->
 					<div class="productListUser" style="height: 40px;">
 						<a href="javascript:void(0)" class="c_c">【${CategoryName}】<span class="C_C_C">${Title}</span></a>
@@ -34,7 +34,7 @@
 		</script>
 
 		<script type="text/html" id="template1">
-			<a href="javascript:void(0)" class="guangdianmeirongxuanze" data-id="${Id}">${Name}<i></i></a>
+			<a href="javascript:void(0)" class="guangdianmeirongxuanze" data-id="${Id}"><span>${Name}</span><i></i></a>
 		</script>
 
 		<script type="text/html" id="template2">
@@ -46,7 +46,7 @@
 			.screening dl {
 				width: 33%;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFang-SC-Medium;
@@ -54,25 +54,25 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.C_C_C {
 				font-family: PingFang-SC-Light;
 				font-size: 11px;
 				color: #B8B8B8;
 				letter-spacing: 0px;
 			}
-			
+
 			.screening:after {
 				background: none;
 			}
-			
+
 			#chanpingleixing li {
 				display: inline;
 				width: 33%;
 				float: left;
 				text-align: center;
 			}
-			
+
 			.screeningBtnIcon {
 				border-color: black transparent transparent transparent;
 			}
@@ -80,6 +80,31 @@
 			{
 				content: none;
 			}*/
+			#guangdianfeilei a{
+				border-bottom: none;
+				font-size: 16px;
+				margin-bottom: 5px;
+			}
+			#guangdianfeilei a.active span{
+				background: #cfcfcf;
+				color: #fff;
+				line-height: 30px;
+    		padding: 0 10px;
+				display: inline-block;
+			}
+			#guangdianfeilei a.active i{
+				display: none;
+			}
+			.setClick a{
+				border-bottom: none !important;
+			}
+			.setClick.active {
+				background: #bfbfbf;
+				margin-bottom: 5px;
+			}
+			.setClick.active a{
+				color: #fff;
+			}
 		</style>
 	</head>
 
@@ -109,30 +134,28 @@
 						<dt class="screeningTitle"><span class="screeningBtn" style="color: white;"><b style="max-width: none;" id="guangdianName">
 						</b>&nbsp;<img src="../img/2/Fill 1@3x.png" style="width: 15%;"></span></dt>
 						<dd class="screeningDd" id="guangdianfeilei">
-							<a href="#" class="guangdianmeirongxuanze" data-id="0">全部<i></i></a>
+							<a href="#" class="guangdianmeirongxuanze" data-id="0"><span>全部</span><i></i></a>
 							<!--<a href="#" class="active">面部塑形<i></i></a>
 							<a href="#">雕塑<i></i></a>
 							<a href="#">摄影<i></i></a>
 							<a href="#">绘画<i></i></a>-->
 						</dd>
 					</dl>
-   
+
             </h2>
 			</header>
 			<div class="pageMain">
 				<div class="screening">
 					<!--如只有一项选择添加class screeningListSpan1-->
 					<dl class="screeningList clearfix">
-						<dt class="screeningTitle"><span class="screeningBtn"><b>
-						
-产品
-
-
+						<dt class="screeningTitle"><span class="screeningBtn">
+							<b id="productSel">
+								分类
 						</b>&nbsp;<img src="../img/3/drop-down@2x.png" style="width: 15%;"></span></dt>
 						<dd class="screeningDd" id="chanpingfenlei">
-							<ul id="chanpingleixing">
-								<li data-id="0" class="setClick">
-									<a href="#">产品<i></i></a>
+							<ul id="chanpingleixing" style="padding:10px 0;">
+								<li data-id="0" class="setClick active">
+									<a href="#">分类</a>
 								</li>
 							</ul>
 						</dd>
@@ -207,7 +230,21 @@
 
 	$(".setClick").live("click", function() {
 		sessionStorage.setItem("SubCategoryId", $(this).attr("data-id"));
-		window.location.reload();
+		console.log($(this).text());
+		$('.setClick').removeClass('active')
+		$(this).addClass("active");
+		$('#productSel').html($(this).text())
+
+		$('.setClick').parent().parent().hide();
+		// window.location.reload();
+		$.get(constants.baseUrl + "/AppHome/GetGoodsListByCatergory?CategoryId=" + sessionStorage.getItem("CategoryId") + "&SubCategoryId=" + sessionStorage.getItem("SubCategoryId") + "&CityId=" + $.cookie("CityId"),
+			function(data) {
+				$("#guangdianName").text(sessionStorage.getItem("CategoryName"))
+				var template = $(".productListUl");
+				dataJson = data.GoodsList;
+				$('.productListUl').html('');
+				$('#template').tmpl(data.GoodsList).appendTo(template);
+		})
 	})
 
 	$(".productClick").live("click", function() {

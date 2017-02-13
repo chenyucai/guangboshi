@@ -131,7 +131,7 @@
 					<a href="index.html" class="headLeftBtn"><i class="icon-cross2"></i></a>
 				</div>-->
 				<h2 class="headTitle">
-              登陆  test111
+              登陆
             </h2>
 
 			</header>
@@ -217,6 +217,14 @@
 		//		location.href = "index.html"
 		//	}
 	$("#submit").click(function() {
+		if ($.trim($("#phone").val()).length === 0) {
+			alert('请输入手机号');
+			return ;
+		}
+		if ($.trim($("#PassWord").val()).length === 0) {
+			alert('请输入密码');
+			return ;
+		}
 		$.get(constants.baseUrl + "/AppLogin/Login?Mobile=" + $("#phone").val() + "&Password=" + $("#PassWord").val(), function(data, status) {
 			$.cookie('userId', data.UserId, {
 				expires: 7,

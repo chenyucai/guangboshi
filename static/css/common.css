@@ -142,7 +142,7 @@ input[type="search"] {
   -webkit-box-sizing: content-box;
      -moz-box-sizing: content-box;
           box-sizing: content-box;
-  -webkit-appearance : none ; 
+  -webkit-appearance : none ;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
@@ -264,7 +264,7 @@ textarea {
 a {
   color: #333;
   text-decoration: none;
-  
+
 }
 a:focus {outline-style:none; -moz-outline-style: none;}
 a:hover,
@@ -390,7 +390,7 @@ h2 .small,
 h3 .small {
   font-size: 65%;
 }
- 
+
 
 h4 small,
 h5 small,
@@ -487,7 +487,7 @@ small,
 .p20{
 	padding:20px;
 	}
-	
+
 .mt5{
 	margin-top:5px;
 	}
@@ -560,7 +560,7 @@ small,
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 	}
-	
+
 .btn:focus,
 .btn:active:focus,
 .btn.active:focus,
@@ -604,7 +604,7 @@ fieldset[disabled] .btn {
 	background:#999;
 	border-color:#999;
 	}
-	
+
 
 .btn.style_2{
 	background:#fff;
@@ -626,7 +626,7 @@ fieldset[disabled] .btn {
 	border-color:#ccc;
 	color:#fff;
 	}
-	
+
 .btn.style_4{
 	background:#fff;
 	border-color:#323232;
@@ -663,20 +663,20 @@ fieldset[disabled] .btn {
 	border-color:#030303;
 	color:#030303;
 	}
-	
+
 .btn.style_6{
 	background:#fff;
 	border-color:#eb4545;
 	color:#eb4545;
- 
+
 	}
 .btn.style_6:hover{
 	background:#fff;
 	border-color:#eb4545;
 	color:#eb4545;
 	}
-	
-	
+
+
 .btnLg{
 	padding: 10px 20px;
 	font-size: 18px;
@@ -719,23 +719,23 @@ fieldset[disabled] .btn {
 	-webkit-transition-duration:0s;
 	-webkit-transform:translate3d(0px,0,0);
 	-webkit-transition-timing-function:ease;
-	
+
 	-moz-transition-property:-moz-transform, left, top;
 	-moz-transition-duration:0s;
 	-moz-transform:translate3d(0px,0,0);
 	-moz-transition-timing-function:ease;
-	
+
 	-o-transition-property:-o-transform, left, top;
 	-o-transition-duration:0s;
 	-o-transform:translate3d(0px,0,0);
 	-o-transition-timing-function:ease;
 	-o-transform:translate(0px,0px);
-	
+
 	-ms-transition-property:-ms-transform, left, top;
 	-ms-transition-duration:0s;
 	-ms-transform:translate3d(0px,0,0);
 	-ms-transition-timing-function:ease;
-	
+
 	transition-property:transform, left, top;
 	transition-duration:0s;
 	transform:translate3d(0px,0,0);
@@ -786,8 +786,8 @@ fieldset[disabled] .btn {
 	}
 .swiper-active-switch{
 	opacity:1;}
- 
- 
+
+
  .bar1 {
   -moz-transform:rotate(0deg) translate(0, -40px);
   -o-transform:rotate(0deg) translate(0, -40px);
@@ -859,17 +859,17 @@ fieldset[disabled] .btn {
   -moz-animation-duration:1.5s;
   -moz-animation-iteration-count:infinite;
   -moz-animation-timing-function:linear;
-  
+
   -webkit-animation-name: rotateThis;
   -webkit-animation-duration:1.5s;
   -webkit-animation-iteration-count:infinite;
   -webkit-animation-timing-function:linear;
-  
+
   -ms-animation-name: rotateThis;
   -ms-animation-duration:1.5s;
   -ms-animation-iteration-count:infinite;
   -ms-animation-timing-function:linear;
-  
+
   -o-animation-name: rotateThis;
   -o-animation-duration:1.5s;
   -o-animation-iteration-count:infinite;
