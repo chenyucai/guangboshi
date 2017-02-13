@@ -1,5 +1,5 @@
 //$(function() {
-
+alert('code:'+localStorage.getItem("code"));
 $.ajax({
 	type: 'post',
 	data: {
@@ -19,8 +19,8 @@ $.ajax({
 		//    msg: '欢迎您来到微信端充值中心。'
 		//});
 	},
-	error:function(){
-		alert('error')
+	error:function(jxhr){
+		alert('获取openid失败');
 	}
 })
 
@@ -69,6 +69,17 @@ function fPostCharge() {
 		//    title: "",
 		//    msg: "正在调用微信支付接口,请稍后..."
 		//});
+		var data = JSON.stringify({
+			amount: vChargeVal,
+			//				openid: localStorage.getItem("openid"),
+			openid: localStorage.getItem("openid"),
+			//				access_token: localStorage.getItem("access_token"),
+			userId: $.cookie("userId"),
+			orderId: OrderId,
+			description: order.CategoryName
+
+		});
+		alert(data);
 		$.ajax({
 			type: "post",
 			contentType: "application/json;charset=utf-8",
@@ -90,10 +101,12 @@ function fPostCharge() {
 
 				onBridgeReady(json);
 			},
-			error: function(data1, data2, data3, data4) {
+			error: function(jxhr, data2, data3, data4) {
+				alert('调用支付接口失败');
+				alert(jxhr.responseText)
 
 				//$.messager.progress('close');//记得关闭
-				//$.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
+				// $.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
 			}
 		})
 	} else {

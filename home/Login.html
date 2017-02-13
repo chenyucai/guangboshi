@@ -210,7 +210,7 @@
 
 <script>
 	$(document).ready(function() {
-
+		alert(localStorage.getItem('code'))
 		})
 		//	if($.cookie("userId") != null) {
 		////		alert("登陆成功");
@@ -262,7 +262,7 @@
 
 	var vCode = getQueryString("code");
 	if(vCode != "" && vCode != null) {
-		//		alert(vCode);
+				// alert(vCode);
 		debugger;
 		localStorage.setItem("code", vCode);
 	}
