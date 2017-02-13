@@ -87,7 +87,7 @@
 								</div>
 							</li>
 		</script>
-
+		
 		<script type="text/html" id="template6">
 			<li data-id="${Id}">${SearchValue}</li>
 		</script>
@@ -112,27 +112,18 @@
 		height: 23px;
 		padding-right: 14px;
 	}
-
+	
 		.footNav ul li.active a {
 					color: #F03B92;
 				}
-
+				
 				.footNav ul li a {
 					background: #F3F4F4;
 				}
-
+				
 				.pt5{
 					padding-top: 0;
 				}
-</style>
-<style media="screen">
-	div.shareWindowRow> div.right-container {
-		width: 71%;
-		left: 29%;
-	}
-	div.shareWindowRow> div.right-container> div.city-container> div.city{
-		border: none;
-	}
 </style>
 	</head>
 
@@ -193,7 +184,7 @@
             </div>-->
 				<h2 class="headTitle">
 				首页
-				</h2>
+			</h2>
 			</header>
 			<div class="pageMain noFoot ">
 				<div class="grayMain" style="background-color: white;">
@@ -204,10 +195,10 @@
     line-height: 30px;
     padding-left: 10px; color: #656565;"></i>
                             <input type="button" class="inputSm" value="请输入关键字" style="width: 60%;
-    line-height: 25px;
+    line-height: 30px;
     border: 1px solid #B8B8B8;
     background-color: white; color: #656565;" />&nbsp;
-
+                          
                             <a href="javascript:void(0)" id="cityStore" class="btn btnSm fr style_3" style="background: #D9BD8C;">同城门店</a>
                         </span>
 							<div class="sellerSelect">
@@ -246,9 +237,9 @@ letter-spacing: 0px;
 padding-left: 6px;"> 大家都在搜索</span></div>
 <div class="xiala1" id="xiala1">
 		           	 <ul id="dajia">
-
+		           	 	
 		           	 </ul>
-
+		           	 
 		           </div>
 		           <div style="padding-top: 43px;">
 		           	 <span style="font-family: PingFang-SC-Light;
@@ -258,10 +249,10 @@ letter-spacing: 0px;
 padding-left: 6px;"> 最近在搜</span></div>
 <div class="xiala1" id="xiala1">
 		           	 <ul id="zuijinzaisou">
-
+		           	 	
 		           	 </ul>
 		           </div>
-		           <div style="padding-top: 45px;">
+		           <div style="padding-top: 45px;"> 
 		           	<a href="javascript:void(0)" style="font-family: PingFang-SC-Light;
 font-size: 14px;
 color: #FF5DA9;
@@ -276,7 +267,7 @@ text-align: center;
 					</div>
 					<div class="newProduct">
 						<div class="swiper-container">
-
+					
 							<div class="swiper-wrapper" id="banner">
 								<!--<div class="swiper-slide">
 									<a href="activityView.html"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
@@ -303,7 +294,7 @@ text-align: center;
 											<!--<div>--><span class="accountNavText"><img src="../img/3/icon_logo@2x.png" class="img">光电美容</span>
 											<!--</div>-->
 										</li>
-
+									
 									</ul>
 								</div>
 
@@ -365,7 +356,7 @@ text-align: center;
 						</dl>
 						<dl class="loginSns">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Big carnival&nbsp;	<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png">&nbsp;Big carnival&nbsp;	<img src="../img/渐变线/Rectangle 26@2x.png"></h5>
 						</dt>
 							<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -375,7 +366,7 @@ text-align: center;
 
 					<div class="artistList p10" id="kuanghuandacu" style="border-bottom: 10px solid #F1F1F1;">
 						<ul class="clearfix">
-
+							
 						</ul>
 					</div>
 
@@ -390,7 +381,7 @@ text-align: center;
 						</dl>
 						<dl class="loginSns">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Star products&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png">&nbsp;Star products&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png"></h5>
 						</dt>
 							<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -400,7 +391,7 @@ text-align: center;
 
 					<div class="artistList p10" id="mingxingchanpin" style="border-bottom: 10px solid #F1F1F1;">
 						<ul class="clearfix">
-
+							
 						</ul>
 					</div>
 
@@ -415,7 +406,7 @@ text-align: center;
 						</dl>
 						<dl class="loginSns">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Quality information&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png">&nbsp;Quality information&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png"></h5>
 						</dt>
 							<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -424,11 +415,11 @@ text-align: center;
 					</div>
 					<div class="artistList p10" style="border-bottom: 10px solid #F1F1F1;">
 						<ul class="clearfix" id="shishangzixun">
-
+							
 
 					</ul>
 					</div>
-
+					
 				</div>
 
 			</div>
@@ -441,7 +432,7 @@ text-align: center;
 						<a href="#" class="submit"><span><img src="../img/3/button_logo_hul@2x.png" style="width: 60%;padding-bottom: 10px;"></span>MISS NEFER</a>
 					</li>
 					<li style="width: 50%;">
-						<a id="userLi" href="#"><span><img src="../img/3/button_presonl_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
+						<a href="../personalCenter/index.html#mp.weixin.qq.com"><span><img src="../img/3/button_presonl_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
 					</li>
 				</ul>
 			</nav>
@@ -452,7 +443,7 @@ text-align: center;
 
 		</div>
 		<script type="text/javascript">
-//		$(document).ready(function(){
+//		$(document).ready(function(){ 
 //			$(function() {
 //				debugger;
 //				var mySwiper = new Swiper('.swiper-container', {
@@ -469,12 +460,13 @@ $(".xiala1").click(function(e){
             e = e || window.event;
             var target = e.srcElement || e.target,
                 tagName = target.tagName.toLowerCase(),
-
+               
                 allLi = document.getElementById("xiala1").getElementsByTagName("li");
-
+             
             for(var i=0,len=allLi.length;i<len;i++){
                 if(target == allLi[i]){
-
+                	debugger;
+                	
 //              	$.get(constants.baseUrl + "/AppHome/Search?Type=" + $("#indexTypeId").val()+ "&SearchValue=" +  allLi[i].textContent + "&UserId=" + $.cookie("userId") + "&num=" + "8", function(data, status)
 //              	{
 //              		debugger;
@@ -491,7 +483,7 @@ $(".xiala1").click(function(e){
                     allLi[i].style.background = "white";
                 }
             }
-
+             
         });
 		</script>
 
@@ -499,10 +491,11 @@ $(".xiala1").click(function(e){
 
 </html>
 
-
+	
 <script>
 	$(function() {
 		$.get(constants.baseUrl + "/AppHome/GetHome?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+			debugger;
 			var template1 = $('#guangdianmeirong ul');
 			$('#template1').tmpl(data.CategoryList).appendTo(template1);
 			var template2 = $('#kuanghuandacu ul');
@@ -521,16 +514,17 @@ $(".xiala1").click(function(e){
 					loop: true,
 					slidesPerView: 1
 			});
-
+			
 		});
-
-
+		
+		
 
 		// 城市 begin
-
+		
 		var location = new Location();
 		var provinceList = location.find("0");
 		$.each(provinceList, function(keyProvince, valueProvince) {
+			// debugger;
 			var province = $("<div class='province'>");
 			province.attr("data-id", keyProvince).text(valueProvince);
 			$("#divCityContainer > div.left-container > div.left-wrap").append(province);
@@ -585,7 +579,8 @@ $(".xiala1").click(function(e){
 			{
 				storeCityId=  province + " - " + cityId + " - ";
 			}
-
+			
+//			debugger;
 //			alert("cityId:" + cityId);
 $("#cityName").text($(this).text());
 $("#cityName").attr("data-id",storeCityId);
@@ -598,25 +593,16 @@ $("#cityName").attr("data-id",storeCityId);
 		    $('.shareWindow').slideUp(200);
 		});
 		// 城市 end
-		$("#userLi").on("click", goUserCenter);
 	});
-	function goUserCenter()
-	{
-	    if (!checkLogin())
-	    {
-	        return;
-	    }
-	    location.href = "../personalCenter/index.html#mp.weixin.qq.com";
-	}
-
+	
 //	$(document).keydown(function(event){
-//alert(event.keyCode);//弹出按键的对应值
+//alert(event.keyCode);//弹出按键的对应值 
 //if(event.keyCode==13)
 //{
 //	alert("fuck");
 //}
 //});
-
+	
 //	$("form").live("submit",function(){
 //		alert("1");
 //	})

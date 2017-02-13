@@ -70,10 +70,12 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + sessionStorage.getIte
 	})
 
 })
-$("#checkComplete").live("click", function() {
+$("#checkComplete").live("click", function () {
+    if (!checkLogin()) {
+        return;
+    }
 	//	orderData.productNum = $("#productNum").val();
 	//	sessionStorage.setItem("orderData", orderData);
-	debugger;
 	var DataString = JSON.stringify(orderData);
 	sessionStorage.setItem("orderData", DataString);
 
@@ -83,7 +85,6 @@ $("#checkComplete").live("click", function() {
 			goodsId: sessionStorage.getItem("ProductId")
 		},
 		function(response) {
-			debugger;
 			if(response.Status != 1) {
 				alert(response);
 				return false;
@@ -96,7 +97,10 @@ $("#checkComplete").live("click", function() {
 
 })
 
-$("#startClick").live("click", function() {
+$("#startClick").live("click", function () {
+    if (!checkLogin()) {
+        return;
+    }
 	var SetClearMark = 1;
 	if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 		SetClearMark = 2;
@@ -125,13 +129,13 @@ $("#GetCoupon").live("click", function() {
 function ShowCountDown(year, month, day, divname) {
 
 	var now = new Date();
-	//var endDate = new Date(time.replace(/-/g,"/")); 
+	//var endDate = new Date(time.replace(/-/g,"/"));
 
 	//var endDate=new Date(time);
 	var endDate = new Date(year, month - 1, day);
 	var leftTime = endDate.getTime() - now.getTime();
 	var leftsecond = parseInt(leftTime / 1000);
-	//var day1=parseInt(leftsecond/(24*60*60*6)); 
+	//var day1=parseInt(leftsecond/(24*60*60*6));
 	var day1 = Math.floor(leftsecond / (60 * 60 * 24));
 	var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
 	var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);

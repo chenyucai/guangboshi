@@ -28,7 +28,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.accountNavText {
 				font-family: PingFang-SC-Light;
 				font-size: 14px;
@@ -40,28 +40,28 @@
 				margin-bottom: 34px;
 			}
 			*/
-			
+
 			.yhq {
 				font-family: PingFang-SC-Medium;
 				font-size: 18px;
 				color: #D9BD8C;
 				letter-spacing: 0px;
 			}
-			
+
 			.sfje {
 				font-family: PingFang-SC-Medium;
 				font-size: 18px;
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.h4 {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.c_9 h6 {
 				font-family: PingFang-SC-Light;
 				font-size: 12px;
@@ -69,18 +69,18 @@
 				letter-spacing: 0px;
 				line-height: 19px;
 			}
-			
+
 			.xzzffs {
 				font-family: PingFang-SC-Light;
 				font-size: 10px;
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.accountNav li {
 				border-bottom: 10px solid #f3f3f3;
 			}
-			
+
 			.total {
 				float: left;
 				font-family: PingFang-SC-Light;
@@ -89,14 +89,14 @@
 				letter-spacing: 0px;
 				line-height: 20px;
 			}
-			
+
 			.price {
 				font-family: PingFang-SC-Regular;
 				font-size: 18px;
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.chose {
 				width: 15px;
 				height: 15px;
@@ -109,7 +109,7 @@
 				line-height: 18px;
 				font-size: 15px;
 			}
-			
+
 			.change {
 				color: white;
 				background-color: #FF5DA9;
@@ -145,7 +145,7 @@ letter-spacing: 0px;">6个疗程</span></div>
                   </div>
                </div>
                <nav class="accountNav">
-                <ul>  
+                <ul>
                       <li >
                         <a href="javascript:void(0)" class="accountNavRow">
                                 <!--<i class="accountNavAngle"></i>-->
@@ -257,10 +257,10 @@ letter-spacing: 0px;">6个疗程</span></div>
 
 	var hasPayPwd;
 	$.get(constants.baseUrl + 　"/AppOrderManage/GetRemainingBalanceByUserId?UserId=" + $.cookie("userId"), function(data) {
-		debugger;
+		
 		$("#balance").text(data.remainingBalance);
 		hasPayPwd = data.hasPayPwd;
-		debugger;
+
 		if(parseFloat(OrderAmount) > parseFloat($("#balance").text()) || $("#balance").text() == "0") {
 			$(".balance").attr("disabled", "disabled");
 			$(".balance").removeClass("change");
@@ -270,13 +270,13 @@ letter-spacing: 0px;">6个疗程</span></div>
 	})
 
 	$(".paySubmit").click(function() {
-		//		debugger;
+		//
 		$(".shade,.tanceng").css("display", "block");
 
 	})
 
 	$(".chose").click(function() {
-		debugger;
+
 		if(parseFloat(OrderAmount) <= parseFloat($("#balance").text())) {
 			if($(this).hasClass("change")) {
 				$(this).removeClass("change");
@@ -340,11 +340,11 @@ letter-spacing: 0px;">6个疗程</span></div>
 				//	success: function(json) {
 				//		//$.messager.progress('close');//记得关闭
 				//		//var json = eval("(" + msg + ")");//转换后的JSON对象
-				//		debugger;
+				//
 				//		onBridgeReady(json);
 				//	},
 				//	error: function(data1, data2, data3, data4) {
-				//		debugger;
+				//
 				//		//$.messager.progress('close');//记得关闭
 				//		//$.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
 				//	}

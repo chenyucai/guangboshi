@@ -16,14 +16,26 @@
 	return fmt;
 }
 
+function checkLogin()
+{
+	var userId = $.cookie('userId');
+	if(userId == undefined || userId == null || userId == "")
+	{
+		location.href = "../home/Login.html";
+		return false;
+	}
+	return true;
+}
+
 var constants = {
 	//baseUrl: "http://192.168.1.108:12222"
 	//  baseUrl: "alpha.hy-bit.com"
-	 baseUrl: "http://localhost:8080"
+	// baseUrl: "http://localhost:8080"
+	//  baseUrl: "http://localhost:8080"
 		//baseUrl:"http://192.168.1.112:8111"
 		//baseUrl: "http://114.215.99.142:8089"
 		//baseUrl:"http://192.168.1.108/GBS.Cms/"
-		//baseUrl:"http://www.missnefer.com"
+		baseUrl:"http://www.missnefer.com"
 };
 window.cityLocation = new Location();
 window.getNameById = function(id) {

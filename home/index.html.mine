@@ -365,7 +365,7 @@ text-align: center;
 						</dl>
 						<dl class="loginSns">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Big carnival&nbsp;	<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png">&nbsp;Big carnival&nbsp;	<img src="../img/渐变线/Rectangle 26@2x.png"></h5>
 						</dt>
 							<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -390,7 +390,7 @@ text-align: center;
 						</dl>
 						<dl class="loginSns">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Star products&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png">&nbsp;Star products&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png"></h5>
 						</dt>
 							<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -415,7 +415,7 @@ text-align: center;
 						</dl>
 						<dl class="loginSns">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
-							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Quality information&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
+							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png">&nbsp;Quality information&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png"></h5>
 						</dt>
 							<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -441,7 +441,7 @@ text-align: center;
 						<a href="#" class="submit"><span><img src="../img/3/button_logo_hul@2x.png" style="width: 60%;padding-bottom: 10px;"></span>MISS NEFER</a>
 					</li>
 					<li style="width: 50%;">
-						<a id="userLi" href="#"><span><img src="../img/3/button_presonl_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
+						<a href="../personalCenter/index.html#mp.weixin.qq.com"><span><img src="../img/3/button_presonl_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
 					</li>
 				</ul>
 			</nav>
@@ -598,16 +598,7 @@ $("#cityName").attr("data-id",storeCityId);
 		    $('.shareWindow').slideUp(200);
 		});
 		// 城市 end
-		$("#userLi").on("click", goUserCenter);
 	});
-	function goUserCenter()
-	{
-	    if (!checkLogin())
-	    {
-	        return;
-	    }
-	    location.href = "../personalCenter/index.html#mp.weixin.qq.com";
-	}
 
 //	$(document).keydown(function(event){
 //alert(event.keyCode);//弹出按键的对应值

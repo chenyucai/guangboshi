@@ -222,7 +222,10 @@
 	})
 
 	//alert($(window).height());
-	$('#GetCoupon').live("click", function() {
+	$('#GetCoupon').live("click", function () {
+	    if (!checkLogin()) {
+	        return;
+	    }
 		$.get(constants.baseUrl + "/AppCoupon/SaveGettedCoupon?couponId=" + $(this).attr("data-id") + "&userId=" + $.cookie("userId"), function(data) {
 			if(data == "") {
 				$('#code').center();
