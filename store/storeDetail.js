@@ -140,7 +140,10 @@ $("#startClick").live("click", function() {
 })
 
 
-$("#GetMessage").live("click", function() {
+$("#GetMessage").live("click", function () {
+    if (!checkLogin()) {
+        return;
+    }
 	sessionStorage.setItem("messageType", 2);//普通产品
 	location.href ="../shaping/onlineMessage.html"
 })
