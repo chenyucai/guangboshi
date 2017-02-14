@@ -20,7 +20,7 @@
 
 			<li data-id="${Id}" class="specialPerformanceDetail">
 				<div class="productListPad">
-					<a href="javascript:void(0)" class="productListPic"><img src="${Image}"></a>
+					<a href="javascript:void(0)" class="productListPic"><img src="${Image}" style="width:100%;height:100%;"></a>
 					<!--<h4 class="productListTitle pt5"><a href="#" class="h5">【水月环球港】<span>浦东新区&nbsp;&nbsp;200m</span></a></h4>-->
 					<div class="productListUser" style="height: 40px;">
 						<a href="#" class="c_c">【${CategoryName}】<span class="C_C_C">${Title}</span></a>
@@ -46,7 +46,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -54,7 +54,7 @@
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -62,35 +62,35 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListPic img {
 				max-width: none;
 				width: 120px;
 				height: 100px;
 			}
-			
+
 			.orderListPic {
 				padding-right: 100px;
 			}
-			
+
 			.text1 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.tr td {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListUl>li {
 				border-bottom: none;
 			}
-			
+
 			.sellerTab li.active a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -98,7 +98,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -106,47 +106,47 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.screening {
 				position: inherit;
 			}
-			
+
 			.screeningList {
 				width: 33%;
 			}
-			
+
 			.screeningTitle {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.screeningList dd {
 				top: 120px;
 			}
-			
+
 			.jpzx {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx1 {
 				font-family: PingFang-SC-Regular;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.style_4 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.activityTime1 {
 				border-radius: 0;
 				top: 10px;
@@ -161,20 +161,28 @@
 				border-radius: 120px;
 				width: 36px;
 			}
-			
+
 			.artistList {
 				padding-top: 23px;
 			}
-			
+
 			.pt5 {
 				padding-top: 30px;
 			}
-			
+
 			#chanpingleixing li {
 				display: inline;
 				width: 33%;
 				float: left;
 				text-align: center;
+			}
+			.screeningList dd a{
+				border-bottom: none;
+				font-size: 13px;
+    		margin-bottom: 5px;
+			}
+			.setClick.active a{
+				background: #f2f2f2;
 			}
 		</style>
 	</head>
@@ -212,7 +220,7 @@
 						<!--如只有一项选择添加class screeningListSpan1-->
 						<dl class="screeningList clearfix">
 							<dt class="screeningTitle"><span class="screeningBtn"><b id="choseName">
-						
+
 分类
 
 
@@ -283,6 +291,13 @@
 			$('#template').tmpl(data.EShopGoodsList).appendTo(template);
 			var template2 = $("#chanpingleixing");
 			$('#template2').tmpl(data.CategoryList).appendTo(template2);
+
+			$('.setClick').each(function(){
+				var id = $(this).attr('data-id');
+				if (id == sessionStorage.getItem('CategoryId')) {
+					$(this).addClass('active');
+				}
+			});
 
 		})
 

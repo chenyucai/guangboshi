@@ -1,5 +1,5 @@
 //$(function() {
-alert('code:'+localStorage.getItem("code"));
+// alert('code:'+localStorage.getItem("code"));
 $.ajax({
 	type: 'post',
 	data: {
@@ -13,7 +13,7 @@ $.ajax({
 		localStorage.setItem("openid", sjson.openid);
 		localStorage.setItem("access_token", sjson.access_token);
 		var vData = JSON.stringify(sjson);
-		alert(vData);
+		// alert(vData);
 		//$.messager.show({
 		//    title: '提示',
 		//    msg: '欢迎您来到微信端充值中心。'
@@ -69,17 +69,17 @@ function fPostCharge() {
 		//    title: "",
 		//    msg: "正在调用微信支付接口,请稍后..."
 		//});
-		var data = JSON.stringify({
-			amount: vChargeVal,
-			//				openid: localStorage.getItem("openid"),
-			openid: localStorage.getItem("openid"),
-			//				access_token: localStorage.getItem("access_token"),
-			userId: $.cookie("userId"),
-			orderId: OrderId,
-			description: order.CategoryName
-
-		});
-		alert(data);
+		// var data = JSON.stringify({
+		// 	amount: vChargeVal,
+		// 	//				openid: localStorage.getItem("openid"),
+		// 	openid: localStorage.getItem("openid"),
+		// 	//				access_token: localStorage.getItem("access_token"),
+		// 	userId: $.cookie("userId"),
+		// 	orderId: OrderId,
+		// 	description: order.CategoryName
+		//
+		// });
+		// alert(data);
 		$.ajax({
 			type: "post",
 			contentType: "application/json;charset=utf-8",
@@ -103,7 +103,7 @@ function fPostCharge() {
 			},
 			error: function(jxhr, data2, data3, data4) {
 				alert('调用支付接口失败');
-				alert(jxhr.responseText)
+				// alert(jxhr.responseText)
 
 				//$.messager.progress('close');//记得关闭
 				// $.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
@@ -116,7 +116,7 @@ function fPostCharge() {
 //调用微信支付模块
 function onBridgeReady(json) {
 
-	alert(JSON.stringify(json));
+	// alert(JSON.stringify(json));
 	WeixinJSBridge.invoke(
 		'getBrandWCPayRequest', {
 			"appId": json.appId, //公众号名称，由商户传入
@@ -128,7 +128,7 @@ function onBridgeReady(json) {
 		},
 		function(res) {
 
-			alert(JSON.stringify(res));
+			// alert(JSON.stringify(res));
 			if(res.err_msg == "get_brand_wcpay_request:ok") {
 				//alert("支付成功,请稍后查询余额,如有疑问,请联系管理员.");
 				fBackHome();

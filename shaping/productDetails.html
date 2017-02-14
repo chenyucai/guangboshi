@@ -713,25 +713,30 @@ letter-spacing: 0px; float: left;" id="SellPriceChose">¥ 699</span>
 		$(".accountHeadPic").hide();
 
 		function toshare() {
-			$(".am-share").addClass("am-modal-active");
-			$(".lijigoumai").hide();
-			$(".accountHeadPic").show();
-			if($(".sharebg").length > 0) {
-				$(".sharebg").addClass("sharebg-active");
-			} else {
-				$("body").append('<div class="sharebg"></div>');
-				$(".sharebg").addClass("sharebg-active");
-			}
-			$(".sharebg-active,.share_btn").click(function() {
-				$(".am-share").removeClass("am-modal-active");
-				setTimeout(function() {
-					$(".sharebg-active").removeClass("sharebg-active");
-					$(".sharebg").remove();
-				}, 300);
+			if (!checkLogin("../shaping/productDetails.html")){
+	        return;
+	    }else {
+				$(".am-share").addClass("am-modal-active");
+				$(".lijigoumai").hide();
+				$(".accountHeadPic").show();
+				if($(".sharebg").length > 0) {
+					$(".sharebg").addClass("sharebg-active");
+				} else {
+					$("body").append('<div class="sharebg"></div>');
+					$(".sharebg").addClass("sharebg-active");
+				}
+				$(".sharebg-active,.share_btn").click(function() {
+					$(".am-share").removeClass("am-modal-active");
+					setTimeout(function() {
+						$(".sharebg-active").removeClass("sharebg-active");
+						$(".sharebg").remove();
+					}, 300);
 
-				$(".lijigoumai").show();
-				$(".accountHeadPic").hide();
-			})
+					$(".lijigoumai").show();
+					$(".accountHeadPic").hide();
+				})
+	    }
+
 		}
 	</script>
 

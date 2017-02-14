@@ -210,7 +210,7 @@
 
 <script>
 	$(document).ready(function() {
-		alert(localStorage.getItem('code'))
+		// alert(localStorage.getItem('code'))
 		})
 		//	if($.cookie("userId") != null) {
 		////		alert("登陆成功");
@@ -226,6 +226,7 @@
 			return ;
 		}
 		$.get(constants.baseUrl + "/AppLogin/Login?Mobile=" + $("#phone").val() + "&Password=" + $("#PassWord").val(), function(data, status) {
+			// alert(JSON.stringify(data))
 			$.cookie('userId', data.UserId, {
 				expires: 7,
 				path: '/'
@@ -234,9 +235,13 @@
 				expires: 7
 			});
 			//			$.cookie(data.ProviderKey,JSON.stringify(data.operatorModel),{Path:constants.baseUrl+"/"});
-
+			localStorage.setItem('userId', data.UserId);
+			// alert($.cookie('userId'))
 			if(data.Status == 1) {
-				location.href = "index.html"
+				// location.href = "index.html"
+				var url = localStorage.getItem('url');
+				// alert(url);
+				window.location.href = url;
 			}
 			if(data.Status != 1) {
 				alert(data.Message);
@@ -261,7 +266,7 @@
 	})
 
 	var vCode = getQueryString("code");
-	alert(vCode);
+
 	if(vCode != "" && vCode != null) {
 				// alert(vCode);
 		debugger;
