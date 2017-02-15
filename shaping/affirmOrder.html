@@ -145,7 +145,7 @@ letter-spacing: 0px;">6个疗程</span></div>
 										<li>
 											<div class="accountNavSon">
 												<a href="choseCoupon.html" class="accountNavRow">
-													<b class="accountNavDigital yhq" id="couponAmount">￥10</b>
+													<b class="accountNavDigital yhq" id="couponAmount"></b>
 													<i class="accountNavAngle"></i>
 													<span class="accountNavText">优惠券</span>
 												</a>
@@ -179,9 +179,9 @@ letter-spacing: 0px;">6个疗程</span></div>
 	var order = JSON.parse(sessionStorage.getItem("orderData"));
 	var OrderAmount = sessionStorage.getItem("OrderAmount");
 	var OrderId = sessionStorage.getItem("OrderID");
-	$("#OrderAmount").text(OrderAmount);
+	$("#OrderAmount").text("¥" + OrderAmount);
 	$("#quantity").text(sessionStorage.getItem("quantity") + "件");
-	$("#couponAmount").text("￥" + (sessionStorage.getItem("couponAmount") == null ? "请选择" : sessionStorage.getItem("couponAmount")));
+	$("#couponAmount").text((sessionStorage.getItem("couponAmount") == null ? "请选择" : sessionStorage.getItem("couponAmount")));
 	$(".sfje").text("￥" + (OrderAmount - sessionStorage.getItem("couponAmount")));
 	sessionStorage.setItem("OrderAmount", OrderAmount - sessionStorage.getItem("couponAmount"));
 	$("#CategoryName").text(order.CategoryName);

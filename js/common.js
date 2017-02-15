@@ -22,7 +22,7 @@ function checkLogin(url)
 	// alert(userId)
 	if(userId == undefined || userId == null || userId == "")
 	{
-		url = url || "index.html";
+		url = url || "../home/index.html";
 		localStorage.setItem('url',url);
 		location.href = "../home/Login.html";
 		return false;

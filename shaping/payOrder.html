@@ -98,6 +98,7 @@
 			}
 
 			.chose {
+				position: relative;
 				width: 15px;
 				height: 15px;
 				border-radius: 50px;
@@ -113,6 +114,26 @@
 			.change {
 				color: white;
 				background-color: #FF5DA9;
+			}
+			.accountNav li{
+				margin-left: 0;
+			}
+			.chose:after{
+				content: '';
+			  width: 9px;
+			  height: 5px;
+			  position: absolute;
+			  top: 3px;
+			  left: 2px;
+			  border: 2px solid #fff;
+			  border-top: none;
+			  border-right: none;
+		    background: transparent;
+		    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+		    -moz-transform: rotate(-45deg);
+		    -ms-transform: rotate(-45deg);
+		    -webkit-transform: rotate(-45deg);
+		    transform: rotate(-45deg);
 			}
 		</style>
 	</head>
@@ -157,7 +178,7 @@ letter-spacing: 0px;">6个疗程</span></div>
 								<li>
 									<a href="javascript:void(0)" class="accountNavRow">
 										<!--  <i class="accountNavAngle"></i>-->
-										<b class="accountNavDigital"><span style="padding-right: 10px;" >￥<span id="balance">660</span></span><span class="chose change balance">√</span></b>
+										<b class="accountNavDigital"><span style="padding-right: 10px;" >￥<span id="balance">660</span></span><span class="chose change balance"></span></b>
 										<span class="accountNavText">我的会员余额</span>
 									</a>
 								</li>
@@ -174,7 +195,7 @@ letter-spacing: 0px;">6个疗程</span></div>
 									<div class="accountNavSon">
 										<a href="javascript:void(0)" class="accountNavRow">
 											<b class="accountNavDigital">
-												<span class="chose">√</span>
+												<span class="chose"></span>
 											</b>
 											<img src="../img/wx.png" style="width:4%;height: 4%; margin-right: 7px; "><span class="accountNavText">微信</span>
 										</a>
@@ -257,7 +278,7 @@ letter-spacing: 0px;">6个疗程</span></div>
 
 	var hasPayPwd;
 	$.get(constants.baseUrl + 　"/AppOrderManage/GetRemainingBalanceByUserId?UserId=" + $.cookie("userId"), function(data) {
-		
+
 		$("#balance").text(data.remainingBalance);
 		hasPayPwd = data.hasPayPwd;
 

@@ -327,11 +327,10 @@
 			.wan-spinner .minus,
 			.wan-spinner .plus,
 			.wan-spinner input {
-				height: 25px;
-				float: left;
-				line-height: 1em;
+				height: 20px;
+				line-height: 0.8em;
 				padding: 10px;
-				padding-top: 10px;
+				padding-top: 15px;
 				text-align: center;
 			}
 
@@ -339,7 +338,7 @@
 				border: none;
 				border-left: 1px solid #B8B8B8;
 				border-right: 1px solid #B8B8B8;
-				height: 45px;
+				height: 35px;
 				width: 40px;
 				border-radius: 0px;
 			}
@@ -445,6 +444,17 @@
 		    border-top: 1px solid #f2f2f2;
 		    bottom: -7px;
 		    position: relative;
+			}
+			.close{
+				display: inline-block;
+				margin-top: -10px;
+				margin-left: 25px;
+				height: 30px;
+				font-size: 30px;
+				color: #cfcfcf;
+			}
+			.close::before{
+				content: "\00D7";
 			}
 		</style>
 	</head>
@@ -648,16 +658,16 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 
 			<div class="whiteMain" style="min-height: 200px;">
 				<div class="accountHead clearfix" style="border: none;">
-					<div class="accountHeadPic" style="width: 35%;border-radius:inherit; padding-right: 20px;">
-						<img id="imgChose" src="../img/QQ截图20161118113628.png" />
+					<div class="accountHeadPic" style="width: 35%;border-radius:inherit; padding-right: 20px;height: 150px;">
+						<img id="imgChose" src="../img/QQ截图20161118113628.png" style="height: 100%;"/>
 					</div>
-					<div class="accountHeadMain" style="padding-left: 80px;">
-						<div class="h4 jpzx" style="text-align: left;"><span id="CategoryNameChose">[紧肤系列]</span><span class="c_9 h6" style="background: #B8B8B8;padding: 3px 10px 3px 10px;" id="TreatmentChose">6个疗程</span></div>
-						<div class="pt10" style="text-align: left;">
-							<span class="c_9 h6">翌生美玻尿酸精华液1支 涂抹式水光针提亮肤色润白补水保湿原液
+					<div class="accountHeadMain" style="padding-left: 80px;margin-bottom: 40px;">
+						<div class="h4 jpzx" style="text-align: left;"><span id="CategoryNameChose" style="margin-left: -10px;">[紧肤系列]</span><span class="c_9 h6" style="background: #B8B8B8;padding: 1px 6px 1px 6px;" id="TreatmentChose">6个疗程</span><span class="close"></span></div>
+						<div class="pt10" style="text-align: left;height: 60px;">
+							<span class="c_9 h6" style="color: #c0c0c0;overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;line-height: 1.4;">翌生美玻尿酸精华液1支 涂抹式水光针提亮肤色润白补水保湿原液
                       </div>
                   </div>
-                  <div style="padding-top: 55px;">
+                  <div style="padding-top: 20px;border-top: 1px solid #fafafa;">
                   	<span style="font-family: PingFang-SC-Medium;
 font-size: 22px;
 color: #FF5DA9;
@@ -691,7 +701,7 @@ letter-spacing: 0px; float: left;" id="SellPriceChose">¥ 699</span>
 				maxValue: 10,
 				minValue: 0,
 				step: 1,
-				inputWidth: 100,
+				inputWidth: 80,
 				start: -2,
 				plusClick: function(val) {
 					console.log(val);
@@ -725,7 +735,7 @@ letter-spacing: 0px; float: left;" id="SellPriceChose">¥ 699</span>
 					$("body").append('<div class="sharebg"></div>');
 					$(".sharebg").addClass("sharebg-active");
 				}
-				$(".sharebg-active,.share_btn").click(function() {
+				$(".sharebg-active,.share_btn,.close").click(function() {
 					$(".am-share").removeClass("am-modal-active");
 					setTimeout(function() {
 						$(".sharebg-active").removeClass("sharebg-active");
@@ -735,6 +745,11 @@ letter-spacing: 0px; float: left;" id="SellPriceChose">¥ 699</span>
 					$(".lijigoumai").show();
 					$(".accountHeadPic").hide();
 				})
+				// $(".close").click(function(){
+				// 	$(".sharebg").hide();
+				// 	$(".am-share").hide();
+				// 	$(".lijigoumai").show();
+				// })
 	    }
 
 		}
