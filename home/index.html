@@ -94,8 +94,8 @@
 									</div>
 									<div class="pt5 ">
 									</div>
-									<a href="#" class=" btnSm style_4" style="background: #B8B8B8;"><span class="icon-clock" style="padding-right: 8px;"></span>${CreatorTime}</a>&nbsp;&nbsp;
-									<a href="#" class=" btnSm style_4" style="background: #B8B8B8;"><span class="icon-eye" style="padding-right: 8px;"></span>${Click}</a>&nbsp;&nbsp;
+									<a href="#" class=" btnSm style_4" style="background: #B8B8B8;border-radius:0;"><span class="icon-clock" style="padding-right: 8px;"></span>${CreatorTime}</a>&nbsp;&nbsp;
+									<a href="#" class=" btnSm style_4" style="background: #B8B8B8;border-radius:0;"><span class="icon-eye" style="padding-right: 8px;"></span>${Click}</a>&nbsp;&nbsp;
 
 								</div>
 							</li>
@@ -105,6 +105,10 @@
 			<li data-id="${Id}">${SearchValue}</li>
 		</script>
 <style>
+.artistListPad img{
+	width: 100%;
+	height: 100%;
+}
 .activityTime1 {
 				border-radius: 0;
 				top: 15px;
@@ -137,6 +141,17 @@
 				.pt5{
 					padding-top: 0;
 				}
+		.artistList li{
+			margin-bottom: 10px;
+	    background: #fff;
+	    padding-bottom: 45px;
+		}
+		.footNav ul li a{
+			background: #fff;
+		}
+		.footNav ul li.active a{
+			background: #fff;
+		}
 </style>
 <style media="screen">
 	div.shareWindowRow> div.right-container {
@@ -145,6 +160,80 @@
 	}
 	div.shareWindowRow> div.right-container> div.city-container> div.city{
 		border: none;
+	}
+</style>
+<style media="screen">
+	.search-mask{
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		top: 0;
+		z-index: 1000;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.5);
+	}
+	.xiala{
+		display: flex;
+		padding: 0;
+		border-bottom: 10px solid #f2f2f2;
+		height: 36px;
+		line-height: 36px;
+		padding: 10px 0;
+	}
+	.xiala-select{
+		flex: 0 0 60px;
+		text-align: center;
+	}
+	.xiala-close{
+		flex: 0 0 50px;
+		text-align: center;
+		font-size: 20px;
+		color: #A2A2A2;
+		font-weight: 200;
+	}
+	.xiala-input{
+		flex: 1;
+	}
+	.input-container{
+		border: 1px solid #B9B9B9;
+		position: relative;
+		padding-left: 35px;
+	}
+	.input-container img{
+		width: 20px;
+		position: absolute;
+		left: 6px;
+		top: 8px;
+	}
+	.input-container input{
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		border: none;
+	}
+	.mobile-inner-nav{
+		padding-bottom: 20px;
+		top: 0;
+	}
+	.xiala1 ul{
+		padding-left: 25px;
+		padding-right: 15px;
+		float: none;
+	}
+	.xiala1 ul::after{
+		content: ' ';
+		display: block;
+		height: 0;
+		visibility: hidden;
+		clear: both;
+	}
+	.xiala1 li{
+		float: left !important;
+		/*background: #f2f2f2;*/
+		margin: 0 15px 5px 0 !important;
+		font-size: 14px;
+		padding: 8px 15px !important;
 	}
 </style>
 	</head>
@@ -195,6 +284,54 @@
 		</div>
 		<!--城市 end -->
 
+		<div class="search-mask" hidden="hidden">
+
+		</div>
+		<div class="mobile-inner-nav" style="z-index: 2000; background-color: white; padding-top: 0;">
+			<div>
+			 	<form action="javascript:void(0)">
+					<ul class="xiala">
+				 		<li class="xiala-select">
+					 		<select style="font-size:14px;background:none;border: none; appearance:none;-moz-appearance:none; /* Firefox */-webkit-appearance:none; /* Safari 和 Chrome */" id="indexTypeId">
+					 			<option value="1">产品</option>
+					 			<option value="2">门店</option>
+				 	 		</select>
+					 		<img src="../img/3/drop-down@2x.png" style="width: 10px;">
+				 		</li>
+				 		<li class="xiala-input">
+							<div class="input-container">
+								<img src="../img/3/icon_search@2x.png" alt=""/>
+								<input type="search" id="search" name="search" placeholder="输入你心仪的产品"/>
+							</div>
+				 		</li>
+				 		<li class="xiala-close inputSm">
+							<!-- <i class="icon-cross inputSm"></i> -->
+							X
+						</li>
+					</ul>
+			 	</form>
+				<div style="padding-left:15px;padding-top:20px;">
+					<span style="font-size: 10px;color: #FF5DA9;"> 大家都在搜索</span>
+				</div>
+				<div class="xiala1" id="xiala1">
+					<ul id="dajia">
+
+					</ul>
+				</div>
+				<div style="padding-left:15px;padding-top:20px;">
+					<span style="font-size: 10px;color: #FF5DA9;"> 最近在搜</span>
+				</div>
+				<div class="xiala1" id="xiala2">
+					<ul id="zuijinzaisou">
+
+					</ul>
+				</div>
+				<div style="padding-top: 45px;">
+			 		<a href="javascript:void(0)" style="font-family: PingFang-SC-Light;font-size: 14px;color: #FF5DA9;letter-spacing: 0px;border: 1px solid #FF5DA9;text-align: center;" id="clearSearch">清空搜索记录</a>
+				</div>
+			</div>
+		</div>
+
 		<div class="layoutMain">
 
 			<header class="pageHead clearfix">
@@ -221,7 +358,7 @@
     border: 1px solid #B8B8B8;
     background-color: white; color: #656565;" />&nbsp;
 
-                            <a href="javascript:void(0)" id="cityStore" class="btn btnSm fr style_3" style="background: #D9BD8C;">同城门店</a>
+                            <a href="javascript:void(0)" id="cityStore" class="btn btnSm fr style_3" style="background: #D9BD8C;border:none;">同城门店</a>
                         </span>
 							<div class="sellerSelect">
 								<div class="sellerSelectBox" style="padding-right:18px; line-height: 30px;">
@@ -230,61 +367,9 @@
 							</div>
 
 						</div>
-						 <div class="mobile-inner-nav" style="z-index: 1111; background-color: white; padding-top: 0;">
-		            <!--<a href="#">Home</a>
-		            <a href="#">Services</a>
-		            <a href="#">Portfolio</a>
-		            <a href="#">Blog</a>
-		            <a href="#">About</a>
-		            <a href="#">Contact</a>-->
-		           <div>
-		           	<form action="javascript:void(0)">
-		           	 <ul class="xiala">
-		           	 	<li><select style="border: none; appearance:none;
--moz-appearance:none; /* Firefox */
--webkit-appearance:none; /* Safari 和 Chrome */" id="indexTypeId"
-		           	 	>
-  <option value="1">产品</option>
-  <option value="2">门店</option>
-</select><img src="../img/3/drop-down@2x.png" style="width: 10px;"></li>
-		           	 		<li><input type="search" id="search" name="search" placeholder="输入你心仪的产品" style="width:250px;" /></li>
-		           	 		<li style="margin-right: 3px;"><i class="icon-cross inputSm"></i></li>
-		           	 </ul>
-		           	 </form>
-		           	 <div style="padding-top: 43px;">
-		           	 <span style="font-family: PingFang-SC-Light;
-font-size: 10px;
-color: #FF5DA9;
-letter-spacing: 0px;
-padding-left: 6px;"> 大家都在搜索</span></div>
-<div class="xiala1" id="xiala1">
-		           	 <ul id="dajia">
 
-		           	 </ul>
 
-		           </div>
-		           <div style="padding-top: 43px;">
-		           	 <span style="font-family: PingFang-SC-Light;
-font-size: 10px;
-color: #FF5DA9;
-letter-spacing: 0px;
-padding-left: 6px;"> 最近在搜</span></div>
-<div class="xiala1" id="xiala1">
-		           	 <ul id="zuijinzaisou">
 
-		           	 </ul>
-		           </div>
-		           <div style="padding-top: 45px;">
-		           	<a href="javascript:void(0)" style="font-family: PingFang-SC-Light;
-font-size: 14px;
-color: #FF5DA9;
-letter-spacing: 0px;
-border: 1px solid #FF5DA9;
-text-align: center;
-">清空搜索记录</a>
-		           </div>
-		           </div>
-		          </div>
 
 					</div>
 					<div class="newProduct">
@@ -435,7 +520,7 @@ text-align: center;
                      	</dd>-->
 						</dl>
 					</div>
-					<div class="artistList p10" style="border-bottom: 10px solid #F1F1F1;">
+					<div class="artistList p10" style="border-bottom: 10px solid #F1F1F1;padding:0;background:#f2f2f2;margin-top:15px;">
 						<ul class="clearfix" id="shishangzixun">
 
 
@@ -446,15 +531,15 @@ text-align: center;
 
 			</div>
 		</div>
-		<footer class="pageFoot" style="border-top: 10px solid #F1f1f1;">
+		<footer class="pageFoot" style="border-top: 1px solid #F1f1f1;">
 			<nav class="footNav">
 				<ul class="clearfix">
 
-					<li class="active" style="width: 50%;">
-						<a href="#" class="submit"><span><img src="../img/3/button_logo_hul@2x.png" style="width: 60%;padding-bottom: 10px;"></span>MISS NEFER</a>
+					<li class="active" style="width: 50%;background:#fff;">
+						<a href="#" class="submit"><span><img src="../img/3/button_logo_hul@2x.png" style="width: 60%;padding-bottom: 10px;background:#fff;"></span>MISS NEFER</a>
 					</li>
-					<li style="width: 50%;">
-						<a id="userLi" href="#"><span><img src="../img/3/button_presonl_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
+					<li style="width: 50%;background:#fff;">
+						<a id="userLi" href="#"><span><img src="../img/3/button_presonl_nol@2x.png" style="width: 60%;padding-bottom: 10px;background:#fff;"></span>个人中心</a>
 					</li>
 				</ul>
 			</nav>
@@ -478,7 +563,7 @@ text-align: center;
 //				});
 //			});
 //		});
-$(".xiala1").click(function(e){
+$("#xiala1").click(function(e){
             e = e || window.event;
             var target = e.srcElement || e.target,
                 tagName = target.tagName.toLowerCase(),
@@ -506,6 +591,35 @@ $(".xiala1").click(function(e){
             }
 
         });
+
+				$("#xiala2").click(function(e){
+				            e = e || window.event;
+				            var target = e.srcElement || e.target,
+				                tagName = target.tagName.toLowerCase(),
+
+				                allLi = document.getElementById("xiala2").getElementsByTagName("li");
+
+				            for(var i=0,len=allLi.length;i<len;i++){
+				                if(target == allLi[i]){
+
+				//              	$.get(constants.baseUrl + "/AppHome/Search?Type=" + $("#indexTypeId").val()+ "&SearchValue=" +  allLi[i].textContent + "&UserId=" + $.cookie("userId") + "&num=" + "8", function(data, status)
+				//              	{
+				//              		debugger;
+				//              	})
+				                	if($("#indexTypeId").val()==1)
+				                	{
+				                		sessionStorage.setItem("Type", "1");
+				                		sessionStorage.setItem("SearchValue", allLi[i].textContent);
+				                		location.href="SearchProductList.html";
+				                	}
+				                    allLi[i].style.background="#B8B8B8";
+				                    allLi[i].style.padding="5px 10px";
+				                }else{
+				                    allLi[i].style.background = "white";
+				                }
+				            }
+
+				        });
 		</script>
 
 	</body>
@@ -642,4 +756,18 @@ if($("#indexTypeId").val()==1)
   location.href="SearchProductList.html";
 }
 });
+$(function(){
+	$('#clearSearch').click(function(){
+		$.ajax({
+			url:constants.baseUrl + '/AppHome/ClearSearchValue',
+			type: 'get',
+			success: function(res){
+				if (res.Status == 1) {
+					// $('.inputSm')[0].click();
+					$('#xiala1').find('li').remove();
+				}
+			}
+		})
+	});
+})
 </script>

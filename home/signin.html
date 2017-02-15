@@ -86,7 +86,7 @@
 							<dl class="loginSns" style="padding-top: 15%;">
 								<dt style="color: #999;">
 									<span><img src="../img/渐变线/Rectangle 26@2x 左.png">注册来源	<img src="../img/渐变线/Rectangle 26@2x.png"></span>
-								
+
 								</dt>
 								<!--<dd>
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
@@ -115,11 +115,7 @@ letter-spacing: 0px; padding: 0 !important;" />
 								<!--	<input type="button" value="确定" style="background-image: url(../img/1/but_confirm_dis@3x.png);width: 100%;height: 50px;" class="loginBtn"></input>-->
 							</div>
 							<div class="pt20">
-								<a data-rel="popup" style="background: #FF5DA9;
-border-radius: 2px; font-family: PingFang-SC-Medium;
-font-size: 18px;
-color: #FFFFFF;
-letter-spacing: 0px;" class="loginBtn">确定</a>
+								<a data-rel="popup" class="loginBtn disabled">确定</a>
 								<!--	<input type="button" value="确定" style="background-image: url(../img/1/but_confirm_dis@3x.png);width: 100%;height: 50px;" class="loginBtn"></input>-->
 							</div>
 						</div>
@@ -150,41 +146,41 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 	.loginInput {
 		color: #999 !important;
 	}
-	
+
 	.loginInput::-webkit-input-placeholder {
 		/* WebKit browsers */
 		color: #999999 !important;
 	}
-	
+
 	.loginInput::-moz-placeholder {
 		/* Mozilla Firefox 4 to 18 */
 		color: #999 !important;
 	}
-	
+
 	.loginInput::-moz-placeholder {
 		/* Mozilla Firefox 19+ */
 		color: #999 !important;
 	}
-	
+
 	.loginInput::-ms-input-placeholder {
 		/* Internet Explorer 10+ */
 		color: #999 !important;
 	}
-	
+
 	.loginRow {
 		border: solid 1px #DDDDDD;
 	}
-	
+
 	.signinFoot a {
 		margin-left: 20px;
 		width: 60px;
 	}
-	
+
 	.loginBtn {
 		background: white;
 		border: none;
 	}
-	
+
 	.shade {
 		width: 100%;
 		background-color: rgba(0, 0, 0, 0.3);
@@ -193,7 +189,7 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 		top: 0;
 		display: none;
 	}
-	
+
 	.tanceng {
 		opacity: 0.69;
 		background: #000000;
@@ -211,7 +207,7 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 		margin-left: -140px;
 		display: none;
 	}
-	
+
 	.okbtn a {
 		display: block;
 		width: 80%;
@@ -223,14 +219,14 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 		border-radius: 5px;
 		margin: 0 auto;
 	}
-	
+
 	.signinFoot .active {
 		/*font-family: PingFang-SC-Light;
 		font-size: 12px;
 		color: #FF5DA9;
 		letter-spacing: 0px;*/
 	}
-	
+
 	.cue {
 		font-family: PingFang-SC-Medium;
 		font-size: 16px;
@@ -239,10 +235,52 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 		letter-spacing: 0px;
 		margin: 0;
 	}
+	.loginBtn{
+		background: #FF5DA9;
+		border-radius: 2px; font-family: PingFang-SC-Medium;
+		font-size: 18px;
+		color: #FFFFFF;
+		letter-spacing: 0px;
+	}
+	.disabled{
+		background: #bfbfbf;
+	}
 </style>
 <script>
 	var wait = 60;
-
+	// 判断手机号，验证码，密码是否全都输入
+	function checkInput(){
+		var phone = $.trim($('#phone').val());
+		var code = $.trim($('#Code').val());
+		var pwd = $.trim($('#PassWord').val());
+		if (phone != '' && code != '' && pwd != '') {
+			return true;
+		}
+		return false;
+	}
+	$(function(){
+		$('#phone').bind('input',function(){
+			if (checkInput()) {
+				$('.loginBtn').removeClass('disabled');
+			}else {
+				$('.loginBtn').addClass('disabled');
+			}
+		});
+		$('#Code').bind('input',function(){
+			if (checkInput()) {
+				$('.loginBtn').removeClass('disabled');
+			}else {
+				$('.loginBtn').addClass('disabled');
+			}
+		});
+		$('#PassWord').bind('input',function(){
+			if (checkInput()) {
+				$('.loginBtn').removeClass('disabled');
+			}else {
+				$('.loginBtn').addClass('disabled');
+			}
+		});
+	});
 	function getCode(e) {
 		//		window.event? window.event.cancelBubble = true : e.stopPropagation();
 		var event = window.event || arguments[0];
@@ -389,6 +427,9 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 		var event = window.event || arguments[0];
 		event.stopPropagation();
 		event.preventDefault();
+		if (!checkInput()) {
+			return ;
+		}
 		if($("#PassWord").val == "") {
 			//			$(".tanceng img").attr("src", "../img/1/POP3@3x.png")
 			$(".shade,.tanceng").css("display", "block");
@@ -430,7 +471,7 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 	//
 	//	$(".layoutMain").click(function() {
 	//		debugger;
-	//		$('#phone').focus();       
+	//		$('#phone').focus();
 	//		if($(".shade,.tanceng").css("display") == 'none') {
 	//			return false;
 	//		}
@@ -459,7 +500,7 @@ letter-spacing: 0px;" class="loginBtn">确定</a>
 		})
 
 		//		var other= $(this).closest("div").find("a").hasClass("active");
-		//		
+		//
 		//		other.find("img").attr("src","../img/1/"+ other.attr("data-id") + "_1@3x.png" );
 		//		other.removeClass("active");
 		$(this).addClass("active");

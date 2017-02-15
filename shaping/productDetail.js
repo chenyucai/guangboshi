@@ -6,6 +6,7 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + sessionStorage.getIte
 		$(".specialPerformance").show();
 		var interval = 1000;
 		var time = data.EndTime.split('.');
+		console.log(time);
 
 		window.setInterval(function() {
 			ShowCountDown(time[0], time[1], time[2], 'countDown');

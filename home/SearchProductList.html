@@ -18,16 +18,18 @@
 
 		<script type="text/html" id="template">
 			<li data-id="${Id}">
-				<div class="productListPad">
-					<a href="productView.html" class="productListPic"><img src="${Image}"></a>
-					<h4 class="productListTitle pt5"><a href="#" class="h5">${CategoryName}</a></h4>
-					<div class="productListUser">
-						<a href="#" class="c_c">${Title}</a>
-					</div>
-					<div class="productListFoot pt5 clearfix">
-						<a href="productView.html" class="productListLove active">
-							<!--<i class="icon-heart"></i>-->已售 &nbsp;${SellCount}</a>
-						<mark class="h5">¥  ${SellPrice}</mark>
+				<div class="productListPad" style="padding:0;">
+					<a href="productView.html" class="productListPic"><img src="${Image}" style="width:100%;height:100%;"></a>
+					<div style="padding:3px 5px 10px 5px">
+						<h4 class="productListTitle pt5"><a href="#" class="h5">${CategoryName}</a></h4>
+						<div class="productListUser">
+							<a href="#" class="c_c">${Title}</a>
+						</div>
+						<div class="productListFoot pt5 clearfix">
+							<a href="productView.html" class="productListLove active">
+								<!--<i class="icon-heart"></i>-->已售 &nbsp;${SellCount}</a>
+							<mark class="h5">¥  ${SellPrice}</mark>
+						</div>
 					</div>
 				</div>
 			</li>
@@ -37,7 +39,7 @@
 	<body>
 		<div class="layoutMain">
 			<div class="mask"></div>
-			
+
 			<header class="pageHead clearfix">
 				<!--<div class="headLeft">
 					<a href="javascript:;" class="headLeftBtn navOpen"><i class="icon-menu2"></i></a>
@@ -59,7 +61,7 @@
     line-height: 30px;
     border: 1px solid #B8B8B8;
     background-color: white; color: #656565;" />&nbsp;
-                          
+
                             <a href="#" class="btn btnSm fr style_3" style="background: #D9BD8C;">搜索</a>
                         </span>
 					<div class="sellerSelect" style="width: 15%;">
@@ -82,7 +84,7 @@
                         		<option>1</option>
                              <option>2</option>
                              <option>3</option>
-                         </select>  
+                         </select>
                      	</span>
                     	<a href="#" class="next">下一页</a>
                    </div>-->
@@ -92,7 +94,7 @@
 			<!--<footer class="pageFoot">
             <nav class="footNav">
                 <ul class="clearfix">
-                     
+
                    <li class="active">
                         <a href="index.html"><span><i class="icon-bag"></i></span>商店</a>
                    </li>
