@@ -184,6 +184,18 @@
 			.setClick.active a{
 				background: #f2f2f2;
 			}
+			.sellerTab li:after{
+				border-width: 0;
+			}
+			.screeningBtnIcon{
+				border-color:#000 transparent transparent transparent;
+			}
+			.line{
+				width: 10px;
+				height: 0;
+				border-top: 1px solid #000;
+				margin: 0 auto;
+			}
 		</style>
 	</head>
 
@@ -203,10 +215,13 @@
 			</header>
 			<div class="pageMain">
 				<div class="productInfo">
-					<div class="sellerTab sellerTabSpan3">
+					<div class="sellerTab sellerTabSpan3" style="border-bottom: 1px solid #f2f2f2">
 						<ul class="clearfix">
 							<li class="active">
 								<a href="#">专场</a>
+								<div class="line">
+
+								</div>
 							</li>
 							<li>
 								<a href="Groupbuying.html">&nbsp;&nbsp; 团购&nbsp;&nbsp;</a>
