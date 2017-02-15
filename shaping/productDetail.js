@@ -99,7 +99,7 @@ $("#checkComplete").live("click", function () {
 })
 
 $("#startClick").live("click", function () {
-    if (!checkLogin()) {
+    if (!checkLogin('../shaping/productDetails.html')) {
         return;
     }
 	var SetClearMark = 1;
@@ -124,7 +124,12 @@ $("#startClick").live("click", function () {
 })
 
 $("#GetCoupon").live("click", function() {
-	location.href = "CouponList.html";
+	if (!checkLogin('../shaping/CouponList.html')) {
+			return;
+	}else {
+		location.href = "CouponList.html";
+	}
+
 })
 
 function ShowCountDown(year, month, day, divname) {
@@ -165,6 +170,9 @@ $(".mt10").live("click", function() {
 	})
 })
 $("#GetMessage").live("click", function() {
+	if (!checkLogin('../shaping/onlineMessage.html')) {
+			return;
+	}
 	sessionStorage.setItem("messageType", 1); //普通产品
 	location.href = "onlineMessage.html";
 })

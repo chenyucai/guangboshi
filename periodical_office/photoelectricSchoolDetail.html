@@ -131,6 +131,9 @@
 	})
 
 	$("#startClick").live("click", function() {
+		if (!checkLogin('../periodical_office/photoelectricSchoolDetail.html')) {
+				return;
+		}
 		var SetClearMark = 1;
 		if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 			SetClearMark = 2;
@@ -155,6 +158,9 @@
 	})
 
 	$("#ZanClick").live("click", function() {
+		if (!checkLogin('../shaping/onlineMessage.html')) {
+				return;
+		}
 		var SetClearMark = 1;
 		if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 			SetClearMark = 2;
