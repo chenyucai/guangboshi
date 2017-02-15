@@ -54,8 +54,8 @@
 				}
 
 				body .mainmenu li {
-					float: left;
-					width: 33%;
+					flex: 0 0 33%;
+					padding-bottom: 15px;
 					height: 80px;
 					/*		border-radius: 3px;
 */
@@ -76,7 +76,7 @@
 				}
 
 				body .mainmenu li a img {
-					margin: 15px auto 15px;
+					margin: 20px auto 10px;
 					width: 30px;
 					height: 30px;
 				}
@@ -140,11 +140,11 @@
 				}
 
 				.footNav ul li.active a {
-					color: #F03B92;
+					color: #fff;
 				}
 
 				.footNav ul li a {
-					background: #F3F4F4;
+					background: #fff;
 				}
 			</style>
 		</head>
@@ -183,17 +183,17 @@
 
 						</dl>
 					</div>
-					<div class="loginLayout">
+					<div class="loginLayout" style="margin: 0;">
 
-						<div style="padding-bottom: 50px;" class="meiliwancheng">
-							<a href="../beautifulLibrary/index.html"><span style="float: left; padding-left: 30px;"><img src="img/美丽库.png">美丽库</span></a>
-							<a href="../Completed/index.html"><span style="float: right; padding-right: 30px;"><img src="img/已完成.png">已完成</span></a>
+						<div style="height: 30px;padding: 20px;background: #fff;margin-bottom: 10px;display: flex;" class="meiliwancheng">
+							<a href="../beautifulLibrary/index.html" style="flex: 0 0 50%;border-right: 1px solid #cfcfcf;"><span style="float: left; padding-left: 30px;"><img src="img/美丽库.png">美丽库</span></a>
+							<a href="../Completed/index.html" style="flex: 0 0 50%;"><span style="float: right; padding-right: 30px;"><img src="img/已完成.png">已完成</span></a>
 						</div>
-						<ul class="mainmenu">
-							<li>
+						<ul class="mainmenu" style="display: flex;flex-wrap: wrap;background: #fff;">
+							<li style="border-top: none;">
 								<a href="personalData.html"><b><img src="img/个人中心.png" /></b><span>个人信息</span></a>
 							</li>
-							<li>
+							<li style="border-top: none;">
 								<a href="MyBalance.html"><b><img src="img/余额.png" /></b><span>余额<span id="Amount" style="font-family: PingFang-SC-Light;
 					font-size: 10px;
 					color: #FF5DA9;
@@ -202,7 +202,7 @@
 					padding-left: 10px;" ></span></span>
 								</a>
 							</li>
-							<li style="border-right: none;">
+							<li style="border-right: none;border-top: none;">
 								<a href="../home/point.html"><b><img src="img/积分.png" /></b><span>积分<span id="Point"  style="font-family: PingFang-SC-Light;
 					font-size: 10px;
 					color: #FF5DA9;
@@ -233,7 +233,7 @@
 					</div>
 
 				</div>
-				<footer class="pageFoot" style="border-top: 10px solid #F1f1f1;position: fixed;">
+				<footer class="pageFoot" style="border-top: 1px solid #F1f1f1;position: fixed;">
 					<nav class="footNav">
 						<ul class="clearfix">
 
