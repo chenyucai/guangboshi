@@ -20,21 +20,21 @@
 
 			<li id="newsDetail">
 				<div class="clearfix">
-					<a href="#" class="orderListPic" style="width: 130px;height: 130px;padding-right: 0;">
+					<a href="#" class="orderListPic" style="width: 120px;height: 120px;padding-right: 0;margin-right:15px;">
 						<img src="${Image}" style="width: 120px;height: 120px;"></a>
-					<div class=" orderListMain " style="display: -webkit-box;margin-left: 10px;">
-						<a href="# " class="text1 "><span>【${CategoryName}】</span>${Title}</a><br><br>
+					<div class=" orderListMain " style="display: -webkit-box;margin-left: 10px;padding-top:15px;position:relative;height:105px;">
+						<a href="# " class="text1" style="color:#afafaf;"><span style="color:#303030;">【${CategoryName}】</span>${Title}</a><br><br>
 						<div class=" pt5 " style="display: inline">
 							<span style="text-align: left;background: #FFFFFF;border: 1px solid #DDDDDD;padding: 1px 4px;font-family: PingFang-SC-Regular;font-size: 10px;color: #656565;letter-spacing: 0px; ">
 												已参团${SellCount}份</span>
-							<span style="text-align: center;padding-left: 14px;font-family: PingFang-SC-Regular;font-size: 10px;color: #999999;letter-spacing: 0px; ">剩${GroupByNum - SellCount}人</span>
+							<span style="text-align: center;padding-left:4px;font-family: PingFang-SC-Regular;font-size: 10px;color: #999999;letter-spacing: 0px; ">剩${GroupByNum - SellCount}人</span>
 							<span style="float: right;font-family: PingFang-SC-Medium;font-size: 14px;color: #2F2F2F;letter-spacing: 0px;">¥ ${SellPrice}</span>
 
 						</div>
 						<br>
-						<div class=" pt5 " style="display: inline-block; float: right;padding-right: 10px;">
-							<span style="background: #FFFFFF;border: 1px solid #FF5DA9; padding: 1px 16px; font-family: PingFang-SC-Regular;font-size: 12px;color: #FF5DA9;letter-spacing: 0px;">邀请参团</span>
-							<a href="javascript:void(0)" id="tuangouDetail" ><span data-id="${Id}" style="background: #FF5DA9;;border: 1px solid #FF5DA9; padding: 1px 16px;font-family: PingFang-SC-Regular;font-size: 12px;color: #FFFFFF;letter-spacing: 0px;margin-left: 16px;">立即参团</span></a>
+						<div class=" pt5 " style="display: block;position:absolute;right:10px;bottom:13px">
+							<span style="background: #FFFFFF;border: 1px solid #FF5DA9; padding: 4px 10px; font-family: PingFang-SC-Regular;font-size: 12px;color: #FF5DA9;letter-spacing: 0px;">邀请参团</span>
+							<a href="javascript:void(0)" id="tuangouDetail" ><span data-id="${Id}" style="background: #FF5DA9;;border: 1px solid #FF5DA9; padding: 4px 10px;font-family: PingFang-SC-Regular;font-size: 12px;color: #FFFFFF;letter-spacing: 0px;margin-left:10px;">立即参团</span></a>
 						</div>
 					</div>
 				</div>
@@ -53,7 +53,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -61,7 +61,7 @@
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -69,35 +69,35 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListPic img {
 				max-width: none;
 				width: 120px;
 				height: 100px;
 			}
-			
+
 			.orderListPic {
 				padding-right: 100px;
 			}
-			
+
 			.text1 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.tr td {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListUl>li {
 				border-bottom: none;
 			}
-			
+
 			.sellerTab li.active a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -105,7 +105,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -113,47 +113,47 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.screening {
 				position: inherit;
 			}
-			
+
 			.screeningList {
 				width: 33%;
 			}
-			
+
 			.screeningTitle {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.screeningList dd {
 				top: 120px;
 			}
-			
+
 			.jpzx {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx1 {
 				font-family: PingFang-SC-Regular;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.style_4 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.activityTime1 {
 				border-radius: 0;
 				top: 10px;
@@ -168,20 +168,52 @@
 				border-radius: 120px;
 				width: 36px;
 			}
-			
+
 			.artistList {
 				padding-top: 23px;
 			}
-			
+
 			.pt5 {
 				padding-top: 15px;
 			}
-			
+
 			#chanpingleixing li {
 				display: inline;
 				width: 33%;
 				float: left;
 				text-align: center;
+			}
+			.sellerTab li:before{
+				display: none;
+			}
+			.screeningList dd a{
+				border-bottom: none;
+				font-size: 13px;
+    		margin-bottom: 5px;
+			}
+			.setClick.active a{
+				background: #f2f2f2;
+			}
+			.sellerTab li:after{
+				border-width: 0;
+			}
+			.screeningBtnIcon{
+				border-color:#000 transparent transparent transparent;
+			}
+			.line{
+				width: 10px;
+				height: 0;
+				border-top: 1px solid #000;
+				margin: 0 auto;
+			}
+			.orderListUl{
+				padding: 0;
+				background: #f2f2f2;
+			}
+			.orderListUl li{
+				background: #fff;
+				margin-bottom: 10px;
+				padding: 0;
 			}
 		</style>
 	</head>
@@ -202,13 +234,16 @@
 			</header>
 			<div class="pageMain">
 				<div class="productInfo">
-					<div class="sellerTab sellerTabSpan3">
+					<div class="sellerTab sellerTabSpan3" style="border-bottom: 1px solid #f2f2f2">
 						<ul class="clearfix">
 							<li>
 								<a href="specialPerformance.html">专场</a>
 							</li>
 							<li class="active">
 								<a href="#">&nbsp;&nbsp; 团购&nbsp;&nbsp;</a>
+								<div class="line">
+
+								</div>
 							</li>
 							<li>
 								<a href="combo.html">套餐</a>
@@ -219,7 +254,7 @@
 						<!--如只有一项选择添加class screeningListSpan1-->
 						<dl class="screeningList clearfix">
 							<dt class="screeningTitle"><span class="screeningBtn"><b id="choseName">
-						
+
 分类
 
 
@@ -227,7 +262,7 @@
 							<dd class="screeningDd" id="chanpingfenlei">
 								<ul id="chanpingleixing">
 									<li data-id="0" class="setClick">
-										<a href="#">分类<i></i></a>
+										<a href="#">分类</a>
 									</li>
 								</ul>
 							</dd>
@@ -310,6 +345,13 @@
 			$('#template').tmpl(data.EShopTGGoodsList).appendTo(template);
 			var template2 = $("#chanpingleixing ");
 			$('#template2').tmpl(data.CategoryList).appendTo(template2);
+
+			$('.setClick').each(function(){
+				var id = $(this).attr('data-id');
+				if (id == sessionStorage.getItem('GroupbuyingCategoryId')) {
+					$(this).addClass('active');
+				}
+			});
 
 		})
 

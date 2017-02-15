@@ -1,5 +1,6 @@
 $(window).load(function() {
 	$(".inputSm").click(function() {
+		$('.search-mask').toggle();
 		//		debugger;
 		//	  	$(this).toggleClass("mobile-inner-header-icon-click mobile-inner-header-icon-out");
 		$.get(constants.baseUrl + "/AppHome/GetSearchValue?Type=" + $("#indexTypeId").val() + "&UserId=" + $.cookie("userId") + "&num=" + "8", function(data, status) {
@@ -12,6 +13,7 @@ $(window).load(function() {
 			//			debugger;
 		});
 		$(".mobile-inner-nav").slideToggle(350);
+
 	});
 	$(".mobile-inner-nav a").each(function(index) {
 		$(this).css({

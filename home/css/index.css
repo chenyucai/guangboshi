@@ -153,7 +153,7 @@ mark {
 	padding-top: 10px;
 }
 
-.xiala1 {
+/*.xiala1 {
 	text-align: center;
 	padding-top: 21px;
 }
@@ -166,7 +166,7 @@ mark {
 	font-size: 14px;
 	color: #656565;
 	letter-spacing: 0px;
-}
+}*/
 
 
 /* 城市 begin*/
@@ -240,6 +240,3 @@ div.shareWindowRow> div.right-container> div.city-container> div.city {
 .orderTabs ul li {
 	width: 20%;
 }
-
-
-
