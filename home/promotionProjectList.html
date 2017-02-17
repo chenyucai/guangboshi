@@ -170,6 +170,7 @@
 
 	$(".productClick").live("click", function() {
 		sessionStorage.setItem("ProductId", $(this).attr("data-id"));
+		localStorage.setItem("ProdcuctType", 2);
 		location.href = "../shaping/productDetails.html";
 	})
 </script>

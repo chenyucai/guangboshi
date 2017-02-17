@@ -1,7 +1,8 @@
 var orderData;
 
 $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + sessionStorage.getItem("ProductId") + "&UserId=" + $.cookie("userId"), function(data) {
-	if(sessionStorage.getItem("ProdcuctType") == 2) {
+	// if(sessionStorage.getItem("ProdcuctType") == 2) {
+	if (localStorage.getItem('ProdcuctType') == 2) {
 		$("#general").hide();
 		$(".specialPerformance").show();
 		var interval = 1000;

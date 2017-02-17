@@ -47,12 +47,14 @@ function jingpingzixunAll(){
 $("#kuanghuandacuDetail").live("click", function() {
 	sessionStorage.setItem("ProductId", $(this).attr("data-id"));
 	sessionStorage.setItem("ProdcuctType", 2);
+	localStorage.setItem('ProdcuctType', 2);
 	location.href = "../shaping/productDetails.html";
 })
 
 $("#mingxingchanpinDetail").live("click", function() {
 	sessionStorage.setItem("ProductId", $(this).attr("data-id"));
 	sessionStorage.setItem("ProdcuctType", 1);
+	localStorage.setItem('ProdcuctType', 1);
 	location.href = "../shaping/productDetails.html";
 })
 
