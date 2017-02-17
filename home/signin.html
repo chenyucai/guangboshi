@@ -35,7 +35,7 @@
 		<div class="layoutMain" style="font:">
 			<header class="pageHead clearfix">
 				<div class="headLeft">
-					<a href="Login.html" class="headLeftBtn"><i class="icon-cross2"></i></a>
+					<a href="javascript:;" onclick="window.history.go(-1);" class="headLeftBtn"><i class="icon-cross2"></i></a>
 				</div>
 				<h2 class="headTitle">
                绑定手机号
@@ -172,7 +172,7 @@ letter-spacing: 0px; padding: 0 !important;" />
 	}
 
 	.signinFoot a {
-		margin-left: 20px;
+		margin-left: 10px;
 		width: 60px;
 	}
 
@@ -451,7 +451,9 @@ letter-spacing: 0px; padding: 0 !important;" />
 					$(".shade,.tanceng").css("display", "block");
 					$(".shade").height();
 					close();
-					location.href = "index.html"
+					// location.href = "index.html"
+					// 返回登陆页面
+					window.history.go(-1);
 				}
 				if(data.Status == 2) {
 					$(".shade,.tanceng").find("p").text("号码已被注册");

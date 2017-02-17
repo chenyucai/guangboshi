@@ -46,7 +46,7 @@
 			.screening dl {
 				width: 33%;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFang-SC-Medium;
@@ -54,25 +54,25 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.C_C_C {
 				font-family: PingFang-SC-Light;
 				font-size: 11px;
 				color: #B8B8B8;
 				letter-spacing: 0px;
 			}
-			
+
 			.screening:after {
 				background: none;
 			}
-			
+
 			#chanpingleixing li {
 				display: inline;
 				width: 33%;
 				float: left;
 				text-align: center;
 			}
-			
+
 			.shijiprice {
 				text-decoration: line-through;
 				font-family: PingFang-SC-Light;
@@ -125,6 +125,7 @@
 
 	$(".productClick").live("click",function() {
 		sessionStorage.setItem("ProdcuctId", $(this).attr("data-id"));
+		localStorage.setItem("ProdcuctType", 2);
 		location.href = "../shaping/productDetails.html";
 	})
 </script>

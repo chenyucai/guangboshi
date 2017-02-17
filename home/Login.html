@@ -239,7 +239,7 @@
 			// alert($.cookie('userId'))
 			if(data.Status == 1) {
 				// location.href = "index.html"
-				var url = localStorage.getItem('url');
+				var url = localStorage.getItem('url') || 'index.html';
 				// alert(url);
 				window.location.href = url;
 			}
