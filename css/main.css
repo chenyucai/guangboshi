@@ -47,7 +47,7 @@ select{appearance:none;-moz-appearance:none;-webkit-appearance:none;outline:none
 	top: 0%;
 	left: 0%;
 	width: 100%;
-	height: 133%;
+	height: 100%;
 	background-color: black;
 	z-index: 1001;
 	-moz-opacity: 0.8;
@@ -56,13 +56,14 @@ select{appearance:none;-moz-appearance:none;-webkit-appearance:none;outline:none
 }
 
 #code {
+	display: none;
 	width: 300px;
 	height: 350px;
-	background-color: #fff;
-	position: absolute;
-	display: none;
-	left: 45%;
+	/*background-color: #fff;*/
+	position: relative;;
 	z-index: 1002;
+	margin: 0 auto;
+	top: -100px;
 }
 
 #code1{
@@ -101,9 +102,10 @@ select{appearance:none;-moz-appearance:none;-webkit-appearance:none;outline:none
 }
 
 .code-img {
-	width: 150px;
+	position: relative;
+	/*width: 150px;
 	margin: 5px auto 0 auto;
-	padding: 10px;
+	padding: 10px;*/
 }
 
 .code-img img {
