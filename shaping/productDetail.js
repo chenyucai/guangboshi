@@ -1,6 +1,14 @@
 var orderData;
 
-$.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + sessionStorage.getItem("ProductId") + "&UserId=" + $.cookie("userId"), function(data) {
+function getUrlParameter(params, paramName){
+  var reg = new RegExp("(^|&)"+ paramName +"=([^&]*)(&|$)");
+  var r = params.substr(1).match(reg);
+  if(r!=null) return  unescape(r[2]); return null;
+}
+var param = window.location.search;
+var ProductId = getUrlParameter(param, "id") || sessionStorage.getItem("ProductId");
+
+$.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=" + $.cookie("userId"), function(data) {
 	// if(sessionStorage.getItem("ProdcuctType") == 2) {
 	if (localStorage.getItem('ProdcuctType') == 2) {
 		$("#general").hide();
@@ -80,22 +88,50 @@ $("#checkComplete").live("click", function () {
 	//	sessionStorage.setItem("orderData", orderData);
 	var DataString = JSON.stringify(orderData);
 	sessionStorage.setItem("orderData", DataString);
-
-	$.post(constants.baseUrl + "/AppOrderManage/CreateOrder", {
-			quantity: $("#productNum").val(),
-			UserId: $.cookie("userId"),
-			goodsId: sessionStorage.getItem("ProductId")
-		},
-		function(response) {
+	// alert(JSON.stringify({
+	// 		quantity: $("#productNum").val(),
+	// 		UserId: $.cookie("userId"),
+	// 		goodsId: ProductId || sessionStorage.getItem("ProductId")
+	// 	}));
+	$.ajax({
+		url:constants.baseUrl + "/AppOrderManage/CreateOrder",
+		type:'post',
+		dataType:'json',
+		contentType:'application/json;charset=utf=8',
+		data:JSON.stringify({
+				quantity: $("#productNum").val(),
+				UserId: $.cookie("userId"),
+				goodsId: ProductId || sessionStorage.getItem("ProductId")
+			}),
+		success:function(response){
 			if(response.Status != 1) {
-				alert(response);
+				// alert(response);
 				return false;
 			}
 			sessionStorage.setItem("OrderAmount", response.OrderAmount);
 			sessionStorage.setItem("OrderID", response.ID);
 			sessionStorage.setItem("quantity", $("#productNum").val());
 			location.href = "affirmOrder.html";
-		})
+		},
+		error:function(data){
+			alert(JSON.stringify(data))
+		}
+	})
+	// $.post(constants.baseUrl + "/AppOrderManage/CreateOrder", {
+	// 		quantity: $("#productNum").val(),
+	// 		UserId: $.cookie("userId"),
+	// 		goodsId: ProductId || sessionStorage.getItem("ProductId")
+	// 	},
+	// 	function(response) {
+	// 		if(response.Status != 1) {
+	// 			// alert(response);
+	// 			return false;
+	// 		}
+	// 		sessionStorage.setItem("OrderAmount", response.OrderAmount);
+	// 		sessionStorage.setItem("OrderID", response.ID);
+	// 		sessionStorage.setItem("quantity", $("#productNum").val());
+	// 		location.href = "affirmOrder.html";
+	// 	})
 
 })
 

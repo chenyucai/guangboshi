@@ -20,11 +20,11 @@
 		<script type="text/html" id="template">
 			<li data-id="${Id}" id="industryInformationDetail">
 				<div class="artistListPad">
-					<a href="#" class="activityBannerPic" style="text-align: center;">
+					<a href="#" class="activityBannerPic" style="text-align: center;height:140px;">
 						{{if ZanMark==true}}
 						<span class="activityTime1 imgtxt"><i class="icon-heart"></i></span> {{else}}
 						<span class="activityTime2 imgtxt"><i class="icon-heart"></i></span> {{/if}}
-						<img src="${Image}" />
+						<img src="${Image}" style="width:100%;height:100%;"/>
 					</a>
 					<div style="background:#fff;padding:10px;">
 						<span class="dianzanshu">${Zan}</span>
@@ -190,7 +190,7 @@
 			.dianzanshu {
 				float: right;
 				padding-right: 8px;
-				padding-top: 8px;
+				/*padding-top: 8px;*/
 				font-family: PingFangSC-Light;
 				font-size: 10px;
 				color: #999999;
@@ -220,6 +220,16 @@
 			.icon-heart {
 				width: 13px;
 			}
+			.sellerTab li.active:after {
+			    display: block;
+			    height: 1px;
+			    background: #000;
+			    border-width: 0;
+			    width: 10px;
+			    margin: 0 auto;
+			    left: 45%;
+			    bottom: 5px;
+			}
 		</style>
 	</head>
 
@@ -240,7 +250,7 @@
 			<div class="pageMain">
 				<div class="productInfo">
 					<div class="sellerTab sellerTabSpan3">
-						<ul class="clearfix">
+						<ul class="clearfix" style="border-bottom: 1px solid #f2f2f2;">
 							<li class="active">
 								<a href="#">行业资讯</a>
 							</li>
@@ -255,7 +265,7 @@
 					<div class="screening">
 						<!--如只有一项选择添加class screeningListSpan1-->
 						<dl class="screeningList clearfix">
-							<dt class="screeningTitle"><span class="screeningBtn"><b>全部分类</b><i class="screeningBtnIcon"></i></span></dt>
+							<dt class="screeningTitle"><span class="screeningBtn"><b>分类</b><i class="screeningBtnIcon"></i></span></dt>
 							<dd class="screeningDd" id="screeningDd">
 								<!-- <a href="#">人物<i></i></a>
 								<a href="#">雕塑<i></i></a>
@@ -341,6 +351,20 @@
 				$(this).siblings('').removeClass('active')
 				$(this).parent('.screeningDd').siblings('.screeningTitle').find('span b').text(screeningVar);
 				$(this).parent('.screeningDd').slideUp(400);
+				var id = $(this).attr('data');
+				$.get(constants.baseUrl + 　"/AppHome/GetMagazineList?CategoryId="+id+"&UserId=" + 　$.cookie("userId") + "&Type=" + 1 + "&timestamp=" + (new Date()).Format("yyyyMMddhhmmss"), function(data) {
+					var template = $("#industryInformationList");
+					template.html('');
+					$("#template").tmpl(data.IndustryNewsList).appendTo(template);
+					var $container = $('#industryInformationList');
+		    	$container.imagesLoaded(function() {
+		        $container.masonry({
+		                itemSelector: 'li',
+		                gutter: 0,
+		                isAnimated: true,
+	          });
+	     		});
+				});
 			});
 		})
 	$(".imgtxt").live("click", function() {

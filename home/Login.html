@@ -1,295 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-	<head>
-		<meta charset="UTF-8">
-		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 ,user-scalable=no" name="viewport">
+  <head>
+    <meta charset="utf-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 ,user-scalable=no" name="viewport">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<title></title>
-		<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
-		<link href="../static/css/common.css" rel="stylesheet">
-		<link href="../static/css/style.css" rel="stylesheet">
-		<link href="../static/css/icon.css" rel="stylesheet">
-		<script src="../js/common.js"></script>
+    <title>登录</title>
+    <link rel="stylesheet" href="../css/reset.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/login.css" media="screen" title="no title">
+    <script src="../js/common.js"></script>
 		<!--	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
 		<script src="../static/js/jquery-1.9.1.js"></script>
 		<script src="../js/jquery.cookie.js "></script>
 		<script src="../js/jquery_md5.js"></script>
-		<script src="../static/js/idangerous.swiper.js"></script>
+		<!-- <script src="../static/js/idangerous.swiper.js"></script> -->
 		<script src="../static/js/web.js"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TcGfLXTi6qQWU4ZBgDTF0kSIwiPuu7fF"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="login-wrapper">
+        <div class="login-content-wrapper">
+          <div class="login-logo-wrapper">
+            <img src="img/logo@2x.png" class="login-logo" alt="" width="246"/>
+          </div>
+          <div class="login-mobile-wrapper">
+            <img class="login-mobile-icon" src="img/iphone@2x.png" alt="" width="18px"/>
+            <input id="phone" type="tel" name="name" value="" placeholder="请输入手机号" class="login-mobile-input">
+          </div>
+          <div class="login-password-wrapper">
+            <img class="login-password-icon" src="img/锁@2x.png" alt="" width="18"/>
+            <input type="password" id="PassWord" name="name" value="" placeholder="请输入密码" class="login-password-input">
+            <input type="text" id="PassWordSee" class="passwordsee" style="display: none;" />
+            <span class="login-password-see" id="eye"></span>
+          </div>
+          <div class="login-reg-wrapper">
+            <span class="login-reg">没有帐号？ <span class="reg" onclick="window.location.href='signin.html'"> 立即注册</span></span>
+            <span class="login-forget" onclick="window.location.href='ResetPassword.html'">忘记密码？</span>
+          </div>
+          <div class="login-btn-wrapper" id="submit">
+            <div class="login-btn">
+              登录
+            </div>
+          </div>
+        </div>
+        <div class="login-footer">
 
-		<style>
-			.loginInput {
-				color: #999 !important;
-			}
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    $(function(){
+      $("#phone").bind('input',function(){
+        if ($.trim($("#phone").val()).length !== 0 && $.trim($("#PassWord").val()).length !== 0) {
+    			$("#submit").addClass('active');
+    		}else {
+    		  $("#submit").removeClass('active');
+    		}
+      });
 
-			.loginInput::-webkit-input-placeholder {
-				/* WebKit browsers */
-				color: #999999 !important;
-			}
+      $("#PassWord").bind('input',function(){
+        $('#PassWordSee').val($(this).val());
+        if ($.trim($("#phone").val()).length !== 0 && $.trim($("#PassWord").val()).length !== 0) {
+    			$("#submit").addClass('active');
+    		}else {
+    		  $("#submit").removeClass('active');
+    		}
+      });
 
-			.loginInput::-moz-placeholder {
-				/* Mozilla Firefox 4 to 18 */
-				color: #999 !important;
-			}
+      $("#PassWordSee").bind('input',function(){
+        $('#PassWord').val($(this).val());
+      });
 
-			.loginInput::-moz-placeholder {
-				/* Mozilla Firefox 19+ */
-				color: #999 !important;
-			}
+      $("#submit").click(function() {
+    		if ($.trim($("#phone").val()).length === 0) {
+    			// alert('请输入手机号');
+    			return ;
+    		}
+    		if ($.trim($("#PassWord").val()).length === 0) {
+    			// alert('请输入密码');
+    			return ;
+    		}
+    		$.get(constants.baseUrl + "/AppLogin/Login?Mobile=" + $("#phone").val() + "&Password=" + $("#PassWord").val(), function(data, status) {
+    			// alert(JSON.stringify(data))
+    			$.cookie('userId', data.UserId, {
+    				expires: 7,
+    				path: '/'
+    			});
+    			$.cookie('CityId', "", {
+    				expires: 7
+    			});
+    			//			$.cookie(data.ProviderKey,JSON.stringify(data.operatorModel),{Path:constants.baseUrl+"/"});
+    			localStorage.setItem('userId', data.UserId);
+    			// alert($.cookie('userId'))
+    			if(data.Status == 1) {
+    				// location.href = "index.html"
+    				var url = localStorage.getItem('url') || 'index.html';
+    				// alert(url);
+    				window.location.href = url;
+    			}
+    			if(data.Status != 1) {
+    				alert(data.Message);
+    			}
+    		})
+    	})
 
-			.loginInput::-ms-input-placeholder {
-				/* Internet Explorer 10+ */
-				color: #999 !important;
-			}
+      $("#eye").click(function() {
+    		if($("#PassWord").val() != "") {
+    			if($("#PassWordSee").css("display") == "none") {
+    				// $("#PassWordSee").val($("#PassWord").val());
+    				$("#PassWordSee").css("display", "");
+    				$("#PassWord").css("display", "none");
+    				$(this).css("backgroundImage", "url(img/显示@2x.png)")
+    			} else {
+    				$("#PassWord").css("display", "");
+    				$("#PassWordSee").css("display", "none");
+    				$(this).css("backgroundImage", "url(img/不显示@2x.png)")
+    			}
+    		}
 
-			.loginRow {
-				border: solid 1px #DDDDDD;
-			}
+    	})
 
-			.signinFoot a {
-				margin-left: 20px;
-				width: 60px;
-			}
+    	var vCode = getQueryString("code");
 
-			.loginBtn {
-				background: white;
-				border: none;
-			}
+    	if(vCode != "" && vCode != null) {
+    				// alert(vCode);
+    		debugger;
+    		localStorage.setItem("code", vCode);
+    	}
 
-			.shade {
-				width: 100%;
-				background-color: rgba(0, 0, 0, 0.3);
-				position: fixed;
-				left: 0;
-				top: 0;
-				display: none;
-			}
+    	function getQueryString(name) {
+    		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    		var r = window.location.search.substr(1).match(reg);
+    		if(r != null) return unescape(r[2]);
+    		return null;
+    	}
 
-			.tanceng {
-				opacity: 0.69;
-				background: #000000;
-				border-radius: 5px;
-				text-align: center;
-				width: 240px;
-				padding: 20px;
-				line-height: 100%;
-				color: #f31b33;
-				position: fixed;
-				top: 45%;
-				left: 50%;
-				border-radius: 0.6rem;
-				z-index: 999;
-				margin-left: -140px;
-				display: none;
-			}
-
-			.okbtn a {
-				display: block;
-				width: 80%;
-				background-color: #f31b33;
-				color: #fff;
-				line-height: 250%;
-				font-size: 16px;
-				text-align: center;
-				border-radius: 5px;
-				margin: 0 auto;
-			}
-
-			.signinFoot .active {
-				/*font-family: PingFang-SC-Light;
-		font-size: 12px;
-		color: #FF5DA9;
-		letter-spacing: 0px;*/
-			}
-
-			.cue {
-				font-family: PingFang-SC-Medium;
-				font-size: 16px;
-				font-weight: bold;
-				color: #FFFFFF;
-				letter-spacing: 0px;
-				margin: 0;
-			}
-
-			a,
-			button,
-			input {
-				-webkit-tap-highlight-color: rgba(255, 0, 0, 0);
-			}
-		</style>
-		<!--<script src="js/signin.js></script>-->
-	</head>
-
-	<body>
-
-		<div class="layoutMain" style="font:">
-			<header class="pageHead clearfix">
-				<!--<div class="headLeft">
-					<a href="index.html" class="headLeftBtn"><i class="icon-cross2"></i></a>
-				</div>-->
-				<h2 class="headTitle">
-              登陆
-            </h2>
-
-			</header>
-			<div class="pageMain noFoot">
-				<div class="loginLayout">
-					<form id="login">
-
-						<div class="loginMain">
-							<div class="loginRow" style="border: solid 1px #DDDDDD;">
-								<i style="width:15px;"><img src="../img/1/icon_iphone@3x.png" ></i>
-								<div class="loginRowFrom ">
-									<input type="text" class="loginInput" id="phone" placeholder="请输入手机号" onblur="yz(this.value)" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" />
-								</div>
-							</div>
-
-							<div class="loginRow">
-								<i style="width: 18px;"> <img src="../img/1/icon_lock@3x.png"></i>
-								<div class="loginRowFrom">
-									<input type="password" id="PassWord" class="loginInput" placeholder="请输入密码" />
-									<input type="text" id="PassWordSee" class="loginInput" style="display: none;" />
-								</div>
-								<i id="eye" style="width: 18px; left:90%;"> <img id="eyeChange" src="../img/1/icon_Not show@3x.png"></i>
-							</div>
-
-						</div>
-						<div class="loginFoot">
-							<dl class="loginSns" style="float: right;">
-								<a href="ResetPassword.html"><dt style="color: #999;"><span>忘记密码</span></dt></a>
-								<!--<dd>
-                        <a href="#"><img src="../static/images/wx.png" width="40" /></a>
-                     	</dd>-->
-							</dl>
-
-							<div class="pt20" style="padding-top: 80px; text-align: center;">
-
-								<div id="submit" style="width:90px;height:90px;border-radius:50px;border:solid black; 1px;vertical-align: middle;display: inline-block; background:black; color:#FFFFFF ; font-family: PingFang-SC-Medium; line-height: 80px; font-size: x-large;">登陆</div>
-
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<!--<div id="allmap"></div>
-			<script type="text/javascript">
-				var map = new BMap.Map("allmap");
-				var point = new BMap.Point(116.331398, 39.897445);
-				map.centerAndZoom(point, 12);
-
-				var geolocation = new BMap.Geolocation();
-				geolocation.getCurrentPosition(function(r) {
-					debugger;
-					if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-						var mk = new BMap.Marker(r.point);
-						map.addOverlay(mk);
-						map.panTo(r.point);
-						alert('您的位置：' + r.point.lng + ',' + r.point.lat + r.address.city + r.address.province);
-					} else {
-						alert('failed' + this.getStatus());
-					}
-				}, {
-					enableHighAccuracy: true
-				})
-			</script>-->
-		</div>
-		</div>
-		<a href="signin.html">
-			<div class="activityBlock" style="background:white; color: #999;">
-				去注册
-
-			</div>
-		</a>
-
-	</body>
-
+    	function yz(v) {
+    		//var a = /^((/ / ( / /d{3}//))|(//d{3}//-))?13//d{9}|15[89]//d{8}$/ ;
+    		var a = /^1\d{10}$/;
+    		if(v.length != 11 || !v.match(a)) {
+    			alert("请输入正确的手机号码");
+    		} else {;
+    		}
+    	}
+    });
+  </script>
 </html>
-
-<script>
-	$(document).ready(function() {
-		// alert(localStorage.getItem('code'))
-		})
-		//	if($.cookie("userId") != null) {
-		////		alert("登陆成功");
-		//		location.href = "index.html"
-		//	}
-	$("#submit").click(function() {
-		if ($.trim($("#phone").val()).length === 0) {
-			alert('请输入手机号');
-			return ;
-		}
-		if ($.trim($("#PassWord").val()).length === 0) {
-			alert('请输入密码');
-			return ;
-		}
-		$.get(constants.baseUrl + "/AppLogin/Login?Mobile=" + $("#phone").val() + "&Password=" + $("#PassWord").val(), function(data, status) {
-			// alert(JSON.stringify(data))
-			$.cookie('userId', data.UserId, {
-				expires: 7,
-				path: '/'
-			});
-			$.cookie('CityId', "", {
-				expires: 7
-			});
-			//			$.cookie(data.ProviderKey,JSON.stringify(data.operatorModel),{Path:constants.baseUrl+"/"});
-			localStorage.setItem('userId', data.UserId);
-			// alert($.cookie('userId'))
-			if(data.Status == 1) {
-				// location.href = "index.html"
-				var url = localStorage.getItem('url') || 'index.html';
-				// alert(url);
-				window.location.href = url;
-			}
-			if(data.Status != 1) {
-				alert(data.Message);
-			}
-		})
-	})
-
-	$("#eye").click(function() {
-		if($("#PassWord").val() != "") {
-			if($("#PassWordSee").css("display") == "none") {
-				$("#PassWordSee").val($("#PassWord").val());
-				$("#PassWordSee").css("display", "block");
-				$("#PassWord").css("display", "none");
-				$("#eyeChange").attr("src", "../img/1/icon_display@3x.png")
-			} else {
-				$("#PassWord").css("display", "block");
-				$("#PassWordSee").css("display", "none");
-				$("#eyeChange").attr("src", "../img/1/icon_Not show@3x.png")
-			}
-		}
-
-	})
-
-	var vCode = getQueryString("code");
-
-	if(vCode != "" && vCode != null) {
-				// alert(vCode);
-		debugger;
-		localStorage.setItem("code", vCode);
-	}
-
-	function getQueryString(name) {
-		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-		var r = window.location.search.substr(1).match(reg);
-		if(r != null) return unescape(r[2]);
-		return null;
-	}
-
-	function yz(v) {
-		//var a = /^((/ / ( / /d{3}//))|(//d{3}//-))?13//d{9}|15[89]//d{8}$/ ;
-		var a = /^1\d{10}$/;
-		if(v.length != 11 || !v.match(a)) {
-			alert("请输入正确的手机号码");
-		} else {;
-		}
-	}
-
-//	$(".activityBlock").live("click", function() {
-//		location.href = "signin.html"
-//	})
-</script>

@@ -1,526 +1,324 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-	<head>
-		<meta charset="UTF-8">
-		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+  <head>
+    <meta charset="utf-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1 ,user-scalable=no" name="viewport">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<title></title>
-		<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
-		<link href="../static/css/common.css" rel="stylesheet">
-		<link href="../static/css/style.css" rel="stylesheet">
-		<link href="../static/css/icon.css" rel="stylesheet">
-		<script src="../js/common.js"></script>
+    <title>绑定手机号</title>
+    <link rel="stylesheet" href="../css/reset.css" media="screen" title="no title">
+    <link rel="stylesheet" href="css/signin.css" media="screen" title="no title">
+    <script src="../js/common.js"></script>
 		<!--	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
 		<script src="../static/js/jquery-1.9.1.js"></script>
 		<script src="../js/jquery.cookie.js "></script>
 		<script src="../js/jquery_md5.js"></script>
-		<script src="../static/js/idangerous.swiper.js"></script>
+		<!-- <script src="../static/js/idangerous.swiper.js"></script> -->
 		<script src="../static/js/web.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="tanceng">
+  			<p class="cue"></p>
 
-		<!--<script src="js/signin.js></script>-->
-		<style>
-			#yaoqingmaCode::-webkit-input-placeholder {
-				font-family: PingFang-SC-Light;
-				font-size: 12px;
-				color: #2F2F2F;
-				letter-spacing: 0px;
-			}
-		</style>
-	</head>
+  		</div>
+      <div class="login-wrapper">
+        <div class="login-content-wrapper">
+          <div class="login-mobile-wrapper">
+            <img class="login-mobile-icon" src="img/iphone@2x.png" alt="" width="18px"/>
+            <input id="phone" type="tel" name="name" value="" placeholder="请输入手机号" class="login-mobile-input">
+          </div>
 
-	<body>
+          <div class="login-code-wrapper">
+            <img class="login-code-icon" src="img/码@2x.png" alt="" width="18"/>
+            <input id="Code" type="tel" name="name" value="" placeholder="请输入验证码" class="login-code-input">
+            <input type="button" class="login-getcode" id="getCode" onclick="getAuthCode(this)" value="获取验证码">
+          </div>
 
-		<div class="layoutMain" style="font:">
-			<header class="pageHead clearfix">
-				<div class="headLeft">
-					<a href="javascript:;" onclick="window.history.go(-1);" class="headLeftBtn"><i class="icon-cross2"></i></a>
-				</div>
-				<h2 class="headTitle">
-               绑定手机号
-            </h2>
+          <div class="login-password-wrapper">
+            <img class="login-password-icon" src="img/锁@2x.png" alt="" width="18"/>
+            <input type="password" id="PassWord" name="name" value="" placeholder="请输入密码" class="login-password-input">
+            <input type="text" id="PassWordSee" class="passwordsee" style="display: none;" />
+            <span class="login-password-see" id="eye"></span>
+          </div>
 
-			</header>
-			<div class="pageMain noFoot">
-				<div class="loginLayout">
-					<form id="login">
+          <div class="login-mobile-wrapper signin-invite-wrapper" id="whiteYQM">
+            <span style="font-size:12px;">邀请码</span>
+            <input id="yaoqingmaCode" type="text" name="name" value="" placeholder="（选填）会为你的朋友增加人气" class="login-mobile-input">
+          </div>
 
-						<div class="loginMain">
-							<div class="loginRow" style="border: solid 1px #DDDDDD;">
-								<i style="width:15px;"><img src="../img/1/icon_iphone@3x.png" ></i>
-								<div class="loginRowFrom ">
-									<input type="text" class="loginInput" id="phone" placeholder="请输入手机号" />
-								</div>
-							</div>
-							<div class="loginRow" style="display:inline-block; width: 65%; ">
-								<i style="width:18px;"> <img src="../img/1/icon_Verification@3x.png" ></i>
+          <div class="login-reg-wrapper">
+            注：绑定成功后可直接用手机号登录光博士APP
+          </div>
+          <div class="login-btn-wrapper loginBtn disabled" id="submit">
+            <div class="login-btn">
+              确定
+            </div>
+          </div>
+        </div>
+        <div class="login-footer">
 
-								<div class="loginRowFrom">
-									<input type="password" id="Code" class="loginInput" onclick="getCode(this)" placeholder="请输入验证码" />
+        </div>
+        <div class="signin-from-wrapper">
+          <div class="sigin-from-header">
+            <span class="sigin-from-line"></span>
+            <span class="sigin-from-title">注册来源</span>
+            <span class="sigin-from-line"></span>
+          </div>
+          <div class="sigin-from-content signinFoot">
+            <span class="sigin-from-item active" data-id="3">朋友</span>
+            <span class="sigin-from-item" data-id="2">门店</span>
+            <span class="sigin-from-item" data-id="1">网络</span>
+            <span class="sigin-from-item" data-id="4">活动</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+  	var wait = 60;
+  	// 判断手机号，验证码，密码是否全都输入
+  	function checkInput(){
+  		var phone = $.trim($('#phone').val());
+  		var code = $.trim($('#Code').val());
+  		var pwd = $.trim($('#PassWord').val());
+  		if (phone != '' && code != '' && pwd != '') {
+  			return true;
+  		}
+  		return false;
+  	}
+  	$(function(){
+  		$('#phone').bind('input',function(){
+  			if (checkInput()) {
+  				$('.loginBtn').removeClass('disabled');
+  			}else {
+  				$('.loginBtn').addClass('disabled');
+  			}
+  		});
+  		$('#Code').bind('input',function(){
+  			if (checkInput()) {
+  				$('.loginBtn').removeClass('disabled');
+  			}else {
+  				$('.loginBtn').addClass('disabled');
+  			}
+  		});
+  		$('#PassWord').bind('input',function(){
+        $('#PassWordSee').val($(this).val());
+  			if (checkInput()) {
+  				$('.loginBtn').removeClass('disabled');
+  			}else {
+  				$('.loginBtn').addClass('disabled');
+  			}
+  		});
 
-								</div>
+      $("#PassWordSee").bind('input',function(){
+        $('#PassWord').val($(this).val());
+      });
+      $("#eye").click(function() {
+    		if($("#PassWord").val() != "") {
+    			if($("#PassWordSee").css("display") == "none") {
+    				// $("#PassWordSee").val($("#PassWord").val());
+    				$("#PassWordSee").css("display", "");
+    				$("#PassWord").css("display", "none");
+    				$(this).css("backgroundImage", "url(img/显示@2x.png)")
+    			} else {
+    				$("#PassWord").css("display", "");
+    				$("#PassWordSee").css("display", "none");
+    				$(this).css("backgroundImage", "url(img/不显示@2x.png)")
+    			}
+    		}
 
-							</div>
-							<!--<div class="loginRow" style="float: right;display: inline; width: 30%;">
-								<div class="loginRowFrom" style="text-align: center;">
-									<button class="loginInput" type="button" onclick="getCode(this)" id="J_getCode" style="padding: 0 !important;">获取验证码</button>
-									<button class="loginInput" id="J_resetCode" style="display:none;" style="padding: 0 !important;" value="验证码(60s)">验证码（<span id="J_second">60</span>s）</button>
-								</div>
-							</div>-->
+    	})
+  	});
+  	function getCode(e) {
+  		//		window.event? window.event.cancelBubble = true : e.stopPropagation();
+  		var event = window.event || arguments[0];
+  		event.stopPropagation();
+  		event.preventDefault();
+  		checkPhone(); //验证手机号码
 
-							<div class="loginRow" style="float: right;display: inline; width: 30%;" align="center">
-								<input type="button" style="padding-left: 6px !important;" id="getCode" onclick="getAuthCode(this)" class="loginInput" value="获取验证码" />
-							</div>
+  		if(isPhone) {
+  			getYZCode(phone.value);
+  			resetCode(); //倒计时
 
-							<div class="loginRow">
-								<i style="width: 18px;"> <img src="../img/1/icon_lock@3x.png"></i>
-								<div class="loginRowFrom">
-									<input type="password" id="PassWord" class="loginInput" placeholder="请输入密码" />
-								</div>
+  		} else {
+  			$('#phone').focus();
+  		}
+  		return false;
+  	} //验证手机号码
+  	function checkPhone() {
+  		var phone = $('#phone').val();
+  		var pattern = /^1[0-9]{10}$/;
+  		isPhone = 1;
+  		if(phone == '') {
+  			$(".shade,.tanceng").find("p").text("无法验证，请输入手机号");
+  			$(".shade,.tanceng").css("display", "block");
+  			$(".shade").height();
+  			isPhone = 0;
+  			return false;
+  		}
+  		if(!pattern.test(phone)) {
+  			$(".shade,.tanceng").find("p").text("手机号有误");
+  			$(".shade,.tanceng").css("display", "block");
+  			$(".shade").height();
+  			isPhone = 0;
+  			return false;
+  		}
+  	}
 
-							</div>
+  	//倒计时
+  	function resetCode() {
+  		$('#J_getCode').hide();
+  		$('#J_second').html('60');
+  		$('#J_resetCode').show();
+  		var second = 60;
+  		var timer = null;
+  		timer = setInterval(function() {
+  			debugger;
+  			second -= 1;
+  			if(second > 0) {
+  				$('#J_second').html(second);
+  			} else {
+  				clearInterval(timer);
+  				$('#J_getCode').show();
+  				$('#J_resetCode').hide();
+  			}
+  		}, 1000);
+  	}
 
-						</div>
-						<div class="loginFoot">
-							<dl class="loginSns" style="padding-top: 15%;">
-								<dt style="color: #999;">
-									<span><img src="../img/渐变线/Rectangle 26@2x 左.png">注册来源	<img src="../img/渐变线/Rectangle 26@2x.png"></span>
+  	//	$("#getCode").live("click", function(obj) {
+  	function getAuthCode(obj) {
+  		$.get(constants.baseUrl + "/AppLogin/GetAuthCode?Mobile=" + $("#phone").val(), function(data) {
+  				var code = data.AuthCode;
+  				var smsCode = data.SmsCode;
+  				if(smsCode == "1") {
+  					//				if(code != $("#code").val()) {
+  					//					$(".shade,.tanceng").find("p").text("验证码不正确，请更正重试");
+  					//					$(".shade,.tanceng").css("display", "block");
+  					//					$(".shade").height();
+  					//				}
+  					$(".shade,.tanceng").find("p").text("验证码获取成功");
+  					$(".shade,.tanceng").css("display", "block");
+  					$(".shade").height();
+  					settime(obj);
+  					close();;
 
-								</dt>
-								<!--<dd>
-                        <a href="#"><img src="../static/images/wx.png" width="40" /></a>
-                     	</dd>-->
-							</dl>
-							<div class="signinFoot" style="padding: 30px 0 30px 0;">
-								<a href="#" class="active" data-id="1"><img src="../img/1/1_1@3x.png" /></a>
-								<a href="#" data-id="2"><img src="../img/1/2_1@3x.png" /></a>
-								<a href="#" data-id="3"><img src="../img/1/3_1@3x.png" /></a>
-								<a href="#" data-id="4"><img src="../img/1/4_1@3x.png" /></a>
-							</div>
-							<div class="pt20" style=" display: inline-flex; width: 100%;">
-								<div style="width: 30%;font-family: PingFang-SC-Light;
-font-size: 12px;
-color: #2F2F2F;
-letter-spacing: 0px;line-height: 40px; display: none;" id="whiteYQM">
-									请输入邀请码：
-								</div>
-								<div class="loginRowFrom" style="width: 70%;">
-									<input type="text" id="yaoqingmaCode" class="loginInput" placeholder="（非必填）会为你的朋友增添人气" style="display: none;font-family: PingFang-SC-Light;
-font-size: 12px;
-color: #2F2F2F;
-letter-spacing: 0px; padding: 0 !important;" />
-								</div>
+  				} else {
+  					$(".shade,.tanceng").find("p").text("获取失败，请重新获取");
+  					$(".shade,.tanceng").css("display", "block");
+  					$(".shade").height();
+  					//				clearInterval(timer);
+  					$('#J_getCode').show();
+  					$('#J_resetCode').hide();
+  					//				var obj=$(this);
+  					//var this=event
+  					close();
+  				}
+  			})
+  			//	})
+  	}
 
-								<!--	<input type="button" value="确定" style="background-image: url(../img/1/but_confirm_dis@3x.png);width: 100%;height: 50px;" class="loginBtn"></input>-->
-							</div>
-							<div class="pt20">
-								<a data-rel="popup" class="loginBtn disabled">确定</a>
-								<!--	<input type="button" value="确定" style="background-image: url(../img/1/but_confirm_dis@3x.png);width: 100%;height: 50px;" class="loginBtn"></input>-->
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
+  	function settime(obj) {
+  		//		if($("#phone").val() == "") {
+  		//			$(".shade,.tanceng").find("p").text("请输入手机号");
+  		//			$(".shade,.tanceng").css("display", "block");
+  		//			$(".shade").height();
+  		//			close();
+  		//		}
 
-		</div>
-		</div>
-		<div class="activityBlock" style="background:white; color: #999;">
-			<a href="javascript:;" title="关闭"><i style="color: red;">*</i></a>
-			绑定成功后可直接用手机号登录光博士APP
-		</div>
+  		if(wait == 0) {
+  			obj.removeAttribute("disabled");
+  			obj.value = "发送验证码";
+  			wait = 60;
 
-		<p class="shade"></p>
-		<!--<div class="tanceng">
-			<p class="cue"><img src="../img/1/POP1@3x.png"></p>
+  			return;
+  		} else {
+  			obj.setAttribute("disabled", true);
+  			//			obj.value = wait + "秒后重新发送";
+  			obj.value = "验证码(" + wait + "秒)";
+  			wait--;
+  		}
+  		setTimeout(function() {
+  			settime(obj)
+  		}, 1000)
 
-		</div>-->
-		<div class="tanceng">
-			<p class="cue">密码不正确</p>
+  	}
 
-		</div>
-	</body>
+  	$(".loginBtn").click(function() {
+  		var event = window.event || arguments[0];
+  		event.stopPropagation();
+  		event.preventDefault();
+  		if (!checkInput()) {
+  			return ;
+  		}
+  		if($("#PassWord").val == "") {
+  			//			$(".tanceng img").attr("src", "../img/1/POP3@3x.png")
+  			$(".shade,.tanceng").css("display", "block");
+  			$(".shade").height();
+  		}
+  		$.post(constants.baseUrl + "/AppLogin/Register", {
+  				Mobile: $('#phone').val(),
+  				Password: $('#PassWord').val(),
+  				Source: $(".signinFoot").find(".active").attr("data-id"),
+  				InviteCode: $("#yaoqingmaCode").val(),
+  				AuthCode: $("#Code").val()
+  			},
+  			function(data) {
 
+  				//				$.cookie('userId', data.UserId);
+
+  				if(data.Status == 1) {
+  					$(".shade,.tanceng").find("p").text("注册成功，我们为您直接登录");
+  					$(".shade,.tanceng").css("display", "block");
+  					$(".shade").height();
+  					close();
+  					// location.href = "index.html"
+  					// 返回登陆页面
+  					window.history.go(-1);
+  				}
+  				if(data.Status == 2) {
+  					$(".shade,.tanceng").find("p").text("号码已被注册");
+  					$(".shade,.tanceng").css("display", "block");
+  					$(".shade").height();
+  					close();
+  				}
+  				if(data.Status == 3) {
+  					$(".shade,.tanceng").find("p").text("验证码错误");
+  					$(".shade,.tanceng").css("display", "block");
+  					$(".shade").height();
+  					close();
+  				}
+
+  			});
+  	});
+
+  	$(".signinFoot span").click(function() {
+  		var id = $(this).attr("data-id");
+      // console.log(id);
+  		if(id == "3") {
+
+  			// $("#yaoqingmaCode").css("display", "block");
+  			$("#whiteYQM").css("display", "");
+  		} else {
+  			// $("#yaoqingmaCode").css("display", "none");
+  			$("#whiteYQM").css("display", "none");
+  			$("#yaoqingmaCode").val("");
+  		}
+  		$($(this).closest("div").find("span")).each(function() {
+  			if($(this).hasClass("active")) {
+  				$(this).removeClass("active");
+  			}
+  		})
+
+  		$(this).addClass("active");
+
+  	})
+
+  	var $body = $('body');
+  	document.title = '绑定手机号';
+
+  	function close() {
+  		var t = setTimeout("$('.shade,.tanceng').css('display', 'none')", 2000);
+  	}
+  </script>
 </html>
-<style>
-	.loginInput {
-		color: #999 !important;
-	}
-
-	.loginInput::-webkit-input-placeholder {
-		/* WebKit browsers */
-		color: #999999 !important;
-	}
-
-	.loginInput::-moz-placeholder {
-		/* Mozilla Firefox 4 to 18 */
-		color: #999 !important;
-	}
-
-	.loginInput::-moz-placeholder {
-		/* Mozilla Firefox 19+ */
-		color: #999 !important;
-	}
-
-	.loginInput::-ms-input-placeholder {
-		/* Internet Explorer 10+ */
-		color: #999 !important;
-	}
-
-	.loginRow {
-		border: solid 1px #DDDDDD;
-	}
-
-	.signinFoot a {
-		margin-left: 10px;
-		width: 60px;
-	}
-
-	.loginBtn {
-		background: white;
-		border: none;
-	}
-
-	.shade {
-		width: 100%;
-		background-color: rgba(0, 0, 0, 0.3);
-		position: fixed;
-		left: 0;
-		top: 0;
-		display: none;
-	}
-
-	.tanceng {
-		opacity: 0.69;
-		background: #000000;
-		border-radius: 5px;
-		text-align: center;
-		width: 240px;
-		padding: 20px;
-		line-height: 100%;
-		color: #f31b33;
-		position: fixed;
-		top: 45%;
-		left: 50%;
-		border-radius: 0.6rem;
-		z-index: 999;
-		margin-left: -140px;
-		display: none;
-	}
-
-	.okbtn a {
-		display: block;
-		width: 80%;
-		background-color: #f31b33;
-		color: #fff;
-		line-height: 250%;
-		font-size: 16px;
-		text-align: center;
-		border-radius: 5px;
-		margin: 0 auto;
-	}
-
-	.signinFoot .active {
-		/*font-family: PingFang-SC-Light;
-		font-size: 12px;
-		color: #FF5DA9;
-		letter-spacing: 0px;*/
-	}
-
-	.cue {
-		font-family: PingFang-SC-Medium;
-		font-size: 16px;
-		font-weight: bold;
-		color: #FFFFFF;
-		letter-spacing: 0px;
-		margin: 0;
-	}
-	.loginBtn{
-		background: #FF5DA9;
-		border-radius: 2px; font-family: PingFang-SC-Medium;
-		font-size: 18px;
-		color: #FFFFFF;
-		letter-spacing: 0px;
-	}
-	.disabled{
-		background: #bfbfbf;
-	}
-</style>
-<script>
-	var wait = 60;
-	// 判断手机号，验证码，密码是否全都输入
-	function checkInput(){
-		var phone = $.trim($('#phone').val());
-		var code = $.trim($('#Code').val());
-		var pwd = $.trim($('#PassWord').val());
-		if (phone != '' && code != '' && pwd != '') {
-			return true;
-		}
-		return false;
-	}
-	$(function(){
-		$('#phone').bind('input',function(){
-			if (checkInput()) {
-				$('.loginBtn').removeClass('disabled');
-			}else {
-				$('.loginBtn').addClass('disabled');
-			}
-		});
-		$('#Code').bind('input',function(){
-			if (checkInput()) {
-				$('.loginBtn').removeClass('disabled');
-			}else {
-				$('.loginBtn').addClass('disabled');
-			}
-		});
-		$('#PassWord').bind('input',function(){
-			if (checkInput()) {
-				$('.loginBtn').removeClass('disabled');
-			}else {
-				$('.loginBtn').addClass('disabled');
-			}
-		});
-	});
-	function getCode(e) {
-		//		window.event? window.event.cancelBubble = true : e.stopPropagation();
-		var event = window.event || arguments[0];
-		event.stopPropagation();
-		event.preventDefault();
-		checkPhone(); //验证手机号码
-
-		if(isPhone) {
-			getYZCode(phone.value);
-			resetCode(); //倒计时
-
-		} else {
-			$('#phone').focus();
-		}
-		return false;
-	} //验证手机号码
-	function checkPhone() {
-		var phone = $('#phone').val();
-		var pattern = /^1[0-9]{10}$/;
-		isPhone = 1;
-		if(phone == '') {
-			$(".shade,.tanceng").find("p").text("无法验证，请输入手机号");
-			$(".shade,.tanceng").css("display", "block");
-			$(".shade").height();
-			isPhone = 0;
-			return false;
-		}
-		if(!pattern.test(phone)) {
-			$(".shade,.tanceng").find("p").text("手机号有误");
-			$(".shade,.tanceng").css("display", "block");
-			$(".shade").height();
-			isPhone = 0;
-			return false;
-		}
-	}
-
-	//倒计时
-	function resetCode() {
-		$('#J_getCode').hide();
-		$('#J_second').html('60');
-		$('#J_resetCode').show();
-		var second = 60;
-		var timer = null;
-		timer = setInterval(function() {
-			debugger;
-			second -= 1;
-			if(second > 0) {
-				$('#J_second').html(second);
-			} else {
-				clearInterval(timer);
-				$('#J_getCode').show();
-				$('#J_resetCode').hide();
-			}
-		}, 1000);
-	}
-
-	//	function getYZCode(phone) {
-	//		$.get(constants.baseUrl + "/AppLogin/GetAuthCode?Mobile=" + $("#phone").val(), function(data) {
-	//			debugger;
-	//			var code = data.AuthCode;
-	//			var smsCode = data.SmsCode;
-	//			if(smsCode == 1) {
-	//				//				if(code != $("#code").val()) {
-	//				//					$(".shade,.tanceng").find("p").text("验证码不正确，请更正重试");
-	//				//					$(".shade,.tanceng").css("display", "block");
-	//				//					$(".shade").height();
-	//				//				}
-	//				$(".shade,.tanceng").find("p").text("验证码获取成功");
-	//				$(".shade,.tanceng").css("display", "block");
-	//				$(".shade").height();
-	//
-	//			} else {
-	//				$(".shade,.tanceng").find("p").text("获取失败，请重新获取");
-	//				$(".shade,.tanceng").css("display", "block");
-	//				$(".shade").height();
-	//				//				clearInterval(timer);
-	//				$('#J_getCode').show();
-	//				$('#J_resetCode').hide();
-	//				close();
-	//			}
-	//
-	//		})
-	//	}
-
-	//	$("#getCode").live("click", function(obj) {
-	function getAuthCode(obj) {
-		$.get(constants.baseUrl + "/AppLogin/GetAuthCode?Mobile=" + $("#phone").val(), function(data) {
-				var code = data.AuthCode;
-				var smsCode = data.SmsCode;
-				if(smsCode == "1") {
-					//				if(code != $("#code").val()) {
-					//					$(".shade,.tanceng").find("p").text("验证码不正确，请更正重试");
-					//					$(".shade,.tanceng").css("display", "block");
-					//					$(".shade").height();
-					//				}
-					$(".shade,.tanceng").find("p").text("验证码获取成功");
-					$(".shade,.tanceng").css("display", "block");
-					$(".shade").height();
-					settime(obj);
-					close();;
-
-				} else {
-					$(".shade,.tanceng").find("p").text("获取失败，请重新获取");
-					$(".shade,.tanceng").css("display", "block");
-					$(".shade").height();
-					//				clearInterval(timer);
-					$('#J_getCode').show();
-					$('#J_resetCode').hide();
-					//				var obj=$(this);
-					//var this=event
-					close();
-				}
-			})
-			//	})
-	}
-
-	function settime(obj) {
-		//		if($("#phone").val() == "") {
-		//			$(".shade,.tanceng").find("p").text("请输入手机号");
-		//			$(".shade,.tanceng").css("display", "block");
-		//			$(".shade").height();
-		//			close();
-		//		}
-
-		if(wait == 0) {
-			obj.removeAttribute("disabled");
-			obj.value = "发送验证码";
-			wait = 60;
-
-			return;
-		} else {
-			obj.setAttribute("disabled", true);
-			//			obj.value = wait + "秒后重新发送";
-			obj.value = "验证码(" + wait + "秒)";
-			wait--;
-		}
-		setTimeout(function() {
-			settime(obj)
-		}, 1000)
-
-	}
-
-	$(".loginBtn").click(function() {
-		var event = window.event || arguments[0];
-		event.stopPropagation();
-		event.preventDefault();
-		if (!checkInput()) {
-			return ;
-		}
-		if($("#PassWord").val == "") {
-			//			$(".tanceng img").attr("src", "../img/1/POP3@3x.png")
-			$(".shade,.tanceng").css("display", "block");
-			$(".shade").height();
-		}
-		$.post(constants.baseUrl + "/AppLogin/Register", {
-				Mobile: $('#phone').val(),
-				Password: $('#PassWord').val(),
-				Source: $(".signinFoot").find(".active").attr("data-id"),
-				InviteCode: $("#yaoqingmaCode").val(),
-				AuthCode: $("#Code").val()
-			},
-			function(data) {
-
-				//				$.cookie('userId', data.UserId);
-
-				if(data.Status == 1) {
-					$(".shade,.tanceng").find("p").text("注册成功，我们为您直接登录");
-					$(".shade,.tanceng").css("display", "block");
-					$(".shade").height();
-					close();
-					// location.href = "index.html"
-					// 返回登陆页面
-					window.history.go(-1);
-				}
-				if(data.Status == 2) {
-					$(".shade,.tanceng").find("p").text("号码已被注册");
-					$(".shade,.tanceng").css("display", "block");
-					$(".shade").height();
-					close();
-				}
-				if(data.Status == 3) {
-					$(".shade,.tanceng").find("p").text("验证码错误");
-					$(".shade,.tanceng").css("display", "block");
-					$(".shade").height();
-					close();
-				}
-
-			});
-	});
-	//
-	//	$(".layoutMain").click(function() {
-	//		debugger;
-	//		$('#phone').focus();
-	//		if($(".shade,.tanceng").css("display") == 'none') {
-	//			return false;
-	//		}
-	//
-	//		$(".shade,.tanceng").css("display", "none");
-	//
-	//	});
-
-	$(".signinFoot a").click(function() {
-		var id = $(this).attr("data-id");
-		if(id == "3") {
-
-			$("#yaoqingmaCode").css("display", "block");
-			$("#whiteYQM").css("display", "block");
-		} else {
-			$("#yaoqingmaCode").css("display", "none");
-			$("#whiteYQM").css("display", "none");
-			$("#yaoqingmaCode").val("");
-		}
-		$($(this).closest("div").find("a")).each(function() {
-
-			if($(this).hasClass("active")) {
-				$(this).removeClass("active");
-				$(this).find("img").attr("src", "../img/1/" + $(this).attr("data-id") + "_1@3x.png")
-			}
-		})
-
-		//		var other= $(this).closest("div").find("a").hasClass("active");
-		//
-		//		other.find("img").attr("src","../img/1/"+ other.attr("data-id") + "_1@3x.png" );
-		//		other.removeClass("active");
-		$(this).addClass("active");
-		$(this).find("img").attr("src", "../img/1/" + id + "_2@3x.png")
-
-	})
-
-	var $body = $('body');
-	document.title = '绑定手机号';
-
-	//	var $iframe = $('<iframe src="/favicon.ico"></iframe>');
-	//	$iframe.on('load', function() {
-	//		setTimeout(function() {
-	//			$iframe.off('load').remove();
-	//		}, 0);
-	//	}).appendTo($body);
-
-	function close() {
-		var t = setTimeout("$('.shade,.tanceng').css('display', 'none')", 2000);
-	}
-</script>

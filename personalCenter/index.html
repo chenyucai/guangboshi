@@ -166,7 +166,7 @@
 					<div class="categoryList">
 						<dl class="categoryListDl">
 							<dt>
-                    	<a href="javascript:void(0)"><img src="img/图层-8.png"/>
+                    	<div><img src="img/图层-8.png"/>
                     	<div class="accountHeadPic" style="border-radius:inherit; padding-right: 20px; z-index: 99;">
 						<img src="../img/QQ截图20161118113628.png"  id="HeadIcon"/>
 					</div>
@@ -178,7 +178,7 @@
                         	<div class="categoryTitle" id="Name" style="border: none;">疯狂的石头</div>
                              <div class="categoryAbout">会员等级：V<span id="MemberLevel">2</span></div>
                         </div>
-                     </a>
+                     </div>
                    </dt>
 
 						</dl>
@@ -277,7 +277,8 @@
 		if(SignedMark == false) {
 			$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
 				if(response != "") {
-					window.location.reload();
+					// window.location.reload();
+					$(".qiandao").text("已签到");
 					return false;
 				}
 			})

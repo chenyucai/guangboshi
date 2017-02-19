@@ -18,7 +18,7 @@
 		<script src="../js/location.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/jquery.cookie.js"></script>
-		
+
 		<script type="text/html" id="template">
 			{{each(label) LabelList}}
 			<a href="#" class="btn btnSm style_4">${label}</a>
@@ -46,31 +46,31 @@
 				width: 168px;
 				height: 150px;
 			}*/
-			
+
 			.h5 {}
-			
+
 			.productListLove {
 				font-family: PingFang-SC-Light;
 				font-size: 10px;
 				color: #FF5DA9 !important;
 				letter-spacing: 0px;
 			}
-			
+
 			.yxfw {
 				font-family: PingFang-SC-Medium;
 				font-size: 14px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.artistHead .btn {
 				width: inherit;
 			}
-			
+
 			.loginSns {
 				padding: 0;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFang-SC-Medium;
@@ -78,7 +78,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.C_C_C {
 				font-family: PingFang-SC-Light;
 				font-size: 11px;
@@ -194,7 +194,7 @@
 
 <script>
 	$.get(constants.baseUrl + "/AppGoods/GetCollectionUserDetail?Id=" + sessionStorage.getItem("userDetailId") + 　"&UserId=" + $.cookie("userId"), function(data) {
-		
+
 		$("#Name").text(data.Name);
 		$("#Level").attr("src", "../img/dengji/V" + data.Level + "@2x.png");
 		if(data.CollectionMark == true) {
@@ -215,21 +215,28 @@
 		)
 
 		$(".yxfw").text(data.IntentionServeList.join('、'));
-		
+
 		if(data.Gender==true)
 		{
 			$("#Gender").attr("src","../img/2/icon_man@3x.png")
 		}
 		var Address= getNameById(data.Address);
 		$("#address").text(Address);
+
+		$(".productClick").on("click", function() {
+			sessionStorage.setItem("ProductId", $(this).attr("data-id"));
+			sessionStorage.setItem("ProdcuctType", 1);
+			localStorage.setItem('ProdcuctType', 1);
+			location.href = "productDetails.html";
+		})
 	})
-	
+
 	$("#CollectionMark").live("click", function(e) {
-		if(e && e.stopPropagation) //FF  
+		if(e && e.stopPropagation) //FF
 		{
 
 			e.stopPropagation();
-		} else //IE  
+		} else //IE
 		{
 
 			window.event.cancelBubble = true;
