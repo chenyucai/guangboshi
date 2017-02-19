@@ -187,6 +187,48 @@
 			border-radius: 0;
 			margin-left: 5px;
 		}
+		.tag{
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			min-height: 200px;
+			z-index: 10000;
+			background: #fff;
+		}
+		.tag-box{
+			margin-top: 15px;
+			padding: 0 15px;
+		}
+		.tag-header{
+			height: 40px;
+			line-height: 40px;
+			border-bottom: 1px solid #cfcfcf;
+		}
+		.tag-left{
+			float: left;
+			margin-left: 20px;
+		}
+		.tag-right{
+			float: right;
+			margin-right: 20px;
+		}
+		.label_list{
+			background: #fff;
+			color: #000;
+			margin-bottom: 8px;
+		}
+		.btn:hover {
+      color: #000;
+      text-decoration: none;
+      background-color: #fff;
+		}
+		.btn.addlabel{
+			background: #9398f3;
+			color: #fff;
+		}
+		#LabelList a,#ServeList a{
+			margin-bottom: 5px;
+		}
 	</style>
 </head>
 
@@ -256,7 +298,7 @@
 							</li>
 							<li style="margin-bottom: 10px;">
 								<div class="accountNavSon">
-									<a href="#" class="accountNavRow" onClick="LabelSelect()">
+									<a href="javascript:void(0)" class="accountNavRow tagtag">
 										<i class="accountNavAngle"></i>
 										<span class="accountNavText">个人标签</span>
 									</a>
@@ -416,6 +458,16 @@
 			</ul>
 		</div>
 	</div>
+
+	<div class="tag" style="display: none;">
+		<div class="tag-header">
+			<span class="tag-left">取消</span>
+			<span class="tag-right">确定</span>
+		</div>
+		<div class="tag-box">
+
+		</div>
+	</div>
 </body>
 
 </html>
@@ -428,6 +480,46 @@
 	//	})
 
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalDetail?UserId=" + $.cookie("userId"), function(response) {
+		var html = '';
+		$(response.LabelsList).each(function(i,v){
+			console.log(response.LabelsList[i].Id);
+			html = '<div class="btn btnSm label_list" id='+response.LabelsList[i].Id+'>'+response.LabelsList[i].Name+'</a>';
+			$(".tag-box").append(html);
+		})
+		$(".tag-box div").each(function(){
+			$(this).click(function(){
+				$(this).toggleClass("addlabel");
+			})
+		})
+		$(".tagtag").click(function(){
+			$(".tag").show();
+			$("#goodcover").show();
+		})
+		$(".tag-left").click(function(){
+			$(".tag").hide();
+			$("#goodcover").hide();
+		})
+		$("#goodcover").click(function(){
+			$(".tag").hide();
+		})
+		$(".tag-right").on('click',function(){
+			var LabelIdArr = [];
+			$(".tag-box .addlabel").each(function(){
+				LabelIdArr.push($(this).attr("id"));
+			});
+			$.post(constants.baseUrl + "/AppPersonal/SavePersonalDetail", {
+				UserId: $.cookie("userId"),
+				Name: "Labels",
+				Value: LabelIdArr.join(',')
+			},
+			function(data) {
+				if(data != "") {alert(data)}
+				else{
+					location.href = "personalData.html"
+				}
+			})
+		})
+
 		// debugger;
 		$("#NickName").text(response.NickName);
 		$("#HeadIcon").attr("src", response.HeadIcon);

@@ -153,7 +153,7 @@
 						<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
 					</div>
 					<h2 class="headTitle">
-              余额说明
+              余额规则说明
 
             </h2>
 
@@ -165,7 +165,7 @@
 
 </html>
 <script>
-	$.get(constants.baseUrl + "/AppPersonal/GetCouponExplain", function(response) {
+	$.get(constants.baseUrl + "/AppPersonal/GetAboutUsExplain?type=2", function(response) {
 		$(".pageMain").html(response);
 	})
 </script>
