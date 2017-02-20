@@ -385,6 +385,6 @@
 
 	$("#industryInformationDetail").live("click", function() {
 		sessionStorage.setItem("NewId", $(this).attr("data-id"));
-		location.href = "photoelectricSchoolDetail.html"
+		location.href = "photoelectricSchoolDetail.html?id="+$(this).attr("data-id");
 	})
 </script>

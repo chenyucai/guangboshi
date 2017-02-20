@@ -112,7 +112,15 @@
 </html>
 
 <script>
-	$.get(constants.baseUrl + "/AppMagazine/GetMagazineDetail?UserId=" + $.cookie("userId") + "&Id=" + sessionStorage.getItem("NewId"), function(data) {
+	function getUrlParameter(params, paramName){
+	  var reg = new RegExp("(^|&)"+ paramName +"=([^&]*)(&|$)");
+	  var r = params.substr(1).match(reg);
+	  if(r!=null) return  unescape(r[2]); return null;
+	}
+	var param = window.location.search;
+	var NewId = getUrlParameter(param, "id") || sessionStorage.getItem("NewId");
+
+	$.get(constants.baseUrl + "/AppMagazine/GetMagazineDetail?UserId=" + $.cookie("userId") + "&Id=" + NewId, function(data) {
 		$("#Title").text(data.Title);
 		$("#Content").html(data.Content);
 		$("#Image").attr("src", data.Image);
