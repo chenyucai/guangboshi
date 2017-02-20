@@ -11,6 +11,7 @@
 		<link href="../static/css/style.css" rel="stylesheet">
 		<link href="../static/css/icon.css" rel="stylesheet">
 		<script src="../static/js/jquery-1.9.1.js"></script>
+    <script src="../js/jquery.cookie.js "></script>
 		<script src="../static/js/web.js"></script>
 		<script src="../js/jquery.tmpl.min.js"></script>
 		<script src="../js/common.js"></script>
@@ -92,7 +93,11 @@ letter-spacing: 0px;
 </html>
 
 <script>
-	$.get(constants.baseUrl + "/AppHome/GetSameCityStoreList?cityId=" + sessionStorage.getItem("cityId"), function(data) {
+  var Type = sessionStorage.getItem("Type");
+  var SearchValue = sessionStorage.getItem("SearchValue");
+  var CityId = sessionStorage.getItem("cityId");
+  $.get(constants.baseUrl + "/AppHome/Search?Type=" + Type + "&SearchValue=" + SearchValue + "&UserId=" + $.cookie("userId")+'&CityId='+CityId,
+  function(data) {
 		var template = $(".productListUl");
 		$("#template").tmpl(data.StoreList).appendTo(template);
 

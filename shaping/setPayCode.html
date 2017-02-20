@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title></title>
+		<!--<link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<script src="../js/common.js"></script>
+		<!--	<script src="http://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../js/jquery.cookie.js "></script>
+		<script src="../js/jquery_md5.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+
+		<!--<script src="js/signin.js></script>-->
+	</head>
+
+	<body>
+
+		<div class="layoutMain" style="font:">
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="index.html" class="headLeftBtn"><i class="icon-cross2"></i></a>
+				</div>
+				<h2 class="headTitle">
+               		设置安全支付密码
+            </h2>
+			</header>
+			<div class="pageMain noFoot">
+				<div class="loginLayout">
+					<form id="login">
+
+						<div class="loginMain">
+							<span>请输入手机号<span id="mobile">188****3717</span>的验证码：</span>
+							<div style="width: 100%;">
+								<div class="loginRow" style="display:inline-block; width: 60%;">
+									<input type="text" id="AuthCode" class="loginInput" style="width: 100%;" />
+								</div>
+								<div class="loginRow" style="float: right;display: inline; width: 30%;" align="center">
+									<input type="button" id="getCode" class="loginInput" value="获取验证码" onclick="settime(this)" />
+								</div>
+							</div>
+
+							<div class="loginRow">
+								<div class="loginRowFrom">
+									<div style="width: 100%;">
+										<div style="width: 40%; float: left;  margin-top: 10px"><span>设置支付密码：</span></div>
+
+										<input type="password" class="loginInput" id="PayPassword1" style="width: 60%;" />
+										<div style="border: solid 1px; color: #E6E6E6;"></div>
+
+									</div>
+									<div style="width: 100%;">
+										<span style="width: 40%; float: left; margin-top: 10px;">确认支付密码：</span>
+										<input type="password" class="loginInput" id="PayPassword2" style="width: 60%;" />
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="loginFoot">
+							<div class="pt20">
+								<!--	<input type="button" value="完成" style="background-image: url(../img/1/but_confirm_dis@3x.png);width: 100%;height: 50px;" class="loginBtn"></input>-->
+							</div>
+							<div class="pt20">
+								<a data-rel="popup" style="background: #FF1984; color: white;" class="loginBtn">完成</a>
+								<!--	<input type="button" value="完成" style="background-image: url(../img/1/but_confirm_dis@3x.png);width: 100%;height: 50px;" class="loginBtn"></input>-->
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+		</div>
+		</div>
+
+	</body>
+
+</html>
+<style>
+	.loginInput {
+		color: #999 !important;
+		width: 70%;
+		padding: 0 !important;
+	}
+
+	.loginInput::-webkit-input-placeholder {
+		/* WebKit browsers */
+		color: #999999 !important;
+	}
+
+	.loginInput::-moz-placeholder {
+		/* Mozilla Firefox 4 to 18 */
+		color: #999 !important;
+	}
+
+	.loginInput::-moz-placeholder {
+		/* Mozilla Firefox 19+ */
+		color: #999 !important;
+	}
+
+	.loginInput::-ms-input-placeholder {
+		/* Internet Explorer 10+ */
+		color: #999 !important;
+	}
+
+	.loginRow {
+		border: solid 0px #DDDDDD;
+	}
+
+	.signinFoot a {
+		margin-left: 20px;
+		width: 60px;
+	}
+
+	.loginBtn {
+		background: white;
+		border: none;
+	}
+
+	.shade {
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.3);
+		position: fixed;
+		left: 0;
+		top: 0;
+		display: none;
+	}
+
+	.tanceng {
+		opacity: 0.69;
+		background: #000000;
+		border-radius: 5px;
+		text-align: center;
+		width: 240px;
+		padding: 20px;
+		line-height: 100%;
+		color: #f31b33;
+		position: fixed;
+		top: 45%;
+		left: 50%;
+		border-radius: 0.6rem;
+		z-index: 999;
+		margin-left: -140px;
+		display: none;
+	}
+
+	.okbtn a {
+		display: block;
+		width: 80%;
+		background-color: #f31b33;
+		color: #fff;
+		line-height: 250%;
+		font-size: 16px;
+		text-align: center;
+		border-radius: 5px;
+		margin: 0 auto;
+	}
+
+	.signinFoot .active {
+		/*font-family: PingFang-SC-Light;
+		font-size: 12px;
+		color: #FF5DA9;
+		letter-spacing: 0px;*/
+	}
+
+	.cue {
+		font-family: PingFang-SC-Medium;
+		font-size: 16px;
+		font-weight: bold;
+		color: #FFFFFF;
+		letter-spacing: 0px;
+		margin: 0;
+	}
+</style>
+
+<script>
+	var wait = 60;
+	var phoneNum;
+	var Code;
+	$.get(constants.baseUrl + "/AppPersonal/GetUserMobile?UserId=" + $.cookie("userId"), function(mobile) {
+		phoneNum = mobile;
+		$("#mobile").text(mobile.substring(0, 3) + "****" + mobile.substring(8, 11));
+	})
+
+	function settime(obj) {
+		if(wait == 0) {
+			obj.removeAttribute("disabled");
+			obj.value = "发送验证码";
+			wait = 60;
+			return;
+		} else {
+			obj.setAttribute("disabled", true);
+			obj.value = wait + "秒后重新发送";
+			wait--;
+		}
+		setTimeout(function() {
+			settime(obj)
+		}, 1000)
+	}
+
+	$("#getCode").click(function() {
+		$.get(constants.baseUrl + "/AppLogin/GetAuthCode?Mobile=" + phoneNum,
+			function(data, status) {
+				Code = data.AuthCode;
+				var smsCode = data.SmsCode;
+				if(smsCode == 1) {
+
+				} else {
+					$(".shade,.tanceng").find("p").text("获取失败，请重新获取");
+					$(".shade,.tanceng").css("display", "block");
+					$(".shade").height();
+					//				clearInterval(timer);
+					$('#J_getCode').show();
+					$('#J_resetCode').hide();
+				}
+
+			})
+	})
+
+	$(".loginBtn").live("click",function(){
+		$.post(constants.baseUrl + "/AppPersonal/SetPayPassword",{
+			UserId:$.cookie("userId"),
+			Mobile:phoneNum,
+			AuthCode:$("#AuthCode").val(),
+			PayPassword1:$("#PayPassword1").val(),
+			PayPassword2:$("#PayPassword2").val()
+		},function(message){
+			if(message!="")
+			{
+				alert(message);
+				window.history.go(-1);
+			}
+		})
+	})
+</script>
