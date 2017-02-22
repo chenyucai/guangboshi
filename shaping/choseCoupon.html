@@ -32,6 +32,118 @@
 			</div>
 			{{/if}}
 		</script>
+		<style>
+			.coupon {
+				position: relative;
+				padding: 5px;
+			}
+
+			.coupon .content {
+				position: relative;
+				display: block;
+				background-color: #ccaa6f;
+				padding: 10px 10px;
+				box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
+				/*border: 1px solid #ccaa6f;*/
+			}
+
+			.coupon-unselected .content:after {
+				width: 0;
+				height: 0;
+				border-top: 60px solid #fff;
+				border-left: 60px solid transparent;
+				position: absolute;
+				display: block;
+				right: 0;
+				content: "";
+				top: 0;
+			}
+
+			.coupon .content .amount {
+				position: relative;
+				display: table-cell;
+				text-align: right;
+				vertical-align: middle;
+				border-right: 1px dashed #fff;
+				padding: 10px 10px 10px 20px;
+				float: left;
+			}
+
+			.coupon .content .amount .unit {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				font-weight: bold;
+				color: #fff;
+			}
+
+			.coupon .content .amount .number {
+				font-family: PingFang-SC-Medium;
+				font-size: 3.5em;
+				font-weight: bold;
+				color: #fff;
+			}
+
+			.coupon .content .description {
+				position: relative;
+				margin-left: 90px;
+				padding: 12px 0;
+			}
+
+			.coupon .content .description p {
+				margin: 5px 0;
+				padding: 0 20px;
+				color: #eee;
+			}
+
+			.coupon .content .description p span.point {
+				font-size: 1.2em;
+				font-weight: bold;
+				color: #fff;
+				margin-right: 10px;
+				word-spacing: 8px;
+				letter-spacing: 1px;
+			}
+
+			.coupon .content .description p span.normal {
+				font-size: 0.6em;
+				color: #eee;
+				word-spacing: 8px;
+				letter-spacing: 1px;
+			}
+
+			.coupon .content .description p span.expiry-date {
+				font-size: 0.6em;
+				color: #eee;
+				word-spacing: 8px;
+			}
+
+			.coupon-unselected .status {
+				position: absolute;
+				top: 22px;
+				right: 7px;
+				color: #ccaa6f;
+				z-index: 1000;
+				font-size: 0.8em;
+				transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				/* IE 9 */
+				-moz-transform: rotate(45deg);
+				/* Firefox */
+				-webkit-transform: rotate(45deg);
+				/* Safari 和 Chrome */
+				-o-transform: rotate(45deg);
+				/* Opera */
+			}
+
+			.coupon-selected .status {
+				position: absolute;
+				top: 15px;
+				right: 15px;
+				color: #fff;
+				font-size: 2.5em;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -51,119 +163,6 @@
 			<div class="pageMain noFoot">
 				<div class="demo">
 
-					<style>
-						.coupon {
-							position: relative;
-							padding: 5px;
-						}
-						
-						.coupon .content {
-							position: relative;
-							display: block;
-							background-color: #ccaa6f;
-							padding: 10px 10px;
-							box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px, rgba(0, 0, 0, 0.35) 0 0 1px;
-							/*border: 1px solid #ccaa6f;*/
-						}
-						
-						.coupon-unselected .content:after {
-							width: 0;
-							height: 0;
-							border-top: 60px solid #fff;
-							border-left: 60px solid transparent;
-							position: absolute;
-							display: block;
-							right: 0;
-							content: "";
-							top: 0;
-						}
-						
-						.coupon .content .amount {
-							position: relative;
-							display: table-cell;
-							text-align: right;
-							vertical-align: middle;
-							border-right: 1px dashed #fff;
-							padding: 10px 10px 10px 20px;
-							float: left;
-						}
-						
-						.coupon .content .amount .unit {
-							position: absolute;
-							top: 10px;
-							left: 10px;
-							font-weight: bold;
-							color: #fff;
-						}
-						
-						.coupon .content .amount .number {
-							font-family: PingFang-SC-Medium;
-							font-size: 3.5em;
-							font-weight: bold;
-							color: #fff;
-						}
-						
-						.coupon .content .description {
-							position: relative;
-							margin-left: 90px;
-							padding: 12px 0;
-						}
-						
-						.coupon .content .description p {
-							margin: 5px 0;
-							padding: 0 20px;
-							color: #eee;
-						}
-						
-						.coupon .content .description p span.point {
-							font-size: 1.2em;
-							font-weight: bold;
-							color: #fff;
-							margin-right: 10px;
-							word-spacing: 8px;
-							letter-spacing: 1px;
-						}
-						
-						.coupon .content .description p span.normal {
-							font-size: 0.6em;
-							color: #eee;
-							word-spacing: 8px;
-							letter-spacing: 1px;
-						}
-						
-						.coupon .content .description p span.expiry-date {
-							font-size: 0.6em;
-							color: #eee;
-							word-spacing: 8px;
-						}
-						
-						.coupon-unselected .status {
-							position: absolute;
-							top: 22px;
-							right: 7px;
-							color: #ccaa6f;
-							z-index: 1000;
-							font-size: 0.8em;
-							transform: rotate(45deg);
-							-ms-transform: rotate(45deg);
-							/* IE 9 */
-							-moz-transform: rotate(45deg);
-							/* Firefox */
-							-webkit-transform: rotate(45deg);
-							/* Safari 和 Chrome */
-							-o-transform: rotate(45deg);
-							/* Opera */
-						}
-						
-						.coupon-selected .status {
-							position: absolute;
-							top: 15px;
-							right: 15px;
-							color: #fff;
-							font-size: 2.5em;
-						}
-					</style>
-
 				</div>
 			</div>
 		</div>
@@ -172,6 +171,7 @@
 </html>
 
 <script>
+$(function(){
 	$.get(constants.baseUrl + "/AppCoupon/GetUserCouponListByOrderId?orderId=" + sessionStorage.getItem("OrderID"), function(data) {
 		//debugger;
 		var template = $('.demo');
@@ -199,8 +199,11 @@
 	$('.choseOk').live("click", function() {
 		var couponId = $('.coupon-selected').attr("data-id");
 		var amount = $('.coupon-selected').find('.number').text();
-		sessionStorage.setItem("couponId", couponId);
-		sessionStorage.setItem("couponAmount", amount);
+		if (sessionStorage.getItem('couponId') !== couponId) {
+			sessionStorage.setItem("couponId", couponId);
+			sessionStorage.setItem("couponAmount", amount);
+		}
+
 		location.href = "affirmOrder.html";
 	})
 	$('.closebt').click(function() {
@@ -258,4 +261,5 @@
 			}, 200, 'linear');
 		}
 	}
+});
 </script>

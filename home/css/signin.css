@@ -108,7 +108,7 @@ body{
 
 }
 .sigin-from-header{
-  color: #fff;
+  color: #bfbfbf;
   font-size: 12px;
   text-align: center;
   margin: 20px 0 25px 0;
@@ -119,7 +119,7 @@ body{
   height: 1px;
   opacity: 0.5;
   background-image: linear-gradient(90deg, invalid gradient);
-  background-color: #fff;
+  background-color: #bfbfbf;
   vertical-align: middle;
 }
 .sigin-from-title{
@@ -135,8 +135,8 @@ body{
   height: 25px;
   line-height: 25px;
   font-size: 12px;
-  background-color: #fff;
-  margin-right: 18px;
+  background-color: #B8B8B8;
+  margin-right: 10px;
 }
 .sigin-from-item:last-child{
   margin-right: 0;

@@ -71,30 +71,14 @@
   <body style="background-color:#EBEBEB;">
     <div class="wrapper">
       <ul class="suggest-list">
-        <li class="suggest-item">
+        <!-- <li class="suggest-item">
           <div class="item-date">
             2016-08-20 15:30
           </div>
           <p class="item-content">
             发觉疗法就是雷锋精神垃圾分类介绍说
           </p>
-        </li>
-        <li class="suggest-item">
-          <div class="item-date">
-            2016-08-20 15:30
-          </div>
-          <p class="item-content">
-            发觉疗法就是雷锋精神垃圾分类介绍说
-          </p>
-        </li>
-        <li class="suggest-item">
-          <div class="item-date">
-            2016-08-20 15:30
-          </div>
-          <p class="item-content">
-            发觉疗法就是雷锋精神垃圾分类介绍说
-          </p>
-        </li>
+        </li> -->
       </ul>
       <div class="suggest-input-wrapper">
         <div class="input-wrapper">
@@ -126,14 +110,45 @@
             })
         }
     }
+
+
     $(function(){
       androidInputBugFix();
+      var userId = $.cookie("userId");
+      function getOpinionList(){
+        $.ajax({
+          url:'http://www.missnefer.com/AppPersonal/GetOpinionList',
+          type: 'get',
+          data: {
+            UserId: userId
+          },
+          success: function(res){
+            if (res.length > 0) {
+              var list = '';
+              res.forEach(function(item){
+                list += '<li class="suggest-item">'+
+                  '<div class="item-date">'+
+                    item.CreatorTime +
+                  '</div>'+
+                  '<p class="item-content">'+
+                    item.Description +
+                  '</p>'+
+                '</li>';
+              });
+              $('.suggest-list').html(list);
+            }
+          }
+        });
+      }
+
+      getOpinionList();
+
+
       $('#save').click(function(){
         var value = $('#content').val();
         if ($.trim(value).length == 0) {
           return ;
         }
-        var userId = $.cookie("userId");
         $.ajax({
           url:'http://www.missnefer.com/AppPersonal/SaveOpinion',
           type: 'get',
@@ -142,7 +157,7 @@
             UserId: userId
           },
           success:function(res){
-
+            getOpinionList();
           }
         });
       });

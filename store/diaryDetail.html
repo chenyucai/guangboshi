@@ -11,6 +11,7 @@
 		<link href="../static/css/style.css" rel="stylesheet">
 		<link href="../static/css/icon.css" rel="stylesheet">
 		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
 		<script src="../static/js/idangerous.swiper.js"></script>
 		<script src="../static/js/web.js"></script>
 		<script src="../static/js/jquery.raty.js"></script>
@@ -19,7 +20,7 @@
 			.layoutMain {
 				background: none;
 			}
-			
+
 			.p10 {
 				padding: 40px;
 				padding-top: 10px;
@@ -28,14 +29,30 @@
 	</head>
 
 	<body>
+		<div class="shareWindow">
+			<div class="shareWindowRow">
+				方法一： 点击右上角的<span class="shareIconBtn"><i class="icon-ellipsis-v"></i></span>图标<br> 然后
+				<span class="shareIconBtn"><i class="icon-share"></i></span>发送给朋友<br> 或者
+				<span class="shareIconBtn"><i class="icon-picassa"></i></span>专场到朋友圈
+			</div>
 
+			<div class="shareWindowRow">
+				方法二： 邀请好友扫描二维码
+				<div class="shareWindowPic"><img src="../img/二维码图片.jpg" /></div>
+			</div>
+			<div class="p20">
+				<!--  <a href="../account/partners.html" class="btn btnBlock style_1">查看我的分销</a>-->
+				<a href="#" class="btn btnBlock style_2 mt10 ">我知道了</a>
+
+			</div>
+		</div>
 		<div class="layoutMain">
 			<header class="pageHead clearfix">
 				<div class="headLeft">
 					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
 				</div>
 				<div class="headRight">
-					<a href="javascript:void(0)" class="headLeftBtn"><i class="icon-share2"></i></a>
+					<a href="javascript:void(0)" class="headLeftBtn" id="shareClick"><i class="icon-share2"></i></a>
 					<a href="javascript:void(0)" class="headLeftBtn" id="startClick"><i class="icon-star"></i></a>
 				</div>
 				<h2 class="headTitle">
@@ -48,7 +65,7 @@
 					<div class=" tc pt20"><b style=" font-size:20px;" id="Title">柯海霞：形似黄蓉，心是华筝</b></div>
 					<div class="p10 mt10" id="Abstract">
 
-					
+
 
 					</div>
 					<div class="tc pt5" style="background: #F2F2F2; margin: 0 40px; padding-top: 20px;">
@@ -71,9 +88,16 @@
 	</body>
 
 </html>
-
+<style media="screen">
+	.icon-star.active{
+		color: #F03B92;
+	}
+</style>
 <script>
-	$.get(constants.baseUrl + 　"/AppBeautician/GetDiaryDetailByDiaryId?diaryId=" + sessionStorage.getItem("diaryId"), function(data) {
+$(function(){
+	var Id = '';
+	$.get(constants.baseUrl + 　"/AppBeautician/GetDiaryDetailByDiaryId?UserId=" + $.cookie("userId") + "&diaryId=" + sessionStorage.getItem("diaryId"), function(data) {
+		Id = data.Id;
 		$("#Title").text(data.Title);
 //		$("#Abstract").text(data.Abstract);
 		$("#Content").html(data.Content);
@@ -82,5 +106,56 @@
 		$("#HeadIcon").attr("src",diary.HeadIcon);
 		$("#NickName").text(diary.NickName);
 		$("#StoreName").text(diary.StoreName);
+		if(data.CollectionMark == true) {
+			$(".icon-star").addClass('active');
+		}
 	})
+
+	$('#shareClick').click(function(){
+		$('.shareWindow').slideDown(400);
+	})
+
+	$(".mt10").live("click", function() {
+		$('.shareWindow').slideUp(400);
+
+		// $.post(constants.baseUrl + "/AppCommon/Share", {
+		// 	Id: $(this).attr("data-id"),
+		// 	UserId: $.cookie("userId"),
+		// 	Type: 2
+		// }, function(response) {
+		//
+		// 	$('.shareWindow').slideUp(400);
+		// })
+	});
+
+	$("#startClick").live("click", function () {
+	    if (!checkLogin('../store/diaryDetail.html')) {
+	        return;
+	    }
+		var SetClearMark = 1;
+		if($(".icon-star").hasClass('active')) {
+			SetClearMark = 2;
+		}
+		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+				SetClearMark: SetClearMark,
+				UserId: $.cookie("userId"),
+				Id: Id,
+				Category: 3,
+				Type: 1
+			},
+			function(response) {
+				if(response != "") {
+					alert("系统错误");
+				}else{
+					if ($(".icon-star").hasClass('active')) {
+						$(".icon-star").removeClass('active');
+					}else {
+						$(".icon-star").addClass('active');
+					}
+				}
+				// window.location.reload();
+			})
+	})
+})
+
 </script>

@@ -13,6 +13,7 @@
     <link href="../static/js/idangerous.swiper2.7.6.css" rel="stylesheet">
     <link href="../static/js/idangerous.swiper.3dflow.css" rel="stylesheet">
     <script src="../static/js/jquery-1.9.1.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
     <script src="../static/js/idangerous.swiper2.7.6.min.js"></script>
     <script src="../static/js/idangerous.swiper.3dflow.js"></script>
     <script src="../static/js/web.js"></script>
@@ -285,8 +286,8 @@
             <div class="top">
                 <div class="center">
                     <div class="p1">爱美丽获积分</div>
-                    <div class="p2">1024</div>
-                    <div class="p3">美丽值超越了<span class="percent">92%</span>的光博士用户</div>
+                    <div class="p2" id="point"></div>
+                    <div class="p3">美丽值超越了<span class="percent" id="percent"></span>的光博士用户</div>
                 </div>
             </div>
             <div class="dot"></div>
@@ -585,6 +586,18 @@
 
     <script type="text/javascript">
         $(function () {
+          var userId = $.cookie("userId");
+          $.ajax({
+            url:'http://www.missnefer.com/AppPersonal/GetPoint',
+            type: 'get',
+            data: {
+              UserId: userId
+            },
+            success: function(res){
+              $('#point').html(res.Point);
+              $('#percent').html(res.Percent);
+            }
+          })
             //debugger;
             //$(".swiper-slide").width($(window).width() / 2);
             //$(".swiper-container").css("marginLeft", -$(window).width() / 4);

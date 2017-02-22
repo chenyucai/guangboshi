@@ -2,7 +2,7 @@
 <html>
 
 	<head>
-		<title></title>
+		<title>个人中心</title>
 
 		<head>
 			<meta charset="UTF-8">
@@ -172,8 +172,8 @@
 					</div>
                     	<div class="sex" style="position: absolute;	bottom: 85px;
 					right:36%;"> ♀</div>
-						<div class="qiandao" style="position: absolute;	bottom: 65px;
-					right:10px; z-index: 999;">签到  </div>
+						<div class="qiandao" style="position: absolute;	bottom: 40px;
+					right:5px; z-index: 999;margin:10px;">签到  </div>
                         <div class="categoryListText">
                         	<div class="categoryTitle" id="Name" style="border: none;">疯狂的石头</div>
                              <div class="categoryAbout">会员等级：V<span id="MemberLevel">2</span></div>
@@ -254,7 +254,8 @@
 	var SignedMark;
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalCenter?UserId=" + $.cookie("userId"), function(response) {
 		// debugger;
-		$("#HeadIcon").attr("src", response.HeadIcon);
+		console.log(localStorage.getItem('updateAvatar'));
+		$("#HeadIcon").attr("src", localStorage.getItem('updateAvatar') || response.HeadIcon);
 		$("#MemberLevel").text(response.MemberLevel);
 		$("#Name").text(response.Name);
 		$("#SignCount").text(response.CSignCount)

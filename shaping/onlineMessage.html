@@ -182,13 +182,14 @@
 
 	$("#close").live("click",
 		function() {
-			if(sessionStorage.getItem("messageType") == 1) {
-				location.href = "productDetails.html"
-			}
-			if(sessionStorage.getItem("messageType") == 2) {
-				location.href = "../store/storeDetail.html"
-
-			}
+			// if(sessionStorage.getItem("messageType") == 1) {
+			// 	location.href = "productDetails.html"
+			// }
+			// if(sessionStorage.getItem("messageType") == 2) {
+			// 	location.href = "../store/storeDetail.html"
+			//
+			// }
+			window.history.go(-1);
 
 		})
 </script>

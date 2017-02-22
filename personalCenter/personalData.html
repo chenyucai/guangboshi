@@ -6,7 +6,7 @@
 	<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
 	<meta content="yes" name="apple-mobile-web-app-capable">
 	<meta content="black" name="apple-mobile-web-app-status-bar-style">
-	<title></title>
+	<title>个人资料</title>
 	<link href="../static/css/common.css" rel="stylesheet">
 	<link href="../static/css/style.css" rel="stylesheet">
 	<link href="../static/css/icon.css" rel="stylesheet">
@@ -237,14 +237,14 @@
 	<!--修改用户名-->
 	<div class="windowBox artistWindow">
 		<div class=" windowBoxHead">
-			0/6
+			0/8
 		</div>
 		<div class="p10">
 			<ul class="windowBoxFrom clearfix">
-				<textarea class="inputBlock" style=" height:80px;"></textarea>
+				<textarea class="inputBlock" style=" height:80px;border:1px solid #FC60A9;"></textarea>
 			</ul>
 			<ul class="windowBoxFrom clearfix">
-				<a href="#" id="submit" class="btn btnBlock artistSubmit">提交</a>
+				<a href="#" id="submit" class="btn btnBlock artistSubmit" style="background-color:#FC60A9;border-color:#FC60A9;">提交</a>
 				<a href="#" class="btn btnBlock mt10 style_1 artistClose">取消</a>
 			</ul>
 		</div>
@@ -277,7 +277,7 @@
 							<li>
 								<div class="accountNavSon">
 									<a href="javascript:void(0)" class="accountNavRow">
-										<b class="accountNavDigital yhq artistBtn" id="NickName">小太阳的朋友</b>
+										<b class="accountNavDigital yhq artistBtn" id="NickName"></b>
 										<i class="accountNavAngle artistBtn"></i>
 										<span class="accountNavText">昵称</span>
 									</a>
@@ -525,6 +525,8 @@
 		$("#HeadIcon").attr("src", response.HeadIcon);
 		$("#InviteCode").text(response.InviteCode);
 
+		$('.inputBlock').val(response.NickName);
+
 		if (response.Address) {
 			var Address = getNameById(response.Address);
 		} else {
@@ -568,9 +570,9 @@
 
 	$('.inputBlock').bind('input propertychange', function() {
 		var val = $('.inputBlock').val();
-		var len = val.length > 6 ? 6 : val.length;
-		$('.inputBlock').val(val.substr(0, 6));
-		$(".windowBoxHead").text(len + "/6");
+		var len = val.length > 8 ? 8 : val.length;
+		$('.inputBlock').val(val.substr(0, 8));
+		$(".windowBoxHead").text(len + "/8");
 	});
 
 	$("#submit").live("click", function() {
@@ -637,6 +639,7 @@
 			console.log(this.result); //文件路径
 			console.log(e.target.result); //文件路径
 			var data = e.target.result.split(',');
+			localStorage.setItem('updateAvatar',e.target.result);
 			var tp = (file.type == 'image/png') ? 'png' : 'jpg';
 			var imgUrl = data[1]; //图片的url，去掉(data:image/png;base64,)
 

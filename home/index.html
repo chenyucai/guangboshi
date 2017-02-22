@@ -6,7 +6,7 @@
 		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<title></title>
+		<title>首页</title>
 		<link href="../static/css/common.css" rel="stylesheet">
 		<link href="../static/css/style.css" rel="stylesheet">
 		<link href="../static/css/icon.css" rel="stylesheet">
@@ -74,8 +74,8 @@
 			</div>
 		</script>
 		<script type="text/html" id="template5">
-			<li style="width: 100%; position: relative;" data-id="${Id}" id="jingpingzixunDetail" >
-								<div class="artistListPad">
+			<li style="width: 100%; position: relative;margin-bottom:10px;" data-id="${Id}" id="jingpingzixunDetail" >
+								<div class="artistListPad" style="padding-bottom:20px;">
 									<a href="javascript:void(0)" class="artistListPic"><span class="activityTime1">
 										{{if ZanMark==false}}
 										<img src="../img/3/but_Fabulous_nor@2x.png">
@@ -142,10 +142,13 @@
 					padding-top: 0;
 				}
 		.artistList li{
-			margin-bottom: 10px;
+			/*margin-bottom: 10px;*/
 	    background: #fff;
-	    padding-bottom: 45px;
+	    /*padding-bottom: 45px;*/
 		}
+		/*.artistListPad{
+			padding-bottom: 20px !important;
+		}*/
 		.footNav ul li a{
 			background: #fff;
 		}
@@ -453,7 +456,7 @@
 						</ul>
 					</nav>
 					<div style=" background-color: white;">
-						<dl class="loginSns" onclick="kuanghuandacuAll()">
+						<dl class="loginSns" onclick="kuanghuandacuAll()" style="padding-top:13px;">
 							<dt style="color: #000000;">
 							<h5>狂欢大促<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
 						</dt>
@@ -461,7 +464,7 @@
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
                      	</dd>-->
 						</dl>
-						<dl class="loginSns">
+						<dl class="loginSns" style="padding-top:5px;">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
 							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Big carnival&nbsp;	<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
 						</dt>
@@ -478,7 +481,7 @@
 					</div>
 
 					<div style="background-color: white;" onclick="mingxingchanpingAll()">
-						<dl class="loginSns" >
+						<dl class="loginSns" style="padding-top:13px;">
 							<dt style="color: #000000;">
 							<h5>明星产品<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
 						</dt>
@@ -486,7 +489,7 @@
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
                      	</dd>-->
 						</dl>
-						<dl class="loginSns">
+						<dl class="loginSns" style="padding-top:5px;">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
 							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Star products&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
 						</dt>
@@ -503,7 +506,7 @@
 					</div>
 
 					<div style="background-color: white;" onclick="jingpingzixunAll()">
-						<dl class="loginSns">
+						<dl class="loginSns" style="padding-top:13px;">
 							<dt style="color: #000000;" id="jingpingzixunClick">
 							<h5>精品资讯<img src="../img/3/ICON_into@2x.png" style="width: 3%;padding-left: 6px;"></h5>
 						</dt>
@@ -511,7 +514,7 @@
                         <a href="#"><img src="../static/images/wx.png" width="40" /></a>
                      	</dd>-->
 						</dl>
-						<dl class="loginSns">
+						<dl class="loginSns" style="padding-top:5px;">
 							<dt class="c_9 h6 pt5" style="color: #B8B8B8">
 							<h5><img src="../img/渐变线/Rectangle 26@2x 左.png" style="width:70px;">&nbsp;Quality information&nbsp;<img src="../img/渐变线/Rectangle 26@2x.png" style="width:70px;"></h5>
 						</dt>

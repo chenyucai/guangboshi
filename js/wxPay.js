@@ -20,7 +20,7 @@ $.ajax({
 		//});
 	},
 	error:function(jxhr){
-		alert('获取openid失败');
+		// alert('获取openid失败');
 	}
 })
 
@@ -110,7 +110,7 @@ function fPostCharge() {
 			}
 		})
 	} else {
-		alert("房间名或者充值金额不可以为空或者为负数,请确认后再试.")
+		alert("充值金额不可以为空或者为负数,请确认后再试.")
 	}
 }
 //调用微信支付模块
