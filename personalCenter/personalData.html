@@ -525,7 +525,12 @@
 		$("#HeadIcon").attr("src", response.HeadIcon);
 		$("#InviteCode").text(response.InviteCode);
 
-		var Address = getNameById(response.Address);
+		if (response.Address) {
+			var Address = getNameById(response.Address);
+		} else {
+			var Address = '';
+		}
+		// var Address = getNameById(response.Address);
 		$("#address").text(Address);
 
 		$("#Level").attr("src", "../img/dengji/V" + response.MemberLevel + "@2x.png");

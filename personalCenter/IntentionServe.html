@@ -115,6 +115,57 @@
 				#IntentionServe a,#IntentionServeList a{
 					margin-bottom: 5px;
 				}
+				#IntentionServe{
+					padding-right: 0;
+				}
+				.server-list::after{
+					content: ' ';
+					height: 0;
+					visibility: hidden;
+					display: block;
+					clear: both;
+				}
+				.server-item{
+					float: left;
+					min-width: 50px;
+					text-align: center;
+					margin-right: 10px;
+					margin-bottom: 10px;
+					padding: 4px 5px;
+					border: 1px solid #BCBFF8;
+					color: #BCBFF8;
+					font-size: 12px;
+				}
+				.server-item:nth-of-type(2n){
+					border: 1px solid #8DE4EA;
+					color: #8DE4EA;
+				}
+				.server-item:nth-of-type(3n){
+					border: 1px solid #E1D0AF;
+					color: #E1D0AF;
+				}
+				.server-item.active{
+					background: #BCBFF8;
+					color: #fff;
+				}
+				.server-item.active2{
+					background: #8DE4EA;
+					color: #fff;
+				}
+				.server-item.active3{
+					background: #E1D0AF;
+					color: #fff;
+				}
+				.block-wrapper{
+					padding-bottom: 20px;
+				}
+				.block-header{
+					padding-bottom: 15px;
+				}
+				.block-header img{
+					width: 25px;
+					vertical-align: middle;
+				}
 			</style>
 		</head>
 
@@ -136,13 +187,73 @@
 						<div style="height: 40px;margin: 0 15px;border-bottom: 1px solid #cfcfcf;line-height: 40px;">
 							已选服务
 						</div>
-						<div id="IntentionServe"></div>
+						<div id="IntentionServe">
+							<ul class="server-list" id="selList">
+								<!-- <li class="server-item" data-index="1">老腰</li>
+								<li class="server-item" data-index="2">黑山老腰</li>
+								<li class="server-item" data-index="3">黑山老腰</li>
+								<li class="server-item" data-index="4">黑山老腰</li>
+								<li class="server-item" data-index="5">黑山老腰</li>
+								<li class="server-item" data-index="6">黑山老腰</li> -->
+							</ul>
+						</div>
 					</div>
 					<div class="" style="background: #fff;margin-bottom: 15px;">
 						<div style="height: 40px;margin: 0 15px;border-bottom: 1px solid #cfcfcf;line-height: 40px;">
 							光电美容
 						</div>
-						<div id="IntentionServeList"></div>
+						<div id="IntentionServeList" style="padding-right:0;">
+							<!-- <div class="block-wrapper">
+								<div class="block-header">
+									<img src="../img/3/icon_face@2x.png" alt="" class="header-icon"/>
+									<span class="header-title">面部塑形</span>
+								</div>
+								<div class="block-content">
+									<ul class="server-list">
+										<li class="server-item" data-index="1">老腰</li>
+										<li class="server-item" data-index="2">黑山老腰</li>
+										<li class="server-item" data-index="3">黑山老腰</li>
+										<li class="server-item" data-index="4">黑山老腰</li>
+										<li class="server-item" data-index="5">黑山老腰</li>
+										<li class="server-item" data-index="6">黑山老腰</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block-wrapper">
+								<div class="block-header">
+									<img src="../img/3/icon_skin@2x.png" alt="" class="header-icon"/>
+									<span class="header-title">皮肤管理</span>
+								</div>
+								<div class="block-content">
+									<ul class="server-list">
+										<li class="server-item" data-index="1">老腰</li>
+										<li class="server-item" data-index="2">黑山老腰</li>
+										<li class="server-item" data-index="3">黑山老腰</li>
+										<li class="server-item" data-index="4">黑山老腰</li>
+										<li class="server-item" data-index="5">黑山老腰</li>
+										<li class="server-item" data-index="6">黑山老腰</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="block-wrapper">
+								<div class="block-header">
+									<img src="../img/3/icon_shaping@2x.png" alt="" class="header-icon"/>
+									<span class="header-title">身体塑形</span>
+								</div>
+								<div class="block-content">
+									<ul class="server-list">
+										<li class="server-item" data-index="1">老腰</li>
+										<li class="server-item" data-index="2">黑山老腰</li>
+										<li class="server-item" data-index="3">黑山老腰</li>
+										<li class="server-item" data-index="4">黑山老腰</li>
+										<li class="server-item" data-index="5">黑山老腰</li>
+										<li class="server-item" data-index="6">黑山老腰</li>
+									</ul>
+								</div>
+							</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -150,76 +261,178 @@
 
 </html>
 <script>
+$(function(){
+	// $('.server-item').click(function(){
+	// 	if ($(this).hasClass('active') || $(this).hasClass('active2') || $(this).hasClass('active3')) {
+	// 		$(this).removeClass('active').removeClass('active2').removeClass('active3');
+	// 	} else {
+	// 		var index = $(this).attr('data-index');
+	// 		if (index % 3 == 0) {
+	// 			$(this).addClass('active3');
+	// 		}else if (index % 2 == 0) {
+	// 			$(this).addClass('active2');
+	// 		}else {
+	// 			$(this).addClass('active');
+	// 		}
+	// 	}
+	// });
+
+	var serverArray = [];
+
+	var selArray = [];
+
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonaIntentionServe?UserId=" + $.cookie("userId"), function(response) {
-		var IntentionServe = $("#IntentionServe");
-		$('#ServeTemplate').tmpl(response).appendTo(IntentionServe);
-		IntentionServe.find("a").each(
-			function() {
-				var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
-				$(this).css('color',  RanColor)
-				$(this).css('border', '1px solid ' + RanColor)
+
+		response.IntentionServeList.forEach(function(item){
+			if (item.ParentId == '0') {
+				item.children = [];
+				item.icon = '../img/3/icon_face@2x.png';
+				serverArray.push(item);
+			}else {
+				selArray.push(item);
 			}
-		);
-
-		var IntentionServeList = $("#IntentionServeList");
-		$('#ServeListTemplate').tmpl(response).appendTo(IntentionServeList);
-		IntentionServeList.find("a").each(
-			function() {
-				if($(this).attr("data-selected") == "true")
-				{
-					var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
-					console.log(RanColor);
-					if (RanColor == "#000000") {
-						RanColor = "#85c4ba";
-					}
-					if (RanColor == "#ffffff" || RanColor == "#FFFFFF") {
-						RanColor = "#dbf5f8";
-					}
-					if (RanColor.length != 7) {
-						RanColor = "#dbf5f8";
-					}
-					$(this).css('color', '#000000')
-					$(this).css('background-color',  RanColor)
-					$(this).css('border', '1px solid ' + RanColor)
-				}else{
-					var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
-					$(this).css('color',  RanColor)
-					$(this).css('border', '1px solid ' + RanColor)
-				}
-			}
-		);
-	})
-
-	$("#IntentionServeList a").live("click", function() {
-		if($(this).attr("data-selected") == "true")
-		{
-			$(this).attr("data-selected", "false");
-			$(this).css('color', $(this).css('border-color'))
-			$(this).css('background-color', '#ffffff')
-			$("#" + $(this).attr("data-id")).css("display","none");
-		}else{
-			$(this).attr("data-selected", "true");
-			$(this).css('color', '#ffffff')
-			$(this).css('background-color', $(this).css('border-color'))
-			$("#" + $(this).attr("data-id")).css("display","");
-		}
-	});
-
-	$(".headRightBtn").live("click", function() {
-		var ServeIdArr = [];
-		$("#IntentionServe a:visible").each(function(){
-			ServeIdArr.push($(this).attr("id"));
 		});
-		$.post(constants.baseUrl + "/AppPersonal/SavePersonalDetail", {
-			UserId: $.cookie("userId"),
-			Name: "IntentionServe",
-			Value: ServeIdArr.join(',')
-		},
-			function(data) {
-				if(data != "") {alert(data)}
-				else{
-					location.href = "personalData.html"
+
+		if (serverArray.length > 0) {
+			response.IntentionServeList.forEach(function(item){
+				for (var i = 0; i < serverArray.length; i++) {
+					if (item.ParentId == serverArray[i].Id) {
+						serverArray[i].children.push(item);
+					}
 				}
-		})
+			});
+		}
+
+		serverArray[1].icon = '../img/3/icon_skin@2x.png';
+		serverArray[2].icon = '../img/3/icon_shaping@2x.png';
+
+		selArray.forEach(function(item,i){
+			var c = $('<li class="server-item" id="'+item.Id+'" data-index="'+(i+1)+'">'+item.Name+'</li>');
+			if (item.IsSelected) {
+				c.css('display','block');
+			} else {
+				c.css('display','none');
+			}
+			c.appendTo('#selList');
+		});
+
+		serverArray.forEach(function(item){
+			var server = $('<div class="block-wrapper">'+
+				'<div class="block-header">'+
+					'<img src="'+item.icon+'" alt="" class="header-icon"/>'+
+					'<span class="header-title">'+item.Name+'</span>'+
+				'</div>'+
+				'<div class="block-content">'+
+					'<ul class="server-list"></ul>'+
+				'</div>'+
+			'</div>');
+			var list = '';
+			for (var i = 0; i < item.children.length; i++) {
+				var liClass = 'server-item';
+				if (item.children[i].IsSelected) {
+					if ((i+1) % 3 == 0) {
+						liClass = 'server-item active3';
+					}else if ((i+1) % 2 == 0) {
+						liClass = 'server-item active2';
+					}else {
+						liClass = 'server-item active';
+					}
+				}
+				list += '<li class="'+liClass+'" data-id="'+item.children[i].Id+'" data-selected="'+item.children[i].IsSelected+'" data-index="'+(i+1)+'">'+item.children[i].Name+'</li>';
+			}
+			server.find('.server-list').html(list);
+			$('#IntentionServeList').append(server);
+		});
+
+		// return false;
+
+		// var IntentionServe = $("#IntentionServe");
+		// $('#ServeTemplate').tmpl(response).appendTo(IntentionServe);
+		// IntentionServe.find("a").each(
+		// 	function() {
+		// 		var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
+		// 		$(this).css('color',  RanColor)
+		// 		$(this).css('border', '1px solid ' + RanColor)
+		// 	}
+		// );
+
+		// var IntentionServeList = $("#IntentionServeList");
+		// $('#ServeListTemplate').tmpl(response).appendTo(IntentionServeList);
+		// IntentionServeList.find("a").each(
+		// 	function() {
+		// 		if($(this).attr("data-selected") == "true")
+		// 		{
+		// 			var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
+		// 			console.log(RanColor);
+		// 			if (RanColor == "#000000") {
+		// 				RanColor = "#85c4ba";
+		// 			}
+		// 			if (RanColor == "#ffffff" || RanColor == "#FFFFFF") {
+		// 				RanColor = "#dbf5f8";
+		// 			}
+		// 			if (RanColor.length != 7) {
+		// 				RanColor = "#dbf5f8";
+		// 			}
+		// 			$(this).css('color', '#000000')
+		// 			$(this).css('background-color',  RanColor)
+		// 			$(this).css('border', '1px solid ' + RanColor)
+		// 		}else{
+		// 			var RanColor = '#' + Math.floor(16777216 * Math.random()).toString(16);
+		// 			$(this).css('color',  RanColor)
+		// 			$(this).css('border', '1px solid ' + RanColor)
+		// 		}
+		// 	}
+		// );
+
+
+		$("#IntentionServeList .server-item").bind("click", function() {
+			// if($(this).attr("data-selected") == "true")
+			// {
+			// 	$(this).attr("data-selected", "false");
+			// 	$(this).css('color', $(this).css('border-color'))
+			// 	$(this).css('background-color', '#ffffff')
+			// 	$("#" + $(this).attr("data-id")).css("display","none");
+			// }else{
+			// 	$(this).attr("data-selected", "true");
+			// 	$(this).css('color', '#ffffff')
+			// 	$(this).css('background-color', $(this).css('border-color'))
+			// 	$("#" + $(this).attr("data-id")).css("display","");
+			// }
+			if ($(this).hasClass('active') || $(this).hasClass('active2') || $(this).hasClass('active3')) {
+				$(this).removeClass('active').removeClass('active2').removeClass('active3');
+				$("#" + $(this).attr("data-id")).css("display","none");
+			} else {
+				$("#" + $(this).attr("data-id")).css("display","block");
+				var index = $(this).attr('data-index');
+				if (index % 3 == 0) {
+					$(this).addClass('active3');
+				}else if (index % 2 == 0) {
+					$(this).addClass('active2');
+				}else {
+					$(this).addClass('active');
+				}
+			}
+		});
+
+		$(".headRightBtn").bind("click", function() {
+			var ServeIdArr = [];
+			$("#IntentionServe .server-item:visible").each(function(){
+				ServeIdArr.push($(this).attr("id"));
+			});
+			$.post(constants.baseUrl + "/AppPersonal/SavePersonalDetail", {
+				UserId: $.cookie("userId"),
+				Name: "IntentionServe",
+				Value: ServeIdArr.join(',')
+			},
+				function(data) {
+					if(data != "") {alert(data)}
+					else{
+						location.href = "personalData.html"
+					}
+			})
+		});
+
 	});
+
+});
 </script>

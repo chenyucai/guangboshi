@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/reset.css" media="screen" title="no title">
     <title>意见反馈</title>
     <script src="../static/js/jquery-1.9.1.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
     <style media="screen">
       .suggest-list{
         padding: 20px 15px 80px 15px;
@@ -97,14 +98,54 @@
       </ul>
       <div class="suggest-input-wrapper">
         <div class="input-wrapper">
-          <input type="text" name="name" value="" placeholder="请输入您的意见与建议">
+          <input type="text" name="name" value="" id="content" placeholder="请输入您的意见与建议">
         </div>
         <div class="btn-wrapper">
-          <div class="btn">
+          <div class="btn" id="save">
             发送
           </div>
         </div>
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    function androidInputBugFix(){
+        // .container 设置了 overflow 属性, 导致 Android 手机下输入框获取焦点时, 输入法挡住输入框的 bug
+        // 相关 issue: https://github.com/weui/weui/issues/15
+        // 解决方法:
+        // 0. .container 去掉 overflow 属性, 但此 demo 下会引发别的问题
+        // 1. 参考 http://stackoverflow.com/questions/23757345/android-does-not-correctly-scroll-on-input-focus-if-not-body-element
+        //    Android 手机下, input 或 textarea 元素聚焦时, 主动滚一把
+        if (/Android/gi.test(navigator.userAgent)) {
+            window.addEventListener('resize', function () {
+                if (document.activeElement.tagName == 'INPUT' || document.activeElement.tagName == 'TEXTAREA') {
+                    window.setTimeout(function () {
+                        document.activeElement.scrollIntoViewIfNeeded();
+                    }, 0);
+                }
+            })
+        }
+    }
+    $(function(){
+      androidInputBugFix();
+      $('#save').click(function(){
+        var value = $('#content').val();
+        if ($.trim(value).length == 0) {
+          return ;
+        }
+        var userId = $.cookie("userId");
+        $.ajax({
+          url:'http://www.missnefer.com/AppPersonal/SaveOpinion',
+          type: 'get',
+          data: {
+            Opinion: value,
+            UserId: userId
+          },
+          success:function(res){
+
+          }
+        });
+      });
+    });
+  </script>
 </html>
