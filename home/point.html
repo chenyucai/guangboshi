@@ -295,7 +295,7 @@
             <div class="slide-month">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                        <!-- <div class="swiper-slide">
                             <div class="point">
                                 <div class="point-inner">
                                     <div class="point-all">
@@ -510,7 +510,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -518,7 +518,7 @@
             <div class="point-timeline-container">
                 <div class="title">积分账单明细</div>
                 <div class="timeline-row-container">
-                    <div class="timeline-row">
+                    <!-- <div class="timeline-row">
                         <div class="timeline-row-icon">
                             <div class="icon-quill"></div>
                         </div>
@@ -577,7 +577,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -585,6 +585,7 @@
     </div>
 
     <script type="text/javascript">
+    var pointList = [];
         $(function () {
           var userId = $.cookie("userId");
           $.ajax({
@@ -596,31 +597,107 @@
             success: function(res){
               $('#point').html(res.Point);
               $('#percent').html(res.Percent);
+              pointList = res.MonthPointDetailList;
+              var swiperHtml = '';
+              res.MonthPointDetailList.forEach(function(item){
+                swiperHtml += '<div class="swiper-slide">'+
+                          '<div class="point">'+
+                              '<div class="point-inner">'+
+                                  '<div class="point-all">'+
+                                      '<div class="col1">'+item.Month+'月积分账单</div>'+
+                                      '<div class="col2">'+
+                                          '<div class="col2-col1">'+item.MonthPoint+'</div><div class="point-all-col2-col2"></div>'+
+                                      '</div>'+
+                                  '</div>'+
+                                  '<div class="point-month">'+
+                                      '<div class="col1">获得积分账单</div>'+
+                                      '<div class="col2">'+
+                                          '<div class="col2-col1">'+item.Count+'</div><div class="point-month-col2-col2"></div>'+
+                                      '</div>'+
+                                  '</div>'+
+                              '</div>'+
+                          '</div>'+
+                      '</div>';
+
+              });
+
+              var detailHtml = '';
+              if (pointList.length > 0) {
+                pointList[0].PointDetailList.forEach(function(v){
+                  detailHtml += '<div class="timeline-row">'+
+                        '<div class="timeline-row-icon">'+
+                            '<div class="icon-quill"></div>'+
+                        '</div>'+
+                        '<div class="timeline-row-content">'+
+                            '<div class="timeline-row-content-1">'+v.Content+'/div>'+
+                            '<div class="timeline-row-content-2">'+
+                                '<span class="timeline-row-content-date">'+v.Date+'</span>'+
+                                '<div class="timeline-row-content-point">'+
+                                  '积分：'+
+                                    '<span class="timeline-row-content-point-count">'+v.OncePoint+'</span>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+                })
+                $('.timeline-row-container').html(detailHtml);
+              }
+
+
+              $('.swiper-wrapper').html(swiperHtml);
+              var tabsSwiper = new Swiper('.swiper-container', {
+                  speed: 500,
+                  slidesPerView: 1.8,
+                  //spaceBetween: 20,
+                  //slidesPerColumn: 1,
+                  //slidesOffsetBefore: 100,
+                  //slidesOffsetAfter: 100,
+                  onSlideChangeStart: function (res) {
+                    // console.log(res);
+                  },
+                  onSlideChangeEnd:function(swip){
+                    console.log(swip.activeIndex);
+                    var index = swip.activeIndex;
+                    var detailHtml = '';
+                    var a = [];
+                    pointList[index].PointDetailList.forEach(function(v){
+                      detailHtml += '<div class="timeline-row">'+
+                            '<div class="timeline-row-icon">'+
+                                '<div class="icon-quill"></div>'+
+                            '</div>'+
+                            '<div class="timeline-row-content">'+
+                                '<div class="timeline-row-content-1">'+v.Content+'</div>'+
+                                '<div class="timeline-row-content-2">'+
+                                    '<span class="timeline-row-content-date">'+v.Date+'</span>'+
+                                    '<div class="timeline-row-content-point">'+
+                                      '积分：'+
+                                        '<span class="timeline-row-content-point-count">'+v.OncePoint+'</span>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+
+                    })
+                    $('.timeline-row-container').html(detailHtml);
+                  },
+                  calculateHeight: true,
+                  centeredSlides: true,
+                  tdFlow: {
+                      rotate: 60,
+                      stretch: 0,
+                      depth: 300,
+                      modifier: 1,
+                      shadows: false,
+                  }
+              });
             }
           })
             //debugger;
             //$(".swiper-slide").width($(window).width() / 2);
             //$(".swiper-container").css("marginLeft", -$(window).width() / 4);
 
-            var tabsSwiper = new Swiper('.swiper-container', {
-                speed: 500,
-                slidesPerView: 1.8,
-                //spaceBetween: 20,
-                //slidesPerColumn: 1,
-                //slidesOffsetBefore: 100,
-                //slidesOffsetAfter: 100,
-                onSlideChangeStart: function () {
-                },
-                calculateHeight: true,
-                centeredSlides: true,
-                tdFlow: {
-                    rotate: 60,
-                    stretch: 0,
-                    depth: 300,
-                    //modifier: 2,
-                    shadows: false,
-                }
-            });
+
 
             //tabsSwiper.slideTo(($(".swiper-slide").length - 1), 100, false);
             $(".navOpen").click(function(){

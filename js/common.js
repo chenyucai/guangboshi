@@ -19,7 +19,7 @@
 function checkLogin(url)
 {
 	var userId = $.cookie('userId');
-	
+
 	if(userId == undefined || userId == null || userId == "")
 	{
 		url = url || "../home/index.html";

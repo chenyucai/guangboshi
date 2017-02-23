@@ -233,10 +233,28 @@ letter-spacing: 0px;">6个疗程</span></div>
 				<div style="position: absolute; bottom: 0; width: 100%;">
 					<ul class="cd-buttons" style="border-top: 1px solid #B8B8B8; ">
 						<li style="text-align: center;border-right: 1px solid #B8B8B8;">
-							<a href="#" class="closebt">暂不</a>
+							<a href="javascript:;" class="closebt">暂不</a>
 						</li>
 						<li style="text-align: center;">
-							<a href="#" id="pay">继续支付</a>
+							<a href="javascript:;" id="pay">继续支付</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="confirmPay_box" style="height: 250px;background: #fff;position: absolute;top: 133.5px;left: 37px;z-index: 1002;width:280px;margin: 0 auto;" hidden="hidden">
+				<div class="goodtxt" style="padding-top: 20px;">
+					<p class="text1">美丽与自信是天然姐妹</p>
+					<p class="text2">我准备好了，你呢？</p>
+					<input type="password" name="name" id="confirmPwd" value="" placeholder="请输入支付密码">
+				</div>
+				<div style="position: absolute; bottom: 0; width: 100%;">
+					<ul class="cd-buttons" style="border-top: 1px solid #B8B8B8; ">
+						<li style="text-align: center;border-right: 1px solid #B8B8B8;">
+							<a href="javascript:;" class="closebt" id="cancelPay">取消</a>
+						</li>
+						<li style="text-align: center;">
+							<a href="javascript:;" id="confirmPay" style="color:#FD60A9">确认支付</a>
 						</li>
 					</ul>
 				</div>
@@ -340,40 +358,69 @@ letter-spacing: 0px;">6个疗程</span></div>
 	});
 
 	$("#pay").click(function() {
-		console.log(1);
+		if ($('.balance').hasClass('change')) {
+			$('#code').hide();
+			$('#confirmPay_box').show();
+			$('#confirmPay_box').center();
+			$('#confirmPwd').focus();
+		} else {
+			fCharge();
+		}
+
 			// if($(".chose").not(".balance").hasClass("change")) {
 				// console.log(2);
-				fCharge();
-				$.ajax({
-					type: "post",
-					contentType: "application/json;charset=utf-8",
-					data: JSON.stringify({
-						amount: OrderAmount,
-						//				openid: localStorage.getItem("openid"),
-						openid:"oVFHov6q5w3k7yjjY7zPwc9HetW4" ,
-						//				access_token: localStorage.getItem("access_token"),
-						userId: $.cookie("userId"),
-						orderId: OrderId,
-						description: order.CategoryName
-
-					}),
-					//data: "amount=" + vChargeVal + "&openid=" + localStorage.getItem("openid") + "&access_token=" + localStorage.getItem("access_token"),
-					url: constants.baseUrl + "/AppPay/PrePayByWeixin",
-					success: function(json) {
-						//$.messager.progress('close');//记得关闭
-						//var json = eval("(" + msg + ")");//转换后的JSON对象
-
-						onBridgeReady(json);
-					},
-					error: function(data1, data2, data3, data4) {
-
-						//$.messager.progress('close');//记得关闭
-						//$.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
-					}
-				})
 				// fCharge();
 			// }
+	});
+
+	$('#cancelPay').click(function(){
+		$('#goodcover').hide();
+		$('#confirmPay_box').hide();
+	})
+
+	$('#confirmPay').click(function(){
+		if ($.trim($('#confirmPwd').val()).length == 0) {
+			return ;
+		}
+		$.ajax({
+			type: "post",
+			contentType: "application/json;charset=utf-8",
+			data: JSON.stringify({
+				amount: OrderAmount,
+				//				openid: localStorage.getItem("openid"),
+				// openid:"oVFHov6q5w3k7yjjY7zPwc9HetW4" ,
+				//				access_token: localStorage.getItem("access_token"),
+				userId: $.cookie("userId"),
+				orderId: OrderId,
+				payPwd:$('#confirmPwd').val()
+				// description: order.CategoryName
+
+			}),
+			//data: "amount=" + vChargeVal + "&openid=" + localStorage.getItem("openid") + "&access_token=" + localStorage.getItem("access_token"),
+			// url: constants.baseUrl + "/AppPay/PrePayByWeixin",
+			url: constants.baseUrl + "/AppPay/PayByBalance",
+			success: function(res) {
+				console.log(res);
+				if (res!="") {
+					alert(res)
+				}else {
+					alert('支付成功');
+					$('#goodcover').hide();
+					$('#confirmPay_box').hide();
+					window.location.href = 'paycompleted.html';
+				}
+				//$.messager.progress('close');//记得关闭
+				//var json = eval("(" + msg + ")");//转换后的JSON对象
+
+				// onBridgeReady(json);
+			},
+			error: function(data) {
+				alert(JSON.stringify(data.responseText));
+				//$.messager.progress('close');//记得关闭
+				//$.messager.alert("提示", '调用微信支付模块失败，请稍后再试。', 'info')
+			}
 		})
+	});
 		/*var val=$(window).height();
 	var codeheight=$("#code").height();
     var topheight=(val-codeheight)/2;

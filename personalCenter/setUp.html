@@ -15,6 +15,11 @@
 		<script src="../static/js/web.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/jquery.cookie.js"></script>
+		<script type="text/javascript">
+		if (!$.cookie('userId')) {
+			window.location.href = '../home/Login.html';
+		}
+		</script>
 		<style>
 			.accountNavDigital {
 				background-color: white;
@@ -131,6 +136,7 @@
 </html>
 
 <script>
+
 $.get(constants.baseUrl+ "/AppPersonal/IsPayPasswordSetted?UserId=" + $.cookie("userId"),function(message){
 	if(message==true)
 	{
