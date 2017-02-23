@@ -38,11 +38,11 @@
 				font-size: 14px;
 				color: #FFFFFF;
 			}
-			
+
 			.orderListUlNew>li {
 				padding: 0;
 			}
-			
+
 			.time {
 				font-family: PingFang-SC-Regular;
 				text-align: center;
@@ -53,17 +53,17 @@
 				height: 35pt;
 				padding-right: 16pt;
 			}
-			
+
 			.price {
 				font-family: PingFang-SC-Bold;
 				font-size: 18pt;
 				color: #FF5DA9;
 			}
-			
+
 			.headLeftBtn {
 				line-height: 50px;
 			}
-			
+
 			.divv div {
 				padding-left: 16pt;
 			}
@@ -98,12 +98,12 @@
 
 </html>
 <script>
-	$.get(constants.baseUrl + "/AppOrder/GetOrderCompleteListJson?UserID=" + $.cookie("userId"), function(data) {
+	$.get(constants.baseUrl + "/AppOrder/GetOrderCompleteListJson?UserId=" + $.cookie("userId"), function(data) {
 		var response = JSON.parse(data);
 		var template = $(".orderListUlNew");
 		$("#template").tmpl(response).appendTo(template);
 	})
-	
+
 	$(".divv").live("click",function(){
 		sessionStorage.setItem("orderId",$(this).attr("data-OrderID"));
 		if($(this).attr("data-Type")==4)
@@ -114,6 +114,6 @@
 		{
 			location.href="completedCommonOrderDetail.html";
 		}
-	
+
 	})
 </script>
