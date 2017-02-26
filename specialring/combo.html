@@ -365,8 +365,8 @@
 				})
 
 			$("#taocanDetail").live("click", function() {
-				sessionStorage.setItem("ComboProductId", $(this).attr("data-id"));
-				location.href = "../shaping/comboDetail.html";
+				// sessionStorage.setItem("ComboProductId", $(this).attr("data-id"));
+				location.href = "../shaping/comboDetail.html?id=" + $(this).attr("data-id");
 			})
 		</script>
 	</body>

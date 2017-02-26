@@ -11,13 +11,14 @@
 		<link href="../static/css/style.css" rel="stylesheet">
 		<link href="../static/css/icon.css" rel="stylesheet">
 		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
 		<script src="../static/js/idangerous.swiper.js"></script>
 		<script src="../static/js/web.js"></script>
 		<script src="../js/wan-spinner.js"></script>
 		<script src="../js/jquery.cookie.js"></script>
 		<script src="../js/common.js"></script>
 
-		<script src="../js/jquery.tmpl.min.js"></script>
+
 		<script type="text/html" id="template">
 			<a href="#" data-id="${Id}" style="padding-left: 10px;"><img src="${HeadIcon}" style="height: 50px;" /></a>
 		</script>
@@ -663,12 +664,20 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 <script>
 	var orderData;
 	var GroupByNum;
+	function getUrlParameter(params, paramName){
+	  var reg = new RegExp("(^|&)"+ paramName +"=([^&]*)(&|$)");
+	  var r = params.substr(1).match(reg);
+	  if(r!=null) return  unescape(r[2]); return null;
+	}
+	var param = window.location.search;
+	var ComboProductId = getUrlParameter(param, "id") || sessionStorage.getItem("ComboProductId");
+$(function(){
 	$.ajax({
 		url: constants.baseUrl + '/AppGoods/GetGoodsDetail2',
 		type:'get',
 		dataType:'json',
 		data:{
-			Id:sessionStorage.getItem("ComboProductId"),
+			Id:ComboProductId,
 			UserId: $.cookie('userId')
 		},
 		success:function(data){
@@ -826,7 +835,7 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 		$.post(constants.baseUrl + "/AppOrderManage/CreateOrder", {
 				quantity: 1,
 				UserId: $.cookie("userId"),
-				goodsId: sessionStorage.getItem("ComboProductId")
+				goodsId: ComboProductId || sessionStorage.getItem("ComboProductId")
 			},
 			function(response) {
 				if(response.Status != 1) {
@@ -849,7 +858,7 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
 				SetClearMark: SetClearMark,
 				UserId: $.cookie("userId"),
-				Id: sessionStorage.getItem("ComboProductId"),
+				Id: ComboProductId || sessionStorage.getItem("ComboProductId"),
 				Category: 2,
 				Type: 1,
 				Title: $("#Title").text()
@@ -873,7 +882,7 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 
 	$(".mt10").live("click", function() {
 		$.post(constants.baseUrl + "/AppCommon/Share", {
-			Id: sessionStorage.getItem("ComboProductId"),
+			Id: ComboProductId || sessionStorage.getItem("ComboProductId"),
 			UserId: $.cookie("userId"),
 			Type: 2
 		}, function(response) {
@@ -883,7 +892,9 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 
 	$("#ProductDetail").live("click", function() {
 		sessionStorage.setItem("ComboProductId", $(this).attr("data-id"));
+		localStorage.setItem('ProdcuctType', 1);
 		//		sessionStorage.setItem("ProdcuctType", 2);
-		location.href = "../shaping/productDetails.html";
+		location.href = "../shaping/productDetails.html?id="+$(this).attr("data-id");
 	})
+});
 </script>

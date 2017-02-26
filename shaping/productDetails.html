@@ -722,8 +722,16 @@ letter-spacing: 0px; float: left;" id="SellPriceChose">¥ 699</span>
 
 		$(".accountHeadPic").hide();
 
+		function getUrlParameter(params, paramName){
+		  var reg = new RegExp("(^|&)"+ paramName +"=([^&]*)(&|$)");
+		  var r = params.substr(1).match(reg);
+		  if(r!=null) return  unescape(r[2]); return null;
+		}
+		var param = window.location.search;
+		var ProductId = getUrlParameter(param, "id") || sessionStorage.getItem("ProductId");
+
 		function toshare() {
-			if (!checkLogin("../shaping/productDetails.html")){
+			if (!checkLogin("../shaping/productDetails.html?id="+ProductId)){
 	        return;
 	    }else {
 				$(".am-share").addClass("am-modal-active");
