@@ -789,6 +789,9 @@ $(function(){
 		$.ajax({
 			url:constants.baseUrl + '/AppHome/ClearSearchValue',
 			type: 'get',
+			data:{
+				UserId: $.cookie('userId')
+			},
 			success: function(res){
 				if (res.Status == 1) {
 					// $('.inputSm')[0].click();

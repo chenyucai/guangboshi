@@ -44,7 +44,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -52,7 +52,7 @@
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -60,35 +60,35 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListPic img {
 				max-width: none;
 				width: 120px;
 				height: 100px;
 			}
-			
+
 			.orderListPic {
 				padding-right: 100px;
 			}
-			
+
 			.text1 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.tr td {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListUl>li {
 				border-bottom: none;
 			}
-			
+
 			.sellerTab li.active a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -96,7 +96,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -148,12 +148,12 @@
 								</ul>
 							</div>
 							<div class="swiper-slide">
-								<a href="activityView.html"><img src="../img/81844691981402.jpg" id="Image" /></a>
+								<a href="javascript:;"><img src="../img/81844691981402.jpg" id="Image" /></a>
 
 								<div class="p10">
 									<span class="title"></span>
 						             <div id="Content"></div>
-						            
+
 							</div>
 						</div>
 					</div>
@@ -190,20 +190,20 @@
 <script>
 	$.get(constants.baseUrl + "/AppHome/GetMagazineList?Type=" + 3,
 		function(data) {
-			debugger;
+			// debugger;
 			var template = $(".orderListUlNoSet");
 			$('#template').tmpl(data.CompanyNewsList).appendTo(template);
 			$("#Content").html(data.CompanyIntro.Content);
 			$(".title").text(data.CompanyIntro.Title);
 			$("#Image").attr("src",data.CompanyIntro.Image);
 			$(".swiper-slide").css({"overflow-y":"auto","height":$(window).height()-125});
-			
+
 		});
 
 	$("#newsDetail").live("click",function() {
 		sessionStorage.setItem("NewId", $(this).attr("data-id"));
 		location.href ="photoelectricSchoolDetail.html"
 	})
-	
-	
+
+
 </script>

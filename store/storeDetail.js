@@ -12,6 +12,8 @@ $("#Treatment").text(response.Store.Name);
 		$("#Reservation").text(response.Store.Reservation);
 		$("#Price").text(response.Store.Price);
 		$("#Telephone").attr("href","tel://" + response.Store.Telephone);
+		$('#storeAddress').html(response.Store.Address);
+		$('#StoreDescription').html(response.Store.Description);
 		var template = $("#GoodsCategory1");
 		$("#template").tmpl(response.GoodsCategory).appendTo(template);
 		$('#GoodsCategory1 .ctg-item').click(function(){
