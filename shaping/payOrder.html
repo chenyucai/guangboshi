@@ -285,7 +285,8 @@ letter-spacing: 0px;">6个疗程</span></div>
 
 <script>
 	var order = JSON.parse(sessionStorage.getItem("orderData"));
-	var OrderAmount = sessionStorage.getItem("_OrderAmount");
+	var OrderAmount = sessionStorage.getItem("OrderAmount");
+
 	var OrderId = sessionStorage.getItem("OrderID");
 	$("#CategoryName").text(order.CategoryName);
 	$("#Treatment").text(order.Treatment + "个疗程");
@@ -296,7 +297,6 @@ letter-spacing: 0px;">6个疗程</span></div>
 
 	var hasPayPwd;
 	$.get(constants.baseUrl + 　"/AppOrderManage/GetRemainingBalanceByUserId?UserId=" + $.cookie("userId"), function(data) {
-
 		$("#balance").text(data.remainingBalance);
 		hasPayPwd = data.hasPayPwd;
 

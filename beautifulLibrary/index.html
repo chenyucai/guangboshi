@@ -21,7 +21,7 @@
 
 			<li style="width: 100%;">
 				<a href="javascript:void(0)" id="orderDetail" >
-					<div class="divv"  data-type="${Type}" data-id="${ID}">
+					<div class="divv"  data-type="${Type}" data-id="${ID}" data-state="${TGStatus}">
 						<div class="time">${OrderDate}</div>
 						<div style="padding-top: 16pt;padding-bottom: 14pt;"><span>【${Category}】</span><span>${GoodName}</span></div>
 						<div>
@@ -34,9 +34,13 @@
 						<div style="padding-bottom: 21pt;">
 							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
 						</div>
-						{{/if}} {{if Type==3}}
+						{{/if}} {{if (Type==3) && TGStatus ==0}}
 						<div style="padding-bottom: 21pt;">
-							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">开团提醒</button>
+							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
+						</div>
+						{{/if}} {{if (Type==3) && TGStatus==-1}}
+						<div style="padding-bottom: 21pt;">
+							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">等待开团</button>
 						</div>
 						{{/if}} {{if (Type==1 || Type==2 || Type==4) && ReservationStatus ==0 }}
 						<div style="padding-bottom: 21pt;">
@@ -57,11 +61,11 @@
 				font-size: 14px;
 				color: #FFFFFF;
 			}
-			
+
 			.orderListUlNew>li {
 				padding: 0;
 			}
-			
+
 			.time {
 				font-family: PingFang-SC-Regular;
 				text-align: center;
@@ -72,17 +76,17 @@
 				height: 35pt;
 				padding-right: 16pt;
 			}
-			
+
 			.price {
 				font-family: PingFang-SC-Bold;
 				font-size: 18pt;
 				color: #FF5DA9;
 			}
-			
+
 			.headLeftBtn {
 				line-height: 50px;
 			}
-			
+
 			.divv div {
 				padding-left: 16pt;
 			}
@@ -119,7 +123,7 @@
 <script>
 	$.get(constants.baseUrl + "/AppOrder/GetOrderListJson?UserID=" + $.cookie("userId"), function(data) {
 		var response = JSON.parse(data);
-		
+
 		var template = $(".orderListUlNew");
 		$("#template").tmpl(response).appendTo(template);
 	})
@@ -131,14 +135,15 @@
 	})
 	$(".divv").live("click", function() {
 		sessionStorage.setItem("orderId", $(this).attr("data-id"));
-		if($(this).attr("data-type") == 1 || $(this).attr("data-type") == 2) {
 
-			location.href = "orderDetail.html";
-		}
-		
-		if($(this).attr("data-type") == 3) {
 
-			location.href ="groupbuyingOrderDetail.html"
+		if($(this).attr("data-state") == -1) {
+			return false;
+		}else{
+			if($(this).attr("data-type") == 1 || $(this).attr("data-type") == 2 || $(this).attr("data-type") == 3) {
+
+				location.href = "orderDetail.html";
+			}
 		}
 
 	})
