@@ -828,7 +828,10 @@ $(function(){
 	// })
 
 	$("#lijigoumai").live("click", function() {
-		debugger;
+		if (!checkLogin('../shaping/comboDetail.html?id='+ComboProductId)) {
+			return false;
+		}
+		// debugger;
 		//	orderData.productNum = $("#productNum").val();
 		var DataString = JSON.stringify(orderData);
 		sessionStorage.setItem("orderData", DataString);
@@ -851,6 +854,9 @@ $(function(){
 	})
 
 	$("#startClick").live("click", function() {
+		if (!checkLogin('../shaping/comboDetail.html?id='+ComboProductId)) {
+			return false;
+		}
 		var SetClearMark = 1;
 		if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
 			SetClearMark = 2;

@@ -57,11 +57,11 @@
 				font-size: 14px;
 				color: #FFFFFF;
 			}
-			
+
 			.orderListUlNew>li {
 				padding: 0;
 			}
-			
+
 			.time {
 				font-family: PingFang-SC-Regular;
 				text-align: center;
@@ -72,17 +72,17 @@
 				height: 35pt;
 				padding-right: 16pt;
 			}
-			
+
 			.price {
 				font-family: PingFang-SC-Bold;
 				font-size: 18pt;
 				color: #FF5DA9;
 			}
-			
+
 			.headLeftBtn {
 				line-height: 50px;
 			}
-			
+
 			.divv div {
 				padding-left: 16pt;
 			}
@@ -119,7 +119,7 @@
 <script>
 	$.get(constants.baseUrl + "/AppOrder/GetOrderListJson?UserID=" + $.cookie("userId"), function(data) {
 		var response = JSON.parse(data);
-		
+
 		var template = $(".orderListUlNew");
 		$("#template").tmpl(response).appendTo(template);
 	})
@@ -135,7 +135,7 @@
 
 			location.href = "orderDetail.html";
 		}
-		
+
 		if($(this).attr("data-type") == 3) {
 
 			location.href ="groupbuyingOrderDetail.html"

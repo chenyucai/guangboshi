@@ -1,0 +1,151 @@
+body{
+  background: #f2f2f2;
+}
+.header{
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #656565;
+  padding: 0 15px;
+  border-bottom: 1px solid #d7d7d7;
+  margin-bottom: 10px;
+  background: #fff;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+}
+.header .label{
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+}
+.body-wrapper{
+  background: #fff;
+  margin-bottom: 10px;
+}
+.body-item{
+  padding-bottom: 10px;
+}
+.title-wrapper h2{
+  font-size: 16px;
+  line-height: 50px;
+  padding-left: 13px;
+  font-weight: 600;
+}
+.content-item-title{
+  line-height: 30px;
+  padding-left: 13px;
+}
+.content-item-content{
+  padding-left: 30px;
+  font-size: 0;
+  padding-top: 8px;
+  padding-bottom: 15px;
+  color: #656565;
+}
+.content-item-content-star{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-image: url(../img/star-l@2x.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+.content-item-content-star.active{
+  background-image: url(../img/star-h@2x.png);
+}
+.input-wrapper{
+  border-bottom: 1px solid #d7d7d7;
+  background: #fff;
+  margin-bottom: 65px;
+}
+.input-content-wrapper{
+  height: 140px;
+  padding: 15px 13px;
+}
+.input-content-wrapper textarea{
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+}
+.input-images{
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.input-images::after{
+  content: ' ';
+  height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.image-item{
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: block;
+  float: left;
+  border: 1px solid red;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+.image-del-icon{
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 4px;
+  top: 3px;
+  background-image: url(../img/del.png);
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+}
+.image-add{
+  width: 80px;
+  height: 80px;
+  float: left;
+  border: 1px solid #363334;
+  line-height: 80px;
+  text-align: center;
+  font-size: 65px;
+  font-weight: 200;
+  color: #363334;
+  box-sizing: border-box;
+}
+.input-images-footer{
+  height: 60px;
+  line-height: 60px;
+  font-size: 12px;
+  font-weight: 300;
+  margin: 0 12px;
+  border-top: 1px solid #d7d7d7;
+}
+.input-images-footer .desc{
+  vertical-align: top;
+}
+.camera-icon{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url(../img/camera@2x.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.submit-btn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background: #B8B8B8;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+}
