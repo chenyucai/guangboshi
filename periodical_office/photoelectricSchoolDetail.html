@@ -6,7 +6,7 @@
 		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="black" name="apple-mobile-web-app-status-bar-style">
-		<title></title>
+		<title>杂志社详情</title>
 		<link href="../static/css/common.css" rel="stylesheet">
 		<link href="../static/css/style.css" rel="stylesheet">
 		<link href="../static/css/icon.css" rel="stylesheet">
@@ -139,7 +139,7 @@
 	})
 
 	$("#startClick").live("click", function() {
-		if (!checkLogin('../periodical_office/photoelectricSchoolDetail.html')) {
+		if (!checkLogin('../periodical_office/photoelectricSchoolDetail.html?id='+NewId)) {
 				return;
 		}
 		var SetClearMark = 1;
@@ -149,7 +149,7 @@
 		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
 				SetClearMark: SetClearMark,
 				UserId: $.cookie("userId"),
-				Id: sessionStorage.getItem("NewId"),
+				Id: NewId || sessionStorage.getItem("NewId"),
 				Category: 4,
 				Type: 1,
 				Title: $("#Title").text()
@@ -177,7 +177,7 @@
 		$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
 				SetClearMark: SetClearMark,
 				UserId: $.cookie("userId"),
-				Id: sessionStorage.getItem("NewId"),
+				Id: NewId || sessionStorage.getItem("NewId"),
 				Category: 4,
 				Type: 2,
 				Title: $("#Title").text()

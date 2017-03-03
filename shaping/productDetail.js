@@ -136,7 +136,7 @@ $("#checkComplete").live("click", function () {
 })
 
 $("#startClick").live("click", function () {
-    if (!checkLogin('../shaping/productDetails.html')) {
+    if (!checkLogin("../shaping/productDetails.html?id="+ProductId)) {
         return;
     }
 	var SetClearMark = 1;
@@ -154,14 +154,15 @@ $("#startClick").live("click", function () {
 		},
 		function(response) {
 			if(response != "") {
-				alert("系统错误");
+				alert(response);
+			}else {
+			  window.location.reload();
 			}
-			window.location.reload();
 		})
 })
 
 $("#GetCoupon").live("click", function() {
-	if (!checkLogin('../shaping/CouponList.html')) {
+	if (!checkLogin("../shaping/productDetails.html?id="+ProductId)) {
 			return;
 	}else {
 		location.href = "CouponList.html";
