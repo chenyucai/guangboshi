@@ -651,6 +651,7 @@ $("#xiala1").click(function(e){
 <script>
 	$(function() {
 		$.get(constants.baseUrl + "/AppHome/GetHome?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+			var data = JSON.parse(data);
 			var template1 = $('#guangdianmeirong ul');
 			$('#template1').tmpl(data.CategoryList).appendTo(template1);
 			var template2 = $('#kuanghuandacu ul');
