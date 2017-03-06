@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta id="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" name="viewport">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+
+		<link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="../static/css/common.css" rel="stylesheet">
+		<link href="../static/css/style.css" rel="stylesheet">
+		<link href="../static/css/icon.css" rel="stylesheet">
+		<link href="webuploader.css" rel="stylesheet">
+		<script src="../static/js/jquery-1.9.1.js"></script>
+		<script src="../static/js/idangerous.swiper.js"></script>
+		<script src="../static/js/web.js"></script>
+		<script src="../static/js/jquery.raty.js"></script>
+		<script src="../js/jquery.cookie.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.tmpl.min.js"></script>
+		<script src="webuploader.js"></script>
+
+		<script src="js/star-rating.js" type="text/javascript"></script>
+		<title></title>
+		<style>
+			.activityBannerPic img {
+				width: 120px;
+				height: 100px;
+				margin: 20px auto 0 auto;
+			}
+
+			#fileList div {
+				width: 25%;
+				display: block;
+			}
+		</style>
+		<script>
+
+			$.get(constants.baseUrl + "/AppOrder/GetOrderDetails?OrderID=" + sessionStorage.getItem("orderId"), function(data) {
+		debugger;
+		var OrderDetail = JSON.parse(data);
+		$("#Category").text(OrderDetail.Category);
+		$("#GoodName").text(OrderDetail.GoodName);
+		$("#GoodImg").attr("src", OrderDetail.GoodImg);
+	})
+			jQuery(document).ready(function() {
+				$(".rating-kv").rating();
+				$(".clear-rating ").remove();
+				$(".caption").remove();
+			});
+			var count = 0;
+			// 图片上传demo
+			jQuery(function() {
+
+				var $ = jQuery,
+					$list = $('#fileList'),
+					// 优化retina, 在retina下这个值是2
+					ratio = window.devicePixelRatio || 1,
+
+					// 缩略图大小
+					thumbnailWidth = 100 * ratio,
+					thumbnailHeight = 100 * ratio,
+
+					// Web Uploader实例
+					uploader;
+
+				// 初始化Web Uploader
+				uploader = WebUploader.create({
+
+					// 自动上传。
+					//					auto: true,
+
+					// 选择文件的按钮。可选。
+					// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+					pick: '#filePicker',
+
+					// 只允许选择文件，可选。
+					accept: {
+						title: 'Images',
+						extensions: 'gif,jpg,jpeg,bmp,png',
+						mimeTypes: 'image/*'
+					}
+				});
+
+				// 当有文件添加进来的时候
+				uploader.on('fileQueued', function(file) {
+					//					alert("超出上传上限");
+					count++;
+					if($("#fileList").find("div").length > 4 || count > 4) {
+						//		alert("超出上传上限");
+						$("#remind1").hide();
+						$("#remind2").show();
+						count=4;
+						return false;
+					}
+
+					debugger
+					var $li = $(
+							'<div id="' + file.id + '" class="file-item thumbnail" >' +
+							'<img>' + '<br><a href="javascript:void(0)" class="delete"><p class="progress" style="text-align:center"><span>刪除</span></p></a>' +
+							'</div>'
+						),
+						$img = $li.find('img');
+
+					$list.append($li);
+
+					// 创建缩略图
+					uploader.makeThumb(file, function(error, src) {
+						if(error) {
+							$img.replaceWith('<span>不能预览</span>');
+							return;
+						}
+
+						$img.attr('src', src);
+					}, thumbnailWidth, thumbnailHeight);
+				});
+
+				// 文件上传过程中创建进度条实时显示。
+				//				uploader.on('uploadProgress', function(file, percentage) {
+				//					var $li = $('#' + file.id),
+				//						$percent = $li.find('.progress span');
+				//
+				//					// 避免重复创建
+				//					if(!$percent.length) {
+				//						$percent = $('<br><p class="progress" style="text-align:center"><span>刪除</span></p>')
+				//							.appendTo($li)
+				//							.find('span');
+				//					}
+				//
+				//					$percent.css('width', percentage * 100 + '%');
+				//				});
+
+				// 文件上传成功，给item添加成功class, 用样式标记上传成功。
+				//				uploader.on('uploadSuccess', function(file) {
+				//					$('#' + file.id).addClass('upload-state-done');
+				//				});
+				//
+				//				// 文件上传失败，现实上传出错。
+				//				uploader.on('uploadError', function(file) {
+				//					var $li = $('#' + file.id),
+				//						$error = $li.find('div.error');
+				//
+				//					// 避免重复创建
+				//					if(!$error.length) {
+				//						$error = $('<div class="error"></div>').appendTo($li);
+				//					}
+				//
+				//					$error.text('上传失败');
+				//				});
+				//
+				//				// 完成上传完了，成功或者失败，先删除进度条。
+				//				uploader.on('uploadComplete', function(file) {
+				//					$('#' + file.id).find('.progress').remove();
+				//				});
+
+			});
+
+			$(".loginBtn").live("click", function() {
+				debugger;
+				var imgList = [];
+				$("#fileList img").each(function() {
+
+					var img = $(this).attr("src").split(',');
+					imgList.push(img[1]);
+				})
+				var ImgString = imgList.join(',');
+
+				var Service = $("#input-21b").val();
+
+				var SYPF = $("#input-21a").val();
+
+				//	var Content = document.getElementById("text").getElementsByTagName("textarea")[0].value;
+				var Content = $("#text textarea").val();
+
+				$.post(constants.baseUrl + "/AppOrderManage/SetAssessmentsGoods", {
+						userId: $.cookie("userId"),
+						goodsid: sessionStorage.getItem("goodId"),
+						goodsName: sessionStorage.getItem("goodName"),
+						service: Service,
+						SYPF: SYPF,
+						content: Content,
+						imgString: ImgString
+					},
+					function(result) {
+						debugger;
+						if(result=="")
+						{
+							location.href="index.html";
+						}
+						else
+						{
+							alert(result);
+						}
+					});
+			});
+
+			$(".delete").live("click", function() {
+				debugger;
+				$(this).closest("div").remove();
+				$("#remind1").show();
+				$("#remind2").hide();
+				--count;
+			})
+		</script>
+
+	</head>
+
+	<body>
+		<div class="layoutMain">
+
+			<header class="pageHead clearfix">
+				<div class="headLeft">
+					<a href="javascript:history.go(-1)" class="headLeftBtn"><i class="icon-arrow-left"></i></a>
+				</div>
+				<h2 class="headTitle">
+             		订单评价
+            	</h2>
+			</header>
+
+			<div class="pageMain noFoot ">
+
+				<div class="grayMain" style="background: white;">
+					<div class="clearfix">
+						<a href="#" class="activityBannerPic" style="text-align: center;"><img src="../img/头像.jpg" id="GoodImg" /></a>
+						<div class="artistList p10">
+							<ul class="clearfix">
+								<li style="width: 100%;">
+									<div class="artistListPad">
+
+										<div class="productListUser" style="padding-top: 14px; text-align: center;">
+											<span class="jpzx" style="font-size: 16px;">【 <span id="Category">紧肤系列</span> 】</span>
+
+										</div>
+										<div class="productListUser" style="text-align:center; padding-top: 10px;">
+											<span class="jpzx1" id="GoodName">百颜水光针2ml+伊肤泉无菌修复美颜</span>
+
+										</div>
+
+									</div>
+
+						</div>
+					</div>
+
+					<div style="border: 5px solid #F2F2F2;"></div>
+
+					<div>
+						<div>
+							<span style="float:left;line-height: 40px; width: 60%;padding-left: 40px;">服务质量</span>
+							<input id="input-21b" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="lg" style="display: -webkit-inline-box;">
+							<span style="float:left;line-height: 40px; width: 60%;padding-left: 40px;">手艺评分</span>
+							<input id="input-21a" value="0" type="number" class="rating" min=0 max=5 step=1 data-size="lg" style=" padding-right: 20px; display: -webkit-inline-box;">
+						</div>
+
+					</div>
+
+					<div style="border: 5px solid #F2F2F2;"></div>
+
+					<div style="padding-bottom: 40px;">
+						<div id="text" style="text-align: center;">
+							<textarea rows="8" cols="52" style="margin-top: 10px; width: 90%;" placeholder="写下具体的使用体会，传播给更多的光博士用户"></textarea>
+						</div>
+
+						<div>
+							<span style="padding-left:20px; font-size:10px" id="remind1">点击添加按钮上传图片，共可上传4张。</span>
+							<span style="padding-left:20px; font-size:10px; display: none; color: red;" id="remind2">上传超出限制</span>
+						</div>
+
+						<div id="uploader-demo" style="width:100%; height:110px; margin-bottom: 40px; display: -webkit-box;">
+							<!--用来存放item-->
+							<div id="fileList" class="uploader-list" style="display: -webkit-box;width: 70%;padding-top: 18px;"></div>
+							<div id="filePicker">
+								<img src="../img/plus_square_128px_1187922_easyicon.net.png" style="width: 70px;height: 70px;" />
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		<div class="activityBlock" style="background:white; color: #999;">
+			<a data-rel="popup" style="background: #FF75B6; color: white;" class="loginBtn">发表评论</a>
+
+		</div>
+	</body>
+
+</html>
