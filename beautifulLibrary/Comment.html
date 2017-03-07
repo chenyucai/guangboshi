@@ -15,8 +15,8 @@
   <body>
     <div class="wrapper" id="app">
       <div class="header">
-        <span class="label">【紧肤系列】</span>
-        <span>润白颜水光针2ml+伊肤泉无菌修复美减肥是快乐的就发生了纠纷</span>
+        <span class="label">【{{ctgName}}】</span>
+        <span>{{title}}</span>
       </div>
 
       <div class="tags-wrapper">
@@ -33,10 +33,10 @@
       <div class="body-wrapper">
         <div class="body-item" v-for="(item, index) in assessList">
           <div class="title-wrapper">
-            <h2>门店环境</h2>
+            <h2>{{item.CategoryName}}</h2>
           </div>
           <div class="content-wrapper">
-            <div class="content-item" v-for="(child, i) in item.children">
+            <div class="content-item" v-for="(child, i) in item.items">
               <h3 class="content-item-title">{{(i+1)+'.'+child.ItemName}}</h3>
               <div class="content-item-content">
                 <span class="content-item-content-star" :class="{'active':child.mark>=1}" @click="setMark(index,i,1)"></span>
@@ -61,15 +61,19 @@
               <span class="image-del-icon" @click="delImg(index)"></span>
             </span>
 
-            <span class="image-add" v-show="images.length > 0" @click="addImg">＋</span>
+            <span class="image-add" v-show="images.length > 0">
+              ＋
+              <input type="file" class="inputfile" @change="addImg">
+            </span>
           </div>
-          <div class="input-images-footer" v-show="images.length === 0"  @click="addImg">
+          <div class="input-images-footer" v-show="images.length === 0">
             <span class="camera-icon"></span>
             <span class="desc">可点击上传图片，一共可以上传9张</span>
+            <input type="file" class="inputfile" @change="addImg">
           </div>
         </div>
       </div>
-      <div class="submit-btn" :class="{active: content.length!=0}">
+      <div class="submit-btn" :class="{active: content.length!=0}" @click="submit">
         发表评论
       </div>
     </div>

@@ -21,7 +21,7 @@
 
 			<li style="width: 100%;">
 				<a href="javascript:void(0)" id="orderDetail" >
-					<div class="divv"  data-type="${Type}" data-id="${ID}" data-state="${TGStatus}">
+					<div class="divv" data-type="${Type}" data-id="${ID}" data-state="${TGStatus}">
 						<div class="time">${OrderDate}</div>
 						<div style="padding-top: 16pt;padding-bottom: 14pt;"><span>【${Category}】</span><span>${GoodName}</span></div>
 						<div>
@@ -32,20 +32,20 @@
 						</div>
 						{{if (Type==1 || Type==2 || Type==4) && ReservationStatus ==2}}
 						<div style="padding-bottom: 21pt;">
-							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
+							<button class="detail" data-type="${Type}" data-id="${ID}" data-state="${TGStatus}" style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
 						</div>
 						{{/if}} {{if (Type==3) && TGStatus ==0}}
 						<div style="padding-bottom: 21pt;">
-							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
+							<button class="detail" data-type="${Type}" data-id="${ID}" data-state="${TGStatus}" style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
 						</div>
 						{{/if}} {{if (Type==3) && TGStatus==-1}}
 						<div style="padding-bottom: 21pt;">
-							<button style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">等待开团</button>
+							<button class="detail" data-type="${Type}" data-id="${ID}" data-state="${TGStatus}" style="width: 90%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">等待开团</button>
 						</div>
 						{{/if}} {{if (Type==1 || Type==2 || Type==4) && ReservationStatus ==0 }}
 						<div style="padding-bottom: 21pt;">
-							<button style="width: 60%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（预约中）</button>
-							<button style="width: 30%; height: 41pt; background: #271916;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;" id="comment" data-goodId="${GoodID}" data-goodName="${GoodName}">去评价</button>
+							<button class="detail" data-type="${Type}" data-id="${ID}" data-state="${TGStatus}" style="width: 60%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（预约中）</button>
+							<button style="width: 30%; height: 41pt; background: #271916;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;" id="comment" data-Category="${Category}" data-goodId="${GoodID}" data-goodName="${GoodName}" data-type="${Type}" data-orderId="${OrderID}">去评价</button>
 						</div>
 						{{/if}}
 
@@ -128,12 +128,33 @@
 		$("#template").tmpl(response).appendTo(template);
 	})
 
-	$("#comment").live("click", function() {
+	$("#comment").live("click", function(e) {
+		e.preventDefault();
 		sessionStorage.setItem("goodId", $(this).attr("data-goodId"));
 		sessionStorage.setItem("goodName", $(this).attr("data-goodName"));
-		location.href = "Comment.html";
+
+		localStorage.setItem('commentCategory', $(this).attr("data-Category"));
+		localStorage.setItem("commentGoodId", $(this).attr("data-goodId"));
+		localStorage.setItem("commentGoodName", $(this).attr("data-goodName"));
+		localStorage.setItem("commentType", $(this).attr("data-type"));
+		$.ajax({
+			url:'http://www.missnefer.com/AppAssess/checkGoodsHasReservation',
+			type:'get',
+			data:{
+				userId: $.cookie('userId'),
+				goodsId: $(this).attr("data-goodId"),
+				orderId: $(this).attr("data-orderId")
+			},
+			success: function(res){
+				if (res) {
+					location.href = "Comment.html";
+				} else {
+					alert('亲，还不能去评价哦～');
+				}
+			}
+		});
 	})
-	$(".divv").live("click", function() {
+	$(".detail").live("click", function() {
 		sessionStorage.setItem("orderId", $(this).attr("data-id"));
 
 		if($(this).attr("data-state") == -1) {
