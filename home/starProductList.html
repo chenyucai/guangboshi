@@ -134,7 +134,8 @@
 </html>
 <script>
 	var dataJson;
-	$.get(constants.baseUrl + "/AppHome/GetStarGoodsList?CityId=" + $.cookie("CityId"),
+	var CityId = $.cookie("CityId") || '';
+	$.get(constants.baseUrl + "/AppHome/GetStarGoodsList?CityId=" + CityId,
 		function(data) {
 			var template = $(".productListUl");
 			$('#template').tmpl(data.StarGoodsList).appendTo(template);
