@@ -655,28 +655,66 @@ $("#xiala1").click(function(e){
 
 <script>
 	$(function() {
-		$.get(constants.baseUrl + "/AppHome/GetHome?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+		// $.get(constants.baseUrl + "/AppHome/GetHome?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+		// 	var data = JSON.parse(data);
+		// 	var template1 = $('#guangdianmeirong ul');
+		// 	$('#template1').tmpl(data.CategoryList).appendTo(template1);
+		// 	var template2 = $('#kuanghuandacu ul');
+		// 	$('#template2').tmpl(data.DiscountedGoodsList).appendTo(template2);
+		// 	var template3 = $('#mingxingchanpin ul');
+		// 	$('#template3').tmpl(data.StarGoodsList).appendTo(template3);
+		// 	var template4 = $('#banner');
+		// 	$('#template4').tmpl(data.BannerList).appendTo(template4);
+		// 	var template5 = $('#shishangzixun');
+		// 	$('#template5').tmpl(data.InformationList).appendTo(template5);
+		// 	var mySwiper = new Swiper('.swiper-container', {
+		// 			calculateHeight: true,
+		// 			pagination: '.pagination',
+		// 			paginationClickable: true,
+		// 			//speed:950,
+		// 			loop: true,
+		// 			slidesPerView: 1
+		// 	});
+		//
+		// });
+		$.get(constants.baseUrl + "/AppHome/GetHomeBannerList?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+			var data = JSON.parse(data);
+			var template4 = $('#banner');
+			$('#template4').tmpl(data.BannerList).appendTo(template4);
+			var mySwiper = new Swiper('.swiper-container', {
+				calculateHeight: true,
+				pagination: '.pagination',
+				paginationClickable: true,
+				//speed:950,
+				loop: true,
+				slidesPerView: 1
+			});
+		});
+
+		$.get(constants.baseUrl + "/AppHome/GetHomeCategoryList?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
 			var data = JSON.parse(data);
 			var template1 = $('#guangdianmeirong ul');
 			$('#template1').tmpl(data.CategoryList).appendTo(template1);
+		});
+
+		$.get(constants.baseUrl + "/AppHome/GetHomeDiscountedGoodsList?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+			var data = JSON.parse(data);
 			var template2 = $('#kuanghuandacu ul');
 			$('#template2').tmpl(data.DiscountedGoodsList).appendTo(template2);
+		});
+
+		$.get(constants.baseUrl + "/AppHome/GetHomeStarGoodsList?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+			var data = JSON.parse(data);
 			var template3 = $('#mingxingchanpin ul');
 			$('#template3').tmpl(data.StarGoodsList).appendTo(template3);
-			var template4 = $('#banner');
-			$('#template4').tmpl(data.BannerList).appendTo(template4);
+		});
+
+		$.get(constants.baseUrl + "/AppHome/GetHomeInformationList?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
+			var data = JSON.parse(data);
 			var template5 = $('#shishangzixun');
 			$('#template5').tmpl(data.InformationList).appendTo(template5);
-			var mySwiper = new Swiper('.swiper-container', {
-					calculateHeight: true,
-					pagination: '.pagination',
-					paginationClickable: true,
-					//speed:950,
-					loop: true,
-					slidesPerView: 1
-			});
-
 		});
+
 
 
 
