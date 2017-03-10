@@ -654,6 +654,10 @@ $("#xiala1").click(function(e){
 
 
 <script>
+	var CityId = $.cookie("CityId");
+	if (!CityId) {
+		$.cookie("CityId","");
+	}
 	$(function() {
 		// $.get(constants.baseUrl + "/AppHome/GetHome?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
 		// 	var data = JSON.parse(data);

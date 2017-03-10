@@ -41,7 +41,11 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=
 	$("#Treatment").text(data.Treatment + "个疗程")
 	$("#SellPrice").text(data.SellPrice);
 	$("#MarketPrice").text(data.MarketPrice);
-	$("#StoreList").text(data.StoreList.join(','));
+  var stores = [];
+  data.StoreList.forEach(function(item){
+    stores.push(item.Name);
+  });
+	$("#StoreList").text(stores.join(','));
 	$("#ImageList").attr("src", data.ImageList[0]);
 	$("#imgChose").attr("src", data.ImageList[0]);
 	$("#TreatmentChose").text(data.Treatment + "个疗程")

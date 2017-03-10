@@ -320,8 +320,8 @@
 </html>
 
 <script>
-
-	$.get(constants.baseUrl + 　"/AppHome/GetMagazineList?UserId=" + 　$.cookie("userId") + "&Type=" + 1 + "&timestamp=" + (new Date()).Format("yyyyMMddhhmmss"), function(data) {
+	var userId = $.cookie("userId") || "";
+	$.get(constants.baseUrl + 　"/AppHome/GetMagazineList?UserId=" + userId + "&Type=" + 1 + "&timestamp=" + (new Date()).Format("yyyyMMddhhmmss"), function(data) {
 //		alert("1");
 //		window.location.reload();
 		var template = $("#industryInformationList");

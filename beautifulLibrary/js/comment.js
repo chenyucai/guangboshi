@@ -62,7 +62,23 @@ var vm = new Vue({
   		//当文件读取成功便可以调取上传的接口
   		reader.onload = function(e) {
   			console.log(e.target.result); //文件路径
-  			_this.images.push(e.target.result);
+  			// _this.images.push(e.target.result);
+        var str = e.target.result.split(',')[1];
+        $.ajax({
+          url:'http://www.missnefer.com/AppAssess/UploadPicture',
+          type:'POST',
+          // contentType:'application/json;charset=utf-8',
+          // data: JSON.stringify(data),
+          // traditional:true,
+          data:{
+            userId: userId,
+            recordId: recordId,
+            ImageStr:str
+          },
+          success: function(res){
+            _this.images.push(res);
+          }
+        });
   		};
     },
     submit: function(){
@@ -91,11 +107,17 @@ var vm = new Vue({
       data.marks = list;
       $.ajax({
         url:'http://www.missnefer.com/AppAssess/SaveAssessItemList',
-        type:'post',
+        type:'POST',
         contentType:'application/json;charset=utf-8',
         data: JSON.stringify(data),
+        // traditional:true,
+        // data:data,
         success: function(res){
-          alert(res)
+          if (res == "") {
+            alert('发表成功！')
+          } else {
+            alert(res);
+          }
         }
       });
     }
