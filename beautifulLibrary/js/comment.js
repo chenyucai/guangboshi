@@ -63,6 +63,7 @@ var vm = new Vue({
   		reader.onload = function(e) {
   			console.log(e.target.result); //文件路径
   			// _this.images.push(e.target.result);
+        var str = e.target.result.split(',')[1];
         $.ajax({
           url:'http://www.missnefer.com/AppAssess/UploadPicture',
           type:'POST',
@@ -72,10 +73,10 @@ var vm = new Vue({
           data:{
             userId: userId,
             recordId: recordId,
-            ImageStr: e.target.result
+            ImageStr:str
           },
           success: function(res){
-
+            _this.images.push(res);
           }
         });
   		};
@@ -90,7 +91,7 @@ var vm = new Vue({
         recordId: this.recordId,
         title: this.title,
         content: this.content,
-        // pics:this.images
+        pics:this.images
       };
       var list = [];
       this.assessList.forEach(function(item){
@@ -107,10 +108,10 @@ var vm = new Vue({
       $.ajax({
         url:'http://www.missnefer.com/AppAssess/SaveAssessItemList',
         type:'POST',
-        // contentType:'application/json;charset=utf-8',
-        // data: JSON.stringify(data),
-        traditional:true,
-        data:data,
+        contentType:'application/json;charset=utf-8',
+        data: JSON.stringify(data),
+        // traditional:true,
+        // data:data,
         success: function(res){
           if (res == "") {
             alert('发表成功！')
