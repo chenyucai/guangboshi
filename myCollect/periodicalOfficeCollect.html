@@ -18,7 +18,7 @@
 		<script src="../js/jquery.tmpl.min.js"></script>
 
 		<script type="text/html" id="template">
-			<li data-id="${Id}">
+			<li data-id="${Id}" data-type="1">
 				<div class="artistListPad">
 					<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1 imgtxt"><i class="icon-heart"></i></span><img src="${Image}" /></a>
 					<span class="dianzanshu">${Zan}</span>
@@ -80,7 +80,7 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -88,7 +88,7 @@
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -96,35 +96,35 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListPic img {
 				max-width: none;
 				width: 120px;
 				height: 100px;
 			}
-			
+
 			.orderListPic {
 				padding-right: 100px;
 			}
-			
+
 			.text1 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.tr td {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListUl>li {
 				border-bottom: none;
 			}
-			
+
 			.sellerTab li.active a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -132,7 +132,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -140,50 +140,50 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.screening {
 				position: inherit;
 			}
-			
+
 			.screeningList {
 				width: 33%;
 			}
 			/*.screeningList {
 				width: 100%;
 			}*/
-			
+
 			.screeningTitle {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.screeningList dd {
 				top: 120px;
 			}
-			
+
 			.jpzx {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx1 {
 				font-family: PingFang-SC-Regular;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.style_4 {
 				font-family: PingFangSC-Light;
 				font-size: 10px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.activityTime1 {
 				border-radius: 0;
 				/*top: 150px;*/
@@ -201,7 +201,7 @@
 				width: 15px;
 				color: red;
 			}
-			
+
 			.dianzanshu {
 				float: right;
 				padding-right: 8px;
@@ -211,19 +211,19 @@
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.artistList {
 				padding-top: 23px;
 			}
-			
+
 			.artistList li {
 				width: 50%;
 			}
-			
+
 			.productListUser {
 				padding-top: 20px;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFangSC-Light;
@@ -231,23 +231,23 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.icon-heart {
 				width: 13px;
 			}
-			
+
 			.sellerTabSpan3 li {
 				width: 25%
 			}
-			
+
 			.productInfo .tabs a {
 				width: 33%;
 			}
-			
+
 			.screening dl {
 				width: 33%;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFang-SC-Medium;
@@ -255,25 +255,25 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.C_C_C {
 				font-family: PingFang-SC-Light;
 				font-size: 11px;
 				color: #B8B8B8;
 				letter-spacing: 0px;
 			}
-			
+
 			.screening:after {
 				background: none;
 			}
-			
+
 			#chanpingleixing li {
 				display: inline;
 				width: 33%;
 				float: left;
 				text-align: center;
 			}
-			
+
 			.productListPad div {
 				text-align: left;
 			}
@@ -314,8 +314,8 @@
 					</div>
 					<div class="tabs clearfix">
 						<a href="#" class="active">行业资讯</a>
-						<a href="#">光电学堂 </a>
-						<a href="#">公司新闻</a>
+						<a href="#">美容学堂</a>
+						<a href="#">公司信息</a>
 					</div>
 				</div>
 
@@ -324,7 +324,7 @@
 						<div class="swiper-wrapper">
 							<div class="swiper-slide" id="hangyezixun">
 
-								<ul class="clearfix">
+								<ul class="clearfix"></ul>
 
 							</div>
 
@@ -395,10 +395,23 @@
 				$("#template1").tmpl(guangdianxuetang).appendTo(template);
 			})
 
-			$.get(constants.baseUrl + "/AppPersonal/GetMyCollection?UserId=" + $.cookie("userId") + "&Category=" + 4 + "&Type=" + 2, function(news) {
+			$.get(constants.baseUrl + "/AppPersonal/GetMyCollection?UserId=" + $.cookie("userId") + "&Category=" + 4 + "&Type=" + 3, function(news) {
 				var template = $(".orderListUlNoSet");
 				$('#template2').tmpl(news).appendTo(template);
+			});
+
+			$('#hangyezixun li').live('click',function(){
+				var id = $(this).attr('data-id');
+				window.location.href = '../periodical_office/photoelectricSchoolDetail.html?id='+id;
 			})
+			$('#guangdianxuetang li').live('click',function(){
+				var id = $(this).attr('data-id');
+				window.location.href = '../periodical_office/photoelectricSchoolDetail.html?id='+id;
+			});
+			$('.orderListUlNoSet li').live('click',function(){
+				var id = $(this).attr('data-id');
+				window.location.href = '../periodical_office/photoelectricSchoolDetail.html?id='+id;
+			});
 		</script>
 	</body>
 

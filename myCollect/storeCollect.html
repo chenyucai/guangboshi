@@ -40,7 +40,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -48,11 +48,11 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTabSpan3 li {
 				width: 25%
 			}
-			
+
 						.c_c
 			{
 				font-family: PingFang-SC-Light;
@@ -128,7 +128,14 @@ letter-spacing: 0px;
 
 			$.get(constants.baseUrl + "/AppPersonal/GetMyCollection?UserId=" + $.cookie("userId") + "&Category=" + 1 + "&Type=" + "", function(store) {
 				var template = $(".productListUl");
-		        $("#template").tmpl(store).appendTo(template);
+		    $("#template").tmpl(store).appendTo(template);
+
+
+
+				$('.productListUl li').live('click',function(){
+					sessionStorage.setItem("storeId", $(this).attr('data-id'));
+					window.location.href = '../store/storeDetail.html';
+				});
 			})
 		</script>
 	</body>

@@ -14,7 +14,7 @@
     <link href="../static/js/idangerous.swiper.3dflow.css" rel="stylesheet">
     <script src="../static/js/jquery-1.9.1.js"></script>
     <script src="../js/jquery.cookie.js"></script>
-    <script src="../static/js/idangerous.swiper2.7.6.min.js"></script>
+    <script src="../static/js/idangerous.swiper.js"></script>
     <script src="../static/js/idangerous.swiper.3dflow.js"></script>
     <script src="../static/js/web.js"></script>
 
@@ -623,13 +623,13 @@
 
               var detailHtml = '';
               if (pointList.length > 0) {
-                pointList[0].PointDetailList.forEach(function(v){
+                pointList[pointList.length - 1].PointDetailList.forEach(function(v){
                   detailHtml += '<div class="timeline-row">'+
                         '<div class="timeline-row-icon">'+
                             '<div class="icon-quill"></div>'+
                         '</div>'+
                         '<div class="timeline-row-content">'+
-                            '<div class="timeline-row-content-1">'+v.Content+'/div>'+
+                            '<div class="timeline-row-content-1">'+v.Content+'</div>'+
                             '<div class="timeline-row-content-2">'+
                                 '<span class="timeline-row-content-date">'+v.Date+'</span>'+
                                 '<div class="timeline-row-content-point">'+
@@ -644,11 +644,12 @@
                 $('.timeline-row-container').html(detailHtml);
               }
 
-
+              var initialSlide = res.MonthPointDetailList.length - 1;
               $('.swiper-wrapper').html(swiperHtml);
               var tabsSwiper = new Swiper('.swiper-container', {
                   speed: 500,
                   slidesPerView: 1.8,
+                  initialSlide: initialSlide >= 0 ? initialSlide : 0,
                   //spaceBetween: 20,
                   //slidesPerColumn: 1,
                   //slidesOffsetBefore: 100,

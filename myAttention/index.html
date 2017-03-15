@@ -17,7 +17,7 @@
 		<script src="../js/jquery.tmpl.min.js"></script>
 		<script type="text/html" id="template">
 			<div class="artistHead clearfix" style="border-bottom: none;" data-id="${Id}" data-CollectionMark=${CollectionMark}>
-				<div class="artistHeadPic" style="width: 60px;"><img src="${HeadIcon}" style="height: 60px;" /></div>
+				<div class="artistHeadPic" style="width: 60px;" data="${Id}"><img src="${HeadIcon}" style="height: 60px;width:60px;" /></div>
 				<div class="artistHeadMain">
 					<div class="h4 " style="font-size: 16px; line-height: 20px;">${Name}<img src="../img/dengji/V${Level}@2x.png" style="width: 17px;height: 15px; padding-left: 6px;"></div>
 					<div class="c_9 h6 pt5" style="line-height: 20px;">
@@ -52,7 +52,7 @@
 				width: 50%;
 				border-bottom: 1px solid #EFEFEF;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -61,16 +61,16 @@
 				letter-spacing: 0px;
 				border-bottom: 1px solid #2F2F2F;
 			}
-			
+
 			.style_4 {
 				width: 40px;
 				height: 24px;
 			}
-			
+
 			.btnSm {
 				line-height: 1;
 			}
-			
+
 			.artistHead .btn {
 				width: inherit;
 			}
@@ -169,13 +169,18 @@
 			}
 		)
 	})
-	
+
+	$('.artistHeadPic').live('click',function(){
+		sessionStorage.setItem("userDetailId", $(this).attr('data'));
+		window.location.href = '../shaping/userDetail.html';
+	});
+
 	$("#attentionClick").live("click", function(e) {
-		if(e && e.stopPropagation) //FF  
+		if(e && e.stopPropagation) //FF
 		{
 
 			e.stopPropagation();
-		} else //IE  
+		} else //IE
 		{
 
 			window.event.cancelBubble = true;
