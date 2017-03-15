@@ -74,8 +74,8 @@
 			</li>
 		</script>
 		<script type="text/html" id="template4">
-			<div class="swiper-slide">
-				<img src="${ImgUrl}" />
+			<div class="swiper-slide indeximg">
+				<img src="${ImgUrl}" id="${goodsId}"/>
 			</div>
 		</script>
 		<script type="text/html" id="template5">
@@ -693,6 +693,10 @@ $("#xiala1").click(function(e){
 				loop: true,
 				slidesPerView: 1
 			});
+			$(".indeximg").live("click ", function() {
+				sessionStorage.setItem("ProductId", $(this).find('img').attr("id"));
+				window.location.href = "../shaping/groupbuyDetail.html";
+			})
 		});
 
 		$.get(constants.baseUrl + "/AppHome/GetHomeCategoryList?CityId=" + "" + "&UserId=" + $.cookie("userId") , function(data, status) {
@@ -718,6 +722,8 @@ $("#xiala1").click(function(e){
 			var template5 = $('#shishangzixun');
 			$('#template5').tmpl(data.InformationList).appendTo(template5);
 		});
+
+
 
 
 
