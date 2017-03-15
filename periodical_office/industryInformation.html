@@ -322,6 +322,11 @@
 <script>
 	var userId = $.cookie("userId") || "";
 	$.get(constants.baseUrl + 　"/AppHome/GetMagazineList?UserId=" + userId + "&Type=" + 1 + "&timestamp=" + (new Date()).Format("yyyyMMddhhmmss"), function(data) {
+		console.log(JSON.parse(data));
+		if (typeof data != 'object') {
+			data = JSON.parse(data);
+		}
+
 //		alert("1");
 //		window.location.reload();
 		var template = $("#industryInformationList");
