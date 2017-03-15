@@ -246,7 +246,7 @@
 								<a href="../home/index.html" class="submit"><span><img src="../img/3/button_logo_nol@2x.png" style="width: 60%;padding-bottom: 10px;"></span>MISS NEFER</a>
 							</li>
 							<li class="active" style="width: 50%;">
-								<a href="#"><span><img src="../img/3/button_presonl_hul@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
+								<a href="javascript:;"><span><img src="../img/3/button_presonl_hul@2x.png" style="width: 60%;padding-bottom: 10px;"></span>个人中心</a>
 							</li>
 						</ul>
 					</nav>
@@ -263,6 +263,11 @@
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalCenter?UserId=" + $.cookie("userId"), function(response) {
 		// debugger;
 		console.log(localStorage.getItem('updateAvatar'));
+		// if (response.HeadIcon == '') {
+		// 	$("#HeadIcon").attr("src", "");
+		// }else {
+		// 	$("#HeadIcon").attr("src", localStorage.getItem('updateAvatar') || response.HeadIcon);
+		// }
 		$("#HeadIcon").attr("src", localStorage.getItem('updateAvatar') || response.HeadIcon);
 		$("#MemberLevel").text(response.MemberLevel);
 		$("#Name").text(response.Name);

@@ -76,7 +76,7 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=
 	$("#GroupByRemark").html(data.Remark);
 	sessionStorage.setItem("goodsId", data.Id);
 	if(data.CollectionMark == true) {
-		$(".icon-star").css("color", "#F03B92");
+		$(".icon-star").addClass('active');
 	}
 	$("#CollectionUserNum").text(data.CollectionUserNum);
 
@@ -161,30 +161,58 @@ $("#checkComplete").live("click", function () {
 
 })
 
-$("#startClick").live("click", function () {
-    if (!checkLogin("../shaping/productDetails.html?id="+ProductId)) {
-        return;
-    }
-	var SetClearMark = 1;
-	if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
-		SetClearMark = 2;
-	}
-	$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
-			SetClearMark: SetClearMark,
-			UserId: $.cookie("userId"),
-			Id: sessionStorage.getItem("ProductId"),
-			Category: 2,
-			Type: 1,
-			Title: $("#Title").text()
+// $("#startClick").live("click", function () {
+//     if (!checkLogin("../shaping/productDetails.html?id="+ProductId)) {
+//         return;
+//     }
+// 	var SetClearMark = 1;
+// 	if($(this).find("i").css("color") == "rgb(240, 59, 146)") {
+// 		SetClearMark = 2;
+// 	}
+// 	$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+// 			SetClearMark: SetClearMark,
+// 			UserId: $.cookie("userId"),
+// 			Id: sessionStorage.getItem("ProductId"),
+// 			Category: 2,
+// 			Type: 1,
+// 			Title: $("#Title").text()
+//
+// 		},
+// 		function(response) {
+// 			if(response != "") {
+// 				alert(response);
+// 			}else {
+// 			  window.location.reload();
+// 			}
+// 		})
+// })
 
-		},
-		function(response) {
-			if(response != "") {
-				alert(response);
-			}else {
-			  window.location.reload();
-			}
-		})
+$("#startClick").live("click", function () {
+  if (!checkLogin("../shaping/productDetails.html?id="+ProductId)) {
+      return;
+  }
+  var SetClearMark = 1;
+  if($(".icon-star").hasClass('active')) {
+    SetClearMark = 2;
+  }
+  $.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+      SetClearMark: SetClearMark,
+      UserId: $.cookie("userId"),
+      Id: sessionStorage.getItem("ProductId"),
+      Category: 2,
+			Type: 1
+    },
+    function(response) {
+      if(response != "") {
+        alert("系统错误");
+      }else{
+        if ($(".icon-star").hasClass('active')) {
+          $(".icon-star").removeClass('active');
+        }else {
+          $(".icon-star").addClass('active');
+        }
+      }
+    })
 })
 
 $("#GetCoupon").live("click", function() {

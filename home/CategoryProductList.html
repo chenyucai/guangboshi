@@ -19,8 +19,8 @@
 
 			<li data-id="${Id}" class="productClick">
 				<div class="productListPad">
-					<a href="javascript:void(0)" class="productListPic" style="height:auto !important;"><img src="${Image}" style="width:100%;height:100%;vertical-align:top;"></a>
-					<!--<h4 class="productListTitle pt5"><a href="#" class="h5">【水月环球港】<span>浦东新区&nbsp;&nbsp;200m</span></a></h4>-->
+					<a href="javascript:void(0)" class="productListPic" style=""><img src="${Image}" style="width:100%;height:100%;vertical-align:top;"></a>
+					<!--<h4 class="productListTitle pt5"><a href="javascript:;" class="h5">【水月环球港】<span>浦东新区&nbsp;&nbsp;200m</span></a></h4>-->
 					<div class="productListUser" style="height: 40px;">
 						<a href="javascript:void(0)" class="c_c">【${CategoryName}】<span class="C_C_C">${Title}</span></a>
 					</div>
@@ -39,7 +39,7 @@
 
 		<script type="text/html" id="template2">
 			<li data-id="${Id}" class="setClick">
-				<a href="#">${Name}<i></i></a>
+				<a href="javascript:;">${Name}<i></i></a>
 			</li>
 		</script>
 		<style>
@@ -134,11 +134,11 @@
 						<dt class="screeningTitle"><span class="screeningBtn" style="color: white;"><b style="max-width: none;" id="guangdianName">
 						</b>&nbsp;<img src="../img/2/Fill 1@3x.png" style="width: 15%;"></span></dt>
 						<dd class="screeningDd" id="guangdianfeilei">
-							<a href="#" class="guangdianmeirongxuanze" data-id="0"><span>全部</span><i></i></a>
-							<!--<a href="#" class="active">面部塑形<i></i></a>
-							<a href="#">雕塑<i></i></a>
-							<a href="#">摄影<i></i></a>
-							<a href="#">绘画<i></i></a>-->
+							<a href="javascript:;" class="guangdianmeirongxuanze" data-id="0"><span>全部</span><i></i></a>
+							<!--<a href="javascript:;" class="active">面部塑形<i></i></a>
+							<a href="javascript:;">雕塑<i></i></a>
+							<a href="javascript:;">摄影<i></i></a>
+							<a href="javascript:;">绘画<i></i></a>-->
 						</dd>
 					</dl>
 
@@ -155,7 +155,7 @@
 						<dd class="screeningDd" id="chanpingfenlei">
 							<ul id="chanpingleixing" style="padding:10px 0;">
 								<li data-id="0" class="setClick active">
-									<a href="#">分类</a>
+									<a href="javascript:;">分类</a>
 								</li>
 							</ul>
 						</dd>
@@ -165,7 +165,7 @@
 
 					</dl>
 					<dl class="screeningList clearfix">
-						<dt class="screeningTitle"><span class="screeningBtn"><b>购买数</b><i class="screeningBtnIcon"></i></span></dt>
+						<dt class="screeningTitle" id="num"><span class="screeningBtn"><b>购买数</b><i class="screeningBtnIcon"></i></span></dt>
 
 					</dl>
 
@@ -214,6 +214,24 @@
 
 			dataJson.sort(function(a, b) {
 				return a.SellPrice > b.SellPrice ? 1 : -1;
+			});
+		}
+
+		$(".productListUl").find("li").remove();
+		$('#template').tmpl(dataJson).appendTo($(".productListUl"));
+
+	})
+
+	$("#num").click(function() {
+		if($(this).hasClass("active")) {
+
+			dataJson.sort(function(a, b) {
+				return a.SellCount < b.SellCount ? 1 : -1;
+			});
+		} else {
+
+			dataJson.sort(function(a, b) {
+				return a.SellCount > b.SellCount ? 1 : -1;
 			});
 		}
 
