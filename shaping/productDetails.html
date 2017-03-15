@@ -19,15 +19,15 @@
 	<script src="productDetail.js"></script>
 	<script src="../js/jquery.tmpl.min.js"></script>
 	<script type="text/html" id="template">
-		<a href="#" data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;"><img src="${HeadIcon}" style="width:30px;height: 30px;border-radius:50%;" /></a>
+		<a href="javascript:;" data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;"><img src="${HeadIcon}" style="width:30px;height: 30px;border-radius:50%;" /></a>
 	</script>
 	<script type="text/html" id="template1">
 
 		<div class="viewCommentList">
 			<div class="viewCommentListHead clearfix">
-				<a href="#" class="orderListPic" style="padding-right: 15px;"><img src="${UserInformation.HeadIcon}" /></a>
+				<a href="javascript:;" class="orderListPic" style="padding-right: 15px;"><img src="${UserInformation.HeadIcon}" /></a>
 				<span class="fr">${AssessmentsTime}</span>
-				<a href="#" class="commentUser">${UserInformation.Name}</a>&nbsp;&nbsp;<br>
+				<a href="javascript:;" class="commentUser">${UserInformation.Name}</a>&nbsp;&nbsp;<br>
 				<span class="productStar c_blue" style="padding-top: 5px;">
 						{{if AssessmentsValue==1}}
 						<i class="icon-star-full"></i>
@@ -356,7 +356,7 @@
 
 		.accountHeadPic {
 			position: absolute;
-			top: -50px;
+			top: -25px;
 		}
 
 		.specialPerformance {
@@ -449,10 +449,9 @@
 		}
 
 		.close {
-			display: inline-block;
+			position: absolute;
+			right: 5px;
 			margin-top: -10px;
-			margin-left: 25px;
-			height: 30px;
 			font-size: 30px;
 			color: #cfcfcf;
 		}
@@ -510,6 +509,9 @@
 		.name{
 			flex: 0 0 20%;
 		}
+		.icon-star.active{
+			color: #F03B92;
+		}
 	</style>
 </head>
 
@@ -547,14 +549,14 @@
 			</div>
 			<div class="p20">
 				<!--  <a href="../account/partners.html" class="btn btnBlock style_1">查看我的分销</a>-->
-				<a href="#" class="btn btnBlock style_2 mt10 ">我知道了</a>
+				<a href="javascript:;" class="btn btnBlock style_2 mt10 ">我知道了</a>
 
 			</div>
 		</div>
 		<div class="pageMain noFoot">
 			<div class="grayMain" style="background: white;">
 				<div class="clearfix" style="margin-bottom: 40px;">
-					<a href="#" class="activityBannerPic" style="text-align: center;"><span class="activityTime1" id="SellCount"></span><img id="ImageList" src="" style="width:100%;"/></a>
+					<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><span class="activityTime1" id="SellCount"></span><img id="ImageList" src="" style="width:100%;"/></a>
 
 					<div class="artistList">
 						<ul class="clearfix">
@@ -563,7 +565,7 @@
 
 									<div class="productListUser" style="padding-top: 14px; text-align: center;">
 										<span class="jpzx" style="font-size: 16px;" id="CategoryName">【 紧肤系列 】</span>
-										<a href="#" class=" btnSm style_4 jpzx2" style="background: #B8B8B8; padding: 2px 8px ; border-radius: 0; vertical-align: middle;" id="Treatment"><span class="icon-clock" style="padding-right: 8px;"></span>6个疗程</a>&nbsp;&nbsp;
+										<a href="javascript:;" class=" btnSm style_4 jpzx2" style="background: #B8B8B8; padding: 2px 8px ; border-radius: 0; vertical-align: middle;" id="Treatment"><span class="icon-clock" style="padding-right: 8px;"></span>6个疗程</a>&nbsp;&nbsp;
 
 									</div>
 									<div class="productListUser" style="text-align:center; padding-top: 10px;">
@@ -576,7 +578,7 @@
 										<span class="jpzx4" style="">¥ <span id="MarketPrice">1599</span></span>
 									</div>
 									<div style="text-align: center; padding: 40px; ">
-										<a href="#" class=" btnSm style_4 jpzx5" id="StoreList"><span class="icon-eye" style="padding-right: 8px;"></span>本产品适用于光电美容的所有门店</a>&nbsp;&nbsp;
+										<a href="javascript:;" class=" btnSm style_4 jpzx5" id="StoreList"><span class="icon-eye" style="padding-right: 8px;"></span>本产品适用于光电美容的所有门店</a>&nbsp;&nbsp;
 									</div>
 								</div>
 					</div>
@@ -614,53 +616,29 @@
 					</div>
 					<div class="signinFoot" style="padding: 30px 0 30px 0; border-bottom:10px solid #F2F2F2;">
 						<div id="CollectionUserList" style="display: inline;"></div>
-						<!--<a href="#" data-id="2"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
-							<a href="#" data-id="2"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
-							<a href="#" data-id="2"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
-							<a href="#" data-id="2"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
-							<a href="#" data-id="2"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>-->
-						<a href="#" data-id="2" class="suggestedClick">
+						<a href="javascript:;" data-id="2" class="suggestedClick">
 							<div style="width:25px;height:25px;border-radius:50px;border:solid #FF5DA9; 1px;vertical-align: middle;display: inline-block; background: #FF5DA9; color: #FFF; font-family: PingFang-SC-Medium;">...</div>
 						</a>
 					</div>
-					<!--<div class="artistHead clearfix" style="border-bottom: none;padding-bottom: 44px;">
-							<div class="artistHeadPic">
-								<img src="../img/81844691981402.jpg" style="height: 60px;" />
-								<img src="../img/81844691981402.jpg" style="height: 60px;" />
-								<img src="../img/81844691981402.jpg" style="height: 60px;" />
-								<img src="../img/81844691981402.jpg" style="height: 60px;" />
-								<img src="../img/81844691981402.jpg" style="height: 60px;" />
-							</div>
-						</div>-->
 					<div class="sellerTab sellerTabSpan3" style="padding-top: 20px;">
 						<ul class="clearfix">
 							<li class="active">
-								<a href="#">图文详情</a>
+								<a href="javascript:;">图文详情</a>
 							</li>
 							<li>
-								<a href="#">购买须知</a>
+								<a href="javascript:;">购买须知</a>
 							</li>
 							<li>
-								<a href="#">评价</a>
+								<a href="javascript:;">评价</a>
 							</li>
 						</ul>
 					</div>
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide" id="Content">
-								<!--<!--<div class="textD" style="padding-top: 12px;"> 上市时间：2015年</div>
-									<div class="textD">Esmay/翌生美 涂抹式水光</div>
-									<div class="textD">提亮肤色 收缩毛孔 舒缓紧致肌肤</div>
-									<div class="textD">规格类型: 正常规格</div>
-									<div class="textD">适合肤质: 任何肤质</div>
-									<a href="#" class="activityBannerPic" style="text-align: center; "><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
-									<a href="#" class="activityBannerPic" style="text-align: center;"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>-->
 							</div>
 
 							<div class="swiper-slide" id="GroupByRemark">
-
-								<!--<a href="#" class="activityBannerPic" style="text-align: center; "><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
-									<a href="#" class="activityBannerPic" style="text-align: center;"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>-->
 							</div>
 							<div class="swiper-slide" style="text-align: left;">
 								<div class="viewComment" style="border: none;background:#FAFAFA;padding:10px;" id="comment">
@@ -704,7 +682,7 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 
 		<div class="activityBlock" style="background:white;">
 			<div class="p10 lijigoumai" style="background-color: white; padding: 0;">
-				<a href="#" class="btn btnBlock" onClick="toshare()" style="background: #FF5DA9; border-color: white; border-radius: 0;">立即购买</a>
+				<a href="javascript:;" class="btn btnBlock" onClick="toshare()" style="background: #FF5DA9; border-color: white; border-radius: 0;">立即购买</a>
 			</div>
 		</div>
 	</div>
@@ -712,8 +690,8 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 
 		<div class="whiteMain" style="min-height: 200px;">
 			<div class="accountHead clearfix" style="border: none;">
-				<div class="accountHeadPic" style="width: 35%;border-radius:inherit; padding-right: 20px;height: 150px;">
-					<img id="imgChose" src="../img/QQ截图20161118113628.png" style="height: 100%;" />
+				<div class="accountHeadPic" style="width: 35%;border-radius:inherit; padding-right: 20px;">
+					<img id="imgChose" src="../img/QQ截图20161118113628.png" />
 				</div>
 				<div class="accountHeadMain" style="padding-left: 80px;margin-bottom: 40px;">
 					<div class="h4 jpzx" style="text-align: left;"><span id="CategoryNameChose" style="margin-left: -10px;">[紧肤系列]</span><span class="c_9 h6" style="background: #B8B8B8;padding: 1px 6px 1px 6px;" id="TreatmentChose">6个疗程</span><span class="close"></span></div>
