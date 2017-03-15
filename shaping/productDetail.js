@@ -46,6 +46,28 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=
     stores.push(item.Name);
   });
 	$("#StoreList").text(stores.join(','));
+  if (data.AllStoreList == null) {
+    for (var i = 0; i < data.StoreList.length; i++) {
+      var c = $(
+        '<div class="" style="margin-bottom:5px;">'+
+          '<span class="name" style="flex:0 0 20%;">'+data.StoreList[i].Name+':</span>'+
+          '<a href="tel:'+data.StoreList[i].TelPhone+'" style="color: #e37cab;text-decoration: underline;">'+data.StoreList[i].TelPhone+'</a>'+
+        '</div>'
+      );
+      c.appendTo(".swp");
+    }
+  }else {
+    for (var i = 0; i < data.AllStoreList.length; i++) {
+      var c = $(
+        '<div class="" style="margin-bottom:5px;">'+
+          '<span class="name" style="flex:0 0 20%;">'+data.AllStoreList[i].Name+':</span>'+
+          '<a href="tel:'+data.AllStoreList[i].TelPhone+'" style="color: #e37cab;text-decoration: underline;">'+data.AllStoreList[i].TelPhone+'</a>'+
+        '</div>'
+      );
+      c.appendTo(".swp");
+    }
+  }
+
 	$("#ImageList").attr("src", data.ImageList[0]);
 	$("#imgChose").attr("src", data.ImageList[0]);
 	$("#TreatmentChose").text(data.Treatment + "个疗程")
@@ -217,4 +239,9 @@ $("#GetMessage").live("click", function() {
 	}
 	sessionStorage.setItem("messageType", 1); //普通产品
 	location.href = "onlineMessage.html";
+})
+
+$("#appointment").live("click",function(){
+  $("#goodcover").show();
+  $(".code_box").show();
 })

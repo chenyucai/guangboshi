@@ -191,6 +191,9 @@
 	$.get(constants.baseUrl + "/AppHome/GetMagazineList?Type=" + 3,
 		function(data) {
 			// debugger;
+			if (typeof data != 'object') {
+				data = JSON.parse(data);
+			}
 			var template = $(".orderListUlNoSet");
 			$('#template').tmpl(data.CompanyNewsList).appendTo(template);
 			$("#Content").html(data.CompanyIntro.Content);

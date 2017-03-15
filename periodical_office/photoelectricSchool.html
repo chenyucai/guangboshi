@@ -294,6 +294,9 @@
 <script>
 	var dataJson;
 	$.get(constants.baseUrl + 　"/AppHome/GetMagazineList?Type=" + 2 + "&UserId=" + 　$.cookie("userId"), function(data) {
+		if (typeof data != 'object') {
+			data = JSON.parse(data);
+		}
 		var template = $("#guangdianxuetangList");
 		$('#template').tmpl(data.SchoolList).appendTo(template);
 		dataJson = data.SchoolList;

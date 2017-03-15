@@ -695,7 +695,11 @@ $(function(){
 			$("#MarketPrice").text("¥" + data.MarketPrice);
 			$("#EndTime").text(data.EndTime);
 			console.log(data.StoreList);
-			$("#StoreList").text(data.StoreList.join(','));
+			var stores = [];
+		  data.StoreList.forEach(function(item){
+		    stores.push(item.Name);
+		  });
+			$("#StoreList").text(stores.join(','));
 			$("#ImageList").attr("src", data.ImageList[0]);
 			$("#Content").html(data.Content);
 			$("#GroupByRemark").html(data.GroupByRemark);
