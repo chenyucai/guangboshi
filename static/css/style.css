@@ -290,6 +290,7 @@ body{
 	top:17px;
 	}
 .productListUser{
+	height: 40px;
 	text-overflow: -o-ellipsis-lastline;
 	overflow: hidden;
 	text-overflow: ellipsis;
