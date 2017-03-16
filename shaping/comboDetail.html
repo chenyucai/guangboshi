@@ -1034,13 +1034,11 @@ $(function(){
 		var DataString = JSON.stringify(orderData);
 		sessionStorage.setItem("orderData", DataString);
 		var goodsId = $('.taocan-item.active').attr('data');
-		var couponId = $('.taocan-item.active').attr('data-couponId');
-		$.post(constants.baseUrl + "/AppOrderManage/CreateOrder", {
+		$.get(constants.baseUrl + "/AppOrderManage/CreateOrder", {
 				quantity: 1,
 				UserId: $.cookie("userId"),
 				// goodsId: ComboProductId || sessionStorage.getItem("ComboProductId")
 				goodsId: goodsId,
-				couponId: ComboProductId
 			},
 			function(response) {
 				// if(response.Status != 1) {
@@ -1055,7 +1053,7 @@ $(function(){
 				console.log(amount);
 				sessionStorage.setItem("OrderAmount", amount);
 				sessionStorage.setItem("OrderID", response.ID);
-				// location.href = "comboAffirmOrder.html";
+				location.href = "comboAffirmOrder.html";
 		});
 	})
 
