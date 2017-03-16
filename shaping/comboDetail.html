@@ -376,7 +376,7 @@
 
 			.accountHeadPic {
 				position: absolute;
-				top: -50px;
+				top: -25px;
 			}
 
 			.specialPerformance {
@@ -459,6 +459,17 @@
 			.icon-star.active{
 				color: #F03B92;
 			}
+			.close {
+		   position: absolute;
+		   right: 5px;
+		   margin-top: -10px;
+		   font-size: 30px;
+		   color: #cfcfcf;
+		  }
+
+		  .close::before {
+		   content: "\00D7";
+		  }
 		</style>
 	</head>
 
@@ -546,11 +557,8 @@
 										<div class="productListUser" style="text-align:center; padding-top: 10px;">
 											<span class="jpzx1" id="Title">截至日期：<span id="EndTime">2016.10.20  24:00</span></span>
 
-										</div>
-										<div style="text-align: center; padding: 40px; ">
-											<a href="#" class=" btnSm style_4 jpzx5" id="StoreList"><span class="icon-eye" style="padding-right: 8px;"></span>
-											</a>&nbsp;&nbsp;
-										</div> -->
+										</div>-->
+
 									</div>
 						</div>
 
@@ -578,6 +586,10 @@
 							<a href="javascript:;" data-id="2" class="suggestedClick">
 								<div style="width:25px;height:25px;border-radius:50px;border:solid #FF5DA9; 1px;vertical-align: middle;display: inline-block; background: #FF5DA9; color: #FFF; font-family: PingFang-SC-Medium;">...</div>
 							</a>
+						</div>
+						<div style="text-align: center; padding: 40px; ">
+							<a href="#" class=" btnSm style_4 jpzx5" id="StoreList"><span class="icon-eye" style="padding-right: 8px;"></span>
+							</a>&nbsp;&nbsp;
 						</div>
 						<!--<div class="artistHead clearfix" style="border-bottom: none;padding-bottom: 44px;">
 							<div class="artistHeadPic">
@@ -613,7 +625,7 @@
 									<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>-->
 								</div>
 
-								<div class="swiper-slide" id="GroupByRemark">
+								<div class="swiper-slide" id="GroupByRemark" style="padding-top:15px;">
 
 									<!--<a href="javascript:;" class="activityBannerPic" style="text-align: center; "><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>
 									<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><img src="../img/王心凌 (Cyndi Wang).jpg" /></a>-->
@@ -707,7 +719,7 @@ letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
 			<div class="whiteMain" style="min-height: 200px;">
 				<div class="accountHead clearfix" style="border: none;">
 					<div class="accountHeadPic" style="width: 35%;border-radius:inherit; padding-right: 20px;height: 150px;display:none;">
-						<img id="imgChose" src="" style="height: 100%;" />
+						<img id="imgChose" src="" />
 					</div>
 					<div class="accountHeadMain" style="padding-left: 80px;margin-bottom: 40px;">
 						<div class="h4 jpzx" style="text-align: left;"><span id="CategoryNameChose" style="margin-left: -10px;"></span><span class="c_9 h6" style="background: #B8B8B8;padding: 1px 6px 1px 6px;" id="TreatmentChose"></span><span class="close"></span></div>
@@ -831,12 +843,12 @@ $(function(){
 			$("#StoreList").text(stores.join(','));
 			$("#ImageList,#imgChose").attr("src", data.ImageList[0]);
 			$("#Content").html(data.Content);
-			$("#GroupByRemark").html(data.GroupByRemark);
+			$("#GroupByRemark").html(data.Remark);
 			$(".shareBtn").attr("data-id", data.Id);
 			$("#PackageGoodsNum").text(data.PackageGoodsNum);
 
 			data.PacksList.forEach(function(item,i){
-				var c = $('<div class="taocan-item" data="'+item.ID+'" data-price="'+item.SellPrice+'">'+
+				var c = $('<div class="taocan-item" data="'+item.ID+'" data-couponId="'+item.GoodsId+'" data-price="'+item.SellPrice+'">'+
 					'<div class="taocan-header">'+
 						'<span class="taocan-checkbox"><span></span></span>'+
 						'<span class="taocan-label">套餐'+(i+1)+'</span>'+
@@ -1022,17 +1034,17 @@ $(function(){
 		var DataString = JSON.stringify(orderData);
 		sessionStorage.setItem("orderData", DataString);
 		var goodsId = $('.taocan-item.active').attr('data');
-		$.post(constants.baseUrl + "/AppOrderManage/CreateOrder", {
+		$.get(constants.baseUrl + "/AppOrderManage/CreateOrder", {
 				quantity: 1,
 				UserId: $.cookie("userId"),
 				// goodsId: ComboProductId || sessionStorage.getItem("ComboProductId")
-				goodsId: goodsId
+				goodsId: goodsId,
 			},
 			function(response) {
-				if(response.Status != 1) {
-					alert(response);
-					return false;
-				}
+				// if(response.Status != 1) {
+				// 	alert(response);
+				// 	return false;
+				// }
 				sessionStorage.setItem("GroupByNum", GroupByNum);
 				// sessionStorage.setItem("OrderAmount", response.OrderAmount);
 				// console.log(Number($('#productNum').val()));
@@ -1041,7 +1053,7 @@ $(function(){
 				console.log(amount);
 				sessionStorage.setItem("OrderAmount", amount);
 				sessionStorage.setItem("OrderID", response.ID);
-				// location.href = "comboAffirmOrder.html";
+				location.href = "comboAffirmOrder.html";
 		});
 	})
 
