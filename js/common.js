@@ -40,7 +40,7 @@ var constants = {
 		//baseUrl:"http://192.168.1.108/GBS.Cms/"
 		baseUrl:"http://www.missnefer.com"
 };
-window.cityLocation = new Location();
+// window.cityLocation = new Location();
 window.getNameById = function(id) {
 
 	var ids = id.split(" - ");
@@ -83,3 +83,22 @@ window.myTools = {
 		return gets;
 	}
 };
+
+$(function(){
+	// 处理那些需要在右上角加上“返回主页”按钮的页面
+	// 需要加的页面
+	var pages = [
+		// 'periodical_office/industryInformation.html'
+	];
+
+	// 匹配url
+	for (var i = 0; i < pages.length; i++) {
+		var patt = new RegExp(pages[i]);
+		var url = window.location.href;
+		if (patt.test(url)) {
+			console.log('papei');
+			var backToHomeHtml = $('<div class="headRight"><a href="../home/index.html" class="headLeftBtn"><i class="icon-home-outline"></i></a></div>');
+			$('.pageHead').append(backToHomeHtml);
+		}
+	}
+});

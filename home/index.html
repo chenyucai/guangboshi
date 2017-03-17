@@ -81,7 +81,7 @@
 		<script type="text/html" id="template5">
 			<li style="width: 100%; position: relative;margin-bottom:10px;" data-id="${Id}" id="jingpingzixunDetail" >
 								<div class="artistListPad" style="padding-bottom:20px;">
-									<a href="javascript:void(0)" class="artistListPic"><span class="activityTime1">
+									<a href="javascript:void(0)" class="artistListPic"><span class="activityTime1" data="${ZanMark}">
 										{{if ZanMark==false}}
 										<img src="../img/3/but_Fabulous_nor@2x.png">
 										{{else}}
@@ -869,6 +869,49 @@ $(function(){
 				}
 			}
 		})
+	});
+
+	$('.activityTime1').live('click',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		var id = $(this).parent().parent().parent().attr('data-id');
+		var zan = $(this).attr('data');
+		var zanImg = '../img/3/but_Fabulous_hig@2x.png';
+		var noZanImg = '../img/3/but_Fabulous_nor@2x.png';
+		var $zan = $(this);
+		if (zan == 'true') {
+			$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+					SetClearMark: 2,
+					UserId: $.cookie("userId"),
+					Id: id,
+					Category: 4,
+					Type: 2
+				},
+				function(response) {
+		      if(response != "") {
+		        alert(response);
+		      }else{
+						$zan.attr('data','false');
+		        $zan.find('img').attr('src', noZanImg);
+		      }
+		    });
+		} else {
+			$.post(constants.baseUrl + "/AppCommon/SetClearCollectionZan", {
+					SetClearMark: 1,
+					UserId: $.cookie("userId"),
+					Id: id,
+					Category: 4,
+					Type: 2
+				},
+				function(response) {
+					if(response != "") {
+						alert(response);
+					}else{
+						$zan.attr('data','true');
+						$zan.find('img').attr('src', zanImg);
+					}
+				});
+		}
 	});
 })
 </script>
