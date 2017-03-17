@@ -97,7 +97,7 @@ $(function(){
 		var url = window.location.href;
 		if (patt.test(url)) {
 			console.log('papei');
-			var backToHomeHtml = $('<div class="headRight"><a href="../home/index.html" class="headLeftBtn"><i class="icon-home-outline"></i></a></div>');
+			var backToHomeHtml = $('<div class="headRight"><a href="/webapp/home/index.html" class="headLeftBtn"><i class="icon-home-outline"></i></a></div>');
 			$('.pageHead').append(backToHomeHtml);
 		}
 	}
