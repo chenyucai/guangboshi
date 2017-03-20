@@ -480,6 +480,8 @@
 	//		$(".shade,.tanceng").css("display", "block");
 	//
 	//	})
+	//
+	window.cityLocation = new Location();
 
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalDetail?UserId=" + $.cookie("userId"), function(response) {
 		var html = '';

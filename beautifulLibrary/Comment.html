@@ -19,7 +19,7 @@
         <span>{{title}}</span>
       </div>
 
-      <div class="tags-wrapper">
+      <div class="tags-wrapper" v-show="cType == '1'">
         <span class="tags-title">一般  ——  满意</span>
         <div class="tags-content">
           <span class="tags-icon"></span>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="body-wrapper">
+      <div class="body-wrapper" v-show="cType == '1'">
         <div class="body-item" v-for="(item, index) in assessList">
           <div class="title-wrapper">
             <h2>{{item.CategoryName}}</h2>
@@ -52,7 +52,7 @@
       </div>
       <div class="input-wrapper">
         <div class="input-content-wrapper">
-          <textarea v-model="content" placeholder="评论可获50积分，写下具体的使用体会，传播给更多的光博士用户"></textarea>
+          <textarea style="-webkit-appearance:none;appearance:none;border:none;outline:none;" v-model="content" placeholder="评论可获50积分，写下具体的使用体会，传播给更多的光博士用户"></textarea>
         </div>
         <div class="sp" v-show="images.length > 0"></div>
         <div class="input-images-wrapper">
@@ -63,13 +63,13 @@
 
             <span class="image-add" v-show="images.length > 0">
               ＋
-              <input type="file" class="inputfile" @change="addImg">
+              <input type="file" class="inputfile" multiple="multiple" @change="addImg">
             </span>
           </div>
           <div class="input-images-footer" v-show="images.length === 0">
             <span class="camera-icon"></span>
             <span class="desc">可点击上传图片，一共可以上传9张</span>
-            <input type="file" class="inputfile" @change="addImg">
+            <input type="file" class="inputfile" multiple="multiple" @change="addImg">
           </div>
         </div>
       </div>

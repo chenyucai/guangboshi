@@ -1,27 +1,4 @@
-$(function(){
-	// 处理那些需要在右上角加上“返回主页”按钮的页面
-	// 需要加的页面
-	var pages = [
-		// 'periodical_office/industryInformation.html'
-		'shaping/affirmOrder.html',
-		'shaping/payOrder.html',
-		'shaping/paycompleted.html',
-		'shaping/comboAffirmOrder.html',
-		'shaping/groupbuyAffirmOrder.html',
 
-	];
-
-	// 匹配url
-	for (var i = 0; i < pages.length; i++) {
-		var patt = new RegExp(pages[i]);
-		var url = window.location.href;
-		if (patt.test(url)) {
-			console.log('papei');
-			var backToHomeHtml = $('<div class="headRight"><a href="/webapp/home/index.html" class="headLeftBtn"><i class="icon-home-outline"></i></a></div>');
-			$('.pageHead').append(backToHomeHtml);
-		}
-	}
-});
 
 Date.prototype.Format = function(fmt) { //author: meizz
 	var o = {
@@ -108,3 +85,33 @@ window.myTools = {
 		return gets;
 	}
 };
+
+$(function(){
+	// 处理那些需要在右上角加上“返回主页”按钮的页面
+	// 需要加的页面
+	var pages = [
+		// 'periodical_office/industryInformation.html'
+		'shaping/affirmOrder.html',
+		'shaping/payOrder.html',
+		'shaping/paycompleted.html',
+		'shaping/comboAffirmOrder.html',
+		'shaping/groupbuyAffirmOrder.html',
+		'specialring/specialPerformance.html',
+		'specialring/Groupbuying.html',
+		'specialring/combo.html',
+		'periodical_office/industryInformation.html',
+		'periodical_office/photoelectricSchool.html',
+		'periodical_office/companyIntroduction.html'
+	];
+
+	// 匹配url
+	for (var i = 0; i < pages.length; i++) {
+		var patt = new RegExp(pages[i]);
+		var url = window.location.href;
+		if (patt.test(url)) {
+			console.log('papei');
+			var backToHomeHtml = $('<div class="headRight"><a href="/webapp/home/index.html" class="headLeftBtn"><i class="icon-home-outline"></i></a></div>');
+			$('.pageHead').append(backToHomeHtml);
+		}
+	}
+});

@@ -382,7 +382,7 @@
 			<div class="pageMain noFoot">
 				<div class="grayMain" style="background: white;">
 					<div class="clearfix">
-						<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><span class="activityTime1" id="SellCount">11</span><img id="ImageList" src="../img/王心凌 (Cyndi Wang).jpg" /></a>
+						<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><span class="activityTime1" id="SellCount">11</span><img id="ImageList" src="" /></a>
 
 						<div class="artistList p10">
 							<ul class="clearfix" style="padding-bottom: 40px;">
@@ -545,7 +545,11 @@
 		$("#SellPrice").text("¥" + data.SellPrice);
 		$("#MarketPrice").text("¥" + data.MarketPrice);
 		$("#EndTime").text(data.EndTime);
-		$("#StoreList").text(data.StoreList.join(','));
+		var storeArray = [];
+		for (var i = 0; i < data.StoreList.length; i++) {
+			storeArray.push(data.StoreList[i].Name);
+		}
+		$("#StoreList").text(storeArray.join(','));
 		$("#TreatmentChose").text(data.Treatment + "个疗程")
 		$("#SellPriceChose").text("¥" + data.SellPrice);
 		$("#Remark").text(data.Remark);

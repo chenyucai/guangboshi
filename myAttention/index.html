@@ -151,7 +151,7 @@
 //		tabsSwiper.swipeTo(sessionStorage.getItem("AgentTypeId"))
 //	}
 
-	$.get(constants.baseUrl + "/AppPersonal/GetMyCollection?UserId=" + $.cookie("userId") + "&&Category=" + 5, function(data) {
+	$.get(constants.baseUrl + "/AppPersonal/GetMyCollection?UserId=" + $.cookie("userId") + "&Category=" + 5, function(data) {
 		var template = $("#FriendsList");
 		$('#template').tmpl(data.FriendsList).appendTo(template);
 		$("#attentionCount").text(data.FriendsList.length);

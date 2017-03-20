@@ -430,35 +430,37 @@
 			<div class="pageMain noFoot">
 				<div class="grayMain" style="background: white;">
 					<div class="clearfix">
-						<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><img src="../img/王心凌 (Cyndi Wang).jpg" id="GoodImg" /></a>
+						<div class="jump">
+							<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><img src="" id="GoodImg" /></a>
 
-						<div class="artistList p10">
-							<ul class="clearfix">
-								<li style="width: 100%;">
-									<div class="artistListPad">
+							<div class="artistList p10">
+								<ul class="clearfix">
+									<li style="width: 100%;">
+										<div class="artistListPad">
 
-										<div class="productListUser" style="padding-top: 14px; text-align: center;">
-											<span class="jpzx" style="font-size: 16px;">【 <span id="Category">紧肤系列</span> 】</span>
+											<div class="productListUser" style="padding-top: 14px; text-align: center;">
+												<span class="jpzx" style="font-size: 16px;">【 <span id="Category">紧肤系列</span> 】</span>
+
+											</div>
+											<div class="productListUser" style="text-align:center; padding-top: 10px;">
+												<span class="jpzx1" id="GoodName">百颜水光针2ml+伊肤泉无菌修复美颜</span>
+
+											</div>
+
+											<div class="pt5 " style="text-align: center; padding-top: 14px;" id="ReservationStatus">
+												<span class="jpzx3" id="SellPrice"><i class="icon-clock" style="padding-right: 10px; vertical-align: middle;"></i>未消费</span>
+
+											</div>
 
 										</div>
-										<div class="productListUser" style="text-align:center; padding-top: 10px;">
-											<span class="jpzx1" id="GoodName">百颜水光针2ml+伊肤泉无菌修复美颜</span>
 
-										</div>
+							</div>
+							<div class="pt5 " style="text-align: left; padding-top: 14px; padding-left: 10px; border-top: 1px solid #EFEFEF; display: none;" id="yiyuyueDetail">
+								<span class="jpzx6" id="SellPrice"><img src="../img/6/2_03.png" style="width: 25px;"  /><span id="OrderDate">2016-10-20 15:20</span></span><br>
+								<span class="jpzx6" id="SellPrice"><img src="../img/6/形状-2.png" style="width: 15px; padding-right: 5px; padding-left: 5px;" /><span id="Store">MISS NEFER月星环球港店</span></span><br>
+								<span class="jpzx6" id="SellPrice"><img src="../img/6/形状-3.png" style="width: 15px;padding-right: 5px;padding-left: 5px;" /><span id="StoreAddress"> 上海普陀区浦东金沙江路699号月星环球港7号 楼5层</span></span><br>
 
-										<div class="pt5 " style="text-align: center; padding-top: 14px;" id="ReservationStatus">
-											<span class="jpzx3" id="SellPrice"><i class="icon-clock" style="padding-right: 10px; vertical-align: middle;"></i>未消费</span>
-
-										</div>
-
-									</div>
-
-						</div>
-						<div class="pt5 " style="text-align: left; padding-top: 14px; padding-left: 10px; border-top: 1px solid #EFEFEF; display: none;" id="yiyuyueDetail">
-							<span class="jpzx6" id="SellPrice"><img src="../img/6/2_03.png" style="width: 25px;"  /><span id="OrderDate">2016-10-20 15:20</span></span><br>
-							<span class="jpzx6" id="SellPrice"><img src="../img/6/形状-2.png" style="width: 15px; padding-right: 5px; padding-left: 5px;" /><span id="Store">MISS NEFER月星环球港店</span></span><br>
-							<span class="jpzx6" id="SellPrice"><img src="../img/6/形状-3.png" style="width: 15px;padding-right: 5px;padding-left: 5px;" /><span id="StoreAddress"> 上海普陀区浦东金沙江路699号月星环球港7号 楼5层</span></span><br>
-
+							</div>
 						</div>
 						<div style="border: 10px solid #F2F2F2;"></div>
 
@@ -688,6 +690,11 @@
 			$("#weixiaofei").css("display", "none");
 			$("#yiyuyueDetail").show();
 		}
+
+		$('.jump').live('click',function(){
+			var id = $(this).attr('data-id');
+			window.location.href = '../shaping/productDetails.html?id='+OrderDetail.GoodID;
+		});
 
 		$.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + OrderDetail.GoodID + "&UserId=" + $.cookie("userId"), function(data)  {
 		  for (var i = 0; i < data.StoreList.length; i++) {
