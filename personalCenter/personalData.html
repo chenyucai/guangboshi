@@ -482,6 +482,7 @@
 	//
 	//	})
 
+	window.cityLocation = new Location();
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalDetail?UserId=" + $.cookie("userId"), function(response) {
 		var html = '';
 		$(response.LabelsList).each(function(i,v){
