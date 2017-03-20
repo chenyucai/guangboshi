@@ -19,7 +19,9 @@
 	<script src="productDetail.js"></script>
 	<script src="../js/jquery.tmpl.min.js"></script>
 	<script type="text/html" id="template">
-		<a href="javascript:;" data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;"><img src="${HeadIcon}" style="width:30px;height: 30px;border-radius:50%;" /></a>
+		<div data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;display:inline-block;">
+			<div style="width:30px;height: 30px;border-radius:50%;background-image:url(${HeadIcon})" />
+		</div>
 	</script>
 	<script type="text/html" id="template1">
 
