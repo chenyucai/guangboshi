@@ -151,10 +151,110 @@
 					background-image: url("img/图层-8.png");
 					background-size: cover;
 				}
+
+				.c_sign-wrapper{
+
+				}
+				.c_sign-mask{
+					position: fixed;
+					left: 0;
+					top: 0;
+					z-index: 5000;
+					width: 100%;
+					height: 100%;
+					background: rgba(0, 0, 0, 0.6);
+				}
+				.c_sign-box{
+					text-align: center;
+					position: fixed;
+					top: 23%;
+					left: 0;
+					z-index: 5000;
+					width: 100%;
+					height: 100%;
+				}
+				.c_sign{
+					display: inline-block;
+					width: 280px;
+					height: 315px;
+					background: #fff;
+				}
+				.c_sign-img{
+					width: 110px;
+					height: 110px;
+					margin-top: 30px;
+					margin-bottom: 30px;
+				}
+				.c_sign-lianxu{
+					font-size: 16px;
+					color: #363334;
+					line-height: 28px;
+					margin-bottom: 6px;
+				}
+				.c_sign-lianxu-number{
+					color: #FF5DA9;
+				}
+				.c_sign-count{
+					font-size: 14px;
+					color: #656565;
+					line-height: 28px;
+					margin-bottom: 6px;
+				}
+				.c_sign-count-number{
+					color: #CAA76B;
+				}
+				.c_sign-footer{
+					height: 50px;
+					display: flex;
+					font-size: 14px;
+					border-top: 1px solid #D7D7D7;
+					margin-top: 32px;
+					line-height: 50px;
+				}
+				.c_sign-footer-left{
+					flex: 0 0 50%;
+					text-align: center;
+					height: 50px;
+					border-right: 1px solid #D7D7D7;
+					box-sizing: border-box;
+				}
+				.c_sign-footer-right{
+					flex: 0 0 50%;
+					text-align: center;
+					height: 50px;
+					box-sizing: border-box;
+					color: #FF5DA9;
+					font-size: 16px;
+				}
 			</style>
 		</head>
 
 		<body>
+			<div class="c_sign-wrapper" hidden="hidden">
+				<div class="c_sign-mask"></div>
+				<div class="c_sign-box">
+					<div class="c_sign">
+						<div class="c_sign-body">
+							<img src="img/sign.png" alt="" class="c_sign-img"/>
+							<div class="c_sign-lianxu">
+								已连续签到<span class="c_sign-lianxu-number"></span>天
+							</div>
+							<div class="c_sign-count">
+								签到总积分：<span class="c_sign-count-number"></span>
+							</div>
+						</div>
+						<div class="c_sign-footer">
+							<div class="c_sign-footer-left">
+								签到积分规则
+							</div>
+							<div class="c_sign-footer-right">
+								确定
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="layoutMain" style="font:">
 
 				<header class="pageHead clearfix">
@@ -275,6 +375,9 @@
 		$("#Point").text(response.Point);
 		$("#Amount").text(response.Amount);
 
+		$('.c_sign-lianxu-number').html(response.CSignCount);
+		$('.c_sign-count-number').html(response.SignCount);
+
 		$("#contactCustomer").attr("href", "tel://13918901820");
 		SignedMark = response.SignedMark;
 		if(response.SignedMark == true) {
@@ -289,13 +392,35 @@
 
 	$(".qiandao").live("click", function() {
 		if(SignedMark == false) {
-			$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
-				if(response != "") {
-					// window.location.reload();
-					$(".qiandao").html("已签到");
-					return false;
-				}
-			})
+			$('.c_sign-wrapper').show();
 		}
-	})
+	});
+
+	$('.c_sign-footer-left').live('click',function(){
+		window.location.href = 'pointExplain.html';
+	});
+
+	$('.c_sign-mask').live('click',function(){
+		$('.c_sign-wrapper').hide();
+	});
+
+	$('.c_sign-box').live('click',function(){
+		$('.c_sign-wrapper').hide();
+	});
+
+	$('.c_sign').live('click',function(e){
+		e.stopPropagation();
+	});
+
+	$('.c_sign-footer-right').live('click',function(){
+		$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
+			if(response != "") {
+				alert(response);
+			}else {
+				$(".qiandao").html("已签到");
+				SignedMark = true;
+				$('.c_sign-wrapper').hide();
+			}
+		})
+	});
 </script>
