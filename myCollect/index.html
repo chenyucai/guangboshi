@@ -20,7 +20,7 @@
 		<script type="text/html" id="template">
 			<li data-id="${Id}" class="specialPerformanceDetail">
 				<div class="productListPad">
-					<a href="javascript:void(0)" class="productListPic"><img src="${Image}"></a>
+					<a href="javascript:void(0)" class="productListPic"><img src="${ImgPath}"></a>
 					<!--<h4 class="productListTitle pt5"><a href="javascript:;" class="h5">【水月环球港】<span>浦东新区&nbsp;&nbsp;200m</span></a></h4>-->
 					<div class="productListUser" style="height: 40px;">
 						<a href="javascript:;" class="c_c">【${CategoryName}】<span class="C_C_C">${Title}</span></a>
@@ -38,7 +38,7 @@
 			<li id="newsDetail" style="width: 100%;">
 				<div class="clearfix">
 					<a href="javascript:;" class="orderListPic" style="width: 130px;height: 130px;padding-right: 0;">
-						<img src="${Image}" style="width: 120px;height: 120px;"></a>
+						<img src="${ImgPath}" style="width: 120px;height: 120px;"></a>
 					<div class=" orderListMain " style="display: -webkit-box;margin-left: 10px;">
 						<a href="# " class="text1 "><span>${CategoryName}</span>${Title}</a><br><br>
 						<div class=" pt5 " style="display: inline">
@@ -62,7 +62,7 @@
 			<li style="width: 100%;background: white;" data-id="${Id}" id="taocanDetail">
 				<div class="artistListPad" style="text-align: center;">
 
-					<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><img src="${Image}" style="width:90%; height: 130px;" /></a>
+					<a href="javascript:;" class="activityBannerPic" style="text-align: center;"><img src="${ImgPath}" style="width:90%;" /></a>
 					<div class="productListUser" style="padding-top: 14px;">
 						<span style="background: #B8B8B8; padding: 1px 10px;font-family: PingFang-SC-Light;font-size: 10px;color: #FFFFFF;letter-spacing: 0px;">${GoodsNumber}合一</span>
 						<span class="jpzx">${Title}</span>
@@ -83,13 +83,16 @@
 			</li>
 		</script>
 		<style>
+		  .artistListPad{
+				padding: 0;
+			}
 			.title {
 				font-family: PingFang-SC-Medium;
 				font-size: 14px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a.active {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -97,7 +100,7 @@
 				color: #FF5DA9;
 				letter-spacing: 0px;
 			}
-			
+
 			.productInfo .tabs a {
 				background: white;
 				font-family: PingFangSC-Light;
@@ -105,35 +108,35 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListPic img {
 				max-width: none;
 				width: 120px;
 				height: 100px;
 			}
-			
+
 			.orderListPic {
 				padding-right: 100px;
 			}
-			
+
 			.text1 {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.tr td {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.orderListUl>li {
 				border-bottom: none;
 			}
-			
+
 			.sellerTab li.active a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -141,7 +144,7 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.sellerTab li a {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
@@ -149,50 +152,50 @@
 				letter-spacing: 0px;
 				background-color: white;
 			}
-			
+
 			.screening {
 				position: inherit;
 			}
-			
+
 			.screeningList {
 				width: 33%;
 			}
 			/*.screeningList {
 				width: 100%;
 			}*/
-			
+
 			.screeningTitle {
 				font-family: PingFangSC-Light;
 				font-size: 12px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.screeningList dd {
 				top: 120px;
 			}
-			
+
 			.jpzx {
 				font-family: PingFang-SC-Medium;
 				font-size: 16px;
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.jpzx1 {
 				font-family: PingFang-SC-Regular;
 				font-size: 12px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.style_4 {
 				font-family: PingFangSC-Light;
 				font-size: 10px;
 				color: #999999;
 				letter-spacing: 0px;
 			}
-			
+
 			.activityTime1 {
 				border-radius: 0;
 				/*top: 150px;*/
@@ -210,7 +213,7 @@
 				width: 15px;
 				color: red;
 			}
-			
+
 			.dianzanshu {
 				float: right;
 				padding-right: 8px;
@@ -223,15 +226,15 @@
 			/*.artistList {
 				padding-top: 23px;
 			}*/
-			
+
 			.artistList li {
 				width: 50%;
 			}
-			
+
 			.productListUser {
 				padding-top: 20px;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFangSC-Light;
@@ -239,23 +242,23 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.icon-heart {
 				width: 13px;
 			}
-			
+
 			.sellerTabSpan3 li {
 				width: 25%
 			}
-			
+
 			.productInfo .tabs a {
 				width: 33%;
 			}
-			
+
 			.screening dl {
 				width: 33%;
 			}
-			
+
 			.c_c,
 			a.c_c {
 				font-family: PingFang-SC-Medium;
@@ -263,25 +266,25 @@
 				color: #2F2F2F;
 				letter-spacing: 0px;
 			}
-			
+
 			.C_C_C {
 				font-family: PingFang-SC-Light;
 				font-size: 11px;
 				color: #B8B8B8;
 				letter-spacing: 0px;
 			}
-			
+
 			.screening:after {
 				background: none;
 			}
-			
+
 			#chanpingleixing li {
 				display: inline;
 				width: 33%;
 				float: left;
 				text-align: center;
 			}
-			
+
 			.productListPad div {
 				text-align: left;
 			}
@@ -377,7 +380,7 @@
 											</div>
 											<div class="productListUser" style="padding-top: 12px;">
 
-												<span class="jpzx1">【紧肤系列】润白颜水光针2ml+伊肤泉无菌修复美颜/【鼻部】润   
+												<span class="jpzx1">【紧肤系列】润白颜水光针2ml+伊肤泉无菌修复美颜/【鼻部】润
  白颜深海泥/【口腔】雅诗兰黛洁牙膏</span>
 
 											</div>

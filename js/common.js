@@ -89,6 +89,12 @@ $(function(){
 	// 需要加的页面
 	var pages = [
 		// 'periodical_office/industryInformation.html'
+		'shaping/affirmOrder.html',
+		'shaping/payOrder.html',
+		'shaping/paycompleted.html',
+		'shaping/comboAffirmOrder.html',
+		'shaping/groupbuyAffirmOrder.html',
+
 	];
 
 	// 匹配url
