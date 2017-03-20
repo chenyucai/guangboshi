@@ -21,33 +21,84 @@
 	<script type="text/html" id="template">
 		<a href="javascript:;" data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;"><img src="${HeadIcon}" style="width:30px;height: 30px;border-radius:50%;" /></a>
 	</script>
+	<style media="screen">
+		.c_avatar{
+			width:50px;height:50px;border:6px solid #fff;border-radius: 50%;
+			/*background-image: url();*/
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			float: left;
+		}
+		.c_body{
+			margin-left: 75px;
+			padding-top: 10px;
+		}
+		.c_body .icon-star-full,
+		.c_body .icon-star-full{
+			font-size: 10px;
+		}
+		.c_body .icon-star-full.hui{
+			color: #f2f2f2;
+		}
+		.c_imgs_wrapper{
+			padding-left: 75px;
+			padding-top: 10px;
+		}
+		.c_imgs_wrapper::after{
+			content:" ";
+			height: 0;
+			visibility: hidden;
+			display: block;
+			clear: both;
+		}
+		.c_img_item{
+			float: left;
+			width: 40px;
+			height: 40px;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			margin-right: 10px;
+			margin-bottom: 5px;
+		}
+	</style>
 	<script type="text/html" id="template1">
 
 		<div class="viewCommentList">
 			<div class="viewCommentListHead clearfix">
-				<a href="javascript:;" class="orderListPic" style="padding-right: 15px;"><img src="${UserInformation.HeadIcon}" /></a>
-				<span class="fr">${AssessmentsTime}</span>
-				<a href="javascript:;" class="commentUser">${UserInformation.Name}</a>&nbsp;&nbsp;<br>
-				<span class="productStar c_blue" style="padding-top: 5px;">
-						{{if AssessmentsValue==1}}
-						<i class="icon-star-full"></i>
-						{{/if}}
-							{{if AssessmentsValue==2}}
-						<i class="icon-star-full"></i><i class="icon-star-full"></i>
-						{{/if}}
-							{{if AssessmentsValue==3}}
-						<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i>
-						{{/if}}
-							{{if AssessmentsValue==4}}
-						<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i>
-						{{/if}}
-							{{if AssessmentsValue==5}}
-						<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i>
-						{{/if}}
-					</span>
+				<div class="c_avatar" style="background-image:url(${UserInformation.HeadIcon})">
+
+				</div>
+				<div class="c_body">
+					<span class="fr">${AssessmentsTime}</span>
+					<div style="font-size:12px;">${UserInformation.Name}</div>
+					<span class="productStar c_blue" style="padding-top: 3px;">
+							{{if AssessmentsValue==1}}
+							<i class="icon-star-full"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i>
+							{{/if}}
+								{{if AssessmentsValue==2}}
+							<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i>
+							{{/if}}
+								{{if AssessmentsValue==3}}
+							<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i>
+							{{/if}}
+								{{if AssessmentsValue==4}}
+							<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full hui"></i>
+							{{/if}}
+								{{if AssessmentsValue==5}}
+							<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i>
+							{{/if}}
+						</span>
+				</div>
 			</div>
 			<div class="viewCommentListMain pt5 f12" style="padding-left: 75px; padding-top: 10px;">
 				${Content}
+			</div>
+			<div class="c_imgs_wrapper">
+				{{each(i,pic) picList}}
+		        <div class="c_img_item" style="background-image:url(${pic})"></div>
+		    {{/each}}
 			</div>
 		</div>
 	</script>
@@ -643,7 +694,7 @@
 							<div class="swiper-slide" style="text-align: left;">
 								<div class="viewComment" style="border: none;background:#fff;padding:10px;" id="comment">
 
-									<div class="viewCommentList" style="display: inline-flex; padding-left: 60px; border-bottom: 0;">
+									<div class="viewCommentList" style="display: none; padding-left: 60px; border-bottom: 0;">
 										<div style="text-align: center;">
 											<span style="font-family: PingFang-SC-Medium;
 font-size: 18px;
@@ -653,20 +704,6 @@ letter-spacing: 0px;" id="AllAverage">4.8</span><br>
 font-size: 10px;
 color: #656565;
 letter-spacing: 0px;">综合指数</span>
-										</div>
-										<div style="padding-left: 30px;">
-											<span class="productStar c_blue" style="padding-top: 5px;font-family: PingFang-SC-Light;
-font-size: 10px;
-color: #656565;
-letter-spacing: 0px;" id="ServiceAverage">服务质量 &nbsp&nbsp
-<i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
-</span><br>
-											<span class="productStar c_blue" style="padding-top: 5px;font-family: PingFang-SC-Light;
-font-size: 10px;
-color: #656565;
-letter-spacing: 0px;" id="SYPFAverage">手艺评分  &nbsp&nbsp
-<i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i><i class="icon-star-empty"></i>
-</span>
 										</div>
 									</div>
 
