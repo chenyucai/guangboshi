@@ -137,6 +137,7 @@
 			border-radius: 50%;
 			width: 80px;
 			height: 80px;
+			margin: 0 auto;
 			border: solid 8px white;
 			background-repeat: no-repeat;
 	    background-position: center;
@@ -480,8 +481,6 @@
 	//		$(".shade,.tanceng").css("display", "block");
 	//
 	//	})
-	//
-	window.cityLocation = new Location();
 
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalDetail?UserId=" + $.cookie("userId"), function(response) {
 		var html = '';
@@ -526,7 +525,7 @@
 
 		// debugger;
 		$("#NickName").text(response.NickName);
-		$("#HeadIcon").css("background-image":url(response.HeadIcon));
+		$("#HeadIcon").attr('style', 'background-image:url('+response.HeadIcon+')');
 		$("#InviteCode").text(response.InviteCode);
 
 		$('.inputBlock').val(response.NickName);
@@ -665,7 +664,7 @@
 			// 创建一个 Image 对象
 			// image.src = imgUrl;
 			image.src = e.target.result;
-			$("#HeadIcon").css("background-image", e.target.result);
+			$("#HeadIcon").attr('style', 'background-image:url('+e.target.result+')');
 
 		};
 	}
