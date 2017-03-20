@@ -226,6 +226,14 @@
 					color: #FF5DA9;
 					font-size: 16px;
 				}
+
+				#avatar{
+					width:70px;height:70px;border:6px solid #fff;border-radius: 50%;
+					/*background-image: url();*/
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: cover;
+				}
 			</style>
 		</head>
 
@@ -274,7 +282,8 @@
               	<div class="backgroundimg">
 									<div class="" style="padding: 0 20%;text-align: center;height: 168px;text-align: center;">
 										<div class="" style="width:80px;height:80px;position:relative;margin: 0 auto;padding-top: 10px;">
-											<img src="img/photo@2x.png" style="width:70px;height:70px;border:6px solid #fff;border-radius: 50%;" id="HeadIcon"/>
+											<!-- <img src="img/photo@2x.png" style="width:70px;height:70px;border:6px solid #fff;border-radius: 50%;" id="HeadIcon"/> -->
+											<div id="avatar"></div>
 			              	<div class="sex" style="position: absolute;right: 0;bottom: 5px;">♀</div>
 										</div>
 									</div>
@@ -368,7 +377,8 @@
 		// }else {
 		// 	$("#HeadIcon").attr("src", localStorage.getItem('updateAvatar') || response.HeadIcon);
 		// }
-		$("#HeadIcon").attr("src", localStorage.getItem('updateAvatar') || response.HeadIcon);
+		// $("#HeadIcon").attr("src", localStorage.getItem('updateAvatar') || response.HeadIcon);
+		$('#avatar').attr('style', 'background-image:url('+response.HeadIcon+')');
 		$("#MemberLevel").text(response.MemberLevel);
 		$("#Name").text(response.Name);
 		$("#SignCount").text(response.CSignCount)

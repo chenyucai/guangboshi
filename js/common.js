@@ -94,7 +94,12 @@ $(function(){
 		'shaping/paycompleted.html',
 		'shaping/comboAffirmOrder.html',
 		'shaping/groupbuyAffirmOrder.html',
-
+		'specialring/specialPerformance.html',
+		'specialring/Groupbuying.html',
+		'specialring/combo.html',
+		'periodical_office/industryInformation.html',
+		'periodical_office/photoelectricSchool.html',
+		'periodical_office/companyIntroduction.html'
 	];
 
 	// 匹配url
