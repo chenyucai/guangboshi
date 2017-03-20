@@ -15,9 +15,21 @@
 		<script src="../js/jquery.cookie.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/jquery.tmpl.min.js"></script>
+		<style media="screen">
+			.cc_icon{
+				/*background-image: url();*/
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				width:60px;height: 60px;border-radius:50%;
+				vertical-align: middle;
+			}
+		</style>
 		<script type="text/html" id="template">
 			<div class="artistHead clearfix" style="border-bottom: none;" data-id="${Id}" data-CollectionMark=${CollectionMark}>
-				<div class="artistHeadPic" style="width: 60px;" data="${Id}"><img src="${HeadIcon}" style="height: 60px;width:60px;" /></div>
+				<div class="artistHeadPic" style="width: 60px;" data="${Id}">
+					<img class="cc_icon" style="background-image:url(${HeadIcon})" />
+				</div>
 				<div class="artistHeadMain">
 					<div class="h4 " style="font-size: 16px; line-height: 20px;">${Name}<img src="../img/dengji/V${Level}@2x.png" style="width: 17px;height: 15px; padding-left: 6px;"></div>
 					<div class="c_9 h6 pt5" style="line-height: 20px;">

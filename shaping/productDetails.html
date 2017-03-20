@@ -18,8 +18,21 @@
 	<script src="../js/common.js"></script>
 	<script src="productDetail.js"></script>
 	<script src="../js/jquery.tmpl.min.js"></script>
+	<style media="screen">
+		.cc_icon{
+			/*background-image: url();*/
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			display: inline-block;
+			width:30px;height: 30px;border-radius:50%;
+			vertical-align: middle;
+		}
+	</style>
 	<script type="text/html" id="template">
-		<a href="javascript:;" data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;"><img src="${HeadIcon}" style="width:30px;height: 30px;border-radius:50%;" /></a>
+		<a href="javascript:;" data-id="${Id}"  style="margin-left:10px;width:30px;height:30px;">
+			<div class="cc_icon" style="background-image:url(${HeadIcon})"></div>
+		</a>
 	</script>
 	<style media="screen">
 		.c_avatar{
