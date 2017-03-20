@@ -85,6 +85,12 @@
 				color: #B8B8B8;
 				letter-spacing: 0px;
 			}
+			#HeadIcon{
+				height: 60px;
+				background-repeat:no-repeat;
+				background-position:center;
+				background-size: cover;
+			}
 		</style>
 	</head>
 
@@ -124,7 +130,9 @@
 			<div class="pageMain noFoot ">
 				<div class="grayMain">
 					<div class="artistHead clearfix" style="border-bottom: none;">
-						<div class="artistHeadPic" style="width:auto;"><img src="../img/81844691981402.jpg" style="height: 60px;width:60px;" id="HeadIcon" /></div>
+						<div class="artistHeadPic" style="width:60px;height:60px;">
+							<div id="HeadIcon" /></div>
+						</div>
 						<div class="artistHeadMain">
 							<div class="h4 " style="font-size: 16px; line-height: 20px;"><span id="Name">忆巴黎</span>
 								<img src="../img/dengji/V1@2x.png" style="width: 17px;height: 15px; padding-left: 6px;" id="Level">
@@ -193,6 +201,7 @@
 </html>
 
 <script>
+	window.cityLocation = new Location();
 	$.get(constants.baseUrl + "/AppGoods/GetCollectionUserDetail?Id=" + sessionStorage.getItem("userDetailId") + 　"&UserId=" + $.cookie("userId"), function(data) {
 
 		$("#Name").text(data.Name);
@@ -200,7 +209,8 @@
 		if(data.CollectionMark == true) {
 			$("#CollectionMark").attr("src", "../img/2/but_follow_hul@3x.png");
 		}
-		$("#HeadIcon").attr("src", data.HeadIcon);
+		console.log(data.HeadIcon);
+		$("#HeadIcon").attr('style', 'background-image:url('+data.HeadIcon+')');
 
 		var template = $("#LabelList");
 		$('#template').tmpl(data).appendTo(template);
