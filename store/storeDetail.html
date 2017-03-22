@@ -103,6 +103,45 @@
 			</div>
 		</script>
 
+		<script type="text/html" id="template5">
+			<div class="viewCommentList">
+				<div class="viewCommentListHead clearfix">
+					<div class="c_avatar" style="background-image:url(${UserInformation.HeadIcon})">
+
+					</div>
+					<div class="c_body">
+						<span class="fr">${AssessmentsTime}</span>
+						<div style="font-size:12px;">${UserInformation.Name}</div>
+						<span class="productStar c_blue" style="padding-top: 3px;">
+								{{if AssessmentsValue==1}}
+								<i class="icon-star-full"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i>
+								{{/if}}
+									{{if AssessmentsValue==2}}
+								<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i>
+								{{/if}}
+									{{if AssessmentsValue==3}}
+								<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full hui"></i><i class="icon-star-full hui"></i>
+								{{/if}}
+									{{if AssessmentsValue==4}}
+								<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full hui"></i>
+								{{/if}}
+									{{if AssessmentsValue==5}}
+								<i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i><i class="icon-star-full"></i>
+								{{/if}}
+							</span>
+					</div>
+				</div>
+				<div class="viewCommentListMain pt5 f12" style="padding-left: 75px; padding-top: 10px;">
+					${Content}
+				</div>
+				<div class="c_imgs_wrapper">
+					{{each(i,pic) picList}}
+							<div class="c_img_item" style="background-image:url(${pic})"></div>
+					{{/each}}
+				</div>
+			</div>
+		</script>
+
 
 		<style>
 			.c_9 {

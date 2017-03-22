@@ -163,8 +163,9 @@
 					width: 100%;
 					height: 100%;
 					background: rgba(0, 0, 0, 0.6);
+					text-align: center;
 				}
-				.c_sign-box{
+				/*.c_sign-box{
 					text-align: center;
 					position: fixed;
 					top: 23%;
@@ -172,12 +173,13 @@
 					z-index: 5000;
 					width: 100%;
 					height: 100%;
-				}
+				}*/
 				.c_sign{
 					display: inline-block;
 					width: 280px;
 					height: 315px;
 					background: #fff;
+					margin-top: 33%;
 				}
 				.c_sign-img{
 					width: 110px;
@@ -239,28 +241,30 @@
 
 		<body>
 			<div class="c_sign-wrapper" hidden="hidden">
-				<div class="c_sign-mask"></div>
-				<div class="c_sign-box">
-					<div class="c_sign">
-						<div class="c_sign-body">
-							<img src="img/sign.png" alt="" class="c_sign-img"/>
-							<div class="c_sign-lianxu">
-								已连续签到<span class="c_sign-lianxu-number"></span>天
+				<div class="c_sign-mask">
+					<div class="c_sign-box">
+						<div class="c_sign">
+							<div class="c_sign-body">
+								<img src="img/sign.png" alt="" class="c_sign-img"/>
+								<div class="c_sign-lianxu">
+									已连续签到<span class="c_sign-lianxu-number"></span>天
+								</div>
+								<div class="c_sign-count">
+									签到总积分：<span class="c_sign-count-number"></span>
+								</div>
 							</div>
-							<div class="c_sign-count">
-								签到总积分：<span class="c_sign-count-number"></span>
-							</div>
-						</div>
-						<div class="c_sign-footer">
-							<div class="c_sign-footer-left">
-								签到积分规则
-							</div>
-							<div class="c_sign-footer-right">
-								确定
+							<div class="c_sign-footer">
+								<div class="c_sign-footer-left">
+									签到积分规则
+								</div>
+								<div class="c_sign-footer-right">
+									确定
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
 			</div>
 
 			<div class="layoutMain" style="font:">
@@ -410,19 +414,24 @@
 		window.location.href = 'pointExplain.html';
 	});
 
-	$('.c_sign-mask').live('click',function(){
+	$('.c_sign-mask').live('click',function(e){
 		$('.c_sign-wrapper').hide();
 	});
 
-	$('.c_sign-box').live('click',function(){
+	$('.c_sign-box').live('click',function(e){
 		$('.c_sign-wrapper').hide();
+		e.stopPropagation();
+		e.preventDefault();
 	});
 
 	$('.c_sign').live('click',function(e){
 		e.stopPropagation();
+		e.preventDefault();
 	});
 
-	$('.c_sign-footer-right').live('click',function(){
+	$('.c_sign-footer-right').live('click',function(e){
+		e.stopPropagation();
+		e.preventDefault();
 		$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
 			if(response != "") {
 				alert(response);

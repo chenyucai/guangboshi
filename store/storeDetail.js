@@ -43,8 +43,13 @@ $("#Treatment").text(response.Store.Name);
 		var template3 = $("#kuanghuandacu .khdc-list");
 		$("#template3").tmpl(response.DiscountedGoods).appendTo(template3);
 
-		var template4 = $(".viewComment");
-		$("#template4").tmpl(response.Evaluation).appendTo(template4);
+		// var template4 = $(".viewComment");
+		// $("#template4").tmpl(response.Evaluation).appendTo(template4);
+		if (response.AssessmentsList && response.AssessmentsList!=null) {
+			var template5 = $(".viewComment");
+			$("#template5").tmpl(response.AssessmentsList).appendTo(template5);
+		}
+
 		if(response.Store.CollectionMark == true) {
 			$(".icon-star").css("color", "#F03B92");
 		}
