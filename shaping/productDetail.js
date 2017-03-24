@@ -130,6 +130,7 @@ $("#checkComplete").live("click", function () {
 				goodsId: ProductId || sessionStorage.getItem("ProductId")
 			}),
 		success:function(response){
+      debugger;
 			if(response.Status != 1) {
 				// alert(response);
 				return false;
