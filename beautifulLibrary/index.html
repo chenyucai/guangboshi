@@ -30,7 +30,7 @@
 						<div style="padding-top: 19pt; padding-bottom: 18pt;">
 							<div><span style="font-family: PingFang-SC-Regular; font-size: 12px; color: #231916;">订单价格： </span><span class="price">${Price }</span></div>
 						</div>
-						{{if (Type==null)}}
+						{{if (Type==null || Type == 41)}}
 						<div style="padding-bottom: 21pt;">
 							<button class="detail" data-type="${Type}" data-id="${ID}" data-state="${TGStatus}" style="width: 100%; height: 41pt; background: #FF5DA9;font-family: PingFang-SC-Regular; font-size: 14px; color: #FFFFFF; border: none;">电话预约（未消费）</button>
 						</div>
@@ -170,7 +170,7 @@
 		if($(this).attr("data-state") == -1) {
 			return false;
 		}else{
-			if($(this).attr("data-type") == 1 || $(this).attr("data-type") == 2 || $(this).attr("data-type") == 3) {
+			if($(this).attr("data-type") == 1 || $(this).attr("data-type") == 2 || $(this).attr("data-type") == 3 || $(this).attr("data-type") == 41) {
 
 				location.href = "orderDetail.html";
 			}
