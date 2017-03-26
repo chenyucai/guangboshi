@@ -70,7 +70,7 @@
 					</div>
 					<div class="productListUser" style="padding-top: 12px;">
 
-						<span class="jpzx1" data-title="${GoodsTitle}"></span>
+						<span class="jpzx1" data-title=""></span>
 
 					</div>
 					<div class="pt5 " style="padding-top: 20px;">
@@ -432,6 +432,7 @@
 			$.get(constants.baseUrl + "/AppPersonal/GetMyCollection?UserId=" + $.cookie("userId") + "&Category=" + 2 + "&Type=" + 4, function(taocan) {
 				var template = $("#taocan");
 				$("#template2").tmpl(taocan).appendTo(template);
+				$(".jpzx1").html(taocan[0].PackageGoodsTitles)
 			})
 
 			$(".specialPerformanceDetail").live("click",
