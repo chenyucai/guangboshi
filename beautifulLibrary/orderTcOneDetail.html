@@ -560,7 +560,7 @@
 			</div>
 
 			<div class="p10 lijigoumai" id="yuyuezhong" style="background-color: white; padding: 0; display:none;">
-				<a href="Comment.html" class="btn btnBlock" style="background: #FF5DA9;line-height: 30px; height: 40px; margin: 0 auto;  width:40%;border-color: white; border-radius: 0;">评价</a>
+				<a href="javascript:;" id="comment" class="btn btnBlock" style="background: #FF5DA9;line-height: 30px; height: 40px; margin: 0 auto;  width:40%;border-color: white; border-radius: 0;">评价</a>
 				<a href="javascript:void(0)" class="btn btnBlock appointment" style="background: #2F2F2F;line-height: 30px; height: 40px; margin: 0 auto;  width:40%;border-color: white; border-radius: 0;">电话预约</a>
 			</div>
 		</footer>
@@ -660,18 +660,42 @@
 </html>
 
 <script>
+	function getUrlParameter(params, paramName){
+	  var reg = new RegExp("(^|&)"+ paramName +"=([^&]*)(&|$)");
+	  var r = params.substr(1).match(reg);
+	  if(r!=null) return  unescape(r[2]); return null;
+	}
+	var param = window.location.search;
+	var No = getUrlParameter(param, "No");
+
 	// var orderId = "af24aa0d-51ab-4905-9d6e-3e037b3f85fe";
 	var orderId = sessionStorage.getItem("orderId");
 	$.get(constants.baseUrl + "/AppOrder/GetOrderDetails?OrderID=" + orderId , function(data) {
 		// debugger;
 		var OrderDetail = JSON.parse(data);
-		$("#Category").text(OrderDetail.Category);
-		$("#GoodName").text(OrderDetail.GoodName);
-		$("#GoodImg").attr("src", OrderDetail.GoodImg);
+
+		var good = OrderDetail.Goods[No];
+		$("#SinglePrice").text(good.SellPrice);
+		$("#Price").text(good.SellPrice * good.Treatment);
+		$("#Count").text(good.Treatment);
+		$("#GoodImg").attr("src", good.Image);
+		$("#Category").text(good.Category);
+		$("#GoodName").text(good.Title);
+
+		for (var i = 0; i < good.StoreList.length; i++) {
+			var c = $(
+				'<div class="" style="margin-bottom:5px;">'+
+					'<span class="name" style="flex:0 0 20%;">'+good.StoreList[i].Name+':</span>'+
+					'<a href="tel:'+good.StoreList[i].TelPhone+'" style="color: #e37cab;text-decoration: underline;">'+good.StoreList[i].TelPhone+'</a>'+
+				'</div>'
+			);
+			c.appendTo(".swp");
+		}
+
 		$("#PayDate").text(OrderDetail.PayDate);
 		$("#OrderID").text(OrderDetail.OrderID);
-		$("#Price").text(OrderDetail.Price);
-		$("#Count").text(OrderDetail.Count);
+
+
 		$("#Store").text(OrderDetail.Store);
 		$("#StoreAddress").text(OrderDetail.StoreAddress);
 		$("#OrderDate").text(OrderDetail.OrderDate);
@@ -683,7 +707,7 @@
 		} else {
 			$("#CouponAmount").text(OrderDetail.CouponAmount);
 		}
-		$("#SinglePrice").text(OrderDetail.SinglePrice);
+
 
 		if(OrderDetail.ReservationStatus == 0) {
 
@@ -698,17 +722,49 @@
 			window.location.href = '../shaping/productDetails.html?id='+OrderDetail.GoodID;
 		});
 
-		$.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + OrderDetail.GoodID + "&UserId=" + $.cookie("userId"), function(data)  {
-		  for (var i = 0; i < data.StoreList.length; i++) {
-		    var c = $(
-		      '<div class="" style="margin-bottom:5px;">'+
-		        '<span class="name" style="flex:0 0 20%;">'+data.StoreList[i].Name+':</span>'+
-		        '<a href="tel:'+data.StoreList[i].TelPhone+'" style="color: #e37cab;text-decoration: underline;">'+data.StoreList[i].TelPhone+'</a>'+
-		      '</div>'
-		    );
-		    c.appendTo(".swp");
-		  }
+		$("#comment").live("click", function(e) {
+			e.preventDefault();
+			sessionStorage.setItem("goodId", OrderDetail.GoodID);
+			sessionStorage.setItem("goodName", OrderDetail.GoodName);
+
+			localStorage.setItem('commentCategory', good.Category);
+			localStorage.setItem("commentGoodId", OrderDetail.GoodID);
+			localStorage.setItem("commentGoodName", good.Title);
+			localStorage.setItem("commentType", OrderDetail.Type);
+			$.ajax({
+				url:'http://www.missnefer.com/AppAssess/checkGoodsHasReservation',
+				type:'get',
+				data:{
+					userId: $.cookie('userId'),
+					goodsId: OrderDetail.GoodID,
+					orderId: OrderDetail.OrderID
+				},
+				success: function(res){
+					debugger;
+					if (res == '1') {
+						localStorage.setItem('cType', '1');
+						location.href = "Comment.html";
+					}else if (res == '2') {
+						localStorage.setItem('cType', '2');
+						location.href = "Comment.html";
+					} else {
+						alert('亲，还不能去评价哦～');
+					}
+				}
+			});
 		})
+
+		// $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + OrderDetail.GoodID + "&UserId=" + $.cookie("userId"), function(data)  {
+		//   for (var i = 0; i < data.StoreList.length; i++) {
+		//     var c = $(
+		//       '<div class="" style="margin-bottom:5px;">'+
+		//         '<span class="name" style="flex:0 0 20%;">'+data.StoreList[i].Name+':</span>'+
+		//         '<a href="tel:'+data.StoreList[i].TelPhone+'" style="color: #e37cab;text-decoration: underline;">'+data.StoreList[i].TelPhone+'</a>'+
+		//       '</div>'
+		//     );
+		//     c.appendTo(".swp");
+		//   }
+		// })
 	})
 	$(".appointment").live("click",function(){
 	  $("#goodcover").show();
@@ -717,5 +773,7 @@
 	$(".closebt").click(function() {
 		$("#goodcover").hide();
 		$(".code_box").hide();
-	})
+	});
+
+
 </script>
