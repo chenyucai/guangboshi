@@ -851,7 +851,7 @@ $(function(){
 				var c = $('<div class="taocan-item" data="'+item.ID+'" data-couponId="'+item.GoodsId+'" data-price="'+item.SellPrice+'">'+
 					'<div class="taocan-header">'+
 						'<span class="taocan-checkbox"><span></span></span>'+
-						'<span class="taocan-label">套餐'+(i+1)+'</span>'+
+						'<span class="taocan-label">'+item.Title+'</span>'+
 						'<span class="taocan-price">¥'+item.SellPrice+'</span>'+
 					'</div>'+
 					'<div class="taocan-body">'+
@@ -1054,6 +1054,7 @@ $(function(){
 				var amount = Number($('#productNum').val()) * Number($('.taocan-item.active').attr('data-price'));
 				console.log(amount);
 				sessionStorage.setItem("OrderAmount", amount);
+				localStorage.setItem('c_count',$('#productNum').val());
 				sessionStorage.setItem("OrderID", response.ID);
 				location.href = "comboAffirmOrder.html";
 		});

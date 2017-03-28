@@ -280,7 +280,7 @@
 									<div class="goods-description">
 										<div class="goods-title">
 											<div class="goods-title-main" id="CategoryName">【 紧肤系列 】</div>
-											<div class="goods-title-remark" id="Treatment">6个疗程</div>
+											<div class="goods-title-remark" id="Treatment"></div>
 										</div>
 										<div class="goods-content" id="Title">翌生美玻尿酸精华液1支 涂抹式水光针提亮肤色润白补水保湿原液</div>
 									</div>
@@ -350,10 +350,11 @@
 		var order = JSON.parse(sessionStorage.getItem("orderData"));
 		var OrderAmount = sessionStorage.getItem("OrderAmount");
 		var OrderId = sessionStorage.getItem("OrderID");
-		var ProductId = sessionStorage.getItem("ProductId")
+		var ProductId = sessionStorage.getItem("ProductId") || sessionStorage.getItem('ComboProductId');
 		console.log(sessionStorage.getItem("ProductId"));
 		$("#CategoryName").text(order.CategoryName);
-		$("#Treatment").text(order.Treatment + "个疗程");
+		// $("#Treatment").text(order.Treatment + "个疗程");
+		$("#Treatment").text(localStorage.getItem('c_count')+'次');
 		$("#Title").text(order.Title);
 		$("#ImageList").css("background-image", "url(" + order.ImageList[0] + ")");
 		$("#OrderId").text(OrderId);
@@ -374,14 +375,16 @@
 		})
 
 		$("#orderDetail").click(function() {
+
 			sessionStorage.setItem("orderId", OrderId);
 			if(order.Type == 1 || order.Type == 2) {
 				location.href = "../beautifulLibrary/orderDetail.html";
-			}
-			if(order.Type == 3) {
+			}else if(order.Type == 3) {
 				location.href == "../beautifulLibrary/groupbuyingOrderDetail.html";
+			}else if (order.Type == 4) {
+				location.href = "../beautifulLibrary/orderTcDetail.html";
 			}
-		})
+		});
 
 		$.get("http://www.missnefer.com/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=" + $.cookie("userId"), function(data)  {
 		  for (var i = 0; i < data.StoreList.length; i++) {

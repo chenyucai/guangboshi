@@ -736,8 +736,9 @@
 				type:'get',
 				data:{
 					userId: $.cookie('userId'),
-					goodsId: OrderDetail.GoodID,
-					orderId: OrderDetail.OrderID
+					// goodsId: OrderDetail.GoodID,
+					goodsId: good.ID,
+					orderId: OrderDetail.ID
 				},
 				success: function(res){
 					debugger;

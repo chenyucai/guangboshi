@@ -78,17 +78,30 @@
 			</header>-->
 			<div class="pageMain noFoot">
 				<div class="whiteMain">
-					<div class="accountHead clearfix">
+					<div class="accountHead clearfix" style="height:80px;">
 						<div class="accountHeadPic" style="width: 80px;border-radius:inherit; padding-right: 10px;">
-							<img id="ImageList" src="../img/81844691981402.jpg" />
+							<!-- <img id="ImageList" src="../img/81844691981402.jpg" /> -->
+							<style media="screen">
+								.c_img{
+									width: 80px;
+									height: 80px;
+									background-repeat: no-repeat;
+									background-position: center;
+									background-size: cover;
+									display: block;
+								}
+							</style>
+							<div class="c_img" id="ImageList">
+
+							</div>
 						</div>
 						<div class="accountHeadMain">
-							<div class="h4">[<span id="CategoryName"></span>]&nbsp;&nbsp;&nbsp;<span class="c_9 h6" id="Treatment" style="background: #B8B8B8;padding: 1px 10px;font-family: PingFang-SC-Light;
+							<div class="h4"><span id="CategoryName"></span>&nbsp;&nbsp;&nbsp;<span class="c_9 h6" id="Treatment" style="background: #B8B8B8;padding: 1px 10px;font-family: PingFang-SC-Light;
 font-size: 10px;
 color: #FFFFFF;
-letter-spacing: 0px;">6个疗程</span></div>
+letter-spacing: 0px;"></span></div>
 							<div class="pt10">
-								<span class="c_9 h6" id="Title">翌生美玻尿酸精华液1支 涂抹式水光针提亮肤色润白补水保湿原液
+								<span class="c_9 h6" id="Title">
                       </div>
                   </div>
                </div>
@@ -134,9 +147,11 @@ letter-spacing: 0px;">6个疗程</span></div>
 	$("#OrderAmount").text(OrderAmount);
 	$("#personalNum").text(sessionStorage.getItem("GroupByNum") + "人");
 	$("#CategoryName").text(order.CategoryName);
-	$("#Treatment").text(order.Treatment + "个疗程");
+	// $("#Treatment").text(order.Treatment + "个疗程");
+	$("#Treatment").text(localStorage.getItem('c_count')+'次');
 	$("#Title").text(order.Title);
-	$("#ImageList").attr("src", order.ImageList[0]);
+	// $("#ImageList").attr("src", order.ImageList[0]);
+	$("#ImageList").attr("style", 'background-image:url('+order.ImageList[0]+')');
 	$(".btnBlock").live("click", function() {
 		$.post(constants.baseUrl + "/AppOrderManage/UpdateOrder", {
 
