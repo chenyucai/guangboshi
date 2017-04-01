@@ -534,7 +534,7 @@ callback(base64);
 	//		$(".shade,.tanceng").css("display", "block");
 	//
 	//	})
-$(function(){
+// $(function(){
 	window.cityLocation = new Location();
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalDetail?UserId=" + $.cookie("userId"), function(response) {
 		var html = '';
@@ -644,7 +644,7 @@ $(function(){
 	//		SavePersonalDetail("Birthday", $(this).val());
 	//	});
 
-	$("#LevelExplain").live("click", function() {
+	$("#LevelExplain").on("click", function() {
 		sessionStorage.setItem("LevelExplain", $(this).attr("data-content"));
 		location.href = "LevelExplain.html"
 	})
@@ -817,5 +817,5 @@ $(function(){
 	function MyCode() {
 		location.href = "InvitationCode.html?code=" + $("#InviteCode").text();
 	}
-});
+// });
 </script>
