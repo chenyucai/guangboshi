@@ -233,9 +233,17 @@
 			margin-bottom: 5px;
 		}
 	</style>
+	<link rel="stylesheet" href="../css/weui.min.css">
 </head>
 
 <body>
+	<div id="loadingToast" hidden="hidden">
+			<div class="weui-mask_transparent"></div>
+			<div class="weui-toast">
+					<i class="weui-loading weui-icon_toast"></i>
+					<p class="weui-toast__content">数据加载中</p>
+			</div>
+	</div>
 
 	<!--修改用户名-->
 	<div class="windowBox artistWindow">
@@ -474,19 +482,64 @@
 </body>
 
 </html>
-
+<script type="text/javascript">
+/**
+* 图片压缩，默认同比例压缩
+* @param {Object} path
+*   pc端传入的路径可以为相对路径，但是在移动端上必须传入的路径是照相图片储存的绝对路径
+* @param {Object} obj
+*   obj 对象 有 width， height， quality(0-1)
+* @param {Object} callback
+*   回调函数有一个参数，base64的字符串数据
+*/
+function dealImage(path, obj, callback){
+var img = new Image();
+img.src = path;
+img.onload = function(){
+var that = this;
+// 默认按比例压缩
+var w = that.width,
+ h = that.height,
+ scale = w / h;
+ w = obj.width || w;
+ h = obj.height || (w / scale);
+var quality = 0.7;  // 默认图片质量为0.7
+//生成canvas
+var canvas = document.createElement('canvas');
+var ctx = canvas.getContext('2d');
+// 创建属性节点
+var anw = document.createAttribute("width");
+anw.nodeValue = w;
+var anh = document.createAttribute("height");
+anh.nodeValue = h;
+canvas.setAttributeNode(anw);
+canvas.setAttributeNode(anh);
+ctx.drawImage(that, 0, 0, w, h);
+// 图像质量
+if(obj.quality && obj.quality <= 1 && obj.quality > 0){
+ quality = obj.quality;
+}
+// quality值越小，所绘制出的图像越模糊
+var base64 = canvas.toDataURL('image/jpeg', quality );
+// 回调函数返回base64的值
+callback(base64);
+// console.log(base64);
+// return base64;
+}
+}
+</script>
 <script>
 	//	$(".paySubmit").click(function() {
 	//		debugger;
 	//		$(".shade,.tanceng").css("display", "block");
 	//
 	//	})
-
+$(function(){
 	window.cityLocation = new Location();
 	$.get(constants.baseUrl + "/AppPersonal/GetPersonalDetail?UserId=" + $.cookie("userId"), function(response) {
 		var html = '';
 		$(response.LabelsList).each(function(i,v){
-			console.log(response.LabelsList[i].Id);
+			// console.log(response.LabelsList[i].Id);
 			html = '<div class="btn btnSm label_list" id='+response.LabelsList[i].Id+'>'+response.LabelsList[i].Name+'</a>';
 			$(".tag-box").append(html);
 		})
@@ -628,6 +681,7 @@
 	}
 
 	function readFile() {
+		$('#loadingToast').show();
 		var file = this.files[0]; //获取上传文件列表中第一个文件
 		if (!/image\/\w+/.test(file.type)) {
 			//图片文件的type值为image/png或image/jpg
@@ -640,24 +694,51 @@
 		//当文件读取成功便可以调取上传的接口
 		reader.onload = function(e) {
 			//			debugger;
-			console.log(this.result); //文件路径
-			console.log(e.target.result); //文件路径
-			var data = e.target.result.split(',');
-			localStorage.setItem('updateAvatar',e.target.result);
-			var tp = (file.type == 'image/png') ? 'png' : 'jpg';
-			var imgUrl = data[1]; //图片的url，去掉(data:image/png;base64,)
+			// console.log(this.result); //文件路径
+			// console.log(e.target.result); //文件路径
+			var data = dealImage(e.target.result,{
+				width: 100,
+				height:100,
+				quality: 0.7
+			},function(data){
+				console.log(data);
+				data = data.split(',');
+				// var data = e.target.result.split(',');
+				// localStorage.setItem('updateAvatar',e.target.result);
+				// var tp = (file.type == 'image/png') ? 'png' : 'jpg';
+				var imgUrl = data[1]; //图片的url，去掉(data:image/png;base64,)
 
-			$.post(constants.baseUrl + "/AppPersonal/SavePersonalIcon", {
-					UserId: $.cookie("userId"),
-					ImageStr: imgUrl
 
-				},
-				function(data) {
+				$.ajax({
+					url:constants.baseUrl + "/AppPersonal/SavePersonalIcon",
+					type:'post',
+					contentType:'application/json;charset=utf-8',
+					data:JSON.stringify({
+						UserId: $.cookie("userId"),
+						ImageStr: imgUrl
+					}),
+					success:function(){
+						$('#loadingToast').hide();
 
-					if (data != "") {
-						return false;
+						if (data != "") {
+							return false;
+						}
 					}
 				})
+			});
+
+			// $.post(constants.baseUrl + "/AppPersonal/SavePersonalIcon", {
+			// 		UserId: $.cookie("userId"),
+			// 		ImageStr: imgUrl
+			//
+			// 	},
+			// 	function(data) {
+			// 		$('#loadingToast').hide();
+			//
+			// 		if (data != "") {
+			// 			return false;
+			// 		}
+			// 	})
 			//需要上传到服务器的在这里可以进行ajax请求
 			// console.log(imgUrl);
 			// 创建一个 Image 对象
@@ -736,4 +817,5 @@
 	function MyCode() {
 		location.href = "InvitationCode.html?code=" + $("#InviteCode").text();
 	}
+});
 </script>
