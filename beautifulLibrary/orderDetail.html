@@ -560,7 +560,7 @@
 			</div>
 
 			<div class="p10 lijigoumai" id="yuyuezhong" style="background-color: white; padding: 0; display:none;">
-				<a href="Comment.html" class="btn btnBlock" style="background: #FF5DA9;line-height: 30px; height: 40px; margin: 0 auto;  width:40%;border-color: white; border-radius: 0;">评价</a>
+				<a href="javascript:;" id="comment" class="btn btnBlock" style="background: #FF5DA9;line-height: 30px; height: 40px; margin: 0 auto;  width:40%;border-color: white; border-radius: 0;">评价</a>
 				<a href="javascript:void(0)" class="btn btnBlock appointment" style="background: #2F2F2F;line-height: 30px; height: 40px; margin: 0 auto;  width:40%;border-color: white; border-radius: 0;">电话预约</a>
 			</div>
 		</footer>
@@ -717,5 +717,32 @@
 	$(".closebt").click(function() {
 		$("#goodcover").hide();
 		$(".code_box").hide();
+	})
+
+	$(function(){
+		$('#comment').click(function(){
+			$.ajax({
+				url:'http://www.missnefer.com/AppAssess/checkGoodsHasReservation',
+				type:'get',
+				data:{
+					userId: $.cookie('userId'),
+					goodsId: sessionStorage.getItem("goodId"),
+					orderId: sessionStorage.getItem("orderId")
+				},
+				success: function(res){
+					debugger;
+					if (res == '1') {
+						localStorage.setItem('cType', '1');
+						location.href = "Comment.html";
+					}else if (res == '2') {
+						localStorage.setItem('cType', '2');
+						location.href = "Comment.html";
+					} else {
+						alert('亲，还不能去评价哦～');
+					}
+				}
+			});
+		})
+
 	})
 </script>

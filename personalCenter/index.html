@@ -165,21 +165,21 @@
 					background: rgba(0, 0, 0, 0.6);
 					text-align: center;
 				}
-				/*.c_sign-box{
-					text-align: center;
+				.c_sign-box{
+					padding-top: 33%;
 					position: fixed;
-					top: 23%;
+					z-index: 5001;
+					top: 0;
 					left: 0;
-					z-index: 5000;
 					width: 100%;
-					height: 100%;
-				}*/
+					text-align: center;
+				}
 				.c_sign{
 					display: inline-block;
 					width: 280px;
 					height: 315px;
 					background: #fff;
-					margin-top: 33%;
+					/*margin-top: 33%;*/
 				}
 				.c_sign-img{
 					width: 110px;
@@ -240,8 +240,13 @@
 		</head>
 
 		<body>
-			<div class="c_sign-wrapper" hidden="hidden">
-				<div class="c_sign-mask">
+
+			<div class="layoutMain" style="font:">
+
+				<div class="c_sign-wrapper" hidden="hidden">
+					<div class="c_sign-mask">
+
+					</div>
 					<div class="c_sign-box">
 						<div class="c_sign">
 							<div class="c_sign-body">
@@ -264,10 +269,6 @@
 						</div>
 					</div>
 				</div>
-
-			</div>
-
-			<div class="layoutMain" style="font:">
 
 				<header class="pageHead clearfix">
 					<div class="headLeft">
@@ -413,36 +414,39 @@
 		}
 	});
 
-	$('.c_sign-footer-left').live('click',function(){
-		window.location.href = 'pointExplain.html';
-	});
+	// $('.c_sign-mask').live('click',function(e){
+	// 	$('.c_sign-wrapper').hide();
+	// });
 
-	$('.c_sign-mask').live('click',function(e){
-		$('.c_sign-wrapper').hide();
-	});
+	// $('.c_sign-box').live('click',function(e){
+	// 	$('.c_sign-wrapper').hide();
+	// 	// e.stopPropagation();
+	// 	// e.preventDefault();
+	// });
 
-	$('.c_sign-box').live('click',function(e){
-		$('.c_sign-wrapper').hide();
-		e.stopPropagation();
-		e.preventDefault();
-	});
+	// $('.c_sign').live('click',function(e){
+	// 	// e.stopPropagation();
+	// 	// e.preventDefault();
+	// 	// $('.c_sign-wrapper').hide()
+	// });
+	$(function(){
+		$('.c_sign-footer-left').on('click',function(){
+			window.location.href = 'pointExplain.html';
+		});
+		$('.c_sign-footer-right').on('touchstart',function(e){
+			e.stopPropagation();
+			e.preventDefault();
+			$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
+				if(response != "") {
+					alert(response);
+				}else {
+					$(".qiandao").html("已签到");
+					SignedMark = true;
+					$('.c_sign-wrapper').hide();
+				}
+			})
+		});
+	})
 
-	$('.c_sign').live('click',function(e){
-		e.stopPropagation();
-		e.preventDefault();
-	});
 
-	$('.c_sign-footer-right').live('click',function(e){
-		e.stopPropagation();
-		e.preventDefault();
-		$.get(constants.baseUrl + "/AppPersonal/SetPersonalSign?UserId=" + $.cookie("userId"), function(response) {
-			if(response != "") {
-				alert(response);
-			}else {
-				$(".qiandao").html("已签到");
-				SignedMark = true;
-				$('.c_sign-wrapper').hide();
-			}
-		})
-	});
 </script>
