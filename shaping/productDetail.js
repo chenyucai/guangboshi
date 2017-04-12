@@ -38,7 +38,7 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=
 	$("#Title").text(data.Title);
 	$("#CategoryName").text("【 " + data.CategoryName + "】");
 	$("#CategoryNameChose").text("【 " + data.CategoryName + "】");
-	$("#Treatment").text(data.Treatment + "个疗程")
+	$("#Treatment").text(data.Treatment + "次")
 	$("#SellPrice").text(data.SellPrice);
 	$("#MarketPrice").text(data.MarketPrice);
   var stores = [];
@@ -70,7 +70,7 @@ $.get(constants.baseUrl + "/AppGoods/GetGoodsDetail?Id=" + ProductId + "&UserId=
 
 	$("#ImageList").attr("src", data.ImageList[0]);
 	$("#imgChose").attr("src", data.ImageList[0]);
-	$("#TreatmentChose").text(data.Treatment + "个疗程")
+	$("#TreatmentChose").text(data.Treatment + "次")
 	$("#SellPriceChose").text("¥" + data.SellPrice);
 	$("#Content").html(data.Content);
 	$("#GroupByRemark").html(data.Remark);
@@ -130,7 +130,7 @@ $("#checkComplete").live("click", function () {
 				goodsId: ProductId || sessionStorage.getItem("ProductId")
 			}),
 		success:function(response){
-      debugger;
+      // debugger;
 			if(response.Status != 1) {
 				// alert(response);
 				return false;

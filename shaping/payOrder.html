@@ -299,7 +299,7 @@ letter-spacing: 0px;"></span></div>
 <script>
 	var order = JSON.parse(sessionStorage.getItem("orderData"));
 	var OrderAmount = sessionStorage.getItem("OrderAmount");
-
+	console.log(OrderAmount);
 	var OrderId = sessionStorage.getItem("OrderID");
 	$("#CategoryName").text(order.CategoryName);
 	// $("#Treatment").text(order.Treatment + "个疗程");

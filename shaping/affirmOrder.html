@@ -370,7 +370,7 @@ $(function(){
 	})
 
 	$(".btnBlock").live("click", function() {
-		sessionStorage.setItem("_OrderAmount", OrderAmount - couponAmount);
+		sessionStorage.setItem("OrderAmount", OrderAmount - couponAmount);
 		location.href = "payOrder.html";
 	})
 

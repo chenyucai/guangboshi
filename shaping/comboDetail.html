@@ -837,40 +837,50 @@ $(function(){
 			$("#EndTime").text(data.EndTime);
 			console.log(data.StoreList);
 			var stores = [];
-		  data.StoreList.forEach(function(item){
-		    stores.push(item.Name);
-		  });
+			if (data.StoreList) {
+				data.StoreList.forEach(function(item){
+			    stores.push(item.Name);
+			  });
+			}
+
 			$("#StoreList").text(stores.join(','));
-			$("#ImageList,#imgChose").attr("src", data.ImageList[0]);
+			if (data.ImageList) {
+				$("#ImageList,#imgChose").attr("src", data.ImageList[0]);
+			}
+
 			$("#Content").html(data.Content);
 			$("#GroupByRemark").html(data.Remark);
 			$(".shareBtn").attr("data-id", data.Id);
 			$("#PackageGoodsNum").text(data.PackageGoodsNum);
 
-			data.PacksList.forEach(function(item,i){
-				var c = $('<div class="taocan-item" data="'+item.ID+'" data-couponId="'+item.GoodsId+'" data-price="'+item.SellPrice+'">'+
-					'<div class="taocan-header">'+
-						'<span class="taocan-checkbox"><span></span></span>'+
-						'<span class="taocan-label">'+item.Title+'</span>'+
-						'<span class="taocan-price">¥'+item.SellPrice+'</span>'+
-					'</div>'+
-					'<div class="taocan-body">'+
+			if (data.PacksList) {
+				data.PacksList.forEach(function(item,i){
+					var c = $('<div class="taocan-item" data="'+item.ID+'" data-couponId="'+item.GoodsId+'" data-price="'+item.SellPrice+'">'+
+						'<div class="taocan-header">'+
+							'<span class="taocan-checkbox"><span></span></span>'+
+							'<span class="taocan-label">'+item.Title+'</span>'+
+							'<span class="taocan-price">¥'+item.SellPrice+'</span>'+
+						'</div>'+
+						'<div class="taocan-body">'+
 
-					'</div>'+
-				'</div>');
-				var plist = '';
-				item.PackageGoodsList.forEach(function(v){
-					plist += '<div class="taocan-body-item">'+
-						'<span class="taocan-ctg">【'+v.CategoryName+'】</span>'+
-						'<span class="taocan-title">'+v.Title+'</span>'+
-					'</div>';
+						'</div>'+
+					'</div>');
+					var plist = '';
+					item.PackageGoodsList.forEach(function(v){
+						plist += '<div class="taocan-body-item">'+
+							'<span class="taocan-ctg">【'+v.CategoryName+'】</span>'+
+							'<span class="taocan-title">'+v.Title+'</span>'+
+						'</div>';
+					});
+					c.find('.taocan-body').html(plist);
+					c.appendTo('#taocanList');
+					if (i == 0) {
+						c.addClass('active');
+					}
 				});
-				c.find('.taocan-body').html(plist);
-				c.appendTo('#taocanList');
-				if (i == 0) {
-					c.addClass('active');
-				}
-			});
+			}
+
+
 
 			$('.taocan-item').click(function(){
 				if (!$(this).hasClass('active')) {
